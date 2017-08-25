@@ -10,7 +10,8 @@ var MIN_NOMAD_HARVESTERS = 1;
 module.exports.loop = function () {
     function printNeighbours() {
         mainRoom = Game.spawns["Spawn1"].room;
-        rooms = Game.map.describeExits(mainRoom.name);
+        var rooms = Game.map.describeExits(mainRoom.name);
+        Game.memory.neighbours = rooms;
         console.log(rooms.length);
     }
 
