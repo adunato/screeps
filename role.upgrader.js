@@ -18,6 +18,7 @@ var roleUpgrader = {
             }
         }
         else {
+            console.log("picking up");
             var containers = room.find(FIND_STRUCTURES, {
                 filter: (container) => {
                     // return (structure.structureType == STRUCTURE_CONTAINER) && structure.store < structure.storeCapacity;
