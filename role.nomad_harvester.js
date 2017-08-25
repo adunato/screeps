@@ -25,7 +25,9 @@ var nomad_harvester = {
                 }
             } else {
                 console.log("moving to source");
-                creep.moveTo(Game.getObjectById(creep.memory.selectedSource), {visualizePathStyle: {stroke: '#ffaa00'}});
+                if (creep.harvest(Game.getObjectById(creep.memory.selectedSource)) == ERR_NOT_IN_RANGE) {
+                    creep.moveTo(Game.getObjectById(creep.memory.selectedSource), {visualizePathStyle: {stroke: '#ffaa00'}});
+                }
             }
         }
         else {
