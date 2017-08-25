@@ -2,11 +2,29 @@ var nomad_harvester = {
 
     /** @param {Creep} creep **/
     run: function (creep) {
-        function selectHarvestRoom(roomName){
-            var harvestRoom = Game.flags[roomName].room;
+        function getFlagRoomName(flagName){
+            var flagRoom = Game.flags[flagName].room;
+            //room is not visible
+            if (typeof flagRoom == 'undefined') {
+                return 'undefined';
+            } else {
+                return flagRoom.name;
+            }
+        }
+        function countCreepsInFlagRoom(flagName){
+            var ret =0;
+            for(var creep in Game.creeps){
+                if(creep.roomName == getFlagRoomName(flagName))
+                    ret++;
+            }
+            return ret;
+        }
+
+        function selectHarvestRoom(flagName){
+            var harvestRoom = Game.flags[flagName].room;
             //room is not visible
             if (typeof harvestRoom == 'undefined') {
-                creep.moveTo(Game.flags[roomName], {visualizePathStyle: {stroke: '#ffaa00'}});
+                creep.moveTo(Game.flags[flagName], {visualizePathStyle: {stroke: '#ffaa00'}});
             } else {
                 var sources = harvestRoom.find(FIND_SOURCES);
                 var selectedSource;
@@ -20,6 +38,8 @@ var nomad_harvester = {
                 creep.memory.selectedSource = selectedSource.id;
             }
         }
+
+        console.log(countCreepsInFlagRoom("harvest1"));
 
         var spawnRoom = Game.spawns["Spawn1"].room;
         if (creep.carry.energy < creep.carryCapacity) {
