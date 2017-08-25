@@ -4,28 +4,32 @@ var nomad_harvester = {
     run: function (creep) {
         var spawnRoom = Game.spawns["Spawn1"].room;
         if (creep.carry.energy < creep.carryCapacity) {
-            var harvestRoom = Game.flags["harvest1"].room;
-            var harvestRoomName = Game.flags["harvest1"].pos.roomName;
-            //room is not visible
-            if (typeof harvestRoom == 'undefined') {
-                creep.moveTo(Game.flags["harvest1"], {visualizePathStyle: {stroke: '#ffaa00'}});
-            } else {
-                var sources = harvestRoom.find(FIND_SOURCES);
-                var selectedSource;
-                var maxEnergy = 0;
-                for(var i = 0; i < sources.length; i++) {
-                    console.log(sources[i]);
-                    if(sources[i].energy > maxEnergy){
-                        selectedSource = sources[i];
-                        maxEnergy = sources[i].energy;
+            if(creep.memory.selectedSource == null) {
+                var harvestRoom = Game.flags["harvest1"].room;
+                //room is not visible
+                if (typeof harvestRoom == 'undefined') {
+                    creep.moveTo(Game.flags["harvest1"], {visualizePathStyle: {stroke: '#ffaa00'}});
+                } else {
+                    var sources = harvestRoom.find(FIND_SOURCES);
+                    var selectedSource;
+                    var maxEnergy = 0;
+                    for (var i = 0; i < sources.length; i++) {
+                        console.log(sources[i]);
+                        if (sources[i].energy > maxEnergy) {
+                            selectedSource = sources[i];
+                            maxEnergy = sources[i].energy;
+                        }
+                    }
+                    if (creep.harvest(selectedSource) == ERR_NOT_IN_RANGE) {
+                        creep.memory.selectedSource = selectedSource;
                     }
                 }
-                if (creep.harvest(selectedSource) == ERR_NOT_IN_RANGE) {
-                    creep.moveTo(selectedSource, {visualizePathStyle: {stroke: '#ffaa00'}});
-                }
+            } else {
+                creep.moveTo(creep.memory.selectedSource, {visualizePathStyle: {stroke: '#ffaa00'}});
             }
         }
         else {
+            creep.memory.selectedSource = null;
             var targets = spawnRoom.find(FIND_STRUCTURES, {
                 filter: (structure) => {
                     return (structure.structureType == STRUCTURE_EXTENSION ||
