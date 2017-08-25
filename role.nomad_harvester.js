@@ -2,11 +2,15 @@ var nomad_harvester = {
 
     /** @param {Creep} creep **/
     run: function (creep) {
-        var harvestRoom = Game.flags["harvest1"].room;
-        console.log(Game.flags["harvest1"].room);
-        Memory.flags_ = Game.flags;
         var spawnRoom = Game.spawns["Spawn1"].room;
         if (creep.carry.energy < creep.carryCapacity) {
+            var harvestRoom = Map.Game.flags["harvest1"].room;
+            var harvestRoomName = Map.Game.flags["harvest1"].pos.roomName;
+            //room is not visible
+            if (typeof harvestRoom == 'undefined'){
+                creep.move(Game.map.findExit(spawnRoom.name,harvestRoomName));
+            }
+
             var sources = harvestRoom.find(FIND_SOURCES);
             if (creep.harvest(sources[0]) == ERR_NOT_IN_RANGE) {
                 creep.moveTo(sources[0], {visualizePathStyle: {stroke: '#ffaa00'}});
