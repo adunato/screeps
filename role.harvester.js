@@ -5,8 +5,16 @@ var roleHarvester = {
         var room = creep.room;
         if (creep.carry.energy < creep.carryCapacity) {
             var sources = room.find(FIND_SOURCES);
-            if (creep.harvest(sources[0]) == ERR_NOT_IN_RANGE) {
-                creep.moveTo(sources[0], {visualizePathStyle: {stroke: '#ffaa00'}});
+            var selectedSource;
+            for(var source in sources) {
+                var maxEnergy = 0;
+                if(source.energy > maxEnergy){
+                    selectedSource = source;
+                    maxEnergy = source.energy;
+                }
+            }
+            if (creep.harvest(selectedSource) == ERR_NOT_IN_RANGE) {
+                creep.moveTo(selectedSource, {visualizePathStyle: {stroke: '#ffaa00'}});
             }
         }
         else {
