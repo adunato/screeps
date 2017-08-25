@@ -29,9 +29,9 @@ var roleUpgrader = {
 
             Memory.pickupcontainers = containers;
 
-            if(creep.pickup(containers[0]) == ERR_NOT_IN_RANGE) {
+            // if(creep.pickup(containers[0]) == ERR_NOT_IN_RANGE) {
                 creep.moveTo(containers[0], {visualizePathStyle: {stroke: '#ffaa00'}});
-            }
+            // }
         }
     }
 };
