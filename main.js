@@ -9,6 +9,11 @@ var MIN_NOMAD_HARVESTERS = 1;
 
 module.exports.loop = function () {
 
+    mainRoom = Game.spawns["Spawn1"].room;
+    for(roomName in Game.map.describeExits(mainRoom.name)){
+        console.log(roomName);
+    }
+
     for(var name in Memory.creeps) {
         if(!Game.creeps[name]) {
             delete Memory.creeps[name];
