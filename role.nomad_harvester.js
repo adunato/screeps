@@ -7,13 +7,14 @@ var nomad_harvester = {
             var harvestRoom = Game.flags["harvest1"].room;
             var harvestRoomName = Game.flags["harvest1"].pos.roomName;
             //room is not visible
-            if (typeof harvestRoom == 'undefined'){
-                creep.move(Game.map.findExit(spawnRoom.name,harvestRoomName));
-            }
+            if (typeof harvestRoom == 'undefined') {
+                creep.move(Game.map.findExit(spawnRoom.name, harvestRoomName));
+            } else {
+                var sources = harvestRoom.find(FIND_SOURCES);
+                if (creep.harvest(sources[0]) == ERR_NOT_IN_RANGE) {
+                    creep.moveTo(sources[0], {visualizePathStyle: {stroke: '#ffaa00'}});
 
-            var sources = harvestRoom.find(FIND_SOURCES);
-            if (creep.harvest(sources[0]) == ERR_NOT_IN_RANGE) {
-                creep.moveTo(sources[0], {visualizePathStyle: {stroke: '#ffaa00'}});
+                }
             }
         }
         else {
@@ -35,7 +36,7 @@ var nomad_harvester = {
                 if (creep.transfer(targets[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                     creep.moveTo(targets[0], {visualizePathStyle: {stroke: '#ffffff'}});
                 }
-            } else if (containers.length > 0){
+            } else if (containers.length > 0) {
                 if (creep.transfer(containers[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                     creep.moveTo(containers[0], {visualizePathStyle: {stroke: '#ffffff'}});
                 }
