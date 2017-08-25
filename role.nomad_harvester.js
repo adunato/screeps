@@ -3,6 +3,7 @@ var nomad_harvester = {
     /** @param {Creep} creep **/
     run: function (creep) {
         var harvestRoom = Game.flags["harvest1"].room;
+        Memory.flags_ = Game.flags;
         var spawnRoom = Game.spawns["Spawn1"].room;
         if (creep.carry.energy < creep.carryCapacity) {
             var sources = harvestRoom.find(FIND_SOURCES);
