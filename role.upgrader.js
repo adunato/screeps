@@ -5,7 +5,7 @@ var roleUpgrader = {
         var room = creep.room;
         if(creep.memory.upgrading && creep.carry.energy == 0) {
             creep.memory.upgrading = false;
-            creep.say('🔄 harvest');
+            creep.say('🔄 withdraw');
         }
         if(!creep.memory.upgrading && creep.carry.energy == creep.carryCapacity) {
             creep.memory.upgrading = true;
@@ -18,7 +18,6 @@ var roleUpgrader = {
             }
         }
         else {
-            console.log("picking up");
             var containers = room.find(FIND_STRUCTURES, {
                 filter: (container) => {
                     // return (structure.structureType == STRUCTURE_CONTAINER) && structure.store < structure.storeCapacity;
@@ -27,13 +26,7 @@ var roleUpgrader = {
 
             });
 
-            Memory.pickupcontainers = containers;
-
-            var result = creep.withdraw(containers[0],RESOURCE_ENERGY);
-
-            console.log(result);
-
-            if(result == ERR_NOT_IN_RANGE) {
+            if(creep.withdraw(containers[0],RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                 creep.moveTo(containers[0], {visualizePathStyle: {stroke: '#ffaa00'}});
             }
         }
