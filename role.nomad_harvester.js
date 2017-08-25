@@ -2,6 +2,8 @@ var nomad_harvester = {
 
     /** @param {Creep} creep **/
     run: function (creep) {
+        var MAX_NOMADS_PER_FLAG = 5;
+        var FLAGS_NUM = 2;
         function getFlagRoomName(flagName){
             var flagRoom = Game.flags[flagName].room;
             //room is not visible
@@ -40,13 +42,14 @@ var nomad_harvester = {
             }
         }
 
-        console.log(countCreepsInFlagRoom("harvest1"));
-
-
         var spawnRoom = Game.spawns["Spawn1"].room;
         if (creep.carry.energy < creep.carryCapacity) {
             if(creep.memory.selectedSource == null) {
-                selectHarvestRoom("harvest1")
+                for(var i = 1; i < FLAGS_NUM+1; i++) {
+                    if(countCreepsInFlagRoom("harvest"+i) < MAX_NOMADS_PER_FLAG){
+                        selectHarvestRoom("harvest"+i);
+                    }
+                }
             } else {
                 if (creep.harvest(Game.getObjectById(creep.memory.selectedSource)) == ERR_NOT_IN_RANGE) {
                     creep.moveTo(Game.getObjectById(creep.memory.selectedSource), {visualizePathStyle: {stroke: '#ffaa00'}});
