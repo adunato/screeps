@@ -15,10 +15,10 @@ var nomad_harvester = {
             var ret =0;
             for(var i in Game.creeps){
                 var creep = Game.creeps[i];
-                console.log("creep.roomName: " + creep.room);
+                console.log("creep.roomName: " + creep.room.name);
                 console.log("flagName: " + flagName);
                 console.log("getFlagRoomName(flagName)): " + getFlagRoomName(flagName));
-                if(creep.room == getFlagRoomName(flagName))
+                if(creep.room.name == getFlagRoomName(flagName))
                     ret++;
             }
             return ret;
