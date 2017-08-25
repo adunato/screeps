@@ -4,8 +4,8 @@ var roleBuilder = require('role.builder');
 var roleNomadHarvester = require('role.nomad_harvester');
 var MIN_UPGRADERS = 5;
 var MIN_BUILDERS = 5;
-var MIN_HARVESTERS = 5;
-var MIN_NOMAD_HARVESTERS = 1;
+var MIN_HARVESTERS = 7;
+var MIN_NOMAD_HARVESTERS = 10;
 
 module.exports.loop = function () {
     function printNeighbours() {
