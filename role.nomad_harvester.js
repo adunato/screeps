@@ -23,7 +23,7 @@ var nomad_harvester = {
                 }
             } else {
                 creep.moveTo(Game.flags["RestArea"], {visualizePathStyle: {stroke: '#ffffff'}});
-                creep.say("Going to rest");
+                creep.say("Rest");
             }
         }
     }
