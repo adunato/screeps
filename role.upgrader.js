@@ -29,7 +29,7 @@ var roleUpgrader = {
 
             Memory.pickupcontainers = containers;
 
-            var result = creep.pickup(containers[0]);
+            var result = creep.withdraw(containers[0],RESOURCE_ENERGY);
 
             console.log(result);
 
