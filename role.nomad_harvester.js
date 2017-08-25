@@ -21,11 +21,11 @@ var nomad_harvester = {
                         }
                     }
                     if (creep.harvest(selectedSource) == ERR_NOT_IN_RANGE) {
-                        creep.memory.selectedSource = selectedSource;
+                        creep.memory.selectedSource = selectedSource.id;
                     }
                 }
             } else {
-                creep.moveTo(creep.memory.selectedSource, {visualizePathStyle: {stroke: '#ffaa00'}});
+                creep.moveTo(Game.getObjectById(creep.memory.selectedSource), {visualizePathStyle: {stroke: '#ffaa00'}});
             }
         }
         else {
