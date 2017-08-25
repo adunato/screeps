@@ -13,7 +13,8 @@ var nomad_harvester = {
         }
         function countCreepsInFlagRoom(flagName){
             var ret =0;
-            for(var creep in Game.creeps){
+            for(var i in Game.creeps){
+                var creep = Game.creeps[i];
                 console.log("creep.roomName: " + creep.room);
                 console.log("flagName: " + flagName);
                 console.log("getFlagRoomName(flagName)): " + getFlagRoomName(flagName));
