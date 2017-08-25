@@ -13,11 +13,11 @@ var nomad_harvester = {
                 var sources = harvestRoom.find(FIND_SOURCES);
                 var selectedSource;
                 var maxEnergy = 0;
-                for(var source in sources) {
-                    console.log(source);
-                    if(source.energy > maxEnergy){
-                        selectedSource = source;
-                        maxEnergy = source.energy;
+                for(var i = 0; i < sources.length; i++) {
+                    console.log(sources[i]);
+                    if(sources[i].energy > maxEnergy){
+                        selectedSource = sources[i];
+                        maxEnergy = sources[i].energy;
                     }
                 }
                 if (creep.harvest(selectedSource) == ERR_NOT_IN_RANGE) {
