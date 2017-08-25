@@ -2,7 +2,7 @@ var roleUpgrader = {
 
     /** @param {Creep} creep **/
     run: function(creep) {
-
+        var room = creep.room;
         if(creep.memory.upgrading && creep.carry.energy == 0) {
             creep.memory.upgrading = false;
             creep.say('🔄 harvest');
@@ -18,10 +18,16 @@ var roleUpgrader = {
             }
         }
         else {
-            var sources = creep.room.find(FIND_SOURCES);
-            Memory.sources = sources;
-            if(creep.harvest(sources[0]) == ERR_NOT_IN_RANGE) {
-                creep.moveTo(sources[0], {visualizePathStyle: {stroke: '#ffaa00'}});
+            var containers = room.find(FIND_STRUCTURES, {
+                filter: (container) => {
+                    // return (structure.structureType == STRUCTURE_CONTAINER) && structure.store < structure.storeCapacity;
+                    return (container.structureType == STRUCTURE_CONTAINER) && container.store.energy > 0;
+                }
+
+            });
+
+            if(creep.pickup(containers[0]) == ERR_NOT_IN_RANGE) {
+                creep.moveTo(containers[0], {visualizePathStyle: {stroke: '#ffaa00'}});
             }
         }
     }
