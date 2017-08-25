@@ -8,7 +8,6 @@ var roleHarvester = {
             var selectedSource;
             var maxEnergy = 0;
             for(var i = 0; i < sources.length; i++) {
-                console.log(sources[i]);
                 if(sources[i].energy > maxEnergy){
                     selectedSource = sources[i];
                     maxEnergy = sources[i].energy;

@@ -22,7 +22,6 @@ var nomad_harvester = {
                     creep.memory.selectedSource = selectedSource.id;
                 }
             } else {
-                console.log("moving to source");
                 if (creep.harvest(Game.getObjectById(creep.memory.selectedSource)) == ERR_NOT_IN_RANGE) {
                     creep.moveTo(Game.getObjectById(creep.memory.selectedSource), {visualizePathStyle: {stroke: '#ffaa00'}});
                 }
