@@ -42,6 +42,7 @@ var nomad_harvester = {
 
         console.log(countCreepsInFlagRoom("harvest1"));
 
+
         var spawnRoom = Game.spawns["Spawn1"].room;
         if (creep.carry.energy < creep.carryCapacity) {
             if(creep.memory.selectedSource == null) {
