@@ -20,7 +20,7 @@ var roleHarvester = {
             var containers = room.find(FIND_STRUCTURES, {
                 filter: (container) => {
                     // return (structure.structureType == STRUCTURE_CONTAINER) && structure.store < structure.storeCapacity;
-                    return (container.structureType == STRUCTURE_CONTAINER);
+                    return (container.structureType == STRUCTURE_CONTAINER) && container.store.energy < container.storeCapacity;
                 }
 
             });
