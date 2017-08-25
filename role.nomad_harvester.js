@@ -3,7 +3,7 @@ var nomad_harvester = {
     /** @param {Creep} creep **/
     run: function (creep) {
         var MAX_NOMADS_PER_FLAG = 5;
-        var FLAGS_NUM = 3;
+        var FLAGS_NUM = 1;
         function getFlagRoomName(flagName){
             var flagRoom = Game.flags[flagName].room;
             //room is not visible

@@ -11,7 +11,7 @@ module.exports.loop = function () {
     MIN_UPGRADERS = 2;
     MIN_BUILDERS = 2;
     MIN_HARVESTERS = 7;
-    MIN_NOMAD_HARVESTERS = 15;
+    MIN_NOMAD_HARVESTERS = 5;
     function printNeighbours() {
         mainRoom = Game.spawns["Spawn1"].room;
         var rooms = Game.map.describeExits(mainRoom.name);
