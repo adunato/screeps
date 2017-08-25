@@ -2,12 +2,16 @@ var roleHarvester = require('role.harvester');
 var roleUpgrader = require('role.upgrader');
 var roleBuilder = require('role.builder');
 var roleNomadHarvester = require('role.nomad_harvester');
-var MIN_UPGRADERS = 2;
-var MIN_BUILDERS = 2;
-var MIN_HARVESTERS = 7;
-var MIN_NOMAD_HARVESTERS = 10;
+var MIN_UPGRADERS;
+var MIN_BUILDERS;
+var MIN_HARVESTERS;
+var MIN_NOMAD_HARVESTERS;
 
 module.exports.loop = function () {
+    MIN_UPGRADERS = 2;
+    MIN_BUILDERS = 2;
+    MIN_HARVESTERS = 7;
+    MIN_NOMAD_HARVESTERS = 10;
     function printNeighbours() {
         mainRoom = Game.spawns["Spawn1"].room;
         var rooms = Game.map.describeExits(mainRoom.name);
