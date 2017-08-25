@@ -14,6 +14,7 @@ var nomad_harvester = {
                 var selectedSource;
                 var maxEnergy = 0;
                 for(var source in sources) {
+                    console.log(source.energy);
                     if(source.energy > maxEnergy){
                         selectedSource = source;
                         maxEnergy = source.energy;
