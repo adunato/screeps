@@ -7,6 +7,11 @@ var MIN_HARVESTERS = 5;
 
 module.exports.loop = function () {
 
+    mainRoom = Game.spawns[0].room;
+    for(roomName in Game.map.describeExits(mainRoom)){
+        console.log(roomName);
+    }
+
     for(var name in Memory.creeps) {
         if(!Game.creeps[name]) {
             delete Memory.creeps[name];
