@@ -19,9 +19,7 @@ var nomad_harvester = {
                             maxEnergy = sources[i].energy;
                         }
                     }
-                    if (creep.harvest(selectedSource) == ERR_NOT_IN_RANGE) {
-                        creep.memory.selectedSource = selectedSource.id;
-                    }
+                    creep.memory.selectedSource = selectedSource.id;
                 }
             } else {
                 console.log("moving to source");
