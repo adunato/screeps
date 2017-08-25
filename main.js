@@ -11,7 +11,7 @@ module.exports.loop = function () {
     function printNeighbours() {
         mainRoom = Game.spawns["Spawn1"].room;
         var rooms = Game.map.describeExits(mainRoom.name);
-        Game.memory.neighbours = rooms;
+        Memory.neighbours = rooms;
         console.log(rooms.length);
     }
 
