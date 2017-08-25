@@ -4,8 +4,8 @@ var nomad_harvester = {
     run: function (creep) {
         var spawnRoom = Game.spawns["Spawn1"].room;
         if (creep.carry.energy < creep.carryCapacity) {
-            var harvestRoom = Game.map.flags["harvest1"].room;
-            var harvestRoomName = Game.map.flags["harvest1"].pos.roomName;
+            var harvestRoom = Game.flags["harvest1"].room;
+            var harvestRoomName = Game.flags["harvest1"].pos.roomName;
             //room is not visible
             if (typeof harvestRoom == 'undefined'){
                 creep.move(Game.map.findExit(spawnRoom.name,harvestRoomName));
