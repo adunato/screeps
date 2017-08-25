@@ -2,8 +2,8 @@ var roleHarvester = require('role.harvester');
 var roleUpgrader = require('role.upgrader');
 var roleBuilder = require('role.builder');
 var roleNomadHarvester = require('role.nomad_harvester');
-var MIN_UPGRADERS = 5;
-var MIN_BUILDERS = 5;
+var MIN_UPGRADERS = 2;
+var MIN_BUILDERS = 2;
 var MIN_HARVESTERS = 7;
 var MIN_NOMAD_HARVESTERS = 10;
 
