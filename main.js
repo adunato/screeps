@@ -8,7 +8,7 @@ var MIN_HARVESTERS = 5;
 module.exports.loop = function () {
 
     mainRoom = Game.spawns["Spawn1"].room;
-    for(roomName in Game.map.describeExits(mainRoom)){
+    for(roomName in Game.map.describeExits(mainRoom.name)){
         console.log(roomName);
     }
 
