@@ -32,8 +32,13 @@ var roleBuilder = {
 
             });
 
-            if(creep.withdraw(containers[0],RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                creep.moveTo(containers[0], {visualizePathStyle: {stroke: '#ffaa00'}});
+            if(containers.length > 0) {
+                if (creep.withdraw(containers[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+                    creep.moveTo(containers[0], {visualizePathStyle: {stroke: '#ffaa00'}});
+                }
+            } else {
+                creep.moveTo(Game.flags["RestArea"], {visualizePathStyle: {stroke: '#ffffff'}});
+                creep.say("Rest");
             }
         }
     }
