@@ -2,10 +2,7 @@ var nomad_harvester = {
 
     /** @param {Creep} creep **/
     run: function (creep) {
-        mainRoom = Game.spawns["Spawn1"].room;
-        var rooms = Game.map.describeExits(mainRoom.name);
-        Memory.neighbours = rooms;
-        var room = Game.map.rooms[rooms["1"]];
+        var room = creep.room;
         if (creep.carry.energy < creep.carryCapacity) {
             var sources = room.find(FIND_SOURCES);
             if (creep.harvest(sources[0]) == ERR_NOT_IN_RANGE) {
