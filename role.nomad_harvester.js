@@ -8,7 +8,7 @@ var nomad_harvester = {
             var harvestRoomName = Game.flags["harvest1"].pos.roomName;
             //room is not visible
             if (typeof harvestRoom == 'undefined') {
-                creep.moveTo(Game.map.findExit(spawnRoom.name, harvestRoomName));
+                creep.moveTo(Game.flags["harvest1"]);
             } else {
                 var sources = harvestRoom.find(FIND_SOURCES);
                 if (creep.harvest(sources[0]) == ERR_NOT_IN_RANGE) {
