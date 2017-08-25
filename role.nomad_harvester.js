@@ -2,7 +2,6 @@ var nomad_harvester = {
 
     /** @param {Creep} creep **/
     run: function (creep) {
-        creep.memory.selectedSource = null;
         var spawnRoom = Game.spawns["Spawn1"].room;
         if (creep.carry.energy < creep.carryCapacity) {
             if(creep.memory.selectedSource == null) {
