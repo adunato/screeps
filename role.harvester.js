@@ -18,9 +18,11 @@ var roleHarvester = {
                 }
             });
             var containers = room.find(FIND_STRUCTURES, {
-                filter: (structure) => {
-                    return (structure.structureType == STRUCTURE_CONTAINER) && structure.store < structure.storeCapacity;
+                filter: (container) => {
+                    // return (structure.structureType == STRUCTURE_CONTAINER) && structure.store < structure.storeCapacity;
+                    return (container.structureType == STRUCTURE_CONTAINER);
                 }
+
             });
             if (targets.length > 0) {
                 if (creep.transfer(targets[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
