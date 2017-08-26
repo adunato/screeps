@@ -12,11 +12,13 @@ var defines = {
             "builder": [WORK,CARRY,MOVE],
             "nomad_harvester": [WORK,CARRY,MOVE],
             "upgrader": [WORK,CARRY,MOVE]
+        };
+        modules = {
+            "harvester": roleHarvester,
+            "builder": roleBuilder,
+            "nomad_harvester": roleNomadHarvester,
+            "upgrader": roleUpgrader
         }
-        MIN_UPGRADERS = 2;
-        MIN_BUILDERS = 3;
-        MIN_HARVESTERS = 7;
-        MIN_NOMAD_HARVESTERS = 5;
     }
 
 }
