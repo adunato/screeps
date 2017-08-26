@@ -5,7 +5,7 @@ var roleNomadHarvester = require('role.nomad_harvester');
 var defines = require('defines');
 
 module.exports.loop = function () {
-    initDefines();
+    defines.initDefines();
 
     for(var name in Memory.creeps) {
         if(!Game.creeps[name]) {
