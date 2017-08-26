@@ -1,8 +1,3 @@
-var MIN_UPGRADERS;
-var MIN_BUILDERS;
-var MIN_HARVESTERS;
-var MIN_NOMAD_HARVESTERS;
-
 var defines = {
 
     initDefines: function () {
