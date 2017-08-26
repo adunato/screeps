@@ -4,10 +4,10 @@ var roleBuilder = require('role.builder');
 var roleNomadHarvester = require('role.nomad_harvester');
 var defines = require('defines');
 
-var MIN_UPGRADERS=0;
-var MIN_BUILDERS=0;
-var MIN_HARVESTERS=0;
-var MIN_NOMAD_HARVESTERS=0;
+// var MIN_UPGRADERS=0;
+// var MIN_BUILDERS=0;
+// var MIN_HARVESTERS=0;
+// var MIN_NOMAD_HARVESTERS=0;
 
 
 module.exports.loop = function () {
