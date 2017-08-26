@@ -13,37 +13,53 @@ function clearMemory(){
     }
 }
 
+function checkSpawn(roleName){
+    var creeps = _.filter(Game.creeps, (creep) => creep.memory.role == 'harvester');
+    console.log(roleName + "s :" + harvesters.length + "/" + minSpawn[roleName])
+    return creeps.length <  minSpawn[roleName];
+}
+
+function spawn(roleName){
+    var newName = Game.spawns['Spawn1'].createCreep(bodyParts[roleName], undefined, {role: roleName});
+    console.log('Spawning new ' + roleName + ' : ' + newName);
+}
+
 module.exports.loop = function () {
     //globals definition, every tick to refresh changes
     defines.initDefines();
 
     clearMemory();
 
-    var harvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'harvester');
-    console.log('Harvesters: ' + harvesters.length + "/" + minSpawn["harvester"]);
-
-    var upgraders = _.filter(Game.creeps, (creep) => creep.memory.role == 'upgrader');
-    console.log('Upgraders: ' + upgraders.length+ "/" + MIN_UPGRADERS);
-
-    var builders = _.filter(Game.creeps, (creep) => creep.memory.role == 'builder');
-    console.log('Builders: ' + builders.length+ "/" + MIN_BUILDERS);
-
-    var nomad_harvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'nomad_harvester');
-    console.log('Nomad harvesters: ' + nomad_harvesters.length+ "/" + MIN_NOMAD_HARVESTERS);
-
-    if(harvesters.length < MIN_HARVESTERS) {
-        var newName = Game.spawns['Spawn1'].createCreep([WORK,CARRY,MOVE], undefined, {role: 'harvester'});
-        console.log('Spawning new harvester: ' + newName);
-    } else if (upgraders.length < MIN_UPGRADERS) {
-        var newName = Game.spawns['Spawn1'].createCreep([WORK,CARRY,MOVE], undefined, {role: 'upgrader'});
-        console.log('Spawning new upgrader: ' + newName);
-    } else if (builders.length < MIN_BUILDERS) {
-        var newName = Game.spawns['Spawn1'].createCreep([WORK,CARRY,MOVE], undefined, {role: 'builder'});
-        console.log('Spawning new builder: ' + newName);
-    } else if (nomad_harvesters.length < MIN_NOMAD_HARVESTERS) {
-        var newName = Game.spawns['Spawn1'].createCreep([WORK,CARRY,MOVE], undefined, {role: 'nomad_harvester'});
-        console.log('Spawning new nomad harvester: ' + newName);
+    for(var roleName in minSpawn) {
+        if(checkSpawn(roleName))
+            spawn(roleName);
     }
+
+    // var harvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'harvester');
+    // console.log('Harvesters: ' + harvesters.length + "/" + minSpawn["harvester"]);
+    //
+    // var upgraders = _.filter(Game.creeps, (creep) => creep.memory.role == 'upgrader');
+    // console.log('Upgraders: ' + upgraders.length+ "/" + minSpawn["upgrader"]);
+    //
+    // var builders = _.filter(Game.creeps, (creep) => creep.memory.role == 'builder');
+    // console.log('Builders: ' + builders.length+ "/" + minSpawn["builder"]);
+    //
+    // var nomad_harvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'nomad_harvester');
+    // console.log('Nomad harvesters: ' + nomad_harvesters.length+ "/" + minSpawn["nomad_harvester"]);
+    //
+    // if(harvesters.length < MIN_HARVESTERS) {
+    //     var newName = Game.spawns['Spawn1'].createCreep([WORK,CARRY,MOVE], undefined, {role: 'harvester'});
+    //     console.log('Spawning new harvester: ' + newName);
+    // } else if (upgraders.length < MIN_UPGRADERS) {
+    //     var newName = Game.spawns['Spawn1'].createCreep([WORK,CARRY,MOVE], undefined, {role: 'upgrader'});
+    //     console.log('Spawning new upgrader: ' + newName);
+    // } else if (builders.length < MIN_BUILDERS) {
+    //     var newName = Game.spawns['Spawn1'].createCreep([WORK,CARRY,MOVE], undefined, {role: 'builder'});
+    //     console.log('Spawning new builder: ' + newName);
+    // } else if (nomad_harvesters.length < MIN_NOMAD_HARVESTERS) {
+    //     var newName = Game.spawns['Spawn1'].createCreep([WORK,CARRY,MOVE], undefined, {role: 'nomad_harvester'});
+    //     console.log('Spawning new nomad harvester: ' + newName);
+    // }
 
     if(Game.spawns['Spawn1'].spawning) {
         var spawningCreep = Game.creeps[Game.spawns['Spawn1'].spawning.name];
