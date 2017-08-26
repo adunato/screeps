@@ -4,21 +4,20 @@ var roleBuilder = require('role.builder');
 var roleNomadHarvester = require('role.nomad_harvester');
 var defines = require('defines');
 
-// var MIN_UPGRADERS=0;
-// var MIN_BUILDERS=0;
-// var MIN_HARVESTERS=0;
-// var MIN_NOMAD_HARVESTERS=0;
-
-
-module.exports.loop = function () {
-    defines.initDefines();
-
+function clearMemory(){
     for(var name in Memory.creeps) {
         if(!Game.creeps[name]) {
             delete Memory.creeps[name];
             console.log('Clearing non-existing creep memory:', name);
         }
     }
+}
+
+module.exports.loop = function () {
+    //globals definition, every tick to refresh changes
+    defines.initDefines();
+
+    clearMemory();
 
     var harvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'harvester');
     console.log('Harvesters: ' + harvesters.length + "/" + MIN_HARVESTERS);
