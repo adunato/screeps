@@ -20,7 +20,7 @@ module.exports.loop = function () {
     clearMemory();
 
     var harvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'harvester');
-    console.log('Harvesters: ' + harvesters.length + "/" + MIN_HARVESTERS);
+    console.log('Harvesters: ' + harvesters.length + "/" + minSpawn["harvester"]);
 
     var upgraders = _.filter(Game.creeps, (creep) => creep.memory.role == 'upgrader');
     console.log('Upgraders: ' + upgraders.length+ "/" + MIN_UPGRADERS);
