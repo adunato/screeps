@@ -1,5 +1,5 @@
 var StateMachine = require('state-machine')
-var builderFSM = new StateMachine({
+var builderFSM = new StateMachine.factory({
     init: 'withdraw',
     transitions: [
         { name: 'energyEmpty', from: 'build',  to: 'withdraw' },
