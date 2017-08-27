@@ -74,6 +74,7 @@ var roleBuilder = {
         // builderFSM.setState(creep.memory.state);
         if(creep.carry.energy == 0){
             try {
+                console.log("energyEmpty");
                 stateMachine.energyEmpty();
             }
             catch(err){
@@ -82,7 +83,7 @@ var roleBuilder = {
         }
         if(creep.carry.energy == creep.carryCapacity){
             try {
-                console.log("FSM state: " + stateMachine.state);
+                console.log("energyFull");
                 stateMachine.energyFull();
             }
             catch(err){
