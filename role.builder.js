@@ -58,18 +58,18 @@ var roleBuilder = {
     run: function(creep) {
         // console.log(creep.name);
         //builderFSM.setState(creep.memory.state);
-        if(creep.carry.energy == 0){
-            try {
-                builderFSM.energyEmpty();
-            }
-            catch(err){
-                console.log("error: " + err);
-            }
-        }
-        if(creep.carry.energy == creep.carryCapacity){
-            builderFSM.energyFull();
-        }
-        creep.memory.state = builderFSM.state;
+        // if(creep.carry.energy == 0){
+        //     try {
+        //         builderFSM.energyEmpty();
+        //     }
+        //     catch(err){
+        //         console.log("error: " + err);
+        //     }
+        // }
+        // if(creep.carry.energy == creep.carryCapacity){
+        //     builderFSM.energyFull();
+        // }
+        // creep.memory.state = builderFSM.state;
     }
 };
 
