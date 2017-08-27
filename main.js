@@ -3,6 +3,7 @@ roleUpgrader = require('role.upgrader');
 roleBuilder = require('role.builder');
 roleNomadHarvester = require('role.nomad_harvester');
 defines = require('defines');
+StateMachine = require('javascript-state-machine');
 
 function clearMemory(){
     for(var name in Memory.creeps) {
@@ -59,6 +60,16 @@ function manageDefense() {
     }
 }
 
+function executeCreepBehaviour() {
+    for (var name in Game.creeps) {
+        var creep = Game.creeps[name];
+        for (var role in modules) {
+            if (creep.memory.role == role)
+                modules[role].run(creep);
+        }
+    }
+}
+
 module.exports.loop = function () {
     //globals definition, every tick to refresh changes
     defines.initDefines();
@@ -66,24 +77,5 @@ module.exports.loop = function () {
     spawnCreeps();
     logSpawing();
     manageDefense();
-
-    for(var name in Game.creeps) {
-        var creep = Game.creeps[name];
-        for(var role in modules){
-            if(creep.memory.role == role)
-                modules[role].run(creep);
-        }
-        // if(creep.memory.role == 'harvester') {
-        //     roleHarvester.run(creep);
-        // }
-        // if(creep.memory.role == 'upgrader') {
-        //     roleUpgrader.run(creep);
-        // }
-        // if(creep.memory.role == 'builder') {
-        //     roleBuilder.run(creep);
-        // }
-        // if(creep.memory.role == 'nomad_harvester') {
-        //     roleNomadHarvester.run(creep);
-        // }
-    }
+    executeCreepBehaviour();
 }
