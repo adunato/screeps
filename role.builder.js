@@ -1,14 +1,15 @@
 var StateMachine = require('state-machine')
 var builderFSM = new StateMachine.factory({
-    init: 'withdraw',
     transitions: [
-        { name: 'energyEmpty', from: '*',  to: 'withdraw' },
-        { name: 'energyFull', from: '*', to: 'build'  },
-        { name: 'containersEmpty', from: '*', to: 'rest'  }
+        { name: 'init', from: 'none',  to: function() { return this.initState }},
+        { name: 'energyEmpty', from: 'build',  to: 'withdraw' },
+        { name: 'energyFull', from: 'withdraw', to: 'build'  },
+        { name: 'containersEmpty', from: 'withdraw', to: 'rest'  }
     ],
-    data: function(creepName) {
+    data: function(creepName, initState) {
         return {
-            creepName: creepName
+            creepName: creepName,
+            initState: initState
         }
     },
     methods: {
@@ -61,8 +62,8 @@ var roleBuilder = {
         var creepState = creep.memory.state;
             if(typeof creepState === "undefined")
                 creepState = "withdraw";
-        var stateMachine = new builderFSM(creep.name);
-        stateMachine.state = creepState;
+        var stateMachine = new builderFSM(creep.name,"withdraw");
+        stateMachine.init();
         // console.log(creep.name);
         // builderFSM.setState(creep.memory.state);
         if(creep.carry.energy == 0){
