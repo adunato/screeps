@@ -1,3 +1,4 @@
+var StateMachine = require('state-machine');
 var builderFSM = new StateMachine({
     init: 'idle',
     transitions: [
