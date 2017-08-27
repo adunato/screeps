@@ -14,10 +14,11 @@ var builderFSM = new StateMachine.factory({
     methods: {
         onWithdraw:     function() {
             var creep = Game.creeps[this.creepName];
-                creep.withdrawEnergy();
+            creep.withdrawEnergy();
         },
         onBuild:     function() {
-            this.creep.build();
+            var creep = Game.creeps[this.creepName];
+            creep.build();
         }
     }
 });
