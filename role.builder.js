@@ -60,7 +60,13 @@ var roleBuilder = {
         if(creep.carry.energy == 0){
             console.log("i was here");
             debugger;
-            builderFSM.energyEmpty();
+            try {
+                builderFSM.energyEmpty();
+            }
+            catch(err){
+                console.log(err);
+            }
+
         }
         console.log("i was here too");
         if(creep.carry.energy == creep.carryCapacity){
