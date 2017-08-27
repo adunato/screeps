@@ -21,11 +21,6 @@ var builderFSM = new StateMachine.factory({
         onBuild:     function() {
             var creep = Game.creeps[this.creepName];
             creep.buildConstruction();
-        },
-        onTransition: function(lifecycle) {
-            console.log(lifecycle.transition); // 'step'
-            console.log(lifecycle.from);       // 'A'
-            console.log(lifecycle.to);         // 'B'
         }
     }
 });
@@ -50,7 +45,6 @@ Creep.prototype.withdrawEnergy = function() {
 };
 
 Creep.prototype.buildConstruction = function() {
-    console.log("build start");
     var targets = this.room.find(FIND_CONSTRUCTION_SITES);
     if(targets.length) {
         if(this.build(targets[0]) == ERR_NOT_IN_RANGE) {
@@ -60,7 +54,6 @@ Creep.prototype.buildConstruction = function() {
         this.moveTo(Game.flags["RestArea"], {visualizePathStyle: {stroke: '#ffffff'}});
         this.say("Rest");
     }
-    console.log("build end");
 };
 
 
@@ -71,14 +64,11 @@ var roleBuilder = {
             if(typeof creepState === "undefined")
                 creepState = "withdraw";
         var stateMachine = new builderFSM(creep.name,"withdraw");
-        console.log("before");
         stateMachine.goto(creepState);
-        console.log("after");
         // console.log(creep.name);
         // builderFSM.setState(creep.memory.state);
         if(creep.carry.energy == 0 && stateMachine.is("build")){
             try {
-                console.log("energyEmpty");
                 stateMachine.energyEmpty();
             }
             catch(err){
@@ -87,7 +77,6 @@ var roleBuilder = {
         }
         if(creep.carry.energy == creep.carryCapacity && stateMachine.is("withdraw")){
             try {
-                console.log("energyFull");
                 stateMachine.energyFull();
             }
             catch(err){
