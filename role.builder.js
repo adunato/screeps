@@ -14,7 +14,8 @@ var builderFSM = new StateMachine.factory({
     methods: {
         onWithdraw:     function() {
             var creep = Game.creeps[this.creepName];
-            creep.withdrawEnergy();
+            if(typeof creep != "undefined")
+                creep.withdrawEnergy();
         },
         onBuild:     function() {
             //this.creep.build();
