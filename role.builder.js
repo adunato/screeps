@@ -21,8 +21,6 @@ var builderFSM = new StateMachine({
     }
 });
 
-Memory.fsm = builderFSM;
-
 Creep.prototype.withdrawEnergy = function() {
     var containers = room.find(FIND_STRUCTURES, {
         filter: (container) => {
@@ -61,6 +59,7 @@ var roleBuilder = {
         //builderFSM.setState(creep.memory.state);
         if(creep.carry.energy == 0){
             console.log("i was here");
+            debugger;
             builderFSM.energyEmpty();
         }
         console.log("i was here too");
