@@ -26,6 +26,7 @@ var builderFSM = new StateMachine.factory({
 });
 
 Creep.prototype.withdrawEnergy = function() {
+    console.log("withdrawEnergy");
     var containers = this.room.find(FIND_STRUCTURES, {
         filter: (container) => {
             // return (structure.structureType == STRUCTURE_CONTAINER) && structure.store < structure.storeCapacity;
@@ -45,6 +46,7 @@ Creep.prototype.withdrawEnergy = function() {
 };
 
 Creep.prototype.buildConstruction = function() {
+    console.log("buildConstruction");
     var targets = this.room.find(FIND_CONSTRUCTION_SITES);
     if(targets.length) {
         if(this.build(targets[0]) == ERR_NOT_IN_RANGE) {
@@ -65,7 +67,6 @@ var roleBuilder = {
                 creepState = "withdraw";
         var stateMachine = new builderFSM(creep.name,"withdraw");
         stateMachine.goto(creepState);
-        console.log(creep.memory.state);
         // builderFSM.setState(creep.memory.state);
         if(creep.carry.energy === 0){
             try {
