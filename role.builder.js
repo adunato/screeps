@@ -19,8 +19,8 @@ var builderFSM = new StateMachine.factory({
             creep.withdrawEnergy();
         },
         onBuild:     function() {
-            // var creep = Game.creeps[this.creepName];
-            // creep.build();
+            var creep = Game.creeps[this.creepName];
+            creep.build();
         },
         onTransition: function(lifecycle) {
             console.log(lifecycle.transition); // 'step'
@@ -50,6 +50,7 @@ Creep.prototype.withdrawEnergy = function() {
 };
 
 Creep.prototype.build = function() {
+    console.log("build start");
     var targets = this.room.find(FIND_CONSTRUCTION_SITES);
     if(targets.length) {
         if(this.build(targets[0]) == ERR_NOT_IN_RANGE) {
@@ -59,6 +60,7 @@ Creep.prototype.build = function() {
         this.moveTo(Game.flags["RestArea"], {visualizePathStyle: {stroke: '#ffffff'}});
         this.say("Rest");
     }
+    console.log("build end");
 };
 
 
