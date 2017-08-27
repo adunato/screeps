@@ -71,13 +71,14 @@ var roleBuilder = {
         }
         if(creep.carry.energy == creep.carryCapacity){
             try {
+                console.log("state: " + stateMachine.state);
                 stateMachine.energyFull();
             }
             catch(err){
                 console.log("error: " + err);
             }
         }
-        creep.memory.state = builderFSM.state;
+        creep.memory.state = stateMachine.state;
     }
 };
 
