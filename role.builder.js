@@ -1,4 +1,4 @@
-var StateMachine = require('state-machine');
+var StateMachine = require('javascript-state-machine-master/app')
 var builderFSM = new StateMachine({
     init: 'idle',
     transitions: [
