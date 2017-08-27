@@ -57,15 +57,15 @@ var roleBuilder = {
     /** @param {Creep} creep **/
     run: function(creep) {
         //builderFSM.setState(creep.memory.state);
+        console.log("i was here");
         if(creep.carry.energy == 0){
             builderFSM.energyEmpty();
         }
-
+        console.log("i was here too");
         if(creep.carry.energy == creep.carryCapacity){
             builderFSM.energyFull();
         }
         creep.memory.state = builderFSM.state;
-        console.log("i was here");
     }
 };
 
