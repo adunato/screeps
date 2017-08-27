@@ -56,7 +56,7 @@ Creep.prototype.build = function() {
 var roleBuilder = {
     /** @param {Creep} creep **/
     run: function(creep) {
-        builderFSM.set(creep.memory.state);
+        builderFSM.setState(creep.memory.state);
         if(creep.carry.energy == 0){
             builderFSM.energyEmpty();
         }
