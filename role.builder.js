@@ -58,9 +58,9 @@ Creep.prototype.build = function() {
 var roleBuilder = {
     /** @param {Creep} creep **/
     run: function(creep) {
-        var creepState = creep.memory.state;
-        if(creepState === "none")
-            creepState = "withdraw";
+        // var creepState = creep.memory.state;
+        // if(creepState === "none")
+        var creepState = "withdraw";
         var stateMachine = new builderFSM(creep.name, creepState);
         // console.log(creep.name);
         // builderFSM.setState(creep.memory.state);
