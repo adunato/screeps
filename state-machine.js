@@ -224,6 +224,8 @@ module.exports = Config;
 
 //--------------------------------JSM--------------------------------------------------------------
 
+var UNOBSERVED = [ null, [] ];
+
 function JSM(context, config) {
   this.context   = context;
   this.config    = config;
