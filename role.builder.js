@@ -59,7 +59,7 @@ var roleBuilder = {
         //builderFSM.setState(creep.memory.state);
         if(creep.carry.energy == 0){
             console.log("i was here");
-            console.log(builderFSM);
+            Memory.fsm = builderFSM;
             builderFSM.energyEmpty();
         }
         console.log("i was here too");
