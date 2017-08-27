@@ -147,6 +147,7 @@ mixin(Config.prototype, {
   },
 
   configureInitTransition: function(init) {
+	console.log(init);
     if (typeof init === 'string') {
       return this.mapTransition(mixin({}, this.defaults.init, { to: init, active: true }));
     }
@@ -799,8 +800,7 @@ var PublicProperties = {
       return this._fsm.state;
     },
     set: function(state) {
-	  this._fsm.state = state;
-      //throw Error('use transitions to change state')
+      throw Error('use transitions to change state')
     }
   }
 }
