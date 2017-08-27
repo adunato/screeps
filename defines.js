@@ -24,8 +24,6 @@ var defines = {
             "nomad_harvester": roleNomadHarvester,
             "upgrader": roleUpgrader
         }
-        console.log("initDefines complete");
-        console.log(minSpawn);
     }
 
 }
