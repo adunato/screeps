@@ -61,8 +61,10 @@ function executeCreepBehaviour() {
     for (var name in Game.creeps) {
         var creep = Game.creeps[name];
         for (var role in modules) {
-            if (creep.memory.role == role)
+            if (creep.memory.role == role) {
+                console.log("executing behaviour " + role + " for creep " + creep.name);
                 modules[role].run(creep);
+            }
         }
     }
 }
