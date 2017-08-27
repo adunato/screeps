@@ -1,3 +1,4 @@
+var minSpawn, bodyParts, modules;
 var defines = {
 
     initDefines: function () {
