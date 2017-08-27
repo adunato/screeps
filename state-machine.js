@@ -39,7 +39,7 @@ module.exports = camelize;
 
 //--------------------------------PLUGIN-------------------------------------------------------
 
-module.exports = {
+var plugin = {
 
   build: function(target, config) {
     var n, max, plugin, plugins = config.plugins;
@@ -67,7 +67,6 @@ module.exports = {
         method.apply(plugin, args);
     }
   }
-
 }
 
 //--------------------------------CONFIG-------------------------------------------------------
