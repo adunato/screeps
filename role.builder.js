@@ -41,35 +41,35 @@ Creep.prototype.withdrawEnergy = function() {
 };
 
 Creep.prototype.build = function() {
-    var targets = creep.room.find(FIND_CONSTRUCTION_SITES);
+    var targets = this.room.find(FIND_CONSTRUCTION_SITES);
     if(targets.length) {
-        if(creep.build(targets[0]) == ERR_NOT_IN_RANGE) {
-            creep.moveTo(targets[0], {visualizePathStyle: {stroke: '#ffffff'}});
+        if(this.build(targets[0]) == ERR_NOT_IN_RANGE) {
+            this.moveTo(targets[0], {visualizePathStyle: {stroke: '#ffffff'}});
         }
     } else {
-        creep.moveTo(Game.flags["RestArea"], {visualizePathStyle: {stroke: '#ffffff'}});
-        creep.say("Rest");
+        this.moveTo(Game.flags["RestArea"], {visualizePathStyle: {stroke: '#ffffff'}});
+        this.say("Rest");
     }
 };
 
 
 var roleBuilder = {
     /** @param {Creep} creep **/
-    run: function() {
+    run: function(creep) {
         // console.log(creep.name);
         //builderFSM.setState(creep.memory.state);
-        // if(creep.carry.energy == 0){
-        //     try {
-        //         builderFSM.energyEmpty();
-        //     }
-        //     catch(err){
-        //         console.log("error: " + err);
-        //     }
-        // }
-        // if(creep.carry.energy == creep.carryCapacity){
-        //     builderFSM.energyFull();
-        // }
-        // creep.memory.state = builderFSM.state;
+        if(creep.carry.energy == 0){
+            try {
+                builderFSM.energyEmpty();
+            }
+            catch(err){
+                console.log("error: " + err);
+            }
+        }
+        if(creep.carry.energy == creep.carryCapacity){
+            builderFSM.energyFull();
+        }
+        creep.memory.state = builderFSM.state;
     }
 };
 
