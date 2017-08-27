@@ -32,6 +32,8 @@ function spawn(roleName){
 }
 
 function spawnCreeps() {
+    console.log("spawnCreeps");
+    console.log(defines.minSpawn.length);
     for (var roleName in defines.minSpawn) {
         if (checkSpawn(roleName)) {
             spawn(roleName);
