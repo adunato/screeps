@@ -23,7 +23,8 @@ var defines = {
             "builder": roleBuilder,
             "nomad_harvester": roleNomadHarvester,
             "upgrader": roleUpgrader
-        }
+        };
+        console.log("harvester" + minSpawn["harvester"]);
     }
 
 }
