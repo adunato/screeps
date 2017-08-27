@@ -14,12 +14,10 @@ var builderFSM = new StateMachine.factory({
     methods: {
         onWithdraw:     function() {
             var creep = Game.creeps[this.creepName];
-            if(typeof creep != "undefined") {
                 creep.withdrawEnergy();
-            }
         },
         onBuild:     function() {
-            //this.creep.build();
+            this.creep.build();
         }
     }
 });
@@ -42,18 +40,18 @@ Creep.prototype.withdrawEnergy = function() {
         this.say("Rest");
     }
 };
-//
-// Creep.prototype.build = function() {
-//     var targets = this.room.find(FIND_CONSTRUCTION_SITES);
-//     if(targets.length) {
-//         if(this.build(targets[0]) == ERR_NOT_IN_RANGE) {
-//             this.moveTo(targets[0], {visualizePathStyle: {stroke: '#ffffff'}});
-//         }
-//     } else {
-//         this.moveTo(Game.flags["RestArea"], {visualizePathStyle: {stroke: '#ffffff'}});
-//         this.say("Rest");
-//     }
-// };
+
+Creep.prototype.build = function() {
+    var targets = this.room.find(FIND_CONSTRUCTION_SITES);
+    if(targets.length) {
+        if(this.build(targets[0]) == ERR_NOT_IN_RANGE) {
+            this.moveTo(targets[0], {visualizePathStyle: {stroke: '#ffffff'}});
+        }
+    } else {
+        this.moveTo(Game.flags["RestArea"], {visualizePathStyle: {stroke: '#ffffff'}});
+        this.say("Rest");
+    }
+};
 
 
 var roleBuilder = {
