@@ -799,7 +799,8 @@ var PublicProperties = {
       return this._fsm.state;
     },
     set: function(state) {
-      throw Error('use transitions to change state')
+	  this._fsm.state = state;
+      //throw Error('use transitions to change state')
     }
   }
 }
