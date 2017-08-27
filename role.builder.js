@@ -58,7 +58,7 @@ var builderFSM = new StateMachine.factory({
 var roleBuilder = {
     /** @param {Creep} creep **/
     run: function(creep) {
-        var stateMachine = new builderFSM(creep);
+        var stateMachine = new builderFSM(creep.name);
         // console.log(creep.name);
         //builderFSM.setState(creep.memory.state);
         // if(creep.carry.energy == 0){
