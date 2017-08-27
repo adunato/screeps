@@ -70,7 +70,7 @@ function executeCreepBehaviour() {
 module.exports.loop = function () {
     //globals definition, every tick to refresh changes
     defines.initDefines();
-    console.log("harvester" + minSpawn["harvester"]);
+    console.log("harvester" + defines.minSpawn["harvester"]);
     clearMemory();
     spawnCreeps();
     logSpawing();
