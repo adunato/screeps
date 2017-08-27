@@ -20,7 +20,7 @@ var builderFSM = new StateMachine.factory({
         },
         onBuild:     function() {
             var creep = Game.creeps[this.creepName];
-            creep.build();
+            creep.buildConstruction();
         },
         onTransition: function(lifecycle) {
             console.log(lifecycle.transition); // 'step'
@@ -49,7 +49,7 @@ Creep.prototype.withdrawEnergy = function() {
     }
 };
 
-Creep.prototype.build = function() {
+Creep.prototype.buildConstruction = function() {
     console.log("build start");
     var targets = this.room.find(FIND_CONSTRUCTION_SITES);
     if(targets.length) {
