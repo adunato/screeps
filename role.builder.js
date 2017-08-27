@@ -13,10 +13,10 @@ var builderFSM = new StateMachine({
     },
     methods: {
         onWithdraw:     function() {
-            creep.withdrawEnergy();
+            this.creep.withdrawEnergy();
         },
         onBuild:     function() {
-            creep.build();
+            this.creep.build();
         }
     }
 });
