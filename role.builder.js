@@ -63,7 +63,7 @@ var roleBuilder = {
                 builderFSM.energyEmpty();
             }
             catch(err){
-                console.log(err);
+                console.log("error: " + err);
             }
         }
         if(creep.carry.energy == creep.carryCapacity){
