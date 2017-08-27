@@ -3,7 +3,7 @@ var roleUpgrader = require('role.upgrader');
 var roleBuilder = require('role.builder');
 var roleNomadHarvester = require('role.nomad_harvester');
 var defines = require('defines');
-var StateMachine = require('javascript-state-machine');
+var StateMachine = require('./javascript-state-machine');
 
 function clearMemory(){
     for(var name in Memory.creeps) {
