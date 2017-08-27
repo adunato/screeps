@@ -65,6 +65,7 @@ var roleBuilder = {
             builderFSM.energyFull();
         }
         creep.memory.state = builderFSM.state;
+        console.log("i was here");
     }
 };
 
