@@ -1,25 +1,25 @@
 var StateMachine = require('state-machine')
-// var builderFSM = new StateMachine({
-//     init: 'withdraw',
-//     transitions: [
-//         { name: 'energyEmpty', from: 'build',  to: 'withdraw' },
-//         { name: 'energyFull', from: 'withdraw', to: 'build'  },
-//         { name: 'containersEmpty', from: 'withdraw', to: 'rest'  },
-//     ],
-//     data: function(creep) {
-//         return {
-//             creep: creep
-//         }
-//     },
-//     methods: {
-//         onWithdraw:     function() {
-//             creep.withdrawEnergy();
-//         },
-//         onBuild:     function() {
-//             creep.build();
-//         }
-//     }
-// });
+var builderFSM = new StateMachine({
+    init: 'withdraw',
+    transitions: [
+        { name: 'energyEmpty', from: 'build',  to: 'withdraw' },
+        { name: 'energyFull', from: 'withdraw', to: 'build'  },
+        { name: 'containersEmpty', from: 'withdraw', to: 'rest'  },
+    ],
+    data: function(creep) {
+        return {
+            creep: creep
+        }
+    },
+    methods: {
+        onWithdraw:     function() {
+            creep.withdrawEnergy();
+        },
+        onBuild:     function() {
+            creep.build();
+        }
+    }
+});
 
 // Creep.prototype.withdrawEnergy = function() {
 //     var containers = room.find(FIND_STRUCTURES, {
