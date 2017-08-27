@@ -32,7 +32,7 @@ function spawn(roleName){
 }
 
 function spawnCreeps() {
-    for (var roleName in defines.minSpawn) {
+    for (var roleName in global.minSpawn) {
         if (checkSpawn(roleName)) {
             spawn(roleName);
             return;
@@ -70,7 +70,6 @@ function executeCreepBehaviour() {
 module.exports.loop = function () {
     //globals definition, every tick to refresh changes
     defines.initDefines();
-    console.log("harvester" + global.minSpawn["harvester"]);
     clearMemory();
     spawnCreeps();
     logSpawing();
