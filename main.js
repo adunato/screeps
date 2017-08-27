@@ -32,7 +32,7 @@ function spawn(roleName){
 }
 
 function spawnCreeps() {
-    for (var roleName in minSpawn) {
+    for (var roleName in defines.minSpawn) {
         if (checkSpawn(roleName)) {
             spawn(roleName);
             return;
