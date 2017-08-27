@@ -1,7 +1,9 @@
 var StateMachine = require('state-machine')
 var builderFSM = new StateMachine.factory({
     transitions: [
-        { name: 'init', from: 'none',  to: function() { return this.initState }},
+        { name: 'init', from: 'none',  to: function() {
+            console.log("initState: " + this.initState);
+            return this.initState }},
         { name: 'energyEmpty', from: 'build',  to: 'withdraw' },
         { name: 'energyFull', from: 'withdraw', to: 'build'  },
         { name: 'containersEmpty', from: 'withdraw', to: 'rest'  }
