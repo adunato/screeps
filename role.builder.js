@@ -2,9 +2,9 @@ var StateMachine = require('state-machine')
 var builderFSM = new StateMachine.factory({
     init: 'withdraw',
     transitions: [
-        { name: 'energyEmpty', from: 'build',  to: 'withdraw' },
-        { name: 'energyFull', from: 'withdraw', to: 'build'  },
-        { name: 'containersEmpty', from: 'withdraw', to: 'rest'  }
+        { name: 'energyEmpty', from: '*',  to: 'withdraw' },
+        { name: 'energyFull', from: '*', to: 'build'  },
+        { name: 'containersEmpty', from: '*', to: 'rest'  }
     ],
     data: function(creepName) {
         return {
