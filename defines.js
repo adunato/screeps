@@ -1,3 +1,7 @@
+var roleHarvester = require('role.harvester');
+var roleUpgrader = require('role.upgrader');
+var roleBuilder = require('role.builder');
+var roleNomadHarvester = require('role.nomad_harvester');
 var minSpawn, bodyParts, modules;
 var defines = {
 
