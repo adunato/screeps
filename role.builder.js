@@ -1,14 +1,15 @@
 var StateMachine = require('state-machine')
 var builderFSM = new StateMachine.factory({
-    init: 'withdraw',
+    init: this.initState,
     transitions: [
         { name: 'energyEmpty', from: 'build',  to: 'withdraw' },
         { name: 'energyFull', from: 'withdraw', to: 'build'  },
         { name: 'containersEmpty', from: 'withdraw', to: 'rest'  },
     ],
-    data: function(creepName) {
+    data: function(creepName, initState) {
         return {
-            creepName: creepName
+            creepName: creepName,
+            initState: initState
         }
     },
     methods: {
@@ -57,21 +58,21 @@ Creep.prototype.build = function() {
 var roleBuilder = {
     /** @param {Creep} creep **/
     run: function(creep) {
-        var stateMachine = new builderFSM(creep.name);
+        var stateMachine = new builderFSM(creep.name, creep.memory.state);
         // console.log(creep.name);
-        //builderFSM.setState(creep.memory.state);
-        // if(creep.carry.energy == 0){
-        //     try {
-        //         builderFSM.energyEmpty();
-        //     }
-        //     catch(err){
-        //         console.log("error: " + err);
-        //     }
-        // }
-        // if(creep.carry.energy == creep.carryCapacity){
-        //     builderFSM.energyFull();
-        // }
-        // creep.memory.state = builderFSM.state;
+        // builderFSM.setState(creep.memory.state);
+        if(creep.carry.energy == 0){
+            try {
+                builderFSM.energyEmpty();
+            }
+            catch(err){
+                console.log("error: " + err);
+            }
+        }
+        if(creep.carry.energy == creep.carryCapacity){
+            builderFSM.energyFull();
+        }
+        creep.memory.state = builderFSM.state;
     }
 };
 
