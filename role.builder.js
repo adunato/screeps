@@ -52,7 +52,7 @@ Creep.prototype.build = function() {
 };
 
 
-roleBuilder = {
+var roleBuilder = {
     /** @param {Creep} creep **/
     run: function(creep) {
         builderFSM.set(creep.memory.state);
