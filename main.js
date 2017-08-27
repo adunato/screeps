@@ -71,6 +71,7 @@ function executeCreepBehaviour() {
 }
 
 module.exports.loop = function () {
+    console.log("main loop");
     //globals definition, every tick to refresh changes
     defines.initDefines();
     clearMemory();
