@@ -69,4 +69,3 @@ var roleBuilder = {
 };
 
 module.exports = roleBuilder;
-module.exports = StateMachine;
