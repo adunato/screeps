@@ -72,7 +72,7 @@ function executeCreepBehaviour() {
 module.exports.loop = function () {
     //globals definition, every tick to refresh changes
     defines.initDefines();
-    console.log(defines);
+    console.log("defines:" + defines);
     clearMemory();
     spawnCreeps();
     logSpawing();
