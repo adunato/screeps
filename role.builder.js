@@ -6,17 +6,18 @@ var builderFSM = new StateMachine.factory({
         { name: 'energyFull', from: 'withdraw', to: 'build'  },
         { name: 'containersEmpty', from: 'withdraw', to: 'rest'  },
     ],
-    data: function(creep) {
+    data: function(creepName) {
         return {
-            creep: creep
+            creepName: creepName
         }
     },
     methods: {
         onWithdraw:     function() {
-            this.creep.withdrawEnergy();
+            var creep = Game.creeps[this.creepName];
+            creep.withdrawEnergy();
         },
         onBuild:     function() {
-            this.creep.build();
+            //this.creep.build();
         }
     }
 });
