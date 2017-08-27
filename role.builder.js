@@ -1,6 +1,6 @@
 var StateMachine = require('state-machine')
 var builderFSM = new StateMachine({
-    init: 'energyEmpty',
+    init: 'withdraw',
     transitions: [
         { name: 'energyEmpty', from: 'build',  to: 'withdraw' },
         { name: 'energyFull', from: 'withdraw', to: 'build'  },
@@ -59,7 +59,6 @@ var roleBuilder = {
         //builderFSM.setState(creep.memory.state);
         if(creep.carry.energy == 0){
             console.log("i was here");
-            debugger;
             try {
                 builderFSM.energyEmpty();
             }
