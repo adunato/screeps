@@ -2,10 +2,10 @@ var defines = {
 
     initDefines: function () {
         minSpawn = {
-            "harvester": 7,
-            "builder": 2,
-            "nomad_harvester": 5,
-            "upgrader": 2
+            "harvester": 1,
+            "builder": 1,
+            "nomad_harvester": 0,
+            "upgrader": 0
         };
         bodyParts = {
             "harvester": [WORK,CARRY,MOVE],
