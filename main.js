@@ -1,3 +1,4 @@
+var creep_extension = require('creep_extension');
 var defines = require('defines');
 
 function clearMemory(){
