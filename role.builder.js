@@ -25,7 +25,7 @@ var builderFSM = new StateMachine.factory({
 });
 
 Creep.prototype.withdrawEnergy = function() {
-    var containers = room.find(FIND_STRUCTURES, {
+    var containers = this.room.find(FIND_STRUCTURES, {
         filter: (container) => {
             // return (structure.structureType == STRUCTURE_CONTAINER) && structure.store < structure.storeCapacity;
             return (container.structureType == STRUCTURE_CONTAINER) && container.store.energy > 0;
