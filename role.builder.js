@@ -34,7 +34,6 @@ var roleBuilder = {
                 creepState = "withdraw";
         var stateMachine = new builderFSM(creep.name,"withdraw");
         stateMachine.goto(creepState);
-        // builderFSM.setState(creep.memory.state);
         if(creep.carry.energy === 0){
             try {
                 stateMachine.energyEmpty();
