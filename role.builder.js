@@ -21,6 +21,11 @@ var builderFSM = new StateMachine.factory({
         onBuild:     function() {
             var creep = Game.creeps[this.creepName];
             creep.buildConstruction();
+        },
+        onTransition(lifecycle){
+            console.log("transition name: " + lifecycle.name);
+            console.log("transition from: " + lifecycle.from);
+            console.log("transition to: " + lifecycle.to);
         }
     }
 });
