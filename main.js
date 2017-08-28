@@ -77,6 +77,6 @@ module.exports.loop = function () {
     clearMemory();
     spawnCreeps();
     logSpawing();
-    manageDefense();
+    // manageDefense();
     executeCreepBehaviour();
 }
