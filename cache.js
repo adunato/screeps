@@ -3,9 +3,9 @@ var cache = {
     findContainers: function (room) {
         var containers;
         if (typeof this.rooms.containers[room] != "undefined") {
-            console.log("new cache for " + room.name);
             containers = this.rooms.containers[room];
         } else {
+            console.log("new cache for " + room.name);
             containers = room.find(FIND_STRUCTURES, {
                 filter: (container) => {
                     return (container.structureType == STRUCTURE_CONTAINER) && container.store.energy > 0;
