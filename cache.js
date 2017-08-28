@@ -17,7 +17,7 @@ var cache = {
         return containers;
     },
     resetCache: function(){
-        rooms.containers = {};
+        this.rooms.containers = {};
     }
 }
 
