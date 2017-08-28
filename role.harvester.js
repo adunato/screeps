@@ -26,7 +26,7 @@ var harvesterFSM = new StateMachine.factory({
         },
         onEnergyFull: function () {
             var creep = Game.creeps[this.creepName];
-            creep.dropEnergy();
+            creep.feedEnergy();
         },
         onNoSource: function () {
             var creep = Game.creeps[this.creepName];
@@ -38,7 +38,7 @@ var harvesterFSM = new StateMachine.factory({
         },
         onEnergyFedStructuresFull: function () {
             var creep = Game.creeps[this.creepName];
-            creep.feedEnergy();
+            creep.dropEnergy();
         },
         onTransition(lifecycle) {
             console.log("transition name: " + lifecycle.transition);
