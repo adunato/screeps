@@ -41,9 +41,9 @@ var harvesterFSM = new StateMachine.factory({
             creep.feedEnergy();
         },
         onTransition(lifecycle) {
-            // console.log("transition name: " + lifecycle.transition);
-            // console.log("transition from: " + lifecycle.from);
-            // console.log("transition to: " + lifecycle.to);
+            console.log("transition name: " + lifecycle.transition);
+            console.log("transition from: " + lifecycle.from);
+            console.log("transition to: " + lifecycle.to);
         }
     }
 });
