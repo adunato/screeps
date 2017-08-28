@@ -6,21 +6,15 @@ Creep.prototype.withdrawEnergy = function () {
         if (this.withdraw(containers[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
             this.moveTo(containers[0], {visualizePathStyle: {stroke: '#ffaa00'}});
         }
-    } else {
-        this.moveTo(Game.flags["RestArea"], {visualizePathStyle: {stroke: '#ffffff'}});
-        this.say("Rest");
     }
 };
 
 Creep.prototype.buildConstruction = function () {
-    var targets = this.room.find(FIND_CONSTRUCTION_SITES);
-    if (targets.length) {
-        if (this.build(targets[0]) == ERR_NOT_IN_RANGE) {
-            this.moveTo(targets[0], {visualizePathStyle: {stroke: '#ffffff'}});
+    var constructionSites = cache.findConstructionSites(this.room);
+    if (constructionSites.length) {
+        if (this.build(constructionSites[0]) == ERR_NOT_IN_RANGE) {
+            this.moveTo(constructionSites[0], {visualizePathStyle: {stroke: '#ffffff'}});
         }
-    } else {
-        this.moveTo(Game.flags["RestArea"], {visualizePathStyle: {stroke: '#ffffff'}});
-        this.say("Rest");
     }
 };
 

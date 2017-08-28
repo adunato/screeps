@@ -1,12 +1,11 @@
 var cache = {
-    rooms: {containers: {}},
+    rooms: {containers: {},
+            constructionSites: {}},
     findContainers: function (room) {
         var containers = {};
         if (typeof this.rooms.containers[room] != "undefined") {
-            console.log("reuse cache for " + room.name);
             containers = this.rooms.containers[room];
         } else {
-            console.log("new cache for " + room.name);
             containers = room.find(FIND_STRUCTURES, {
                 filter: (container) => {
                     return (container.structureType == STRUCTURE_CONTAINER) && container.store.energy > 0;
@@ -18,6 +17,17 @@ var cache = {
     },
     resetCache: function(){
         this.rooms.containers = {};
+    },
+    findConstructionSites: function(room){
+        var constructionSites = {};
+
+        if (typeof this.rooms.constructionSites[room] != "undefined") {
+            constructionSites = this.rooms.constructionSites[room];
+        } else {
+            constructionSites = room.find(FIND_CONSTRUCTION_SITES);
+            this.rooms.constructionSites[room] = constructionSites;
+        }
+        return constructionSites;
     }
 }
 
