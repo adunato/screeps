@@ -6,7 +6,7 @@ var harvesterFSM = new StateMachine.factory({
         {name: 'energyEmpty', from: '*', to: 'harvestEnergy'},
         {name: 'energyFull', from: '*', to: 'dropEnergy'},
         {name: 'noSource', from: 'harvestEnergy', to: 'rest'},
-        {name: 'noEnergyDropStructure', from: 'dropEnergy', to: 'rest'},
+        {name: 'noEnergyContainers', from: 'dropEnergy', to: 'rest'},
         {
             name: 'goto', from: '*', to: function (s) {
             return s
@@ -31,7 +31,7 @@ var harvesterFSM = new StateMachine.factory({
             var creep = Game.creeps[this.creepName];
             creep.rest();
         },
-        onNoEnergyDropStructure: function () {
+        onNoEnergyContainers: function () {
             var creep = Game.creeps[this.creepName];
             creep.rest();
         },
@@ -62,8 +62,8 @@ var roleBuilder = {
         if (cache.findSources(creep.room).length === 0 && stateMachine.can("noSource")) {
             stateMachine.noSource();
         }
-        if (cache.findEnergyDropStructures(creep.room).length === 0 && stateMachine.can("noDropStructure")) {
-            stateMachine.noEnergyDropStructure();
+        if (cache.findEnergyContainers(creep.room).length === 0 && stateMachine.can("noEnergyContainers")) {
+            stateMachine.noEnergyContainers();
         }
         creep.memory.state = stateMachine.state;
     }

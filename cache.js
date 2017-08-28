@@ -2,7 +2,8 @@ var cache = {
     rooms: {containers: {},
             constructionSites: {},
             sources: {},
-            energyDropStructures: {}},
+            energyContainers: {},
+            energyFedStructures: {}},
     findContainers: function (room) {
         var containers = {};
         if (typeof this.rooms.containers[room] != "undefined") {
@@ -21,7 +22,7 @@ var cache = {
         this.rooms.containers = {};
         this.rooms.constructionSites = {};
         this.rooms.sources = {};
-        this.rooms.energyDropStructures = {};
+        this.rooms.energyContainers = {};
     },
     findConstructionSites: function(room){
         var constructionSites = {};
@@ -56,24 +57,41 @@ var cache = {
         }
         return sources;
     },
-    findEnergyDropStructures: function(room){
+    findEnergyContainers: function(room){
         var energyDropStructures = {};
 
-        if (typeof this.rooms.energyDropStructures[room] != "undefined") {
-            energyDropStructures = this.rooms.energyDropStructures[room];
+        if (typeof this.rooms.energyContainers[room] != "undefined") {
+            energyDropStructures = this.rooms.energyContainers[room];
         } else {
             energyDropStructures = room.find(FIND_STRUCTURES, {
+                filter: (container) => {
+                    // return (structure.structureType == STRUCTURE_CONTAINER) && structure.store < structure.storeCapacity;
+                    return (container.structureType == STRUCTURE_CONTAINER) && container.store.energy < container.storeCapacity;
+                }
+
+            });
+            this.rooms.energyContainers[room] = energyDropStructures;
+        }
+        return energyDropStructures;
+    },
+    findEnergyFedStructures: function(room){
+        var energyFedStructures = {};
+
+        if (typeof this.rooms.energyContainers[room] != "undefined") {
+            energyFedStructures = this.rooms.energyFedStructures[room];
+        } else {
+            energyFedStructures = room.find(FIND_STRUCTURES, {
                 filter: (structure) => {
                     return (structure.structureType == STRUCTURE_EXTENSION ||
                         structure.structureType == STRUCTURE_SPAWN ||
-                        structure.structureType == STRUCTURE_TOWER ||
-                        structure.structureType == STRUCTURE_CONTAINER) && structure.energy < structure.energyCapacity;
+                        structure.structureType == STRUCTURE_TOWER) && structure.energy < structure.energyCapacity;
                 }
             });
-            this.rooms.energyDropStructures[room] = energyDropStructures;
+            this.rooms.energyFedStructures[room] = energyFedStructures;
         }
-        return energyDropStructures;
+        return energyFedStructures;
     }
+
 
 }
 
