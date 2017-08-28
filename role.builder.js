@@ -6,7 +6,7 @@ var builderFSM = new StateMachine.factory({
         { name: 'energyEmpty', from: '*',  to: 'withdraw' },
         { name: 'energyFull', from: '*', to: 'build'  },
         { name: 'noConstructions', from: '*', to: 'rest'  },
-        { name: 'containersEmpty', from: '*', to: 'rest'  },
+        { name: 'containersEmpty', from: 'withdraw', to: 'rest'  },
         { name: 'goto', from: '*', to: function(s) { return s } }
     ],
     data: function(creepName, initState) {
@@ -61,7 +61,7 @@ var roleBuilder = {
                 console.log("error: " + err);
             }
         }
-        if(cache.findContainers(creep.room).length === 0){
+        if(cache.findContainers(creep.room).length === 0 && stateMachine.can("containersEmpty")){
             try {
                 stateMachine.containersEmpty();
             }
