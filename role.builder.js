@@ -23,7 +23,7 @@ var builderFSM = new StateMachine.factory({
             creep.buildConstruction();
         },
         onTransition(lifecycle){
-            console.log("transition name: " + lifecycle.name);
+            console.log("transition name: " + lifecycle.transition);
             console.log("transition from: " + lifecycle.from);
             console.log("transition to: " + lifecycle.to);
         }
