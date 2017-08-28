@@ -59,15 +59,19 @@ var roleBuilder = {
         var stateMachine = new harvesterFSM(creep.name);
         stateMachine.goto(creepState);
         if (creep.carry.energy < creep.carryCapacity) {
+            console.log("energyEmpty");
             stateMachine.energyEmpty();
         }
         if (creep.carry.energy === creep.carryCapacity) {
+            console.log("energyFull");
             stateMachine.energyFull();
         }
         if (cache.findSources(creep.room).length === 0 && stateMachine.can("noSource")) {
+            console.log("noSource");
             stateMachine.noSource();
         }
         if (cache.findEnergyContainers(creep.room).length === 0 && stateMachine.can("noEnergyContainers")) {
+            console.log("noEnergyContainers");
             stateMachine.noEnergyContainers();
         }
         if (cache.findEnergyFedStructures(creep.room).length === 0 && stateMachine.can("energyFedStructuresFull")) {
