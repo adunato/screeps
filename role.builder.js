@@ -28,7 +28,7 @@ var builderFSM = new StateMachine.factory({
             var creep = Game.creeps[this.creepName];
             creep.rest();
         },
-        onNoConstructionst:     function() {
+        onNoConstructions:     function() {
             var creep = Game.creeps[this.creepName];
             creep.rest();
         },
