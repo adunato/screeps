@@ -71,6 +71,7 @@ var roleBuilder = {
             stateMachine.noEnergyContainers();
         }
         if (cache.findEnergyFedStructures(creep.room).length === 0 && stateMachine.can("energyFedStructuresFull")) {
+            console.log("energyFedStructuresFull");
             stateMachine.energyFedStructuresFull();
         }
         creep.memory.state = stateMachine.state;
