@@ -19,6 +19,7 @@ Creep.prototype.harvestEnergy = function () {
 };
 
 Creep.prototype.dropEnergy = function () {
+    console.log("dropEnergy");
     var structures = cache.findEnergyDropStructures(this.room);
     if (structures.length > 0) {
         if (creep.transfer(targets[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
