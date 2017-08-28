@@ -39,7 +39,7 @@ var roleBuilder = {
                 creepState = "withdraw";
         var stateMachine = new builderFSM(creep.name,"withdraw");
         stateMachine.goto(creepState);
-        if(creep.carry.energy === 0){
+        if(creep.carry.energy === 0 && stateMachine.state != "withdraw"){
             try {
                 stateMachine.energyEmpty();
             }
@@ -47,7 +47,7 @@ var roleBuilder = {
                 console.log("error: " + err);
             }
         }
-        if(creep.carry.energy === creep.carryCapacity){
+        if(creep.carry.energy === creep.carryCapacity && stateMachine.state != "build"){
             try {
                 stateMachine.energyFull();
             }
