@@ -5,7 +5,7 @@ var builderFSM = new StateMachine.factory({
     transitions: [
         { name: 'energyEmpty', from: '*',  to: 'withdraw' },
         { name: 'energyFull', from: '*', to: 'build'  },
-        { name: 'noConstructions', from: 'build', to: 'rest'  },
+        { name: 'noConstructions', from: '*', to: 'rest'  },
         { name: 'containersEmpty', from: 'withdraw', to: 'rest'  },
         { name: 'goto', from: '*', to: function(s) { return s } }
     ],
