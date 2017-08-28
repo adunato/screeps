@@ -9,6 +9,7 @@ Creep.prototype.withdrawEnergy = function () {
 };
 
 Creep.prototype.harvestEnergy = function () {
+    console.log("harvestEnergy");
     var sources = cache.findSources(this.room);
     if (sources.length > 0) {
         if (this.harvest(sources[0]) == ERR_NOT_IN_RANGE) {
