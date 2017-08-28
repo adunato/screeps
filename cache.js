@@ -1,7 +1,7 @@
 var cache = {
     rooms: {containers: {}},
     findContainers: function (room) {
-        console.log("findContainers");
+        console.log("findContainers " + room.containers);
         var containers;
         if (typeof room.containers[room] != "undefined") {
             containers = room.containers[room];
