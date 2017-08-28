@@ -32,7 +32,7 @@ Creep.prototype.feedEnergy = function () {
     console.log("feedEnergy");
     var structures = cache.findEnergyFedStructures(this.room);
     if (structures.length > 0) {
-        if (this.transfer(targets[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+        if (this.transfer(structures[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
             this.moveTo(structures[0], {visualizePathStyle: {stroke: '#ffaa00'}});
         }
     }
