@@ -1,10 +1,12 @@
-var StateMachine = require('state-machine')
+var StateMachine = require('state-machine');
+var cache = require('cache');
 var builderFSM = new StateMachine.factory({
     init: 'none',
     transitions: [
-        { name: 'energyEmpty', from: 'build',  to: 'withdraw' },
-        { name: 'energyFull', from: 'withdraw', to: 'build'  },
-        { name: 'containersEmpty', from: 'withdraw', to: 'rest'  },
+        { name: 'energyEmpty', from: '*',  to: 'withdraw' },
+        { name: 'energyFull', from: '*', to: 'build'  },
+        { name: 'noConstructions', from: '*', to: 'rest'  },
+        { name: 'containersEmpty', from: '*', to: 'rest'  },
         { name: 'goto', from: '*', to: function(s) { return s } }
     ],
     data: function(creepName, initState) {
@@ -21,6 +23,10 @@ var builderFSM = new StateMachine.factory({
         onBuild:     function() {
             var creep = Game.creeps[this.creepName];
             creep.buildConstruction();
+        },
+        onContainersEmpty:     function() {
+            var creep = Game.creeps[this.creepName];
+            creep.rest();
         },
         onTransition(lifecycle){
             // console.log("transition name: " + lifecycle.transition);
@@ -39,7 +45,7 @@ var roleBuilder = {
                 creepState = "withdraw";
         var stateMachine = new builderFSM(creep.name,"withdraw");
         stateMachine.goto(creepState);
-        if(creep.carry.energy === 0 && stateMachine.can("energyEmpty")){
+        if(creep.carry.energy === 0){
             try {
                 stateMachine.energyEmpty();
             }
@@ -47,9 +53,17 @@ var roleBuilder = {
                 console.log("error: " + err);
             }
         }
-        if(creep.carry.energy === creep.carryCapacity && stateMachine.can("energyFull")){
+        if(creep.carry.energy === creep.carryCapacity ){
             try {
                 stateMachine.energyFull();
+            }
+            catch(err){
+                console.log("error: " + err);
+            }
+        }
+        if(cache.findContainers(creep.room).length === 0){
+            try {
+                stateMachine.containersEmpty();
             }
             catch(err){
                 console.log("error: " + err);
