@@ -73,6 +73,7 @@ function executeCreepBehaviour() {
 module.exports.loop = function () {
     //globals definition, every tick to refresh changes
     defines.initDefines();
+    cache.resetCache();
     clearMemory();
     spawnCreeps();
     logSpawing();
