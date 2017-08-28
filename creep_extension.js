@@ -1,3 +1,4 @@
+var cache = require('cache');
 Creep.prototype.withdrawEnergy = function() {
     // var containers = this.room.find(FIND_STRUCTURES, {
     //     filter: (container) => {
