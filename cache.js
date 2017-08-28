@@ -17,6 +17,7 @@ var cache = {
     },
     resetCache: function(){
         this.rooms.containers = {};
+        this.rooms.constructionSites = {};
     },
     findConstructionSites: function(room){
         var constructionSites = {};
