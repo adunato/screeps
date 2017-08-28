@@ -77,7 +77,7 @@ var cache = {
     findEnergyFedStructures: function(room){
         var energyFedStructures = {};
 
-        if (typeof this.rooms.energyContainers[room] != "undefined") {
+        if (typeof this.rooms.energyFedStructures[room] != "undefined") {
             energyFedStructures = this.rooms.energyFedStructures[room];
         } else {
             energyFedStructures = room.find(FIND_STRUCTURES, {
