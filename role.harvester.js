@@ -48,6 +48,7 @@ var roleBuilder = {
     /** @param {Creep} creep **/
     run: function (creep) {
         var creepState = creep.memory.state;
+        console.log(creepState);
         if (typeof creepState === "undefined")
             creepState = "none";
         var stateMachine = new harvesterFSM(creep.name);
