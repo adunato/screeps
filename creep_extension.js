@@ -8,6 +8,24 @@ Creep.prototype.withdrawEnergy = function () {
     }
 };
 
+Creep.prototype.harvestEnergy = function () {
+    var sources = cache.findSources(this.room);
+    if (sources.length > 0) {
+        if (this.harvest(sources[0]) == ERR_NOT_IN_RANGE) {
+            this.moveTo(sources[0], {visualizePathStyle: {stroke: '#ffaa00'}});
+        }
+    }
+};
+
+Creep.prototype.dropEnergy = function () {
+    var structures = cache.findEnergyDropStructures(this.room);
+    if (structures.length > 0) {
+        if (creep.transfer(targets[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+            this.moveTo(structures[0], {visualizePathStyle: {stroke: '#ffaa00'}});
+        }
+    }
+};
+
 Creep.prototype.buildConstruction = function () {
     var constructionSites = cache.findConstructionSites(this.room);
     if (constructionSites.length) {
