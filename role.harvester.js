@@ -13,10 +13,9 @@ var harvesterFSM = new StateMachine.factory({
         }
         }
     ],
-    data: function (creepName, initState) {
+    data: function (creepName) {
         return {
-            creepName: creepName,
-            initState: initState
+            creepName: creepName
         }
     },
     methods: {
@@ -50,8 +49,8 @@ var roleBuilder = {
     run: function (creep) {
         var creepState = creep.memory.state;
         if (typeof creepState === "undefined")
-            creepState = "withdraw";
-        var stateMachine = new harvesterFSM(creep.name, "withdraw");
+            creepState = "harvestEnergy";
+        var stateMachine = new harvesterFSM(creep.name);
         stateMachine.goto(creepState);
         if (creep.carry.energy === 0) {
             stateMachine.energyEmpty();
