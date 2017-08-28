@@ -1,17 +1,17 @@
 var cache = {
     rooms: {containers: {}},
     findContainers: function (room) {
-        console.log("findContainers " + this.room.containers);
+        console.log("findContainers " + this.rooms.containers);
         var containers;
-        if (typeof room.containers[room] != "undefined") {
-            containers = room.containers[room];
+        if (typeof this.rooms.containers[room] != "undefined") {
+            containers = this.rooms.containers[room];
         } else {
             containers = room.find(FIND_STRUCTURES, {
                 filter: (container) => {
                     return (container.structureType == STRUCTURE_CONTAINER) && container.store.energy > 0;
                 }
             });
-            room.containers[room] = containers;
+            this.rooms.containers[room] = containers;
         }
         return containers;
     },
