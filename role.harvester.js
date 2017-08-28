@@ -48,11 +48,11 @@ var roleBuilder = {
     /** @param {Creep} creep **/
     run: function (creep) {
         var creepState = creep.memory.state;
-        console.log(creepState);
+        console.log("state: " + creepState);
         if (typeof creepState === "undefined")
             creepState = "none";
         var stateMachine = new harvesterFSM(creep.name);
-        stateMachine.goto("state: " + creepState);
+        stateMachine.goto(creepState);
         if (creep.carry.energy < creep.carryCapacity) {
             stateMachine.energyEmpty();
         }
