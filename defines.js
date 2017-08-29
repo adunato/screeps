@@ -6,9 +6,9 @@ var defines = {
 
     initDefines: function () {
         global.minSpawn = {
-            "harvester": 1,
+            "harvester": 0,
             "builder": 3,
-            "nomad_harvester": 0,
+            "nomad_harvester": 1,
             "upgrader": 0
         };
         global.bodyParts = {
@@ -20,7 +20,7 @@ var defines = {
         global.modules = {
             "harvester": roleHarvester,
             "builder": roleBuilder,
-            "nomad_harvester": roleNomadHarvester,
+            "nomad_harvester": roleHarvester,
             "upgrader": roleUpgrader
         };
     }

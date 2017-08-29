@@ -1,4 +1,5 @@
 require('creep_extension');
+require('role.nomad_harvester');
 var cache = require('cache');
 var defines = require('defines');
 
@@ -17,9 +18,20 @@ function checkSpawn(roleName){
     return creeps.length <  minSpawn[roleName];
 }
 
+function instanceCreep(creep){
+    if(creep.memory.role === "nomad_harvester"){
+        var nomadHarvester = new NomadHarvester(creep);
+        Game.creeps[creep.name] = nomadHarvester;
+        nomadHarvester.memory.role = "harvester";
+        return nomadHarvester;
+    } else
+        return creep;
+}
+
 function logSpawing(){
     if(Game.spawns['Spawn1'].spawning) {
         var spawningCreep = Game.creeps[Game.spawns['Spawn1'].spawning.name];
+        spawningCreep = instanceCreep(spawningCreep);
         Game.spawns['Spawn1'].room.visual.text(
             '🛠️' + spawningCreep.memory.role,
             Game.spawns['Spawn1'].pos.x + 1,
