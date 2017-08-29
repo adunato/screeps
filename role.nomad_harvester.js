@@ -1,4 +1,4 @@
-function NomadHarvester(creep) {
+function NomadHarvester() {
     this.base = Creep;
     this.base(creep);
 }
