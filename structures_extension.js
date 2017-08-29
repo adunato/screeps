@@ -1,3 +1,5 @@
+var runtimeData, intents, register, globals, createdCreepNames, lastActivateSafeMode;
+
 StructureSpawn.prototype.createCreep = register.wrapFn(function(body, name, creepMemory) {
     console.log("I am an extension");
     if(_.isObject(name) && _.isUndefined(creepMemory)) {
