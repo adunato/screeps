@@ -3,7 +3,8 @@ var cache = require('cache');
 var harvesterFSM = new StateMachine.factory({
     init: 'none',
     transitions: [
-        {name: 'energyEmpty', from: '*', to: 'harvestEnergy'},
+        {name: 'energyEmpty', from: '*', to: 'selectSource'},
+        {name: 'sourceSelected', from: ['selectSource', 'harvestEnergy'], to: 'harvestEnergy'},
         {name: 'energyFull', from: ['feedEnergy', 'harvestEnergy'], to: 'feedEnergy'},
         {name: 'energyFedStructuresFull', from: ['dropEnergy','feedEnergy'], to: 'dropEnergy'},
         {name: 'noSource', from: ['harvestEnergy', 'rest'], to: 'rest'},
@@ -22,7 +23,7 @@ var harvesterFSM = new StateMachine.factory({
     methods: {
         onEnergyEmpty: function () {
             var creep = Game.creeps[this.creepName];
-            creep.harvestEnergy();
+            creep.selectSource();
         },
         onEnergyFull: function () {
             var creep = Game.creeps[this.creepName];
@@ -39,6 +40,10 @@ var harvesterFSM = new StateMachine.factory({
         onEnergyFedStructuresFull: function () {
             var creep = Game.creeps[this.creepName];
             creep.dropEnergy();
+        },
+        onSelectSource: function() {
+            var creep = Game.creeps[this.creepName];
+            creep.harvestEnergy();
         },
         onTransition(lifecycle) {
             // console.log("transition name: " + lifecycle.transition);
@@ -57,8 +62,11 @@ var roleBuilder = {
             creepState = "none";
         var stateMachine = new harvesterFSM(creep.name);
         stateMachine.goto(creepState);
-        if (creep.carry.energy < creep.carryCapacity && stateMachine.can("energyEmpty")) {
+        if (creep.carry.energy === 0 && stateMachine.can("energyEmpty")) {
             stateMachine.energyEmpty();
+        }
+        if (creep.carry.energy < creep.carryCapacity && creep.memory.selectedSource !== null && stateMachine.can("sourceSelected")) {
+            stateMachine.sourceSelected();
         }
         if (creep.carry.energy === creep.carryCapacity && stateMachine.can("energyFull")) {
             stateMachine.energyFull();

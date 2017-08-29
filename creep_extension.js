@@ -8,16 +8,27 @@ Creep.prototype.withdrawEnergy = function () {
     }
 };
 
-Creep.prototype.harvestEnergy = function () {
+Creep.prototype.selectSource = function () {
     var sources = cache.findSources(this.room);
-    if (sources.length > 0) {
-        if (this.harvest(sources[0]) == ERR_NOT_IN_RANGE) {
-            this.moveTo(sources[0], {visualizePathStyle: {stroke: '#0027ff'}});
+    var selectedSource;
+    var maxEnergy = 0;
+    for(var i = 0; i < sources.length; i++) {
+        if(sources[i].energy > maxEnergy){
+            selectedSource = sources[i];
+            maxEnergy = sources[i].energy;
         }
+    }
+    this.memory.selectedSource = selectedSource;
+};
+
+Creep.prototype.harvestEnergy = function () {
+    if (this.harvest(this.memory.selectedSource) == ERR_NOT_IN_RANGE) {
+        this.moveTo(this.memory.selectedSource, {visualizePathStyle: {stroke: '#0027ff'}});
     }
 };
 
 Creep.prototype.dropEnergy = function () {
+    this.memory.selectedSource = null;
     var structures = cache.findEnergyContainers(this.room);
     if (structures.length > 0) {
         if (this.transfer(structures[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
@@ -27,6 +38,7 @@ Creep.prototype.dropEnergy = function () {
 };
 
 Creep.prototype.feedEnergy = function () {
+    this.memory.selectedSource = null;
     var structures = cache.findEnergyFedStructures(this.room);
     if (structures.length > 0) {
         if (this.transfer(structures[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
@@ -45,6 +57,7 @@ Creep.prototype.buildConstruction = function () {
 };
 
 Creep.prototype.rest = function () {
+    this.memory.selectedSource = null;
     this.moveTo(Game.flags["RestArea"], {visualizePathStyle: {stroke: '#ffffff'}});
     this.say("Rest");
 };
