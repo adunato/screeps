@@ -1,26 +1,6 @@
 require('creep_extension');
-// require('role.nomad_harvester');
 var cache = require('cache');
 var defines = require('defines');
-
-
-function NomadHarvester(creep) {
-    this.base = Creep;
-    this.base.memory = creep.memory;
-}
-
-NomadHarvester.prototype = Object.create(Creep.prototype);
-NomadHarvester.prototype.constructor = NomadHarvester;
-
-NomadHarvester.prototype.harvestEnergy = function () {
-    this.say("I'm nomad!")
-    var source = Game.getObjectById(this.memory.selectedSource);
-    if (this.harvest(source) == ERR_NOT_IN_RANGE) {
-        this.moveTo(source, {visualizePathStyle: {stroke: '#0027ff'}});
-    }
-};
-
-
 
 function clearMemory(){
     for(var name in Memory.creeps) {
@@ -37,24 +17,9 @@ function checkSpawn(roleName){
     return creeps.length <  minSpawn[roleName];
 }
 
-function instanceCreep(creep){
-    if(creep.memory.role === "nomad_harvester" && !(creep instanceof NomadHarvester)){
-        var nomadHarvester = new NomadHarvester(creep);
-        Memory.test = nomadHarvester;
-        // console.log("cloning" + creep.memory.role);
-        // delete Game.creeps[creep.name];
-        // Game.creeps[creep.name] = nomadHarvester;
-        // console.log("spawining nomad");
-        // console.log(nomadHarvester.memory);
-        return creep;
-    } else
-        return creep;
-}
-
 function logSpawing(){
     if(Game.spawns['Spawn1'].spawning) {
         var spawningCreep = Game.creeps[Game.spawns['Spawn1'].spawning.name];
-        spawningCreep = instanceCreep(spawningCreep);
         Game.spawns['Spawn1'].room.visual.text(
             '🛠️' + spawningCreep.memory.role,
             Game.spawns['Spawn1'].pos.x + 1,

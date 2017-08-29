@@ -8,7 +8,24 @@ Creep.prototype.withdrawEnergy = function () {
     }
 };
 
+Creep.prototype.nomad_harvester_selectSource = function () {
+    console.log("I'm Nomad!")
+    var sources = cache.findSources(this.room);
+    var selectedSource;
+    var maxEnergy = 0;
+    for(var i = 0; i < sources.length; i++) {
+        if(sources[i].energy > maxEnergy){
+            selectedSource = sources[i];
+            maxEnergy = sources[i].energy;
+        }
+    }
+    this.memory.selectedSource = selectedSource.id;
+};
+
+
 Creep.prototype.selectSource = function () {
+    if(this.memory.role === "nomad_harvester")
+        return this.nomad_harvester_selectSource();
     var sources = cache.findSources(this.room);
     var selectedSource;
     var maxEnergy = 0;
