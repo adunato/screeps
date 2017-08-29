@@ -23,6 +23,7 @@ function instanceCreep(creep){
         var nomadHarvester = new NomadHarvester(creep);
         Game.creeps[creep.name] = nomadHarvester;
         nomadHarvester.memory.role = "harvester";
+        delete creep;
         return nomadHarvester;
     } else
         return creep;
