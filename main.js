@@ -42,7 +42,8 @@ function instanceCreep(creep){
         var nomadHarvester = new NomadHarvester(creep);
         delete Game.creeps[creep.name];
         Game.creeps[creep.name] = nomadHarvester;
-        //nomadHarvester.memory.flag = "I am here";
+        console.log("spawining nomad");
+        console.log(nomadHarvester.memory);
         return nomadHarvester;
     } else
         return creep;
