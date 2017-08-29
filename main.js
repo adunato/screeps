@@ -46,7 +46,7 @@ function instanceCreep(creep){
         // Game.creeps[creep.name] = nomadHarvester;
         // console.log("spawining nomad");
         // console.log(nomadHarvester.memory);
-        return nomadHarvester;
+        return creep;
     } else
         return creep;
 }
