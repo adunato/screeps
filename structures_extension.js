@@ -1,3 +1,9 @@
+var utils = require('./../utils'),
+    rooms = require('./rooms'),
+    driver = utils.getDriver(),
+    C = driver.constants,
+    _ = require('lodash');
+
 var runtimeData, intents, register, globals, createdCreepNames, lastActivateSafeMode;
 
 StructureSpawn.prototype.createCreep = register.wrapFn(function(body, name, creepMemory) {
