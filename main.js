@@ -40,7 +40,7 @@ function checkSpawn(roleName){
 function instanceCreep(creep){
     if(creep.memory.role === "nomad_harvester" && !(creep instanceof NomadHarvester)){
         var nomadHarvester = new NomadHarvester(creep);
-        Memory.test = nomadHarvester;
+        // Memory.test = nomadHarvester;
         // console.log("cloning" + creep.memory.role);
         // delete Game.creeps[creep.name];
         // Game.creeps[creep.name] = nomadHarvester;
