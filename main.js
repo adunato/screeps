@@ -1,7 +1,26 @@
 require('creep_extension');
-require('role.nomad_harvester');
+// require('role.nomad_harvester');
 var cache = require('cache');
 var defines = require('defines');
+
+
+function NomadHarvester(creep) {
+    this.base = Creep;
+    this.base.memory = creep.memory;
+}
+
+NomadHarvester.prototype = Object.create(Creep.prototype);
+NomadHarvester.prototype.constructor = NomadHarvester;
+
+NomadHarvester.prototype.harvestEnergy = function () {
+    this.say("I'm nomad!")
+    var source = Game.getObjectById(this.memory.selectedSource);
+    if (this.harvest(source) == ERR_NOT_IN_RANGE) {
+        this.moveTo(source, {visualizePathStyle: {stroke: '#0027ff'}});
+    }
+};
+
+
 
 function clearMemory(){
     for(var name in Memory.creeps) {
@@ -23,8 +42,7 @@ function instanceCreep(creep){
         var nomadHarvester = new NomadHarvester(creep);
         delete Game.creeps[creep.name];
         Game.creeps[creep.name] = nomadHarvester;
-        nomadHarvester.name = nomadHarvester.name + "+";
-        nomadHarvester.memory.role = "harvester";
+        nomadHarvester.memory.flag = "I am here";
         return nomadHarvester;
     } else
         return creep;
