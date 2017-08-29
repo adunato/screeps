@@ -1,6 +1,6 @@
-function NomadHarvester() {
+function NomadHarvester(creep) {
     this.base = Creep;
-    this.base(creep);
+    this.base.memory = creep.memory;
 }
 
 NomadHarvester.prototype = Object.create(Creep.prototype);

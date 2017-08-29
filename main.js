@@ -1,6 +1,5 @@
 require('creep_extension');
 require('role.nomad_harvester');
-require('structures_extension');
 var cache = require('cache');
 var defines = require('defines');
 
