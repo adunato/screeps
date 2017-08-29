@@ -18,12 +18,13 @@ Creep.prototype.selectSource = function () {
             maxEnergy = sources[i].energy;
         }
     }
-    this.memory.selectedSource = selectedSource;
+    this.memory.selectedSource = selectedSource.id;
 };
 
 Creep.prototype.harvestEnergy = function () {
-    if (this.harvest(this.memory.selectedSource) == ERR_NOT_IN_RANGE) {
-        this.moveTo(this.memory.selectedSource, {visualizePathStyle: {stroke: '#0027ff'}});
+    var source = Game.getObjectById(this.memory.selectedSource);
+    if (this.harvest(source) == ERR_NOT_IN_RANGE) {
+        this.moveTo(source, {visualizePathStyle: {stroke: '#0027ff'}});
     }
 };
 
