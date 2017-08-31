@@ -74,6 +74,7 @@ function assignCreepToSquad(creep) {
     for(squad in global.squads){
         if(squad.needCreep(creep)){
             squad.addCreep(creep);
+            creep.memory.squad = squad.getName();
             return squad;
         }
     }
@@ -85,8 +86,9 @@ function assignCreepsToSquads() {
         for (var role in modules) {
             if (!creep.memory.squad) {
                 var squad = assignCreepToSquad(creep);
-                if(squad)
+                if(squad) {
                     console.log("Assigning " + creep.name + " to squad " + squad.getName());
+                }
             }
         }
     }
@@ -110,16 +112,16 @@ function checkSquadFromFlag(role, flagName) {
     }
 }
 
-function createSquad(squadRole) {
+function createSquad(squadRole, squadName) {
     console.log("creating squad: " + squadRole);
-    global.squads.add(new Squad(new SquadProfile(squadRole)));
+    global.squads.add(new Squad(new SquadProfile(squadRole), squadName));
 }
 
 function createSquads() {
     for (flag in Game.flags) {
         for (squadRole in global.squadRoles) {
             if (checkSquadFromFlag(squadRole, flag.name)) {
-                global.squads[squadRole] = createSquad(squadRole);
+                global.squads[squadRole] = createSquad(squadRole, flag.name);
             }
         }
     }

@@ -1,6 +1,7 @@
-function Squad(squadProfile) {
+function Squad(squadProfile, squadName) {
     this.creeps = {};
     this.squadProfile = squadProfile;
+    this.squadName = squadName;
 };
 
 Squad.prototype.addCreep = function (creep) {
@@ -23,7 +24,7 @@ Squad.prototype.getCreepQuantityWithRole = function (creepRole) {
 }
 
 Squad.prototype.getName = function () {
-    return this.squadProfile.getName();
+    return this.squadName();
 }
 
 
