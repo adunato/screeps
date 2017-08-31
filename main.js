@@ -1,6 +1,8 @@
 require('creep_extension');
 var cache = require('cache');
 var defines = require('defines');
+var Squad = require('Squad');
+var SquadProfile = require('SquadProfile');
 
 function clearMemory() {
     for (var name in Memory.creeps) {
