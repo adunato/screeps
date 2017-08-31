@@ -105,6 +105,7 @@ function checkSquadFromFlag(role, flagName) {
         }
         if (!global.squads[role]) {
             global.squads[role] = {};
+            return true;
         }
         if (global.squads[role].length < flagID) {
             return true;
