@@ -85,7 +85,8 @@ function assignCreepsToSquads() {
         for (var role in modules) {
             if (!creep.memory.squad) {
                 var squad = assignCreepToSquad(creep);
-                console.log("Assigning " + creep.name + " to squad " + squad.getName());
+                if(squad)
+                    console.log("Assigning " + creep.name + " to squad " + squad.getName());
             }
         }
     }
