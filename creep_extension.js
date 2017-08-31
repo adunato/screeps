@@ -8,8 +8,9 @@ Creep.prototype.withdrawEnergy = function () {
     }
 };
 
-Creep.prototype.nomad_harvester_selectSource = function () {
-    console.log("I'm Nomad!")
+Creep.prototype.selectSource = function () {
+    if(this.memory.role === "nomad_harvester")
+        return this.nomad_harvester_selectSource();
     var sources = cache.findSources(this.room);
     var selectedSource;
     var maxEnergy = 0;
@@ -22,10 +23,7 @@ Creep.prototype.nomad_harvester_selectSource = function () {
     this.memory.selectedSource = selectedSource.id;
 };
 
-
-Creep.prototype.selectSource = function () {
-    if(this.memory.role === "nomad_harvester")
-        return this.nomad_harvester_selectSource();
+Creep.prototype.nomad_harvester_selectSource = function () {
     var sources = cache.findSources(this.room);
     var selectedSource;
     var maxEnergy = 0;

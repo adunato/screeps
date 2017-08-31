@@ -2,23 +2,23 @@ require('creep_extension');
 var cache = require('cache');
 var defines = require('defines');
 
-function clearMemory(){
-    for(var name in Memory.creeps) {
-        if(!Game.creeps[name]) {
+function clearMemory() {
+    for (var name in Memory.creeps) {
+        if (!Game.creeps[name]) {
             delete Memory.creeps[name];
             console.log('Clearing non-existing creep memory:', name);
         }
     }
 }
 
-function checkSpawn(roleName){
+function checkSpawn(roleName) {
     var creeps = _.filter(Game.creeps, (creep) => creep.memory.role == roleName);
     console.log(roleName + "s :" + creeps.length + "/" + minSpawn[roleName])
-    return creeps.length <  minSpawn[roleName];
+    return creeps.length < minSpawn[roleName];
 }
 
-function logSpawing(){
-    if(Game.spawns['Spawn1'].spawning) {
+function logSpawing() {
+    if (Game.spawns['Spawn1'].spawning) {
         var spawningCreep = Game.creeps[Game.spawns['Spawn1'].spawning.name];
         Game.spawns['Spawn1'].room.visual.text(
             '🛠️' + spawningCreep.memory.role,
@@ -28,7 +28,7 @@ function logSpawing(){
     }
 }
 
-function spawn(roleName){
+function spawn(roleName) {
     var newName = Game.spawns['Spawn1'].createCreep(bodyParts[roleName], undefined, {role: roleName});
     console.log('Spawning new ' + roleName + ' : ' + newName);
 }
@@ -70,12 +70,68 @@ function executeCreepBehaviour() {
     }
 }
 
+function assignCreepToSquad(creep) {
+    for(squad in global.squads){
+        if(squad.needCreep(creep)){
+            squad.addCreep(creep);
+            return squad;
+        }
+    }
+}
+
+function assignCreepsToSquads() {
+    for (var name in Game.creeps) {
+        var creep = Game.creeps[name];
+        for (var role in modules) {
+            if (!creep.memory.squad) {
+                var squad = assignCreepToSquad(creep);
+                console.log("Assigning " + creep.name + " to squad " + squad.getName());
+            }
+        }
+    }
+}
+
+function checkSquadFromFlag(role, flagName) {
+    if (flagName.startsWith(role)) {
+        var flagID = flagName.name;
+        flagID.replace(role, "");
+        if (!global.squads) {
+            global.squads = {};
+        }
+        if (!global.squads[role]) {
+            global.squads[role] = {};
+        }
+        if (global.squads[role].length < flagID) {
+            return true;
+        } else {
+            return false
+        }
+    }
+}
+
+function createSquad(squadRole) {
+    console.log("creating squad: " + squadRole);
+    global.squads.add(new Squad(new SquadProfile(squadRole)));
+}
+
+function createSquads() {
+    for (flag in Game.flags) {
+        for (squadRole in global.squadRoles) {
+            if (checkSquadFromFlag(squadRole, flag.name)) {
+                global.squads[squadRole] = createSquad(squadRole);
+            }
+        }
+    }
+}
+
 module.exports.loop = function () {
     //globals definition, every tick to refresh changes
     defines.initDefines();
     cache.resetCache();
     clearMemory();
     spawnCreeps();
+    createSquads();
+    assignCreepsToSquads();
     logSpawing();
     // manageDefense();
     executeCreepBehaviour();

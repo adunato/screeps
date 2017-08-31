@@ -1,9 +1,20 @@
 var cache = {
-    rooms: {containers: {},
-            constructionSites: {},
-            sources: {},
-            energyContainers: {},
-            energyFedStructures: {}},
+    rooms: {
+        containers: {},
+        constructionSites: {},
+        sources: {},
+        energyContainers: {},
+        energyFedStructures: {},
+        creeps: {}
+    },
+    resetCache: function () {
+        this.rooms.containers = {};
+        this.rooms.constructionSites = {};
+        this.rooms.sources = {};
+        this.rooms.energyContainers = {};
+        this.energyFedStructures = {};
+        this.creeps = {};
+    },
     findContainers: function (room) {
         var containers = {};
         if (typeof this.rooms.containers[room] != "undefined") {
@@ -18,13 +29,7 @@ var cache = {
         }
         return containers;
     },
-    resetCache: function(){
-        this.rooms.containers = {};
-        this.rooms.constructionSites = {};
-        this.rooms.sources = {};
-        this.rooms.energyContainers = {};
-    },
-    findConstructionSites: function(room){
+    findConstructionSites: function (room) {
         var constructionSites = {};
 
         if (typeof this.rooms.constructionSites[room] != "undefined") {
@@ -35,7 +40,7 @@ var cache = {
         }
         return constructionSites;
     },
-    findConstructionSites: function(room){
+    findConstructionSites: function (room) {
         var constructionSites = {};
 
         if (typeof this.rooms.constructionSites[room] != "undefined") {
@@ -46,7 +51,7 @@ var cache = {
         }
         return constructionSites;
     },
-    findSources: function(room){
+    findSources: function (room) {
         var sources = {};
 
         if (typeof this.rooms.sources[room] != "undefined") {
@@ -57,7 +62,7 @@ var cache = {
         }
         return sources;
     },
-    findEnergyContainers: function(room){
+    findEnergyContainers: function (room) {
         var energyDropStructures = {};
 
         if (typeof this.rooms.energyContainers[room] != "undefined") {
@@ -74,7 +79,7 @@ var cache = {
         }
         return energyDropStructures;
     },
-    findEnergyFedStructures: function(room){
+    findEnergyFedStructures: function (room) {
         var energyFedStructures = {};
 
         if (typeof this.rooms.energyFedStructures[room] != "undefined") {
@@ -90,6 +95,54 @@ var cache = {
             this.rooms.energyFedStructures[room] = energyFedStructures;
         }
         return energyFedStructures;
+    },
+    getFlagRoomName: function (flagName) {
+        var flagRoom = Game.flags[flagName].room;
+        //room is not visible
+        if (typeof flagRoom == 'undefined') {
+            return 'undefined';
+        } else {
+            return flagRoom.name;
+        }
+    },
+    getFlagRoom: function (flagName) {
+        return flagRoom = Game.flags[flagName].room;
+    },
+    countCreepsInFlagRoom: function (flagName) {
+        var room = this.getFlagRoom(flagName);
+        var creeps = this.getCreepsInRoom(room);
+        return creeps.length;
+    },
+    getCreepsInRoom(room){
+        if (typeof this.rooms.creeps[room] != "undefined") {
+            return this.rooms.creeps[room];
+        } else {
+            this.rooms.creeps = {};
+            for (var i in Game.creeps) {
+                var creep = Game.creeps[i];
+                if (creep.room.name == this.getFlagRoomName(flagName))
+                    this.rooms.creeps.add(creep);
+            }
+            return this.rooms.creeps;
+        }
+    },
+    selectHarvestRoom: function (flagName) {
+        var harvestRoom = Game.flags[flagName].room;
+        //room is not visible
+        if (typeof harvestRoom == 'undefined') {
+            creep.moveTo(Game.flags[flagName], {visualizePathStyle: {stroke: '#ffaa00'}});
+        } else {
+            var sources = harvestRoom.find(FIND_SOURCES);
+            var selectedSource;
+            var maxEnergy = 0;
+            for (var i = 0; i < sources.length; i++) {
+                if (sources[i].energy > maxEnergy) {
+                    selectedSource = sources[i];
+                    maxEnergy = sources[i].energy;
+                }
+            }
+            creep.memory.selectedSource = selectedSource.id;
+        }
     }
 
 

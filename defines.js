@@ -12,16 +12,21 @@ var defines = {
             "upgrader": 0
         };
         global.bodyParts = {
-            "harvester": [WORK,CARRY,MOVE],
-            "builder": [WORK,CARRY,MOVE],
-            "nomad_harvester": [WORK,CARRY,MOVE],
-            "upgrader": [WORK,CARRY,MOVE]
+            "harvester": [WORK, CARRY, MOVE],
+            "builder": [WORK, CARRY, MOVE],
+            "nomad_harvester": [WORK, CARRY, MOVE],
+            "upgrader": [WORK, CARRY, MOVE]
         };
         global.modules = {
             "harvester": roleHarvester,
             "builder": roleBuilder,
             "nomad_harvester": roleHarvester,
             "upgrader": roleUpgrader
+        };
+        global.squadProfiles = {
+            "harvesters" : [["harvester",3], ["builder",1]],
+            "builders" : [["builder",3]],
+            "upgraders" : [["upgrader",3]]
         };
     }
 
