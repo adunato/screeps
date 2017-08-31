@@ -98,10 +98,6 @@ function assignCreepsToSquads() {
 
 function checkSquadFromFlag(role, flagName) {
     if (flagName.startsWith(role)) {
-        for(var squadRole in global.squads){
-            console.log(squadRole);
-            console.log(global.squads[squadRole].length);
-        }
         var flagID = flagName;
         flagID.replace(role, "");
         if (!global.squads) {
@@ -119,16 +115,14 @@ function checkSquadFromFlag(role, flagName) {
 }
 
 function createSquad(squadRole, squadName) {
-    console.log("creating squad: " + squadRole);
     return new Squad(new SquadProfile(squadRole), squadName);
 }
 
 function createSquads() {
     for (var flag in Game.flags) {
         for (var squadRole in global.squadProfiles) {
-            console.log("creating squad: " + squadRole);
             if (checkSquadFromFlag(squadRole, flag)) {
-                console.log("creating squad");
+                console.log("creating squad: " + squadRole);
                 global.squads[squadRole].add(createSquad(squadRole, flag.name));
             }
         }
