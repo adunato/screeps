@@ -24,7 +24,7 @@ Squad.prototype.getCreepQuantityWithRole = function (creepRole) {
 }
 
 Squad.prototype.getName = function () {
-    return this.squadName();
+    return this.squadName;
 }
 
 
