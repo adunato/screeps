@@ -72,7 +72,7 @@ function executeCreepBehaviour() {
 
 function assignCreepToSquad(creep) {
     for(var squad in global.squads){
-        console.log(squad.getName());
+        console.log(squad);
         if(squad.needCreep(creep)){
             squad.addCreep(creep);
             creep.memory.squad = squad.getName();
