@@ -120,7 +120,7 @@ function checkSquadFromFlag(role, flagName) {
 
 function createSquad(squadRole, squadName) {
     console.log("creating squad: " + squadRole);
-    global.squads.add(new Squad(new SquadProfile(squadRole), squadName));
+    return new Squad(new SquadProfile(squadRole), squadName);
 }
 
 function createSquads() {
@@ -129,7 +129,7 @@ function createSquads() {
             console.log("creating squad: " + squadRole);
             if (checkSquadFromFlag(squadRole, flag)) {
                 console.log("creating squad");
-                global.squads[squadRole] = createSquad(squadRole, flag.name);
+                global.squads[squadRole].add(createSquad(squadRole, flag.name));
             }
         }
     }
