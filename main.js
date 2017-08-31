@@ -97,6 +97,7 @@ function assignCreepsToSquads() {
 }
 
 function checkSquadFromFlag(role, flagName) {
+    console.log("global.squads[role].length: " + global.squads[role].length);
     if (flagName.startsWith(role)) {
         var flagID = flagName;
         flagID.replace(role, "");
@@ -106,7 +107,6 @@ function checkSquadFromFlag(role, flagName) {
         if (!global.squads[role]) {
             global.squads[role] = {};
         }
-        console.log("global.squads[role].length: " + global.squads[role].length);
         if (global.squads[role].length < flagID) {
             return true;
         } else {
