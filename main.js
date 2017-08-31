@@ -118,6 +118,7 @@ function checkSquadFromFlag(role, flagName) {
 }
 
 function createSquad(squadRole, squadName) {
+    console.log("creating squad: " + squadRole + " " + squadName);
     return new Squad(new SquadProfile(squadRole), squadName);
 }
 
