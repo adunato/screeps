@@ -120,8 +120,7 @@ function createSquad(squadRole, squadName) {
 function createSquads() {
     for (var flag in Game.flags) {
         for (var squadRole in global.squadProfiles) {
-            console.log(flag);
-            if (checkSquadFromFlag(squadRole, flag.name)) {
+            if (checkSquadFromFlag(squadRole, flag)) {
                 global.squads[squadRole] = createSquad(squadRole, flag.name);
             }
         }
