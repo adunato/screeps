@@ -128,6 +128,7 @@ function createSquads() {
             if (checkSquadFromFlag(squadRole, flagName)) {
                 var squad = createSquad(squadRole, flagName);
                 console.log("creating squad: " + squad.getName());
+                console.log(global.squads[squadRole]);
                 global.squads[squadRole].add(squad);
             }
         }
