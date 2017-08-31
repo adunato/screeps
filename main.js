@@ -100,7 +100,7 @@ function checkSquadFromFlag(role, flagName) {
     if (flagName.startsWith(role)) {
         for(var squadRole in global.squads){
             console.log(squadRole);
-            console.log(global.squads[squadRole]);
+            console.log(global.squads[squadRole].length);
         }
         var flagID = flagName;
         flagID.replace(role, "");
