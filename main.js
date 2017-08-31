@@ -132,7 +132,7 @@ module.exports.loop = function () {
     clearMemory();
     spawnCreeps();
     createSquads();
-    // assignCreepsToSquads();
+    assignCreepsToSquads();
     logSpawing();
     // manageDefense();
     executeCreepBehaviour();
