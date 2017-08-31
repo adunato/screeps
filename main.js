@@ -70,7 +70,8 @@ function executeCreepBehaviour() {
     }
 }
 
-function assignCreepToSquad(creep) {
+function assignCreepToSquad(creepName) {
+    var creep = Game.creeps[creepName];
     for(var squad in global.squads){
         if(squad.needCreep(creep)){
             squad.addCreep(creep);
