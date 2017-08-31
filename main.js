@@ -97,9 +97,9 @@ function assignCreepsToSquads() {
 }
 
 function checkSquadFromFlag(role, flagName) {
-    console.log("flagName: " + flagName);
-    console.log("role: " + role);
     if (flagName.startsWith(role)) {
+        console.log("flagName: " + flagName);
+        console.log("role: " + role);
         var flagID = flagName;
         flagID.replace(role, "");
         if (!global.squads) {
