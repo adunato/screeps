@@ -16,7 +16,8 @@ function clearMemory() {
 
 function checkSpawn(roleName) {
     var creeps = _.filter(Game.creeps, (creep) => creep.memory.role == roleName);
-    console.log(roleName + "s :" + creeps.length + "/" + minSpawn[roleName])
+    if(printStats)
+        console.log(roleName + "s :" + creeps.length + "/" + minSpawn[roleName])
     return creeps.length < minSpawn[roleName];
 }
 
