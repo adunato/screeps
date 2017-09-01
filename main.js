@@ -3,6 +3,7 @@ var cache = require('cache');
 var defines = require('defines');
 var Squad = require('Squad');
 var SquadProfile = require('SquadProfile');
+var squads = new Array();
 
 function clearMemory() {
     for (var name in Memory.creeps) {
@@ -74,10 +75,10 @@ function executeCreepBehaviour() {
 
 function assignCreepToSquad(creep) {
     //iterate squad roles
-    for (var squadRole in global.squads) {
+    for (var squadRole in squads) {
         //iterate squads
-        for (var i = 0; i < global.squads[squadRole].length; i++) {
-            var squad = global.squads[squadRole][i];
+        for (var i = 0; i < squads[squadRole].length; i++) {
+            var squad = squads[squadRole][i];
             if (squad.needCreep(creep)) {
                 squad.addCreep(creep);
                 creep.memory.squad = squad.getName();
@@ -103,14 +104,11 @@ function checkSquadFromFlag(role, flagName) {
     if (flagName.startsWith(role)) {
         var flagID = flagName;
         flagID.replace(role, "");
-        if (!global.squads) {
-            global.squads = {};
-        }
-        if (!global.squads[role]) {
-            global.squads[role] = new Array();
+        if (!squads[role]) {
+            squads[role] = new Array();
             return true;
         }
-        else if (global.squads[role].length < flagID) {
+        else if (squads[role].length < flagID) {
             return true;
         } else {
             return false
@@ -129,12 +127,11 @@ function createSquads() {
             if (checkSquadFromFlag(squadRole, flagName)) {
                 var squad = createSquad(squadRole, flagName);
                 console.log("creating squad: " + squad.getName());
-                console.log(global.squads[squadRole]);
-                global.squads[squadRole].push(squad);
+                console.log(squads[squadRole]);
+                squads[squadRole].push(squad);
             }
         }
     }
-    Memory.squads = global.squads;
 }
 
 module.exports.loop = function () {
