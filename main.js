@@ -103,13 +103,13 @@ function checkSquadFromFlag(role, flagName) {
         var flagID = flagName;
         flagID.replace(role, "");
         if (!global.squads) {
-            global.squads = new Array();
+            global.squads = {};
         }
         if (!global.squads[role]) {
             global.squads[role] = new Array();
             return true;
         }
-        if (global.squads[role].length < flagID) {
+        else if (global.squads[role].length < flagID) {
             return true;
         } else {
             return false
