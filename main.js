@@ -106,10 +106,12 @@ function checkSquadFromFlag(role, flagName) {
         var flagID = flagName;
         flagID.replace(role, "");
         if (!squads[role]) {
+            console.log("Squad role " + role + "needed")
             squads[role] = new Array();
             return true;
         }
         else if (squads[role].length < flagID) {
+            console.log("Squad " + flagName + "needed")
             return true;
         } else {
             return false
@@ -127,8 +129,6 @@ function createSquads() {
         for (var squadRole in global.squadProfiles) {
             if (checkSquadFromFlag(squadRole, flagName)) {
                 var squad = createSquad(squadRole, flagName);
-                console.log("creating squad: " + squad.getName());
-                console.log(squads[squadRole]);
                 squads[squadRole].push(squad);
             }
         }
