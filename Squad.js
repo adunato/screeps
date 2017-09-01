@@ -16,7 +16,8 @@ Squad.prototype.needCreep = function (creep) {
 
 Squad.prototype.getCreepQuantityWithRole = function (creepRole) {
     var ret = 0;
-    for(creep in creeps){
+    for(var i = 0; i < creeps.length; i++){
+        var creep = creeps[i];
         if(creep.memory.role === creepRole)
             ret++;
     }
