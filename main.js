@@ -124,6 +124,7 @@ function checkSquadFromFlag(role, flagName) {
         flagID.replace(role, "");
         console.log("checkSquadFromFlag role " + role);
         console.log("checkSquadFromFlag squads[role].length " + squads[role].length);
+        console.log("checkSquadFromFlag flagID " + flagID);
     if (squads[role].length < flagID) {
             console.log("Squad " + flagName + " needed");
             return true;
