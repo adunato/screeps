@@ -11,9 +11,9 @@ Object.size = function(obj) {
     return size;
 };
 
-Array.prototype.contains = function ( needle ) {
-    for (i in this) {
-        if (this[i] == needle) return true;
+Array.prototype.contains = function ( value ) {
+    for (var i in this) {
+        if (this[i] == value) return true;
     }
     return false;
 }
