@@ -98,6 +98,7 @@ function assignCreepsToSquads() {
             }
         }
     }
+    Memory.squads = squads;
 }
 
 function checkSquadFromFlag(role, flagName) {
