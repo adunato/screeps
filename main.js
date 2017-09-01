@@ -17,9 +17,9 @@ function clearMemory() {
 
 function initSquads() {
     //create squads based on profile configuration
-    if(!squads){
+    if (!squads) {
         squads = {};
-        for(var profileName in global.squadProfiles){
+        for (var profileName in global.squadProfiles) {
             squads[profileName] = new Array();
             console.log("added " + profileName + " to squads");
             console.log("now squads size is " + Object.size(squads));
@@ -30,7 +30,7 @@ function initSquads() {
 
 function checkSpawn(roleName) {
     var creeps = _.filter(Game.creeps, (creep) => creep.memory.role == roleName);
-    if(printStats)
+    if (printStats)
         console.log(roleName + "s :" + creeps.length + "/" + minSpawn[roleName])
     return creeps.length < minSpawn[roleName];
 }
@@ -122,10 +122,8 @@ function checkSquadFromFlag(role, flagName) {
     if (flagName.startsWith(role)) {
         var flagID = flagName;
         flagID = flagID.replace(role, "");
-        console.log("checkSquadFromFlag role " + role);
-        console.log("checkSquadFromFlag squads[role].length " + squads[role].length);
-        console.log("checkSquadFromFlag flagID " + flagID);
-    if (squads[role].length < flagID) {
+        console.log("squad role size " + squads[role].length);
+        if (squads[role].length < flagID) {
             console.log("Squad " + flagName + " needed");
             return true;
         } else {
