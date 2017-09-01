@@ -3,7 +3,7 @@ var cache = require('cache');
 var defines = require('defines');
 var Squad = require('Squad');
 var SquadProfile = require('SquadProfile');
-var squads = new Array();
+var squads = {};
 var printStats = false;
 
 function clearMemory() {
