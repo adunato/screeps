@@ -8,6 +8,7 @@ SquadProfile.prototype.getCreepQuantity = function(role) {
         if(role[0] === role)
             return role[1];
     }
+    return 0;
 };
 
 SquadProfile.prototype.getName = function() {
