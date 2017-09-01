@@ -31,6 +31,8 @@ Squad.prototype.getName = function () {
 }
 
 Squad.prototype.hasCreep = function (creep) {
+    console.log("hasCreep");
+    console.log(this.creeps.includes(creep));
     return this.creeps.includes(creep);
 }
 
