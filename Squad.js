@@ -30,5 +30,8 @@ Squad.prototype.getName = function () {
     return this.squadName;
 }
 
+Squad.prototype.hasCreep = function (creep) {
+    return creep in this.creeps;
+}
 
 module.exports = Squad;
