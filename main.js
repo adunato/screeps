@@ -122,15 +122,9 @@ function checkSquadFromFlag(role, flagName) {
     if (flagName.startsWith(role)) {
         var flagID = flagName;
         flagID.replace(role, "");
-        console.log("checkSquadFromFlag - role " + role);
-        console.log("squads[role] " + squads[role]);
-        if (!squads[role]) {
-            console.log("Squad role " + role + " needed");
-            // console.log("Current squads size " + Object.size(squads));
-            squads[role] = new Array();
-            return true;
-        }
-        else if (squads[role].length < flagID) {
+        console.log("checkSquadFromFlag role " + role);
+        console.log("checkSquadFromFlag squads[role].length " + squads[role].length);
+    if (squads[role].length < flagID) {
             console.log("Squad " + flagName + " needed");
             return true;
         } else {
