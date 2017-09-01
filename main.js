@@ -110,12 +110,9 @@ function assignCreepsToSquads() {
             }
         } else {
             for(var squadRole in squads){
-                console.log(squadRole);
                 var squadRoles = squads[squadRole];
                 for(var n = 0; n < squadRoles.length; n++){
-                    console.log("squadRoles[n].getName() " + squadRoles[n].getName())
                     if(squadRoles[n].getName() === creep.memory.squad && !squadRoles[n].hasCreep(creep)){
-                        console.log("adding creep ");
                         squadRoles[n].addCreep(creep);
                     }
                 }
@@ -129,9 +126,7 @@ function checkSquadFromFlag(role, flagName) {
     if (flagName.startsWith(role)) {
         var flagID = flagName;
         flagID = flagID.replace(role, "");
-        console.log("squad role size " + squads[role].length);
         if (squads[role].length < flagID) {
-            console.log("Squad " + flagName + " needed");
             return true;
         } else {
             return false
@@ -140,7 +135,6 @@ function checkSquadFromFlag(role, flagName) {
 }
 
 function createSquad(squadRole, squadName) {
-    console.log("creating squad: " + squadRole + " " + squadName);
     return new Squad(new SquadProfile(squadRole), squadName);
 }
 
