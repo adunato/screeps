@@ -5,7 +5,7 @@ function Squad(squadProfile, squadName) {
 };
 
 Squad.prototype.addCreep = function (creep) {
-    this.creeps.add(creep);
+    this.creeps.push(creep);
 };
 
 Squad.prototype.needCreep = function (creep) {
