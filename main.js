@@ -107,7 +107,7 @@ function checkSquadFromFlag(role, flagName) {
         flagID.replace(role, "");
         if (!squads[role]) {
             console.log("Squad role " + role + " needed");
-            console.log("Current squads size " + squads.length);
+            // console.log("Current squads size " + squads.length);
             squads[role] = new Array();
             return true;
         }
@@ -141,6 +141,7 @@ module.exports.loop = function () {
     defines.initDefines();
     cache.resetCache();
     clearMemory();
+    console.log("Current squads size " + squads.length);
     spawnCreeps();
     createSquads();
     assignCreepsToSquads();
