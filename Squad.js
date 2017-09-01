@@ -10,7 +10,7 @@ Squad.prototype.addCreep = function (creep) {
 
 Squad.prototype.needCreep = function (creep) {
     var creepQuantity = this.getCreepQuantityWithRole(creep.memory.role);
-    var profileQuantity = this.squadProfile.getCreepQuantity(creepRole);
+    var profileQuantity = this.squadProfile.getCreepQuantity(creep.memory.role);
     return (creepQuantity < profileQuantity);
 };
 
