@@ -21,7 +21,7 @@ function initSquads() {
         for(var profileName in global.squadProfiles){
             squads[profileName] = new Array();
             console.log("added " + profileName + " to squads");
-            console.log("now squads size is " + squads.length);
+            console.log("now squads size is " + Object.size(squads));
         }
         Memory.squads = squads;
     }
@@ -121,7 +121,7 @@ function checkSquadFromFlag(role, flagName) {
         flagID.replace(role, "");
         if (!squads[role]) {
             console.log("Squad role " + role + " needed");
-            // console.log("Current squads size " + squads.length);
+            // console.log("Current squads size " + Object.size(squads));
             squads[role] = new Array();
             return true;
         }
@@ -157,7 +157,7 @@ module.exports.loop = function () {
     cache.resetCache();
     initSquads();
     clearMemory();
-    console.log("Current squads size " + squads.length);
+    console.log("Current squads size " + Object.size(squads));
     spawnCreeps();
     createSquads();
     assignCreepsToSquads();
