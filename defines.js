@@ -22,7 +22,7 @@ var defines = {
 
     initDefines: function () {
         global.minSpawn = {
-            "harvester": 1,
+            "harvester": 4,
             "builder": 0,
             "nomad_harvester": 0,
             "upgrader": 0
@@ -40,7 +40,7 @@ var defines = {
             "upgrader": roleUpgrader
         };
         global.squadProfiles = {
-            "harvesters" : [["harvester",3], ["builder",1]],
+            "harvesters" : [["harvester",3]],
             "builders" : [["builder",3]],
             "upgraders" : [["upgrader",3]]
         };
