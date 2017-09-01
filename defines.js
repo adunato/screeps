@@ -11,6 +11,13 @@ Object.size = function(obj) {
     return size;
 };
 
+Array.prototype.contains = function ( needle ) {
+    for (i in this) {
+        if (this[i] == needle) return true;
+    }
+    return false;
+}
+
 var defines = {
 
     initDefines: function () {
