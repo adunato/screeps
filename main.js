@@ -74,9 +74,9 @@ function executeCreepBehaviour() {
 
 function assignCreepToSquad(creep) {
     //iterate squad roles
-    for(var squadRole in global.squads){
+    for (var squadRole in global.squads) {
         //iterate squads
-        for(var i = 0; i <  global.squads[squadRole].length; i++) {
+        for (var i = 0; i < global.squads[squadRole].length; i++) {
             var squad = global.squads[squadRole][i];
             if (squad.needCreep(creep)) {
                 squad.addCreep(creep);
@@ -90,12 +90,10 @@ function assignCreepToSquad(creep) {
 function assignCreepsToSquads() {
     for (var name in Game.creeps) {
         var creep = Game.creeps[name];
-        for (var role in modules) {
-            if (!creep.memory.squad) {
-                var squad = assignCreepToSquad(creep);
-                if(squad) {
-                    console.log("Assigning " + creep.name + " to squad " + squad.getName());
-                }
+        if (!creep.memory.squad) {
+            var squad = assignCreepToSquad(creep);
+            if (squad) {
+                console.log("Assigning " + creep.name + " to squad " + squad.getName());
             }
         }
     }
