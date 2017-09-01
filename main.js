@@ -21,10 +21,7 @@ function initSquads() {
         squads = {};
         for (var profileName in global.squadProfiles) {
             squads[profileName] = new Array();
-            console.log("added " + profileName + " to squads");
-            console.log("now squads size is " + Object.size(squads));
         }
-        Memory.squads = squads;
     }
 }
 
@@ -113,6 +110,7 @@ function assignCreepsToSquads() {
             }
         } else {
             for(var i = 0; i < Object.size(squads); i++){
+                console.log(squads[i]);
                 var squadRoles = squads[i];
                 for(var n = 0; n < squadRoles.length; n++){
                     if(squadRoles[n].getName() === creep.memory.squad && !squadRoles[n].hasCreep(creep)){
@@ -162,7 +160,6 @@ module.exports.loop = function () {
     cache.resetCache();
     initSquads();
     clearMemory();
-    console.log("Current squads size " + Object.size(squads));
     spawnCreeps();
     createSquads();
     assignCreepsToSquads();
