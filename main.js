@@ -110,6 +110,7 @@ function assignCreepsToSquads() {
             }
         } else {
             for(var i = 0; i < Object.size(squads); i++){
+                console.log(i);
                 console.log(squads[i]);
                 var squadRoles = squads[i];
                 for(var n = 0; n < squadRoles.length; n++){
