@@ -1,5 +1,5 @@
 function Squad(squadProfile, squadName) {
-    this.creeps = {};
+    this.creeps = new Array();
     this.squadProfile = squadProfile;
     this.squadName = squadName;
 };
