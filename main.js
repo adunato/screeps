@@ -20,7 +20,10 @@ function initSquads() {
         squads = {};
         for(var profileName in global.squadProfiles){
             squads[profileName] = new Array();
+            console.log("added " + profileName + " to squads");
+            console.log("now squads size is " + squads.length);
         }
+        Memory.squads = squads;
     }
 }
 
