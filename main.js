@@ -3,7 +3,7 @@ var cache = require('cache');
 var defines = require('defines');
 var Squad = require('Squad');
 var SquadProfile = require('SquadProfile');
-var squads = {};
+var squads = null;
 var printStats = false;
 
 function clearMemory() {
@@ -11,6 +11,14 @@ function clearMemory() {
         if (!Game.creeps[name]) {
             delete Memory.creeps[name];
             console.log('Clearing non-existing creep memory:', name);
+        }
+    }
+}
+
+function initSquads() {
+    if(!squads){
+        for(var profileName in global.squadProfiles){
+            squads[profileName] = new Array();
         }
     }
 }
@@ -138,10 +146,12 @@ function createSquads() {
     }
 }
 
+
 module.exports.loop = function () {
     //globals definition, every tick to refresh changes
     defines.initDefines();
     cache.resetCache();
+    initSquads();
     clearMemory();
     console.log("Current squads size " + squads.length);
     spawnCreeps();
