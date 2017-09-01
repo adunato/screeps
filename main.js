@@ -109,10 +109,9 @@ function assignCreepsToSquads() {
                 console.log("Assigning " + creep.name + " to squad " + squad.getName());
             }
         } else {
-            for(var i = 0; i < Object.size(squads); i++){
-                console.log(i);
-                console.log(squads[i]);
-                var squadRoles = squads[i];
+            for(var squadRole in squads){
+                console.log(squadRole);
+                var squadRoles = squads[squadRole];
                 for(var n = 0; n < squadRoles.length; n++){
                     if(squadRoles[n].getName() === creep.memory.squad && !squadRoles[n].hasCreep(creep)){
                         squadRoles[n].addCreep(creep);
