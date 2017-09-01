@@ -115,6 +115,7 @@ function assignCreepsToSquads() {
                 for(var n = 0; n < squadRoles.length; n++){
                     console.log("squadRoles[n].getName() " + squadRoles[n].getName())
                     if(squadRoles[n].getName() === creep.memory.squad && !squadRoles[n].hasCreep(creep)){
+                        console.log("adding creep ");
                         squadRoles[n].addCreep(creep);
                     }
                 }
