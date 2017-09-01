@@ -17,6 +17,7 @@ function clearMemory() {
 
 function initSquads() {
     if(!squads){
+        squads = {};
         for(var profileName in global.squadProfiles){
             squads[profileName] = new Array();
         }
