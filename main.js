@@ -4,6 +4,7 @@ var defines = require('defines');
 var Squad = require('Squad');
 var SquadProfile = require('SquadProfile');
 var squads = new Array();
+var printStats = false;
 
 function clearMemory() {
     for (var name in Memory.creeps) {
