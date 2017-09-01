@@ -32,7 +32,7 @@ Squad.prototype.getName = function () {
 
 Squad.prototype.hasCreep = function (creep) {
     for(var i = 0; i < this.creeps.length; i++){
-        if(creeps[i].id === creep.id)
+        if(this.creeps[i].id === creep.id)
             return true;
     }
     return false;
