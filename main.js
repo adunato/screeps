@@ -16,6 +16,7 @@ function clearMemory() {
 }
 
 function initSquads() {
+    //create squads based on profile configuration
     if(!squads){
         squads = {};
         for(var profileName in global.squadProfiles){
@@ -110,6 +111,8 @@ function assignCreepsToSquads() {
             if (squad) {
                 console.log("Assigning " + creep.name + " to squad " + squad.getName());
             }
+        } else {
+
         }
     }
     Memory.squads = squads;
@@ -119,6 +122,8 @@ function checkSquadFromFlag(role, flagName) {
     if (flagName.startsWith(role)) {
         var flagID = flagName;
         flagID.replace(role, "");
+        console.log("checkSquadFromFlag - role " + role);
+        console.log("squads[role] " + squads[role]);
         if (!squads[role]) {
             console.log("Squad role " + role + " needed");
             // console.log("Current squads size " + Object.size(squads));
