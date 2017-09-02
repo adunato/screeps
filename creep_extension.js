@@ -18,13 +18,13 @@ Creep.prototype.withdrawEnergyFromSpawn = function () {
 };
 
 Creep.prototype.selectSource = function () {
-    if(this.memory.role === "nomad_harvester")
+    if (this.memory.role === "nomad_harvester")
         return this.nomad_harvester_selectSource();
     var sources = cache.findSources(this.room);
     var selectedSource;
     var maxEnergy = 0;
-    for(var i = 0; i < sources.length; i++) {
-        if(sources[i].energy > maxEnergy){
+    for (var i = 0; i < sources.length; i++) {
+        if (sources[i].energy > maxEnergy) {
             selectedSource = sources[i];
             maxEnergy = sources[i].energy;
         }
@@ -36,8 +36,8 @@ Creep.prototype.nomad_harvester_selectSource = function () {
     var sources = cache.findSources(this.room);
     var selectedSource;
     var maxEnergy = 0;
-    for(var i = 0; i < sources.length; i++) {
-        if(sources[i].energy > maxEnergy){
+    for (var i = 0; i < sources.length; i++) {
+        if (sources[i].energy > maxEnergy) {
             selectedSource = sources[i];
             maxEnergy = sources[i].energy;
         }
@@ -46,8 +46,7 @@ Creep.prototype.nomad_harvester_selectSource = function () {
 };
 
 Creep.prototype.isSuiciding = function () {
-    if(intent)
-        console.log(intent);
+    console.log(_intent);
 };
 
 Creep.prototype.harvestEnergy = function () {
@@ -96,8 +95,8 @@ Creep.prototype.rest = function () {
 };
 
 Creep.prototype.timeToDie = function () {
-    for(var i = 0; i < this.body.length; i++){
-        if(this.body[i].hits < 100)
+    for (var i = 0; i < this.body.length; i++) {
+        if (this.body[i].hits < 100)
             return true;
     }
     return false;
