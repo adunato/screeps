@@ -86,3 +86,11 @@ Creep.prototype.rest = function () {
     this.moveTo(Game.flags["RestArea"], {visualizePathStyle: {stroke: '#ffffff'}});
     this.say("Rest");
 };
+
+Creep.prototype.timeToDie = function () {
+    for(var i = 0; i < this.body.length; i++){
+        if(this.body[i].hits < 100)
+            return true;
+    }
+    return false;
+};
