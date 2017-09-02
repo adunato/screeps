@@ -26,22 +26,15 @@ function initSquads() {
     }
 }
 
-function checkSpawn(roleName) {
-    var creeps = _.filter(Game.creeps, (creep) => creep.memory.role == roleName);
-    if (printStats)
-        console.log(roleName + "s :" + creeps.length + "/" + minSpawn[roleName])
-    return creeps.length < minSpawn[roleName];
-}
-
 function logSpawing() {
     var spawn = Game.spawns['Spawn1'];
     if (spawn && Game.spawns['Spawn1'].spawning) {
-        // var spawningCreep = Game.creeps[Game.spawns['Spawn1'].spawning.name];
-        // Game.spawns['Spawn1'].room.visual.text(
-        //     '🛠️' + spawningCreep.memory.role,
-        //     Game.spawns['Spawn1'].pos.x + 1,
-        //     Game.spawns['Spawn1'].pos.y,
-        //     {align: 'left', opacity: 0.8});
+        var spawningCreep = Game.creeps[Game.spawns['Spawn1'].spawning.name];
+        Game.spawns['Spawn1'].room.visual.text(
+            '🛠️' + spawningCreep.memory.role,
+            Game.spawns['Spawn1'].pos.x + 1,
+            Game.spawns['Spawn1'].pos.y,
+            {align: 'left', opacity: 0.8});
     }
 }
 
@@ -65,12 +58,6 @@ function spawnCreeps() {
         }
     }
 
-    // for (var roleName in global.minSpawn) {
-    //     if (checkSpawn(roleName)) {
-    //         spawn(roleName);
-    //         return;
-    //     }
-    // }
 }
 
 function manageDefense() {
@@ -185,5 +172,6 @@ module.exports.loop = function () {
     console.log('logSpawing');
     logSpawing();
     // manageDefense();
+    console.log('executeCreepBehaviour');
     executeCreepBehaviour();
 }

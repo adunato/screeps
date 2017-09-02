@@ -21,12 +21,6 @@ Array.prototype.contains = function ( value ) {
 var defines = {
 
     initDefines: function () {
-        global.minSpawn = {
-            "harvester": 4,
-            "builder": 0,
-            "nomad_harvester": 0,
-            "upgrader": 0
-        };
         global.bodyParts = {
             "harvester": [WORK, CARRY, MOVE],
             "builder": [WORK, CARRY, MOVE],
