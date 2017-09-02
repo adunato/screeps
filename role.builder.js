@@ -4,7 +4,7 @@ var allowedToSpawnWithdraw = false;
 var builderFSM = new StateMachine.factory({
     init: 'none',
     transitions: [
-        {name: 'energyEmpty', from: ['rest','withdraw'], to: 'withdraw'},
+        {name: 'energyEmpty', from: ['rest','withdraw','build'], to: 'withdraw'},
         {name: 'energyFull', from: '*', to: 'build'},
         {name: 'noConstructions', from: ['*'], to: 'rest'},
         {name: 'containersEmpty', from: ['withdraw', 'spawn_withdraw', 'rest'], to: 'spawn_withdraw'},
