@@ -178,5 +178,5 @@ module.exports.loop = function () {
     console.log("9");
     executeCreepBehaviour();
     console.log("10");
-    screepsplus.collect_stats();
+    // screepsplus.collect_stats();
 };
