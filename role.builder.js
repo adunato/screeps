@@ -4,7 +4,7 @@ var allowedToSpawnWithdraw = false;
 var builderFSM = new StateMachine.factory({
     init: 'none',
     transitions: [
-        {name: 'energyEmpty', from: '*', to: 'withdraw'},
+        {name: 'energyEmpty', from: ['rest','withdraw'], to: 'withdraw'},
         {name: 'energyFull', from: '*', to: 'build'},
         {name: 'noConstructions', from: ['*'], to: 'rest'},
         {name: 'containersEmpty', from: ['withdraw', 'spawn_withdraw', 'rest'], to: 'spawn_withdraw'},
@@ -62,7 +62,7 @@ var roleBuilder = {
             creepState = "withdraw";
         var stateMachine = new builderFSM(creep.name, "withdraw");
         stateMachine.goto(creepState);
-        if (creep.carry.energy === 0) {
+        if (creep.carry.energy < creep.carryCapacity && stateMachine.can("energyEmpty")) {
             stateMachine.energyEmpty();
         }
         if (creep.carry.energy === creep.carryCapacity) {
