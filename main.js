@@ -9,10 +9,6 @@ var printStats = false;
 
 function clearMemory() {
     for(var i in Memory.creeps) {
-        console.log(i);
-    }
-
-    for(var i in Memory.creeps) {
         if(!Game.creeps[i]) {
             console.log('clearMemory ');
             delete Memory.creeps[i];
@@ -162,15 +158,25 @@ function createSquads() {
 
 module.exports.loop = function () {
     //globals definition, every tick to refresh changes
+    console.log("1");
     clearMemory();
+    console.log("2");
     defines.initDefines();
+    console.log("3");
     cache.resetCache();
+    console.log("4");
     initSquads();
+    console.log("5");
     createSquads();
+    console.log("6");
     assignCreepsToSquads();
+    console.log("7");
     spawnCreeps();
+    console.log("8");
     logSpawing();
     // manageDefense();
+    console.log("9");
     executeCreepBehaviour();
+    console.log("10");
     screepsplus.collect_stats();
 };
