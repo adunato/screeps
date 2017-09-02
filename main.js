@@ -8,6 +8,7 @@ var printStats = false;
 
 function clearMemory() {
     for (var name in Memory.creeps) {
+        console.log('checking ' + name);
         if (!Game.creeps[name]) {
             console.log('about to clearMemory');
             delete Memory.creeps[name];
