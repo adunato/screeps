@@ -26,7 +26,7 @@ var upgraderFSM = new StateMachine.factory({
             var creep = Game.creeps[this.creepName];
             creep.withdrawEnergy();
         },
-        onCarrierWithdraw: function () {
+        onEnergyEmpty: function () {
             var creep = Game.creeps[this.creepName];
             creep.withdrawEnergyFromCarrier();
         },
