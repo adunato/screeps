@@ -45,9 +45,14 @@ Creep.prototype.nomad_harvester_selectSource = function () {
     this.memory.selectedSource = selectedSource.id;
 };
 
+Creep.prototype.isSuiciding = function () {
+    console.log(intent);
+};
+
 Creep.prototype.harvestEnergy = function () {
     console.log("creep.harvestEnergy");
     var source = Game.getObjectById(this.memory.selectedSource);
+    this.isSuiciding();
     if (this.harvest(source) == ERR_NOT_IN_RANGE) {
         console.log("creep.moveTo");
         this.moveTo(source, {visualizePathStyle: {stroke: '#0027ff'}});
