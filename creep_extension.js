@@ -21,7 +21,7 @@ Creep.prototype.selectSource = function () {
     if (this.memory.role === "nomad_harvester")
         return this.nomad_harvester_selectSource();
     var sources = cache.findSources(this.room);
-    var selectedSource;
+    var selectedSource = null;
     var minDistance = 1000;
     for (var i = 0; i < sources.length; i++) {
         var distance = this.room.findPath(this.pos,sources[i].pos);
@@ -30,7 +30,8 @@ Creep.prototype.selectSource = function () {
             minDistance = distance;
         }
     }
-    this.memory.selectedSource = selectedSource.id;
+    if(selectedSource)
+        this.memory.selectedSource = selectedSource.id;
 };
 
 Creep.prototype.nomad_harvester_selectSource = function () {
