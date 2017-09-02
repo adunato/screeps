@@ -46,7 +46,8 @@ Creep.prototype.nomad_harvester_selectSource = function () {
 };
 
 Creep.prototype.isSuiciding = function () {
-    console.log(intent);
+    if(intent)
+        console.log(intent);
 };
 
 Creep.prototype.harvestEnergy = function () {
