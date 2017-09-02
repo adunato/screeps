@@ -27,7 +27,9 @@ var defines = {
             "harvester": [WORK, CARRY, MOVE],
             "builder": [WORK, CARRY, MOVE],
             "nomad_harvester": [WORK, CARRY, MOVE],
-            "upgrader": [WORK, CARRY, MOVE]
+            "upgrader": [WORK, CARRY, MOVE],
+            "repairer": [WORK, CARRY, MOVE],
+            "carrier": [CARRY, MOVE]
         };
         global.creepRoles = {
             "harvester": roleHarvester,
