@@ -159,8 +159,8 @@ var cache = {
                 if (creep.room.name == room.name)
                     this.rooms.creeps.push(creep);
             }
-            return this.rooms.creeps;
         }
+        return this.rooms.creeps;
     },
     selectHarvestRoom: function (flagName) {
         var harvestRoom = Game.flags[flagName].room;
