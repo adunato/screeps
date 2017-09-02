@@ -39,8 +39,8 @@ var cache = {
     },
     findCarriersWithEnergy: function (room) {
         var carriers = [];
+        console.log('creeps ' + this.getCreepsInRoom(room).length);
         for(var creepName in this.getCreepsInRoom(room)){
-            console.log("creepName.. " + creepName);
             var creep = Game.creeps[creepName];
             if(creep.carry.energy > 0 && creep.memory.role === "carrier"){
                 carriers.add(creep);
@@ -157,7 +157,6 @@ var cache = {
             this.rooms.creeps[room] = [];
             for (var i in Game.creeps) {
                 var creep = Game.creeps[i];
-                console.log('creepName: ' + creep.name);
                 if (creep.room.name == room.name)
                     this.rooms.creeps[room].push(creep);
             }
