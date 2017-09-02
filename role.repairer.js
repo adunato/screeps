@@ -28,7 +28,7 @@ var repairrFSM = new StateMachine.factory({
         },
         onRepair: function () {
             var creep = Game.creeps[this.creepName];
-            creep.repairController_();
+            creep.upgradeController_();
         },
         onContainersEmpty: function () {
             var creep = Game.creeps[this.creepName];
