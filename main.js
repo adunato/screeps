@@ -45,17 +45,20 @@ function logSpawing() {
 }
 
 function spawn(roleName) {
-    var newName = Game.spawns['Spawn1'].createCreep(bodyParts[roleName], undefined, {role: roleName});
-    console.log('Spawning new ' + roleName + ' : ' + newName);
+    var spawn = Game.spawns['Spawn1'];
+    if (spawn) {
+        var newName = Game.spawns['Spawn1'].createCreep(bodyParts[roleName], undefined, {role: roleName});
+        console.log('Spawning new ' + roleName + ' : ' + newName);
+    }
 }
 
 function spawnCreeps() {
 
     for (var profileName in global.squadProfiles) {
-        for(var i = 0; i < squads[profileName].length; i++){
+        for (var i = 0; i < squads[profileName].length; i++) {
             var squad = squads[profileName][i];
             for (var roleName in global.creepRoles) {
-                if(squad.needCreepRole(roleName))
+                if (squad.needCreepRole(roleName))
                     spawn(roleName);
             }
         }
@@ -121,10 +124,10 @@ function assignCreepsToSquads() {
                 console.log("Assigning " + creep.name + " to squad " + squad.getName());
             }
         } else {
-            for(var squadRole in squads){
+            for (var squadRole in squads) {
                 var squadRoles = squads[squadRole];
-                for(var n = 0; n < squadRoles.length; n++){
-                    if(squadRoles[n].getName() === creep.memory.squad && !squadRoles[n].hasCreep(creep)){
+                for (var n = 0; n < squadRoles.length; n++) {
+                    if (squadRoles[n].getName() === creep.memory.squad && !squadRoles[n].hasCreep(creep)) {
                         squadRoles[n].addCreep(creep);
                     }
                 }
