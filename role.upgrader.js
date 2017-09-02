@@ -5,7 +5,7 @@ var upgraderFSM = new StateMachine.factory({
     transitions: [
         {name: 'energyEmpty', from: '*', to: 'withdraw'},
         {name: 'energyFull', from: '*', to: 'upgrade'},
-        {name: 'noConstructions', from: ['*'], to: 'rest'},
+        {name: 'noControllers', from: ['*'], to: 'rest'},
         {name: 'containersEmpty', from: ['withdraw', 'spawn_withdraw'], to: 'rest'},
         {name: 'spawnEmpty', from: 'spawn_withdraw', to: 'rest'},
         {
@@ -70,8 +70,8 @@ var roleupgrader = {
         if (cache.findSpawnWithEnergy(creep.room).length === 0 && stateMachine.can("spawnEmpty")) {
             stateMachine.spawnEmpty();
         }
-        if (cache.findControllers(creep.room).length === 0 && stateMachine.can("noConstructions")) {
-            stateMachine.noConstructions();
+        if (creep.room.controller === null && stateMachine.can("noConstructions")) {
+            stateMachine.noControllers();
         }
         creep.memory.state = stateMachine.state;
     }
