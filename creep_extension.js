@@ -49,6 +49,7 @@ Creep.prototype.harvestEnergy = function () {
     console.log("creep.harvestEnergy");
     var source = Game.getObjectById(this.memory.selectedSource);
     if (this.harvest(source) == ERR_NOT_IN_RANGE) {
+        console.log("creep.moveTo");
         this.moveTo(source, {visualizePathStyle: {stroke: '#0027ff'}});
     }
 };
