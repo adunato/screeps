@@ -33,7 +33,7 @@ var defines = {
             "nomad_harvester": [WORK, CARRY, MOVE],
             "upgrader": [WORK, CARRY, MOVE]
         };
-        global.modules = {
+        global.creepRoles = {
             "harvester": roleHarvester,
             "builder": roleBuilder,
             "nomad_harvester": roleHarvester,

@@ -14,6 +14,13 @@ Squad.prototype.needCreep = function (creep) {
     return (creepQuantity < profileQuantity);
 };
 
+Squad.prototype.needCreepRole = function (creepRole) {
+    var creepQuantity = this.getCreepQuantityWithRole(creepRole);
+    var profileQuantity = this.squadProfile.getCreepQuantity(creepRole);
+    return (creepQuantity < profileQuantity);
+};
+
+
 Squad.prototype.getCreepQuantityWithRole = function (creepRole) {
     var ret = 0;
     for(var i = 0; i < this.creeps.length; i++){
