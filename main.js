@@ -10,7 +10,7 @@ var printStats = false;
 function clearMemory() {
     for(var i in Memory.creeps) {
         if(!Game.creeps[i]) {
-            console.log('clearMemory ');
+            console.log('clearMemory: ' + i);
             delete Memory.creeps[i];
         }
     }
