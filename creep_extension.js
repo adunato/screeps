@@ -72,8 +72,7 @@ Creep.prototype.dropEnergy = function () {
 };
 
 Creep.prototype.carrier = function () {
-    var flag = Game.flags[this.squad];
-    console.log('this squad: ' + this.squad);
+    var flag = Game.flags[this.memory.squad];
     console.log('flag: ' + flag);
     if(flag != null){
         this.moveTo(flag, {visualizePathStyle: {stroke: '#ffda00'}});
