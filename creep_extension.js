@@ -22,11 +22,12 @@ Creep.prototype.selectSource = function () {
         return this.nomad_harvester_selectSource();
     var sources = cache.findSources(this.room);
     var selectedSource;
-    var maxEnergy = 0;
+    var minDistance = 1000;
     for (var i = 0; i < sources.length; i++) {
-        if (sources[i].energy > maxEnergy) {
+        var distance = this.room.findPath(this.pos,sources[i].pos);
+        if (distance < minDistance) {
             selectedSource = sources[i];
-            maxEnergy = sources[i].energy;
+            minDistance = distance;
         }
     }
     this.memory.selectedSource = selectedSource.id;
@@ -50,11 +51,8 @@ Creep.prototype.isAlive = function () {
 };
 
 Creep.prototype.harvestEnergy = function () {
-    console.log("creep.harvestEnergy");
-    console.log(this.isAlive());
     var source = Game.getObjectById(this.memory.selectedSource);
-    if (this.isAlive() && this.harvest(source) == ERR_NOT_IN_RANGE) {
-        console.log("creep.moveTo");
+    if (this.harvest(source) == ERR_NOT_IN_RANGE) {
         this.moveTo(source, {visualizePathStyle: {stroke: '#0027ff'}});
     }
 };
