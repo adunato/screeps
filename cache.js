@@ -77,26 +77,22 @@ var cache = {
         }
         return repairStructures;
     },
-    findCarrierFlags: function (room) {
-        var carrierFlags = {};
+    findFlags: function (room) {
+        var flags = {};
 
         if (typeof this.rooms.carrierFlags[room] != "undefined") {
-            carrierFlags = this.rooms.carrierFlags[room];
+            flags = this.rooms.carrierFlags[room];
         } else {
-            carrierFlags = room.find(FIND_FLAGS, {
-                filter: (flag) => {
-                    return flag.name.startsWith("CA");
-                }
-            });
-            this.rooms.carrierFlags[room] = carrierFlags;
+            flags = room.find(FIND_FLAGS);
+            this.rooms.carrierFlags[room] = flags;
         }
-        return carrierFlags;
+        return flags;
     },
     findCarrierFlag: function (room, id) {
         console.log('room: ' + room);
         console.log('id: ' + id);
-        for(var flagName in this.findCarrierFlags(room)){
-            console.log('flagName' + flagName);
+        for(var flagName in this.findFlags(room)){
+            console.log('flagName: ' + flagName);
             var flag = Game.flags[flagName];
             if(flagName === id){
                 return flag;
