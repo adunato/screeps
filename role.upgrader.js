@@ -70,7 +70,7 @@ var roleupgrader = {
         if (cache.findSpawnWithEnergy(creep.room).length === 0 && stateMachine.can("spawnEmpty")) {
             stateMachine.spawnEmpty();
         }
-        if (creep.room.controller === null && stateMachine.can("noConstructions")) {
+        if (creep.room.controller === null && stateMachine.can("noControllers")) {
             stateMachine.noControllers();
         }
         creep.memory.state = stateMachine.state;
