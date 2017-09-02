@@ -1,6 +1,7 @@
 var cache = {
     rooms: {
-        containers: {},
+        containersWithEnergy: {},
+        spawnsWithEnergy: {},
         constructionSites: {},
         sources: {},
         energyContainers: {},
@@ -8,26 +9,40 @@ var cache = {
         creeps: {}
     },
     resetCache: function () {
-        this.rooms.containers = {};
+        this.rooms.containersWithEnergy = {};
         this.rooms.constructionSites = {};
         this.rooms.sources = {};
         this.rooms.energyContainers = {};
         this.energyFedStructures = {};
         this.creeps = {};
     },
-    findContainers: function (room) {
+    findContainersWithEnergy: function (room) {
         var containers = {};
-        if (typeof this.rooms.containers[room] != "undefined") {
-            containers = this.rooms.containers[room];
+        if (typeof this.rooms.containersWithEnergy[room] != "undefined") {
+            containers = this.rooms.containersWithEnergy[room];
         } else {
             containers = room.find(FIND_STRUCTURES, {
                 filter: (container) => {
                     return (container.structureType == STRUCTURE_CONTAINER) && container.store.energy > 0;
                 }
             });
-            this.rooms.containers[room] = containers;
+            this.rooms.containersWithEnergy[room] = containers;
         }
         return containers;
+    },
+    findSpawnWithEnergy: function (room) {
+        var spawns = {};
+        if (typeof this.rooms.spawnsWithEnergy[room] != "undefined") {
+            spawns = this.rooms.spawnsWithEnergy[room];
+        } else {
+            spawns = room.find(FIND_MY_SPAWNS, {
+                filter: (spawn) => {
+                    return spawn.energy > 0;
+                }
+            });
+            this.rooms.spawnsWithEnergy[room] = spawns;
+        }
+        return spawns;
     },
     findConstructionSites: function (room) {
         var constructionSites = {};

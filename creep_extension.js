@@ -1,9 +1,18 @@
 var cache = require('cache');
 Creep.prototype.withdrawEnergy = function () {
-    var containers = cache.findContainers(this.room);
+    var containers = cache.findContainersWithEnergy(this.room);
     if (containers.length > 0) {
         if (this.withdraw(containers[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
             this.moveTo(containers[0], {visualizePathStyle: {stroke: '#0027ff'}});
+        }
+    }
+};
+
+Creep.prototype.withdrawEnergyFromSpawn = function () {
+    var spawns = cache.findSpawnWithEnergy(this.room);
+    if (spawns.length > 0) {
+        if (this.withdraw(spawns[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+            this.moveTo(spawns[0], {visualizePathStyle: {stroke: '#0027ff'}});
         }
     }
 };

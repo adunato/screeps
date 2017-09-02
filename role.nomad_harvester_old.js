@@ -42,7 +42,7 @@ var nomad_harvester = {
             }
         }
 
-        var spawnRoom = Game.spawns["Spawn1"].room;
+        var spawnRoom = Game.spawnsWithEnergy["Spawn1"].room;
         if (creep.carry.energy < creep.carryCapacity) {
             if(creep.memory.selectedSource == null) {
                 for(var i = 1; i < FLAGS_NUM+1; i++) {

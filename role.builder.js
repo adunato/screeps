@@ -6,7 +6,8 @@ var builderFSM = new StateMachine.factory({
         {name: 'energyEmpty', from: '*', to: 'withdraw'},
         {name: 'energyFull', from: '*', to: 'build'},
         {name: 'noConstructions', from: 'build', to: 'rest'},
-        {name: 'containersEmpty', from: 'withdraw', to: 'rest'},
+        {name: 'containersEmpty', from: 'withdraw', to: 'spawn_withdraw'},
+        {name: 'spawnEmpty', from: 'spawn_withdraw', to: 'rest'},
         {
             name: 'goto', from: '*', to: function (s) {
             return s
@@ -29,6 +30,10 @@ var builderFSM = new StateMachine.factory({
             creep.buildConstruction();
         },
         onContainersEmpty: function () {
+            var creep = Game.creeps[this.creepName];
+            creep.withdrawEnergyFromSpawn();
+        },
+        onSpawnEmpty: function () {
             var creep = Game.creeps[this.creepName];
             creep.rest();
         },
@@ -59,8 +64,11 @@ var roleBuilder = {
         if (creep.carry.energy === creep.carryCapacity) {
             stateMachine.energyFull();
         }
-        if (cache.findContainers(creep.room).length === 0 && stateMachine.can("containersEmpty")) {
+        if (cache.findContainersWithEnergy(creep.room).length === 0 && stateMachine.can("containersEmpty")) {
             stateMachine.containersEmpty();
+        }
+        if (cache.findSpawnWithEnergy(creep.room).length === 0 && stateMachine.can("spawnEmpty")) {
+            stateMachine.spawnEmpty();
         }
         if (cache.findConstructionSites(creep.room).length === 0 && stateMachine.can("noConstructions")) {
             stateMachine.noConstructions();
