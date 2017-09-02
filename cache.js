@@ -77,31 +77,7 @@ var cache = {
         }
         return repairStructures;
     },
-    findFlags: function (room) {
-        var flags = {};
-
-        if (typeof this.rooms.carrierFlags[room] != "undefined") {
-            flags = this.rooms.carrierFlags[room];
-        } else {
-            flags = room.find(FIND_FLAGS);
-            this.rooms.carrierFlags[room] = flags;
-        }
-        return flags;
-    },
-    findCarrierFlag: function (room, id) {
-        console.log('room: ' + room);
-        console.log('id: ' + id);
-        for(var flagName in this.findFlags(room)){
-            console.log('flagName: ' + flagName);
-            var flag = Game.flags[flagName];
-            console.log(flag.name);
-            if(flagName === id){
-                return flag;
-            }
-        }
-        return null;
-    },
-        findSources: function (room) {
+    findSources: function (room) {
         var sources = {};
 
         if (typeof this.rooms.sources[room] != "undefined") {
