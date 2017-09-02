@@ -8,6 +8,10 @@ var squads = null;
 var printStats = false;
 
 function clearMemory() {
+    if(!Game.creeps['59ab1218ac546104c3de5f3a']) {
+        console.log('here you go');
+    }
+
     for(var i in Memory.creeps) {
         if(!Game.creeps[i]) {
             console.log('clearMemory ');
