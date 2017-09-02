@@ -51,6 +51,7 @@ Creep.prototype.isAlive = function () {
 
 Creep.prototype.harvestEnergy = function () {
     console.log("creep.harvestEnergy");
+    console.log(this.isAlive());
     var source = Game.getObjectById(this.memory.selectedSource);
     if (this.isAlive() && this.harvest(source) == ERR_NOT_IN_RANGE) {
         console.log("creep.moveTo");
