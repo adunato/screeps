@@ -24,7 +24,7 @@ function initSquads() {
     if (!squads) {
         squads = {};
         for (var profileName in global.squadProfiles) {
-            squads[profileName] = new Array();
+            squads[profileName] = [];
         }
     }
 }
@@ -55,8 +55,10 @@ function spawnCreeps() {
         for (var i = 0; i < squads[profileName].length; i++) {
             var squad = squads[profileName][i];
             for (var roleName in global.creepRoles) {
-                if (squad.needCreepRole(roleName))
+                if (squad.needCreepRole(roleName)) {
                     spawn(roleName);
+                    return;
+                }
             }
         }
     }
@@ -170,4 +172,4 @@ module.exports.loop = function () {
     // manageDefense();
     executeCreepBehaviour();
     screepsplus.collect_stats();
-}
+};
