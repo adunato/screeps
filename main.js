@@ -167,4 +167,5 @@ module.exports.loop = function () {
     // manageDefense();
     executeCreepBehaviour();
     screepsplus.collect_stats();
+    console.log("tick");
 };
