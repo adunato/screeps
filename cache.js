@@ -155,7 +155,7 @@ var cache = {
         } else {
             for (var i in Game.creeps) {
                 var creep = Game.creeps[i];
-                console.log('creepName: ' + i);
+                console.log('creepName: ' + cree.name);
                 if (creep.room.name == room.name)
                     this.rooms.creeps.push(creep);
             }
