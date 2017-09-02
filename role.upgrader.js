@@ -4,7 +4,7 @@ var upgraderFSM = new StateMachine.factory({
     init: 'none',
     transitions: [
         {name: 'energyEmpty', from: '*', to: 'carrier_withdraw'},
-        {name: 'carrierEmpty', from: '*', to: 'withdraw'},
+        {name: 'carrierEmpty', from: 'carrier_withdraw', to: 'withdraw'},
         {name: 'energyFull', from: '*', to: 'upgrade'},
         {name: 'noControllers', from: ['*'], to: 'rest'},
         {name: 'containersEmpty', from: ['withdraw', 'spawn_withdraw','rest'], to: 'spawn_withdraw'},
