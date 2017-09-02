@@ -79,10 +79,12 @@ function manageDefense() {
 
 function executeCreepBehaviour() {
     for (var name in Game.creeps) {
+        console.log('executeCreepBehaviour: ' + name);
         var creep = Game.creeps[name];
         Memory.test = creep;
         for (var role in creepRoles) {
             if (creep.memory.role == role) {
+                console.log('creepRoles.run: ' + creep.name);
                 creepRoles[role].run(creep);
             }
         }
