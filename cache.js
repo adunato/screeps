@@ -3,6 +3,7 @@ var cache = {
         containersWithEnergy: {},
         spawnsWithEnergy: {},
         constructionSites: {},
+        repairStructures: {},
         sources: {},
         energyContainers: {},
         energyFedStructures: {},
@@ -16,6 +17,7 @@ var cache = {
         this.rooms.energyContainers = {};
         this.rooms.spawnsWithEnergy= {};
         this.rooms.controllers = {};
+        this.rooms.repairStructures = {};
         this.energyFedStructures = {};
         this.creeps = {};
     },
@@ -58,16 +60,20 @@ var cache = {
         }
         return constructionSites;
     },
-    findConstructionSites: function (room) {
-        var constructionSites = {};
+    findRepairStructures: function (room) {
+        var repairStructures = {};
 
-        if (typeof this.rooms.constructionSites[room] != "undefined") {
-            constructionSites = this.rooms.constructionSites[room];
+        if (typeof this.rooms.repairStructures[room] != "undefined") {
+            repairStructures = this.rooms.repairStructures[room];
         } else {
-            constructionSites = room.find(FIND_CONSTRUCTION_SITES);
-            this.rooms.constructionSites[room] = constructionSites;
+            repairStructures = room.find(FIND_STRUCTURES, {
+                filter: (structure) => {
+                    return structure.hits < structure.hitsMax;
+                }
+            });
+            this.rooms.repairStructures[room] = repairStructures;
         }
-        return constructionSites;
+        return repairStructures;
     },
     findSources: function (room) {
         var sources = {};
@@ -164,6 +170,6 @@ var cache = {
     }
 
 
-}
+};
 
 module.exports = cache;

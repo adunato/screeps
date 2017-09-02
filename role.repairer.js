@@ -1,12 +1,13 @@
 var StateMachine = require('state-machine');
 var cache = require('cache');
-var upgraderFSM = new StateMachine.factory({
+var allowedToSpawnWithdraw = false;
+var repairrFSM = new StateMachine.factory({
     init: 'none',
     transitions: [
         {name: 'energyEmpty', from: '*', to: 'withdraw'},
-        {name: 'energyFull', from: '*', to: 'upgrade'},
-        {name: 'noControllers', from: ['*'], to: 'rest'},
-        {name: 'containersEmpty', from: ['withdraw', 'spawn_withdraw'], to: 'rest'},
+        {name: 'energyFull', from: '*', to: 'repair'},
+        {name: 'noStructures', from: ['*'], to: 'rest'},
+        {name: 'containersEmpty', from: ['withdraw', 'spawn_withdraw'], to: 'spawn_withdraw'},
         {name: 'spawnEmpty', from: 'spawn_withdraw', to: 'rest'},
         {
             name: 'goto', from: '*', to: function (s) {
@@ -25,19 +26,22 @@ var upgraderFSM = new StateMachine.factory({
             var creep = Game.creeps[this.creepName];
             creep.withdrawEnergy();
         },
-        onUpgrade: function () {
+        onRepair: function () {
             var creep = Game.creeps[this.creepName];
-            creep.upgradeController_();
+            creep.repairController_();
         },
         onContainersEmpty: function () {
             var creep = Game.creeps[this.creepName];
-            creep.withdrawEnergyFromSpawn();
+            if(allowedToSpawnWithdraw)
+                creep.withdrawEnergyFromSpawn();
+            else
+                creep.rest();
         },
         onSpawnEmpty: function () {
             var creep = Game.creeps[this.creepName];
             creep.rest();
         },
-        onNoControllers: function () {
+        onNoStructures: function () {
             var creep = Game.creeps[this.creepName];
             creep.rest();
         },
@@ -50,13 +54,13 @@ var upgraderFSM = new StateMachine.factory({
 });
 
 
-var roleupgrader = {
+var rolerepairr = {
     /** @param {Creep} creep **/
     run: function (creep) {
         var creepState = creep.memory.state;
         if (typeof creepState === "undefined")
             creepState = "withdraw";
-        var stateMachine = new upgraderFSM(creep.name, "withdraw");
+        var stateMachine = new repairrFSM(creep.name, "withdraw");
         stateMachine.goto(creepState);
         if (creep.carry.energy === 0) {
             stateMachine.energyEmpty();
@@ -70,11 +74,11 @@ var roleupgrader = {
         if (cache.findSpawnWithEnergy(creep.room).length === 0 && stateMachine.can("spawnEmpty")) {
             stateMachine.spawnEmpty();
         }
-        if (creep.room.controller === null && stateMachine.can("noControllers")) {
-            stateMachine.noControllers();
+        if (cache.findRepairStructures(creep.room).length === 0 && stateMachine.can("noStructures")) {
+            stateMachine.noStructures();
         }
         creep.memory.state = stateMachine.state;
     }
 };
 
-module.exports = roleupgrader;
+module.exports = rolerepairr;

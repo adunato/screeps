@@ -1,6 +1,7 @@
 var roleHarvester = require('role.harvester');
 var roleUpgrader = require('role.upgrader');
 var roleBuilder = require('role.builder');
+var roleRepairer = require('role.repairer');
 var roleNomadHarvester = require('role.nomad_harvester');
 
 Object.size = function(obj) {
@@ -16,7 +17,7 @@ Array.prototype.contains = function ( value ) {
         if (this[i] == value) return true;
     }
     return false;
-}
+};
 
 var defines = {
 
@@ -31,15 +32,17 @@ var defines = {
             "harvester": roleHarvester,
             "builder": roleBuilder,
             "nomad_harvester": roleHarvester,
-            "upgrader": roleUpgrader
+            "upgrader": roleUpgrader,
+            "repairer": roleRepairer
         };
         global.squadProfiles = {
             "harvesters" : [["harvester",4]],
             "builders" : [["builder",1]],
-            "upgraders" : [["upgrader",1]]
+            "upgraders" : [["upgrader",1]],
+            "repairers" : [["repairer",1]]
         };
     }
 
-}
+};
 
 module.exports = defines;
