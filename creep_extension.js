@@ -91,7 +91,7 @@ Creep.prototype.buildConstruction = function () {
 };
 
 Creep.prototype.upgradeController_ = function () {
-    if(this.upgradeController(creep.room.controller) == ERR_NOT_IN_RANGE) {
+    if(this.upgradeController(this.room.controller) == ERR_NOT_IN_RANGE) {
         this.moveTo(this.room.controller, {visualizePathStyle: {stroke: '#ffffff'}});
     }
 };
