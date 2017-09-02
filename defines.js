@@ -3,6 +3,7 @@ var roleUpgrader = require('role.upgrader');
 var roleBuilder = require('role.builder');
 var roleRepairer = require('role.repairer');
 var roleCarrier = require('role.carrier');
+var roleCollector = require('role.collector');
 var roleNomadHarvester = require('role.nomad_harvester');
 
 
@@ -30,7 +31,8 @@ var defines = {
             "nomad_harvester": [WORK, CARRY, MOVE],
             "upgrader": [WORK, CARRY, MOVE],
             "repairer": [WORK, CARRY, MOVE],
-            "carrier": [CARRY, MOVE]
+            "carrier": [CARRY, MOVE],
+            "collector": [CARRY, MOVE]
         };
         global.creepRoles = {
             "harvester": roleHarvester,
@@ -38,7 +40,8 @@ var defines = {
             "nomad_harvester": roleHarvester,
             "upgrader": roleUpgrader,
             "repairer": roleRepairer,
-            "carrier": roleCarrier
+            "carrier": roleCarrier,
+            "collector": roleCollector
         };
         global.squadProfiles = {
             "H" : [["harvester",7]],
