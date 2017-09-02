@@ -21,7 +21,7 @@ Creep.prototype.withdrawEnergyFromSpawn = function () {
 Creep.prototype.withdrawEnergyFromCarrier = function () {
     var carriers = cache.findCarriersWithEnergy(this.room);
     if (carriers.length > 0) {
-        if (this.transfer(carriers[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+        if (carriers[0].transfer(this, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
             this.moveTo(carriers[0], {visualizePathStyle: {stroke: '#0027ff'}});
         }
     }
