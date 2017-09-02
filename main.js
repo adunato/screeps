@@ -162,7 +162,7 @@ module.exports.loop = function () {
     defines.initDefines();
     cache.resetCache();
     initSquads();
-    // clearMemory();
+    clearMemory();
     createSquads();
     assignCreepsToSquads();
     spawnCreeps();
