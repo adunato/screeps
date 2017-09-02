@@ -40,9 +40,9 @@ var defines = {
             "upgrader": roleUpgrader
         };
         global.squadProfiles = {
-            "harvesters" : [["harvester",3]],
-            "builders" : [["builder",3]],
-            "upgraders" : [["upgrader",3]]
+            "harvesters" : [["harvester",1]],
+            "builders" : [["builder",1]],
+            "upgraders" : [["upgrader",1]]
         };
     }
 
