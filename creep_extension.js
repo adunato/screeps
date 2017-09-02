@@ -24,8 +24,7 @@ Creep.prototype.selectSource = function () {
     var selectedSource = null;
     var minDistance = 1000;
     for (var i = 0; i < sources.length; i++) {
-        var distance = this.room.findPath(this.pos,sources[i].pos);
-        console.log("distance: " + distance.length);
+        var distance = this.room.findPath(this.pos,sources[i].pos).length;
         if (distance < minDistance) {
             selectedSource = sources[i];
             minDistance = distance;
