@@ -168,4 +168,5 @@ module.exports.loop = function () {
     logSpawing();
     // manageDefense();
     executeCreepBehaviour();
+    Memory.stats = "hello world";
 }
