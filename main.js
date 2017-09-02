@@ -33,18 +33,18 @@ function checkSpawn(roleName) {
 }
 
 function logSpawing() {
-    if (Game.spawnsWithEnergy['Spawn1'].spawning) {
-        var spawningCreep = Game.creeps[Game.spawnsWithEnergy['Spawn1'].spawning.name];
-        Game.spawnsWithEnergy['Spawn1'].room.visual.text(
+    if (Game.spawns['Spawn1'].spawning) {
+        var spawningCreep = Game.creeps[Game.spawns['Spawn1'].spawning.name];
+        Game.spawns['Spawn1'].room.visual.text(
             '🛠️' + spawningCreep.memory.role,
-            Game.spawnsWithEnergy['Spawn1'].pos.x + 1,
-            Game.spawnsWithEnergy['Spawn1'].pos.y,
+            Game.spawns['Spawn1'].pos.x + 1,
+            Game.spawns['Spawn1'].pos.y,
             {align: 'left', opacity: 0.8});
     }
 }
 
 function spawn(roleName) {
-    var newName = Game.spawnsWithEnergy['Spawn1'].createCreep(bodyParts[roleName], undefined, {role: roleName});
+    var newName = Game.spawns['Spawn1'].createCreep(bodyParts[roleName], undefined, {role: roleName});
     console.log('Spawning new ' + roleName + ' : ' + newName);
 }
 

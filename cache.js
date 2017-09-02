@@ -13,6 +13,7 @@ var cache = {
         this.rooms.constructionSites = {};
         this.rooms.sources = {};
         this.rooms.energyContainers = {};
+        this.rooms.spawnsWithEnergy= {};
         this.energyFedStructures = {};
         this.creeps = {};
     },
@@ -31,18 +32,18 @@ var cache = {
         return containers;
     },
     findSpawnWithEnergy: function (room) {
-        var spawns = {};
+        var spawnsWithEnergy = {};
         if (typeof this.rooms.spawnsWithEnergy[room] != "undefined") {
-            spawns = this.rooms.spawnsWithEnergy[room];
+            spawnsWithEnergy = this.rooms.spawnsWithEnergy[room];
         } else {
-            spawns = room.find(FIND_MY_SPAWNS, {
+            spawnsWithEnergy = room.find(FIND_MY_SPAWNS, {
                 filter: (spawn) => {
                     return spawn.energy > 0;
                 }
             });
-            this.rooms.spawnsWithEnergy[room] = spawns;
+            this.rooms.spawnsWithEnergy[room] = spawnsWithEnergy;
         }
-        return spawns;
+        return spawnsWithEnergy;
     },
     findConstructionSites: function (room) {
         var constructionSites = {};
