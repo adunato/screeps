@@ -153,7 +153,6 @@ var cache = {
         if (typeof this.rooms.creeps[room] != "undefined") {
             return this.rooms.creeps[room];
         } else {
-            this.rooms.creeps = {};
             for (var i in Game.creeps) {
                 var creep = Game.creeps[i];
                 if (creep.room.name == room.name)
