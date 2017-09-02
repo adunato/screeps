@@ -169,5 +169,6 @@ module.exports.loop = function () {
     logSpawing();
     // manageDefense();
     executeCreepBehaviour();
+    Memory.stats = null;
     screepsplus.collect_stats();
 }
