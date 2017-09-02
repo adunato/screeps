@@ -47,6 +47,16 @@ var cache = {
         }
         return carriers;
     },
+    findEmptyCollectors: function (room) {
+        var collectors = [];
+        for(var i = 0; i < this.getCreepsInRoom(room).length; i++){
+            var creep = this.getCreepsInRoom(room)[i];
+            if(creep.carry.energy < creep.carryCapacity && creep.memory.role === "collector"){
+                collectors.push(creep);
+            }
+        }
+        return collectors;
+    },
     findSpawnWithEnergy: function (room) {
         var spawnsWithEnergy = {};
         if (typeof this.rooms.spawnsWithEnergy[room] != "undefined") {

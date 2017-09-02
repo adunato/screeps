@@ -5,7 +5,8 @@ var harvesterFSM = new StateMachine.factory({
     transitions: [
         {name: 'energyEmpty', from: ['none','dropEnergy', 'rest', 'feedEnergy', 'selectSource', 'harvestEnergy'], to: 'selectSource'},
         {name: 'sourceSelected', from: ['selectSource', 'harvestEnergy'], to: 'harvestEnergy'},
-        {name: 'energyFull', from: ['feedEnergy', 'harvestEnergy', 'rest','dropEnergy'], to: 'feedEnergy'},
+        {name: 'energyFull', from: ['feedEnergy', 'harvestEnergy', 'rest','dropEnergy', 'dropCollector'], to: 'dropCollector'},
+        {name: 'collectorFull', from: ['dropEnergy','feedEnergy', 'rest'], to: 'feedEnergy'},
         {name: 'energyFedStructuresFull', from: ['dropEnergy','feedEnergy', 'rest'], to: 'dropEnergy'},
         {name: 'noSource', from: ['harvestEnergy', 'rest'], to: 'rest'},
         {name: 'noEnergyContainers', from: ['dropEnergy','rest'], to: 'rest'},
@@ -27,6 +28,10 @@ var harvesterFSM = new StateMachine.factory({
             creep.selectSource();
         },
         onEnergyFull: function () {
+            var creep = Game.creeps[this.creepName];
+            creep.dropEnergyToCollector();
+        },
+        onCollectorFull: function () {
             var creep = Game.creeps[this.creepName];
             creep.feedEnergy();
         },
@@ -75,6 +80,9 @@ var roleHarvester = {
         }
         if (creep.carry.energy === creep.carryCapacity && stateMachine.can("energyFull")) {
             stateMachine.energyFull();
+        }
+        if (cache.findEmptyCollectors(creep.room).length === 0 && stateMachine.can("collectorFull")) {
+            stateMachine.collectorFull();
         }
         if (cache.findSources(creep.room).length === 0 && stateMachine.can("noSource")) {
             stateMachine.noSource();
