@@ -42,7 +42,7 @@ var cache = {
         for(var i = 0; i < this.getCreepsInRoom(room).length; i++){
             var creep = this.getCreepsInRoom(room)[i];
             if(creep.carry.energy > 0 && creep.memory.role === "carrier"){
-                carriers.add(creep);
+                carriers.push(creep);
             }
         }
         return carriers;
