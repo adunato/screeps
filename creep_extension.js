@@ -97,6 +97,15 @@ Creep.prototype.buildConstruction = function () {
     }
 };
 
+Creep.prototype.repairConstruction = function () {
+    var repairConstructions = cache.findRepairStructures(this.room);
+    if (repairConstructions.length) {
+        if (this.repair(repairConstructions[0]) == ERR_NOT_IN_RANGE) {
+            this.moveTo(repairConstructions[0], {visualizePathStyle: {stroke: '#14ff00'}});
+        }
+    }
+};
+
 Creep.prototype.upgradeController_ = function () {
     if(this.upgradeController(this.room.controller) == ERR_NOT_IN_RANGE) {
         this.moveTo(this.room.controller, {visualizePathStyle: {stroke: '#ffffff'}});
