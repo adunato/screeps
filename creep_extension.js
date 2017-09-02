@@ -26,8 +26,10 @@ Creep.prototype.selectSource = function () {
     for (var i = 0; i < sources.length; i++) {
         var distance = this.room.findPath(this.pos,sources[i].pos).length;
         if (distance < minDistance) {
-            selectedSource = sources[i];
-            minDistance = distance;
+            if(sources[i].getAvailableWithdrawingSlots() > 0) {
+                selectedSource = sources[i];
+                minDistance = distance;
+            }
         }
     }
     if(selectedSource)
