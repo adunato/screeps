@@ -5,6 +5,7 @@ var roleRepairer = require('role.repairer');
 var roleCarrier = require('role.carrier');
 var roleNomadHarvester = require('role.nomad_harvester');
 
+
 Object.size = function(obj) {
     var size = 0, key;
     for (key in obj) {
@@ -47,6 +48,7 @@ var defines = {
             "CA" : [["carrier",1]],
             "CO" : [["collector",1]],
         };
+        global.allowedToSpawnWithdraw = false;
     }
 
 };

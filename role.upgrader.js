@@ -3,10 +3,11 @@ var cache = require('cache');
 var upgraderFSM = new StateMachine.factory({
     init: 'none',
     transitions: [
-        {name: 'energyEmpty', from: '*', to: 'withdraw'},
+        {name: 'energyEmpty', from: '*', to: 'carrier_withdraw'},
+        {name: 'carrierEmpty', from: '*', to: 'withdraw'},
         {name: 'energyFull', from: '*', to: 'upgrade'},
         {name: 'noControllers', from: ['*'], to: 'rest'},
-        {name: 'containersEmpty', from: ['withdraw', 'spawn_withdraw','rest'], to: 'rest'},
+        {name: 'containersEmpty', from: ['withdraw', 'spawn_withdraw','rest'], to: 'spawn_withdraw'},
         {name: 'spawnEmpty', from: 'spawn_withdraw', to: 'rest'},
         {
             name: 'goto', from: '*', to: function (s) {
@@ -31,7 +32,8 @@ var upgraderFSM = new StateMachine.factory({
         },
         onContainersEmpty: function () {
             var creep = Game.creeps[this.creepName];
-            creep.withdrawEnergyFromSpawn();
+            if(global.allowedToSpawnWithdraw)
+                creep.withdrawEnergyFromSpawn();
         },
         onSpawnEmpty: function () {
             var creep = Game.creeps[this.creepName];
@@ -66,6 +68,9 @@ var roleupgrader = {
         }
         if (cache.findContainersWithEnergy(creep.room).length === 0 && stateMachine.can("containersEmpty")) {
             stateMachine.containersEmpty();
+        }
+        if (cache.findCarriersWithEnergy(creep.room).length === 0 && stateMachine.can("carrierEmpty")) {
+            stateMachine.carrierEmpty();
         }
         if (cache.findSpawnWithEnergy(creep.room).length === 0 && stateMachine.can("spawnEmpty")) {
             stateMachine.spawnEmpty();

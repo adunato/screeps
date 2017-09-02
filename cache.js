@@ -37,6 +37,16 @@ var cache = {
         }
         return containers;
     },
+    findCarriersWithEnergy: function (room) {
+        var carriers = [];
+        for(var creepName in this.getCreepsInRoom(room)){
+            var creep = Game.creeps[creepName];
+            if(creep.carry.energy > 0 && creep.memory.role === "carrier"){
+                carriers.add(creep);
+            }
+        }
+        return carriers;
+    },
     findSpawnWithEnergy: function (room) {
         var spawnsWithEnergy = {};
         if (typeof this.rooms.spawnsWithEnergy[room] != "undefined") {

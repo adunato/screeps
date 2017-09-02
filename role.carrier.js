@@ -1,6 +1,5 @@
 var StateMachine = require('state-machine');
 var cache = require('cache');
-var allowedToSpawnWithdraw = false;
 var carrierFSM = new StateMachine.factory({
     init: 'none',
     transitions: [
@@ -36,7 +35,7 @@ var carrierFSM = new StateMachine.factory({
         },
         onContainersEmpty: function () {
             var creep = Game.creeps[this.creepName];
-            if(allowedToSpawnWithdraw)
+            if(global.allowedToSpawnWithdraw)
                 creep.withdrawEnergyFromSpawn();
             else
                 creep.rest();
