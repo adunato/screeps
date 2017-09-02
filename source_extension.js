@@ -7,6 +7,7 @@ Source.prototype.getAvailableWithdrawingSlots = function () {
             count --;
         }
     }
+    return count;
 };
 
 Source.prototype.getWithdrawingSlots = function () {
@@ -29,5 +30,6 @@ Source.prototype.getWithdrawingSlots = function () {
         count++;
     if(Game.map.getTerrainAt(x-1,y-1,this.pos.roomName) != 'wall')
         count++;
+    return count;
 };
 
