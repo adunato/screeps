@@ -18,6 +18,15 @@ Creep.prototype.withdrawEnergyFromSpawn = function () {
     }
 };
 
+Creep.prototype.withdrawEnergyFromCarrier = function () {
+    var carriers = cache.findCarriersWithEnergy(this.room);
+    if (carriers.length > 0) {
+        if (this.withdraw(carriers[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+            this.moveTo(carriers[0], {visualizePathStyle: {stroke: '#0027ff'}});
+        }
+    }
+};
+
 Creep.prototype.selectSource = function () {
     if (this.memory.role === "nomad_harvester")
         return this.nomad_harvester_selectSource();
