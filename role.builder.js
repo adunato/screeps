@@ -6,7 +6,7 @@ var builderFSM = new StateMachine.factory({
         {name: 'energyEmpty', from: '*', to: 'withdraw'},
         {name: 'energyFull', from: '*', to: 'build'},
         {name: 'noConstructions', from: ['*'], to: 'rest'},
-        {name: 'containersEmpty', from: ['withdraw', 'spawn_withdraw', 'rest'], to: 'rest'},
+        {name: 'containersEmpty', from: ['withdraw', 'spawn_withdraw', 'rest'], to: 'spawn_withdraw'},
         {name: 'spawnEmpty', from: ['spawn_withdraw', 'rest'], to: 'rest'},
         {
             name: 'goto', from: '*', to: function (s) {
@@ -21,23 +21,23 @@ var builderFSM = new StateMachine.factory({
         }
     },
     methods: {
-        onWithdraw: function () {
+        onEnergyEmpty: function () {
             var creep = Game.creeps[this.creepName];
             creep.withdrawEnergy();
         },
-        onBuild: function () {
+        onEnergyFull: function () {
             var creep = Game.creeps[this.creepName];
             creep.buildConstruction();
         },
-        onContainersEmpty: function () {
-            var creep = Game.creeps[this.creepName];
-            creep.withdrawEnergyFromSpawn();
-        },
-        onSpawnEmpty: function () {
+        onNoConstructions: function () {
             var creep = Game.creeps[this.creepName];
             creep.rest();
         },
-        onNoConstructions: function () {
+        onContainersEmpty: function () {
+            var creep = Game.creeps[this.creepName];
+            creep.rest();
+        },
+        onSpawnEmpty: function () {
             var creep = Game.creeps[this.creepName];
             creep.rest();
         },
