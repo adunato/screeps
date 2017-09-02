@@ -67,9 +67,6 @@ var roleHarvester = {
             creepState = "none";
         var stateMachine = new harvesterFSM(creep.name);
         stateMachine.goto(creepState);
-        console.log("current state: " + creep.memory.state);
-        console.log(creep.carry.energy < creep.carryCapacity);
-        console.log(stateMachine.can("energyEmpty"));
         if (creep.carry.energy < creep.carryCapacity && stateMachine.can("energyEmpty")) {
             stateMachine.energyEmpty();
         }
