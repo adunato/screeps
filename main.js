@@ -163,7 +163,7 @@ module.exports.loop = function () {
     createSquads();
     assignCreepsToSquads();
     spawnCreeps();
-    logSpawing();
+    // logSpawing();
     // manageDefense();
     executeCreepBehaviour();
 }
