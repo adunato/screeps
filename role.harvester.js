@@ -26,9 +26,6 @@ var harvesterFSM = new StateMachine.factory({
         onEnergyEmpty: function () {
             var creep = Game.creeps[this.creepName];
             creep.selectSource();
-            if(creep.name === 'Madison'){
-                console.log(creep.memory.selectedSource);
-            }
         },
         onEnergyFull: function () {
             var creep = Game.creeps[this.creepName];
