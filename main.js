@@ -172,4 +172,7 @@ module.exports.loop = function () {
     // manageDefense();
     executeCreepBehaviour();
     screepsplus.collect_stats();
+    for(var flag in Game.flags){
+        console.log(flag);
+    }
 };
