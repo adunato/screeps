@@ -6,7 +6,8 @@ var cache = {
         sources: {},
         energyContainers: {},
         energyFedStructures: {},
-        creeps: {}
+        creeps: {},
+        controllers: {}
     },
     resetCache: function () {
         this.rooms.containersWithEnergy = {};
@@ -14,6 +15,7 @@ var cache = {
         this.rooms.sources = {};
         this.rooms.energyContainers = {};
         this.rooms.spawnsWithEnergy= {};
+        this.rooms.controllers = {};
         this.energyFedStructures = {};
         this.creeps = {};
     },
