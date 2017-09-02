@@ -93,6 +93,8 @@ var cache = {
         return carrierFlags;
     },
     findCarrierFlag: function (room, id) {
+        console.log('room: ' + room);
+        console.log('id: ' + id);
         for(var flagName in this.findCarrierFlags(room)){
             var flag = Game.flags[flagName];
             if(flagName === id){
