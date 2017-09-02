@@ -47,6 +47,7 @@ Creep.prototype.selectSource = function () {
 };
 
 Creep.prototype.selectPickupFlag = function () {
+    console.log('selectPickupFlag');
     this.memory.selectedFlag = Game.flags[this.memory.squad].id;
 };
 
