@@ -45,9 +45,9 @@ var repairrFSM = new StateMachine.factory({
             creep.rest();
         },
         onTransition(lifecycle) {
-            // console.log("transition name: " + lifecycle.transition);
-            // console.log("transition from: " + lifecycle.from);
-            // console.log("transition to: " + lifecycle.to);
+            console.log("transition name: " + lifecycle.transition);
+            console.log("transition from: " + lifecycle.from);
+            console.log("transition to: " + lifecycle.to);
         }
     }
 });
