@@ -6,7 +6,7 @@ var upgraderFSM = new StateMachine.factory({
         {name: 'energyEmpty', from: '*', to: 'withdraw'},
         {name: 'energyFull', from: '*', to: 'upgrade'},
         {name: 'noControllers', from: ['*'], to: 'rest'},
-        {name: 'containersEmpty', from: ['withdraw', 'spawn_withdraw'], to: 'rest'},
+        {name: 'containersEmpty', from: ['withdraw', 'spawn_withdraw','rest'], to: 'rest'},
         {name: 'spawnEmpty', from: 'spawn_withdraw', to: 'rest'},
         {
             name: 'goto', from: '*', to: function (s) {
