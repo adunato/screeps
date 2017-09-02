@@ -7,7 +7,7 @@ var cache = {
         sources: {},
         energyContainers: {},
         energyFedStructures: {},
-        creeps: {},
+        creeps: [],
         controllers: {},
         carrierFlags: {}
     },
@@ -21,7 +21,7 @@ var cache = {
         this.rooms.repairStructures = {};
         this.rooms.energyFedStructures = {};
         this.rooms.carrierFlags = {};
-        this.rooms.creeps = {};
+        this.rooms.creeps = [];
     },
     findContainersWithEnergy: function (room) {
         var containers = {};
