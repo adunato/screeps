@@ -36,7 +36,7 @@ function checkSpawn(roleName) {
 function logSpawing() {
     var spawn = Game.spawns['Spawn1'];
     if (spawn && Game.spawns['Spawn1'].spawning) {
-        var spawningCreep = Game.creeps[Game.spawns['Spawn1'].spawning.name];
+        // var spawningCreep = Game.creeps[Game.spawns['Spawn1'].spawning.name];
         // Game.spawns['Spawn1'].room.visual.text(
         //     '🛠️' + spawningCreep.memory.role,
         //     Game.spawns['Spawn1'].pos.x + 1,
