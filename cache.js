@@ -7,7 +7,7 @@ var cache = {
         sources: {},
         energyContainers: {},
         energyFedStructures: {},
-        creeps: [],
+        creeps: {},
         controllers: {},
         carrierFlags: {}
     },
@@ -21,7 +21,7 @@ var cache = {
         this.rooms.repairStructures = {};
         this.rooms.energyFedStructures = {};
         this.rooms.carrierFlags = {};
-        this.rooms.creeps = [];
+        this.rooms.creeps = {};
     },
     findContainersWithEnergy: function (room) {
         var containers = {};
@@ -154,14 +154,15 @@ var cache = {
         if (typeof this.rooms.creeps[room] != "undefined") {
             return this.rooms.creeps[room];
         } else {
+            this.rooms.creeps[room] = [];
             for (var i in Game.creeps) {
                 var creep = Game.creeps[i];
                 console.log('creepName: ' + creep.name);
                 if (creep.room.name == room.name)
-                    this.rooms.creeps.push(creep);
+                    this.rooms.creeps[room].push(creep);
             }
+            return this.rooms.creeps[room];
         }
-        return this.rooms.creeps;
     },
     selectHarvestRoom: function (flagName) {
         var harvestRoom = Game.flags[flagName].room;
