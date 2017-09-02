@@ -10,8 +10,10 @@ function clearMemory() {
     for (var name in Memory.creeps) {
         if (!Game.creeps[name]) {
             console.log('about to clearMemory');
-            delete Memory.creeps[name];
-            console.log('Clearing non-existing creep memory:', name);
+            if(Memory.creeps[name]) {
+                console.log('clearing: ' + name);
+                delete Memory.creeps[name]
+            }
         }
     }
 }
