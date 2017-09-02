@@ -26,6 +26,9 @@ var harvesterFSM = new StateMachine.factory({
         onEnergyEmpty: function () {
             var creep = Game.creeps[this.creepName];
             creep.selectSource();
+            if(creep.name === 'Madison'){
+                console.log(creep.memory.selectedSource);
+            }
         },
         onEnergyFull: function () {
             var creep = Game.creeps[this.creepName];
@@ -72,11 +75,6 @@ var roleHarvester = {
             creepState = "none";
         var stateMachine = new harvesterFSM(creep.name);
         stateMachine.goto(creepState);
-        if(creep.name === 'Madison'){
-            console.log(creep.carry.energy < creep.carryCapacity);
-            console.log(!creep.memory.selectedSource);
-            console.log(stateMachine.can("energyEmpty"));
-        }
         if (creep.carry.energy < creep.carryCapacity &&  !creep.memory.selectedSource && stateMachine.can("energyEmpty")) {
             stateMachine.energyEmpty();
         }
