@@ -3,7 +3,7 @@ var cache = require('cache');
 var defines = require('defines');
 var Squad = require('Squad');
 var SquadProfile = require('SquadProfile');
-var stats = require('collect_stats');
+var screepsplus = require('screepsplus');
 var squads = null;
 var printStats = false;
 
@@ -169,5 +169,5 @@ module.exports.loop = function () {
     logSpawing();
     // manageDefense();
     executeCreepBehaviour();
-    stats.collect_stats();
+    screepsplus.collect_stats();
 }

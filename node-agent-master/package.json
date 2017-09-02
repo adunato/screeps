@@ -1,0 +1,29 @@
+{
+  "name": "screepsplus-agent",
+  "version": "1.0.26",
+  "description": "",
+  "main": "app.js",
+  "repository": "https://github.com/ScreepsPlus/node-agent",
+  "engines": {
+    "node": ">=6.1.0"
+  },
+  "scripts": {
+    "test": "node app.js test",
+    "start": "node app.js",
+    "2npm": "publish"
+  },
+  "bin": {
+    "screepsplus-agent": "app.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "editor": "^1.0.0",
+    "request": "^2.75.0",
+    "screeps-api": "^1.1.0",
+    "update-notifier": "^1.0.2"
+  },
+  "devDependencies": {
+    "publish": "^0.6.0"
+  }
+}
