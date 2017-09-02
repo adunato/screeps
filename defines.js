@@ -36,10 +36,10 @@ var defines = {
             "repairer": roleRepairer
         };
         global.squadProfiles = {
-            "harvesters" : [["harvester",4]],
-            "builders" : [["builder",1]],
-            "upgraders" : [["upgrader",1]],
-            "repairers" : [["repairer",1]]
+            "H" : [["harvester",4]],
+            "B" : [["builder",1]],
+            "U" : [["upgrader",1]],
+            "R" : [["repairer",1]]
         };
     }
 
