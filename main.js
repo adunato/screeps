@@ -115,7 +115,7 @@ function assignCreepsToSquads() {
         if (!creep.memory.squad) {
             var squad = assignCreepToSquad(creep);
             if (squad) {
-                console.log("Assigning " + creep.name + " to squad " + squad.getName());
+                console.log("Assigning " + creep.name + " to squad  " + squad.getName());
             }
         } else {
             for (var squadRole in squads) {
