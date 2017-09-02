@@ -46,16 +46,6 @@ Creep.prototype.selectSource = function () {
         this.memory.selectedSource = selectedSource.id;
 };
 
-Creep.prototype.selectPickupFlag = function () {
-    console.log('selectPickupFlag');
-    console.log(Game.flags[this.memory.squad].id);
-    this.memory.selectedFlag = Game.flags[this.memory.squad].id;
-};
-
-Creep.prototype.goToSelectedFlag = function () {
-    var flag = Game.getObjectById(this.memory.selectedFlag);
-    this.moveTo(flag, {visualizePathStyle: {stroke: '#0027ff'}});
-};
 
 Creep.prototype.nomad_harvester_selectSource = function () {
     var sources = cache.findSources(this.room);
@@ -92,6 +82,13 @@ Creep.prototype.dropEnergy = function () {
 };
 
 Creep.prototype.carrier = function () {
+    var flag = Game.flags[this.memory.squad];
+    if(flag != null){
+        this.moveTo(flag, {visualizePathStyle: {stroke: '#ffda00'}});
+    }
+};
+
+Creep.prototype.collector = function () {
     var flag = Game.flags[this.memory.squad];
     if(flag != null){
         this.moveTo(flag, {visualizePathStyle: {stroke: '#ffda00'}});

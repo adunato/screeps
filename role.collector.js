@@ -3,8 +3,7 @@ var cache = require('cache');
 var collectorFSM = new StateMachine.factory({
     init: 'none',
     transitions: [
-        {name: 'energyEmpty', from: ['none','dropEnergy', 'rest', 'feedEnergy', 'selectPickupFlag', 'collectEnergy'], to: 'selectPickupFlag'},
-        {name: 'pickupFlagSelected', from: ['selectPickupFlag', 'collectEnergy'], to: 'collectEnergy'},
+        {name: 'energyEmpty', from: ['none','dropEnergy', 'rest', 'feedEnergy', 'selectPickupFlag', 'collectEnergy'], to: 'collectEnergy'},
         {name: 'energyFull', from: ['feedEnergy', 'collectEnergy', 'rest','dropEnergy'], to: 'feedEnergy'},
         {name: 'energyFedStructuresFull', from: ['dropEnergy','feedEnergy', 'rest'], to: 'dropEnergy'},
         {name: 'noSource', from: ['collectEnergy', 'rest'], to: 'rest'},
@@ -24,7 +23,7 @@ var collectorFSM = new StateMachine.factory({
     methods: {
         onEnergyEmpty: function () {
             var creep = Game.creeps[this.creepName];
-            creep.selectPickupFlag();
+            creep.collector();
         },
         onEnergyFull: function () {
             var creep = Game.creeps[this.creepName];
@@ -41,10 +40,6 @@ var collectorFSM = new StateMachine.factory({
         onEnergyFedStructuresFull: function () {
             var creep = Game.creeps[this.creepName];
             creep.dropEnergy();
-        },
-        onPickupFlagSelected: function() {
-            var creep = Game.creeps[this.creepName];
-            creep.goToSelectedFlag();
         },
         onTimeToDie: function() {
             var creep = Game.creeps[this.creepName];
@@ -67,11 +62,8 @@ var roleHarvester = {
             creepState = "none";
         var stateMachine = new collectorFSM(creep.name);
         stateMachine.goto(creepState);
-        if (creep.carry.energy < creep.carryCapacity &&  !creep.memory.selectedFlag && stateMachine.can("energyEmpty")) {
+        if (creep.carry.energy < creep.carryCapacity && stateMachine.can("energyEmpty")) {
             stateMachine.energyEmpty();
-        }
-        if (creep.carry.energy < creep.carryCapacity && creep.memory.selectedFlag && stateMachine.can("pickupFlagSelected")) {
-            stateMachine.pickupFlagSelected();
         }
         if (creep.carry.energy === creep.carryCapacity && stateMachine.can("energyFull")) {
             stateMachine.energyFull();
