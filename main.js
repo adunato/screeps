@@ -161,8 +161,8 @@ module.exports.loop = function () {
     //globals definition, every tick to refresh changes
     defines.initDefines();
     cache.resetCache();
-    initSquads();
     clearMemory();
+    initSquads();
     createSquads();
     assignCreepsToSquads();
     spawnCreeps();
