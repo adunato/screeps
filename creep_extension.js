@@ -71,6 +71,13 @@ Creep.prototype.dropEnergy = function () {
     }
 };
 
+Creep.prototype.carrier = function () {
+    var flag = cache.findCarrierFlag(this.room,this.memory.squadName);
+    if(flag != null){
+        this.moveTo(flag, {visualizePathStyle: {stroke: '#ffda00'}});
+    }
+};
+
 Creep.prototype.feedEnergy = function () {
     this.memory.selectedSource = null;
     var structures = cache.findEnergyFedStructures(this.room);

@@ -8,18 +8,20 @@ var cache = {
         energyContainers: {},
         energyFedStructures: {},
         creeps: {},
-        controllers: {}
+        controllers: {},
+        carrierFlags: {}
     },
     resetCache: function () {
         this.rooms.containersWithEnergy = {};
         this.rooms.constructionSites = {};
         this.rooms.sources = {};
         this.rooms.energyContainers = {};
-        this.rooms.spawnsWithEnergy= {};
+        this.rooms.spawnsWithEnergy = {};
         this.rooms.controllers = {};
         this.rooms.repairStructures = {};
-        this.energyFedStructures = {};
-        this.creeps = {};
+        this.rooms.energyFedStructures = {};
+        this.rooms.carrierFlags = {};
+        this.rooms.creeps = {};
     },
     findContainersWithEnergy: function (room) {
         var containers = {};
@@ -75,7 +77,31 @@ var cache = {
         }
         return repairStructures;
     },
-    findSources: function (room) {
+    findCarrierFlags: function (room) {
+        var carrierFlags = {};
+
+        if (typeof this.rooms.carrierFlags[room] != "undefined") {
+            carrierFlags = this.rooms.carrierFlags[room];
+        } else {
+            carrierFlags = room.find(FIND_FLAGS, {
+                filter: (flag) => {
+                    return flag.name.startsWith("CA");
+                }
+            });
+            this.rooms.carrierFlags[room] = carrierFlags;
+        }
+        return carrierFlags;
+    },
+    findCarrierFlag: function (room, id) {
+        for(var flagName in this.findCarrierFlags(room)){
+            var flag = Game.flags[flagName];
+            if(flagName === id){
+                return flag;
+            }
+        }
+        return null;
+    },
+        findSources: function (room) {
         var sources = {};
 
         if (typeof this.rooms.sources[room] != "undefined") {
@@ -137,7 +163,7 @@ var cache = {
         var creeps = this.getCreepsInRoom(room);
         return creeps.length;
     },
-    getCreepsInRoom(room){
+    getCreepsInRoom(room) {
         if (typeof this.rooms.creeps[room] != "undefined") {
             return this.rooms.creeps[room];
         } else {
