@@ -79,12 +79,10 @@ function manageDefense() {
 
 function executeCreepBehaviour() {
     for (var name in Game.creeps) {
-        console.log('executeCreepBehaviour: ' + name);
         var creep = Game.creeps[name];
         Memory.test = creep;
         for (var role in creepRoles) {
             if (creep.memory.role == role) {
-                console.log('creepRoles.run: ' + creep.name);
                 creepRoles[role].run(creep);
             }
         }
@@ -158,23 +156,14 @@ function createSquads() {
 
 module.exports.loop = function () {
     //globals definition, every tick to refresh changes
-    console.log('initDefines');
     defines.initDefines();
-    console.log('resetCache');
     cache.resetCache();
-    console.log('initSquads');
     initSquads();
-    console.log('clearMemory');
     clearMemory();
-    console.log('createSquads');
     createSquads();
-    console.log('assignCreepsToSquads');
     assignCreepsToSquads();
-    console.log('spawnCreeps');
     spawnCreeps();
-    console.log('logSpawing');
     logSpawing();
     // manageDefense();
-    console.log('executeCreepBehaviour');
     executeCreepBehaviour();
 }
