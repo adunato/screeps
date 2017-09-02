@@ -174,5 +174,6 @@ module.exports.loop = function () {
     screepsplus.collect_stats();
     for(var flag in Game.flags){
         console.log(flag);
+        console.log(Game.flags[flag]);
     }
 };
