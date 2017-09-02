@@ -94,6 +94,7 @@ var cache = {
         for(var flagName in this.findFlags(room)){
             console.log('flagName: ' + flagName);
             var flag = Game.flags[flagName];
+            console.log(flag.name);
             if(flagName === id){
                 return flag;
             }
