@@ -173,7 +173,9 @@ module.exports.loop = function () {
     executeCreepBehaviour();
     screepsplus.collect_stats();
     for(var flag in Game.flags){
-        console.log(flag);
-        console.log(Game.flags[flag]);
+        if(flag === 'CA1') {
+            console.log(flag);
+            console.log(Game.flags[flag]);
+        }
     }
 };
