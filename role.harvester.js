@@ -5,7 +5,7 @@ var harvesterFSM = new StateMachine.factory({
     transitions: [
         {name: 'energyEmpty', from: ['none','dropEnergy', 'rest', 'feedEnergy', 'selectSource'], to: 'selectSource'},
         {name: 'sourceSelected', from: ['selectSource', 'harvestEnergy'], to: 'harvestEnergy'},
-        {name: 'energyFull', from: ['feedEnergy', 'harvestEnergy', 'rest'], to: 'feedEnergy'},
+        {name: 'energyFull', from: ['feedEnergy', 'harvestEnergy', 'rest','dropEnergy'], to: 'feedEnergy'},
         {name: 'energyFedStructuresFull', from: ['dropEnergy','feedEnergy', 'rest'], to: 'dropEnergy'},
         {name: 'noSource', from: ['harvestEnergy', 'rest'], to: 'rest'},
         {name: 'noEnergyContainers', from: ['dropEnergy','rest'], to: 'rest'},
