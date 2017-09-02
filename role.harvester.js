@@ -89,7 +89,7 @@ var roleHarvester = {
             stateMachine.energyFedStructuresFull();
         }
         if (creep.timeToDie() && stateMachine.can("timeToDie")){
-            stateMachine.suicide();
+            stateMachine.timeToDie();
         }
         creep.memory.state = stateMachine.state;
     }
