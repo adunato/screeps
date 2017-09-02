@@ -82,7 +82,6 @@ function manageDefense() {
 function executeCreepBehaviour() {
     for (var name in Game.creeps) {
         var creep = Game.creeps[name];
-        Memory.test = creep;
         for (var role in creepRoles) {
             if (creep.memory.role == role) {
                 creepRoles[role].run(creep);
@@ -125,7 +124,6 @@ function assignCreepsToSquads() {
             }
         }
     }
-    Memory.squads = squads;
 }
 
 function checkSquadFromFlag(role, flagName) {
