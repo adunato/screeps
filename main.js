@@ -7,6 +7,7 @@ var squads = null;
 var printStats = false;
 
 function clearMemory() {
+    console.log('clearMemory');
     for (var name in Memory.creeps) {
         if (!Game.creeps[name]) {
             delete Memory.creeps[name];
