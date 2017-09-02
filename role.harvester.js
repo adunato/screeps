@@ -3,7 +3,7 @@ var cache = require('cache');
 var harvesterFSM = new StateMachine.factory({
     init: 'none',
     transitions: [
-        {name: 'energyEmpty', from: ['none','dropEnergy', 'rest', 'feedEnergy', 'selectSource', 'harvestEnergy'], to: 'selectSource'},
+        {name: 'energyEmpty', from: ['none','dropEnergy', 'rest', 'feedEnergy', 'selectSource', 'harvestEnergy', 'dropCollector'], to: 'selectSource'},
         {name: 'sourceSelected', from: ['selectSource', 'harvestEnergy'], to: 'harvestEnergy'},
         {name: 'energyFull', from: ['feedEnergy', 'harvestEnergy', 'rest','dropEnergy', 'dropCollector'], to: 'dropCollector'},
         {name: 'collectorFull', from: ['dropEnergy','feedEnergy', 'rest'], to: 'feedEnergy'},
