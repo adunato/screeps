@@ -41,7 +41,7 @@ var defines = {
             "carrier": roleCarrier
         };
         global.squadProfiles = {
-            "H" : [["harvester",4]],
+            "H" : [["harvester",6]],
             "B" : [["builder",1]],
             "U" : [["upgrader",1]],
             "R" : [["repairer",1]],
