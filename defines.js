@@ -31,7 +31,7 @@ var defines = {
             "builder": [MOVE,MOVE,MOVE,MOVE,MOVE,WORK,WORK,WORK,WORK,WORK,CARRY],
             "nomad_harvester": [WORK, CARRY, MOVE],
             "upgrader": [MOVE,MOVE,MOVE,MOVE,MOVE,WORK,WORK,WORK,WORK,WORK,CARRY],
-            "repairer": [WORK, CARRY, MOVE],
+            "repairer": [MOVE,MOVE,MOVE,MOVE,MOVE,WORK,WORK,WORK,WORK,WORK,CARRY],
             "carrier": [MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY],
             "collector": [MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY],
             "feeder": [MOVE, MOVE, MOVE, MOVE, MOVE,MOVE, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY],
@@ -48,9 +48,9 @@ var defines = {
         global.squadProfiles = {
             "HA": [["harvester", 4]],
             "CO": [["collector", 1]],
-            "BU": [["builder", 3]],
+            "BU": [["builder", 0]],
             "UP": [["upgrader", 1]],
-            "RE": [["repairer", 0]],
+            "RE": [["repairer", 3]],
             "CA": [["carrier", 1]],
             "FE": [["feeder", 1]],
         };
