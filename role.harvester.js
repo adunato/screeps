@@ -5,9 +5,9 @@ var harvesterFSM = new statemachine.StateMachine.factory({
     init: 'none',
     transitions: [
         //all "end-states" lead back to start
-        {name: 'energyEmpty', from: ['none','dropEnergy', 'rest', 'feedEnergy', 'selectSource', 'dropCollector'], to: 'selectSource'},
-        //only selectSource is gateway to harvestEnergy provided that all drop-states lead to source = null
-        {name: 'sourceSelected', from: ['selectSource', 'harvestEnergy'], to: 'harvestEnergy'},
+        {name: 'energyEmpty', from: ['none','dropEnergy', 'rest', 'feedEnergy', 'goToSource', 'dropCollector'], to: 'goToSource'},
+        //only goToSource is gateway to harvestEnergy provided that all drop-states lead to source = null
+        {name: 'sourceSelected', from: ['goToSource', 'harvestEnergy'], to: 'harvestEnergy'},
         // all drop-states are linked to account for filling up conditions + rest
         {name: 'energyFull', from: ['harvestEnergy', 'rest','dropCollector'], to: 'dropCollector'},
         {name: 'collectorFull', from: ['feedEnergy', 'dropCollector'], to: 'feedEnergy'},
@@ -15,7 +15,7 @@ var harvesterFSM = new statemachine.StateMachine.factory({
         //rest is connected only to last drop-state in 'no place where to drop' scenario
         {name: 'noEnergyContainers', from: ['dropEnergy','rest'], to: 'rest'},
         //noSource condition: at start and while harvesting
-        {name: 'noSource', from: ['selectSource','harvestEnergy', 'rest'], to: 'rest'},
+        {name: 'noSource', from: ['goToSource','harvestEnergy', 'rest'], to: 'rest'},
         {name: 'timeToDie', from: ['dropEnergy', 'feedEnergy', 'dropCollector', 'suicide'], to: 'suicide'},
         {
             name: 'goto', from: '*', to: function (s) {
@@ -31,7 +31,7 @@ var harvesterFSM = new statemachine.StateMachine.factory({
     methods: {
         onEnergyEmpty: function () {
             var creep = Game.creeps[this.creepName];
-            creep.selectSource();
+            creep.goToSource();
         },
         onEnergyFull: function () {
             var creep = Game.creeps[this.creepName];

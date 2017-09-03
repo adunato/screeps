@@ -59,8 +59,6 @@ Creep.prototype.dropEnergyToCollector = function () {
 };
 
 Creep.prototype.selectSource = function () {
-    if (this.memory.role === "nomad_harvester")
-        return this.nomad_harvester_selectSource();
     var sources = cache.findSources(this.room);
     var selectedSource = null;
     var minDistance = 1000;
@@ -77,18 +75,19 @@ Creep.prototype.selectSource = function () {
         this.memory.selectedSource = selectedSource.id;
 };
 
-
-Creep.prototype.nomad_harvester_selectSource = function () {
-    var sources = cache.findSources(this.room);
-    var selectedSource;
-    var maxEnergy = 0;
-    for (var i = 0; i < sources.length; i++) {
-        if (sources[i].energy > maxEnergy) {
-            selectedSource = sources[i];
-            maxEnergy = sources[i].energy;
+Creep.prototype.goToSource = function () {
+    var flag = Game.flags[this.memory.squad];
+    if (flag != null) {
+        this.moveTo(flag, {visualizePathStyle: {stroke: '#ffda00'}});
+    }
+    //check if flag's room is visible
+    if(flag.room){
+        for(var i = 0; i < cache.findSources(flag.room).length; i++){
+            var source = cache.findSources(flag.room)[i];
+            if(source.pos === flag.pos)
+                this.memory.selectedSource = source;
         }
     }
-    this.memory.selectedSource = selectedSource.id;
 };
 
 Creep.prototype.isAlive = function () {
