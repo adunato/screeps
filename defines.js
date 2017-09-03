@@ -45,10 +45,10 @@ var defines = {
         global.squadProfiles = {
             "HA" : [["harvester",4]],
             "CO" : [["collector",1]],
-            "BU" : [["builder",1]],
-            "UP" : [["upgrader",1]],
-            "RE" : [["repairer",1]],
-            "CA" : [["carrier",1]],
+            "BU" : [["builder",0]],
+            "UP" : [["upgrader",0]],
+            "RE" : [["repairer",0]],
+            "CA" : [["carrier",0]],
         };
         global.allowedToSpawnWithdraw = false;
     }
