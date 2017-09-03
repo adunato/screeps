@@ -32,7 +32,7 @@ var defines = {
             "upgrader": [WORK, CARRY, MOVE],
             "repairer": [WORK, CARRY, MOVE],
             "carrier": [CARRY, MOVE],
-            "collector": [CARRY, MOVE]
+            "collector": [CARRY, MOVE,CARRY, MOVE,CARRY, MOVE,CARRY, MOVE]
         };
         global.creepRoles = {
             "harvester": roleHarvester,
