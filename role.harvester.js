@@ -11,7 +11,7 @@ var harvesterFSM = new statemachine.StateMachine.factory({
         {name: 'energyFedStructuresFull', from: ['dropEnergy','feedEnergy', 'rest', 'dropCollector'], to: 'dropEnergy'},
         {name: 'noSource', from: ['harvestEnergy', 'rest'], to: 'rest'},
         {name: 'noEnergyContainers', from: ['dropEnergy','rest', 'dropCollector'], to: 'rest'},
-        {name: 'timeToDie', from: ['*'], to: 'suicide'},
+        // {name: 'timeToDie', from: ['*'], to: 'suicide'},
         {
             name: 'goto', from: '*', to: function (s) {
             return s
@@ -72,6 +72,7 @@ var roleHarvester = {
         if (typeof creepState === "undefined")
             creepState = "none";
         var stateMachine = new harvesterFSM(creep.name);
+        statemachine.visualize(stateMachine);
         stateMachine.goto(creepState);
         if (creep.carry.energy < creep.carryCapacity &&  !creep.memory.selectedSource && stateMachine.can("energyEmpty")) {
             stateMachine.energyEmpty();
