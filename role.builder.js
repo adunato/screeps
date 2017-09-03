@@ -40,6 +40,8 @@ var builderFSM = new statemachine.StateMachine.factory({
             var creep = Game.creeps[this.creepName];
             if(global.allowedToSpawnWithdraw)
                 creep.withdrawEnergyFromSpawn();
+            else
+                creep.rest();
         },
         onSpawnEmpty: function () {
             var creep = Game.creeps[this.creepName];
