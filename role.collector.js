@@ -67,6 +67,9 @@ var roleHarvester = {
         if (creep.carry.energy < creep.carryCapacity && stateMachine.can("energyEmpty")) {
             stateMachine.energyEmpty();
         }
+        if (creep.carry.energy === 0 && stateMachine.can("noEnergyContainers")) {
+            stateMachine.noEnergyContainers();
+        }
         if (creep.carry.energy === creep.carryCapacity && stateMachine.can("energyFull")) {
             stateMachine.energyFull();
         }
