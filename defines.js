@@ -4,6 +4,7 @@ var roleBuilder = require('role.builder');
 var roleRepairer = require('role.repairer');
 var roleCarrier = require('role.carrier');
 var roleCollector = require('role.collector');
+var roleFeeder = require('role.feeder');
 var roleNomadHarvester = require('role.nomad_harvester');
 
 
@@ -40,7 +41,8 @@ var defines = {
             "upgrader": roleUpgrader,
             "carrier": roleCarrier,
             "repairer": roleRepairer,
-            "builder": roleBuilder
+            "builder": roleBuilder,
+            "feeder": roleFeeder
         };
         global.squadProfiles = {
             "HA" : [["harvester",4]],
@@ -49,6 +51,7 @@ var defines = {
             "UP" : [["upgrader",0]],
             "RE" : [["repairer",0]],
             "CA" : [["carrier",0]],
+            "FE" : [["feeder",1]],
         };
         global.allowedToSpawnWithdraw = false;
     }
