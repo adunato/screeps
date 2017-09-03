@@ -21,13 +21,22 @@ Creep.prototype.withdrawEnergyFromSpawn = function () {
 Creep.prototype.withdrawEnergyFromCarrier = function () {
     var carriers = cache.findCarriersWithEnergy(this.room);
     if (carriers.length > 0) {
-        if (carriers[0].transfer(this, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-            this.moveTo(carriers[0], {visualizePathStyle: {stroke: '#0027ff'}});
+        var minDistance = 1000;
+        var carrier = null;
+        for(var i = 0; i < carriers.length; i++){
+            var distance = this.room.findPath(this.pos,carriers[i].pos).length;
+            if(distance < minDistance){
+                carrier = carriers[i];
+                minDistance = distance;
+            }
+        }
+        if(!carrier)
+            return;
+        if (carrier.transfer(this, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+            this.moveTo(carrier, {visualizePathStyle: {stroke: '#0027ff'}});
         }
     }
-};
-
-Creep.prototype.dropEnergyToCollector = function () {
+    Creep.prototype.dropEnergyToCollector = function () {
     this.memory.selectedSource = null;
     var collectors = cache.findEmptyCollectors(this.room);
     if (collectors.length > 0) {
