@@ -3,11 +3,14 @@ var cache = require('cache');
 var builderFSM = new statemachine.StateMachine.factory({
     init: 'none',
     transitions: [
-        {name: 'energyEmpty', from: ['rest','withdraw', 'build', 'spawn_withdraw'], to: 'withdraw'},
+        {name: 'energyEmpty', from: '*', to: 'carrier_withdraw'},
+        //step to make it pick up energy from carrier if was going to pick up somewhere else (e.g. while carrier refueled) (do not enable 'build' here)
+        {name: 'pickupFromCarrier', from: ['carrier_withdraw', 'spawn_withdraw', 'withdraw'], to: 'carrier_withdraw'},
+        {name: 'carrierEmpty', from: 'carrier_withdraw', to: 'withdraw'},
         {name: 'energyFull', from: '*', to: 'build'},
         {name: 'noConstructions', from: ['*'], to: 'rest'},
-        {name: 'containersEmpty', from: ['withdraw', 'spawn_withdraw', 'rest'], to: 'spawn_withdraw'},
-        {name: 'spawnEmpty', from: ['spawn_withdraw', 'rest'], to: 'rest'},
+        {name: 'containersEmpty', from: ['withdraw', 'spawn_withdraw','rest'], to: 'spawn_withdraw'},
+        {name: 'spawnEmpty', from: 'spawn_withdraw', to: 'rest'},
         {
             name: 'goto', from: '*', to: function (s) {
             return s
@@ -21,26 +24,28 @@ var builderFSM = new statemachine.StateMachine.factory({
         }
     },
     methods: {
-        onEnergyEmpty: function () {
+        onWithdraw: function () {
             var creep = Game.creeps[this.creepName];
             creep.withdrawEnergy();
         },
-        onEnergyFull: function () {
+        onEnergyEmpty: function () {
+            var creep = Game.creeps[this.creepName];
+            creep.withdrawEnergyFromCarrier();
+        },
+        onBuild: function () {
             var creep = Game.creeps[this.creepName];
             creep.buildConstruction();
-        },
-        onNoConstructions: function () {
-            var creep = Game.creeps[this.creepName];
-            creep.rest();
         },
         onContainersEmpty: function () {
             var creep = Game.creeps[this.creepName];
             if(global.allowedToSpawnWithdraw)
                 creep.withdrawEnergyFromSpawn();
-            else
-                creep.rest();
         },
         onSpawnEmpty: function () {
+            var creep = Game.creeps[this.creepName];
+            creep.rest();
+        },
+        onNoConstructions: function () {
             var creep = Game.creeps[this.creepName];
             creep.rest();
         },

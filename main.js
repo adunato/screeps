@@ -128,13 +128,12 @@ function assignCreepsToSquads() {
 
 function checkSquadFromFlag(role, flagName) {
     if (flagName.startsWith(role)) {
-        var flagID = flagName;
-        flagID = flagID.replace(role, "");
-        if (squads[role].length < flagID) {
-            return true;
-        } else {
-            return false
+        var squadExist = false;
+        for(var i = 0; i < squads.length; i++){
+            if(squads[i].getName() === flagName)
+                squadExist = true;
         }
+        return squadExist;
     }
 }
 
