@@ -84,7 +84,7 @@ Creep.prototype.goToSource = function () {
     if(flag.room){
         for(var i = 0; i < cache.findSources(flag.room).length; i++){
             var source = cache.findSources(flag.room)[i];
-            if(source.pos === flag.pos) {
+            if(source.pos.x === flag.pos.x && source.pos.y === flag.pos.y) {
                 console.log('same');
                 this.memory.selectedSource = source;
             }
