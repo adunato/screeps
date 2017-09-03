@@ -184,6 +184,7 @@ function summarize_room_internal(room) {
         num_creeps,
         creep_counts,
         creep_energy,
+        creep_harvested_energy,
         num_enemies,
         num_spawns,
         spawns_spawning,
