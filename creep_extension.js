@@ -157,9 +157,11 @@ Creep.prototype.rest = function () {
 };
 
 Creep.prototype.timeToDie = function () {
-    for (var i = 0; i < this.body.length; i++) {
-        if (this.body[i].hits < 100)
-            return true;
-    }
-    return false;
+    return (this.hits < this.hitsMax || this.ticksToLive < 50);
 };
+
+Creep.prototype.suicide_ = function () {
+    this.say("Bye :(");
+    this.suicide();
+};
+

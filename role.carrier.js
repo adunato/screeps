@@ -8,6 +8,7 @@ var carrierFSM = new statemachine.StateMachine.factory({
         {name: 'noCarrierFlags', from: ['*'], to: 'rest'},
         {name: 'containersEmpty', from: ['withdraw', 'spawn_withdraw', 'rest'], to: 'spawn_withdraw'},
         {name: 'spawnEmpty', from: ['spawn_withdraw', 'rest'], to: 'rest'},
+        {name: 'timeToDie', from: ['withdraw', 'suicide'], to: 'suicide'},
         {
             name: 'goto', from: '*', to: function (s) {
             return s
@@ -44,6 +45,10 @@ var carrierFSM = new statemachine.StateMachine.factory({
             var creep = Game.creeps[this.creepName];
             creep.rest();
         },
+        onTimeToDie: function() {
+            var creep = Game.creeps[this.creepName];
+            creep.suicide_();
+        },
         onTransition(lifecycle) {
             // console.log("transition name: " + lifecycle.transition);
             // console.log("transition from: " + lifecycle.from);
@@ -75,6 +80,9 @@ var roleCarrier = {
         }
         if (Game.flags[creep.memory.squad] === null && stateMachine.can("noCarrierFlags")) {
             stateMachine.noCarrierFlags();
+        }
+        if (creep.timeToDie() && creep.carry.energy === 0 && stateMachine.can("timeToDie")){
+            stateMachine.timeToDie();
         }
         creep.memory.state = stateMachine.state;
     }

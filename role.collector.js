@@ -9,6 +9,7 @@ var collectorFSM = new statemachine.StateMachine.factory({
         {name: 'noSource', from: ['collectEnergy', 'rest'], to: 'rest'},
         {name: 'noEnergyContainers', from: ['dropEnergy','rest'], to: 'rest'},
         {name: 'timeToDie', from: ['*'], to: 'suicide'},
+        {name: 'timeToDie', from: ['collectEnergy', 'suicide'], to: 'suicide'},
         {
             name: 'goto', from: '*', to: function (s) {
             return s
@@ -43,7 +44,7 @@ var collectorFSM = new statemachine.StateMachine.factory({
         },
         onTimeToDie: function() {
             var creep = Game.creeps[this.creepName];
-            creep.suicide();
+            creep.suicide_();
         },
         onTransition(lifecycle) {
             // console.log("transition name: " + lifecycle.transition);
@@ -77,7 +78,7 @@ var roleHarvester = {
         if (cache.findEnergyFedStructures(creep.room).length === 0 && stateMachine.can("energyFedStructuresFull")) {
             stateMachine.energyFedStructuresFull();
         }
-        if (creep.timeToDie() && stateMachine.can("timeToDie")){
+        if (creep.timeToDie() && creep.carry.energy === 0 && stateMachine.can("timeToDie")){
             stateMachine.timeToDie();
         }
         creep.memory.state = stateMachine.state;
