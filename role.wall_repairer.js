@@ -64,8 +64,6 @@ var rolewall_repairer = {
         if (creep.carry.energy === 0) {
             stateMachine.energyEmpty();
         }
-        console.log(creep.carry.energy > 0);
-        console.log(stateMachine.can("energyFull"));
         if (creep.carry.energy > 0 && stateMachine.can("energyFull")) {
             stateMachine.energyFull();
         }
