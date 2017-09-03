@@ -193,10 +193,9 @@ module.exports.loop = function () {
     console.log("tick");
     var room = Game.rooms["W28S49"];
     var sources = cache.findSources(room);
-    console.log(JSON.stringify(sources));
-    // for(var sourceName in sources){
-    //     console.log(sourceName);
-    //     var source = sources[sourceName];
-    //     console.log(source.id + "has " + source.getAvailableWithdrawingSlots() + " available slots");
-    // }
+    // console.log(JSON.stringify(sources));
+    for(var i =0; i < sources.length; i++){
+        var source = sources[i];
+        console.log(source.id + "has " + source.getAvailableWithdrawingSlots() + " available slots");
+    }
 };
