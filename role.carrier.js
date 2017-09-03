@@ -24,7 +24,7 @@ var carrierFSM = new statemachine.StateMachine.factory({
     methods: {
         onEnergyEmpty: function () {
             var creep = Game.creeps[this.creepName];
-            creep.withdrawEnergy(false);
+            creep.withdrawEnergyExCarriers();
         },
         onEnergyFull: function () {
             var creep = Game.creeps[this.creepName];
