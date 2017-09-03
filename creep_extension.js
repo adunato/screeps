@@ -28,6 +28,7 @@ Creep.prototype.withdrawEnergyFromCarrier = function () {
 };
 
 Creep.prototype.dropEnergyToCollector = function () {
+    this.memory.selectedSource = null;
     var collectors = cache.findEmptyCollectors(this.room);
     if (collectors.length > 0) {
         if (this.transfer(collectors[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {

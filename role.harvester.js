@@ -4,13 +4,18 @@ var cache = require('cache');
 var harvesterFSM = new statemachine.StateMachine.factory({
     init: 'none',
     transitions: [
-        {name: 'energyEmpty', from: ['none','dropEnergy', 'rest', 'feedEnergy', 'selectSource', 'harvestEnergy', 'dropCollector'], to: 'selectSource'},
-        {name: 'sourceSelected', from: ['selectSource', 'harvestEnergy','dropCollector'], to: 'harvestEnergy'},
+        //all "end-states" lead back to start
+        {name: 'energyEmpty', from: ['none','dropEnergy', 'rest', 'feedEnergy', 'selectSource', 'dropCollector'], to: 'selectSource'},
+        //only selectSource is gateway to harvestEnergy provided that all drop-states lead to source = null
+        {name: 'sourceSelected', from: ['selectSource', 'harvestEnergy'], to: 'harvestEnergy'},
+        // all drop-states are linked to account for filling up conditions + rest
         {name: 'energyFull', from: ['feedEnergy', 'harvestEnergy', 'rest','dropEnergy', 'dropCollector'], to: 'dropCollector'},
-        {name: 'collectorFull', from: ['dropEnergy','feedEnergy', 'rest'], to: 'feedEnergy'},
-        {name: 'energyFedStructuresFull', from: ['dropEnergy','feedEnergy', 'rest', 'dropCollector'], to: 'dropEnergy'},
-        {name: 'noSource', from: ['harvestEnergy', 'rest'], to: 'rest'},
-        {name: 'noEnergyContainers', from: ['dropEnergy','rest', 'dropCollector'], to: 'rest'},
+        {name: 'collectorFull', from: ['feedEnergy', 'harvestEnergy', 'rest','dropEnergy', 'dropCollector'], to: 'feedEnergy'},
+        {name: 'energyFedStructuresFull', from: ['feedEnergy', 'harvestEnergy', 'rest','dropEnergy', 'dropCollector'], to: 'dropEnergy'},
+        //rest is connected only to last drop-state in 'no place where to drop' scenario
+        {name: 'noEnergyContainers', from: ['dropEnergy','rest'], to: 'rest'},
+        //noSource condition: at start and while harvesting
+        {name: 'noSource', from: ['selectSource','harvestEnergy', 'rest'], to: 'rest'},
         // {name: 'timeToDie', from: ['*'], to: 'suicide'},
         {
             name: 'goto', from: '*', to: function (s) {
