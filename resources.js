@@ -98,6 +98,7 @@ function summarize_room_internal(room) {
     const enemy_creeps = room.find(FIND_HOSTILE_CREEPS);
     const creep_energy = _.sum(Game.creeps, c => c.pos.roomName == room.name ? c.carry.energy : 0);
     const creep_harvested_energy = _.sum(Game.creeps, c => c.pos.roomName == room.name && c.memory.harvested_energy ? c.memory.harvested_energy : 0);
+    const creep_upgraded_energy = _.sum(Game.creeps, c => c.pos.roomName == room.name && c.memory.upgraded_energy ? c.memory.upgraded_energy : 0);
     const num_enemies = enemy_creeps ? enemy_creeps.length : 0;
     const spawns = room.find(FIND_MY_SPAWNS);
     const num_spawns = spawns ? spawns.length : 0;
@@ -185,6 +186,7 @@ function summarize_room_internal(room) {
         creep_counts,
         creep_energy,
         creep_harvested_energy,
+        creep_upgraded_energy,
         num_enemies,
         num_spawns,
         spawns_spawning,
