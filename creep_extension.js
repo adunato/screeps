@@ -157,7 +157,13 @@ Creep.prototype.rest = function () {
 };
 
 Creep.prototype.timeToDie = function () {
-    return (this.hits < this.hitsMax || this.ticksToLive < 50);
+    var hasMovement = false;
+    for (var i = 0; i < this.body.length; i++) {
+        if (this.body[i].hits > 0 && this.body[i].type === 'MOVE')
+            hasMovement = true;
+    }
+    console.log("has movement: " + hasMovement);
+    return (this.ticksToLive < 50);
 };
 
 Creep.prototype.suicide_ = function () {
