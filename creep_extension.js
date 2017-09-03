@@ -16,7 +16,6 @@ Creep.prototype.withdrawEnergy = function () {
         }
         if (!energySource)
             return;
-        console.log('energySource:' + energySource);
         if (energySource.transfer(this, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
             this.moveTo(energySource, {visualizePathStyle: {stroke: '#0027ff'}});
         }
