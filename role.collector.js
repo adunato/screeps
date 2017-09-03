@@ -3,7 +3,7 @@ var cache = require('cache');
 var collectorFSM = new statemachine.StateMachine.factory({
     init: 'none',
     transitions: [
-        {name: 'energyEmpty', from: ['none','dropEnergy', 'rest', 'feedEnergy', 'selectPickupFlag', 'collectEnergy'], to: 'collectEnergy'},
+        {name: 'energyEmpty', from: ['none', 'rest', 'selectPickupFlag', 'collectEnergy'], to: 'collectEnergy'},
         {name: 'energyFull', from: ['feedEnergy', 'collectEnergy', 'rest','dropEnergy'], to: 'feedEnergy'},
         {name: 'reDropEnergy', from: ['feedEnergy','reDropEnergy'], to: 'feedEnergy'},
         {name: 'energyFedStructuresFull', from: ['dropEnergy','feedEnergy', 'rest'], to: 'dropEnergy'},
