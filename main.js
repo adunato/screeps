@@ -154,6 +154,22 @@ function createSquads() {
 }
 
 
+function trackTickChanges() {
+    for(var creepName in Game.creeps) {
+        var creep = Game.creeps[creepName];
+        //harvesters
+        if(creep.memory.role === 'harvester') {
+            if (creep.memory.lastTick && creep.memory.lastTick.carried_energy) {
+                //add to counter if diff is +
+                creeo.memory.harvested_energy += creep.carry.energy - creep.memory.lastTick.carried_energy > 0 ? creep.carry.energy - creep.memory.lastTick.carried_energy : 0;
+            }
+        }
+        //update lastTick
+        creep.memory.lastTick = {};
+        creep.memory.lastTick.carried_energy = creep.carry.energy;
+    }
+}
+
 module.exports.loop = function () {
     //globals definition, every tick to refresh changes
     clearMemory();
@@ -166,6 +182,7 @@ module.exports.loop = function () {
     logSpawing();
     // manageDefense();
     executeCreepBehaviour();
+    trackTickChanges();
     screepsplus.collect_stats();
     console.log("tick");
 };
