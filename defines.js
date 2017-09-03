@@ -56,7 +56,7 @@ var defines = {
             "RE": [["repairer", 1]],
             "WA": [["wall_repairer", 0]],
             "CA": [["carrier", 1]],
-            "FE": [["feeder", 2]],
+            "FE": [["feeder", 4]],
         };
         global.allowedToSpawnWithdraw = false;
     }
