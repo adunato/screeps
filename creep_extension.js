@@ -92,8 +92,10 @@ Creep.prototype.harvestEnergy = function () {
     if (this.harvest(source) == ERR_NOT_IN_RANGE) {
         this.moveTo(source, {visualizePathStyle: {stroke: '#0027ff'}});
     } else{
-        if(!this.memory.harvested_energy)
-            this.memory.harvested_energy = 0;
+        // if(!this.memory.harvested_energy) {
+        //     console.log(this.memory.harvested_energy);
+        //     this.memory.harvested_energy = 0;
+        // }
         this.memory.harvested_energy += this.carry.energy - currentEnergy;
     }
 };
