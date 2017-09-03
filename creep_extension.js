@@ -82,6 +82,7 @@ Creep.prototype.goToSource = function () {
     }
     //check if flag's room is visible
     if(flag.room){
+        console.log(flag.room);
         for(var i = 0; i < cache.findSources(flag.room).length; i++){
             var source = cache.findSources(flag.room)[i];
             if(source.pos === flag.pos)
