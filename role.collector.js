@@ -5,7 +5,7 @@ var collectorFSM = new statemachine.StateMachine.factory({
     transitions: [
         {name: 'energyEmpty', from: ['none', 'rest', 'collectEnergy'], to: 'collectEnergy'},
         {name: 'energyFull', from: ['feedEnergy', 'collectEnergy', 'rest','dropEnergy'], to: 'feedEnergy'},
-        {name: 'reDropEnergy', from: ['feedEnergy','reDropEnergy'], to: 'feedEnergy'},
+        {name: 'reDropEnergy', from: ['feedEnergy','dropEnergy','reDropEnergy'], to: 'feedEnergy'},
         {name: 'energyFedStructuresFull', from: ['dropEnergy','feedEnergy', 'rest'], to: 'dropEnergy'},
         {name: 'noSource', from: ['collectEnergy', 'rest'], to: 'rest'},
         {name: 'nowhereToDrop', from: ['feedEnergy','dropEnergy','rest'], to: 'rest'},
