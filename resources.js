@@ -35,7 +35,6 @@ function count_source_containers(room) {
     // TODO: Prefer to pick one at a source that isn't already claimed.
     let retval = 0;
 
-    source_container_search:
     for (let source of room_sources) {
         let nearby_containers =
             source.pos.findInRange(FIND_STRUCTURES, 2, { filter: s => s.structureType == STRUCTURE_CONTAINER });
@@ -98,6 +97,7 @@ function summarize_room_internal(room) {
     const num_creeps = creeps ? creeps.length : 0;
     const enemy_creeps = room.find(FIND_HOSTILE_CREEPS);
     const creep_energy = _.sum(Game.creeps, c => c.pos.roomName == room.name ? c.carry.energy : 0);
+    const creep_harvested_energy = _.sum(Game.creeps, c => c.pos.roomName == room.name && c.memory.harvested_energy ? c.memory.harvested_energy : 0);
     const num_enemies = enemy_creeps ? enemy_creeps.length : 0;
     const spawns = room.find(FIND_MY_SPAWNS);
     const num_spawns = spawns ? spawns.length : 0;
