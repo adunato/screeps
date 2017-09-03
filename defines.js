@@ -26,13 +26,13 @@ var defines = {
 
     initDefines: function () {
         global.bodyParts = {
-            "harvester": [WORK, CARRY, MOVE,WORK,WORK],
-            "builder": [WORK, CARRY, MOVE],
+            "harvester": [WORK, CARRY, MOVE,WORK,WORK,WORK],
+            "builder": [WORK, CARRY, MOVE,WORK,WORK,WORK],
             "nomad_harvester": [WORK, CARRY, MOVE],
-            "upgrader": [WORK, CARRY, MOVE,WORK,WORK],
+            "upgrader": [WORK, CARRY, MOVE,WORK,WORK,WORK],
             "repairer": [WORK, CARRY, MOVE],
-            "carrier": [CARRY, MOVE,CARRY, MOVE,CARRY, MOVE,CARRY, MOVE],
-            "collector": [CARRY, MOVE,CARRY, MOVE,CARRY, MOVE,CARRY, MOVE]
+            "carrier": [CARRY, MOVE,CARRY, MOVE,CARRY, MOVE,CARRY, MOVE,CARRY, MOVE],
+            "collector": [CARRY, MOVE,CARRY, MOVE,CARRY, MOVE,CARRY, MOVE,CARRY, MOVE]
         };
         global.creepRoles = {
             "harvester": roleHarvester,
