@@ -159,7 +159,7 @@ Creep.prototype.rest = function () {
 Creep.prototype.timeToDie = function () {
     var hasMovement = false;
     for (var i = 0; i < this.body.length; i++) {
-        if (this.body[i].hits > 0 && this.body[i].type === 'MOVE')
+        if (this.body[i].hits > 0 && this.body[i].type === 'move')
             hasMovement = true;
     }
     console.log("has movement: " + hasMovement);
