@@ -161,7 +161,7 @@ function trackTickChanges() {
         if(creep.memory.role === 'harvester') {
             if (creep.memory.lastTick && creep.memory.lastTick.carried_energy) {
                 //add to counter if diff is +
-                creep.memory.harvested_energy += creep.carry.energy - creep.memory.lastTick.carried_energy > 0 ? creep.carry.energy - creep.memory.lastTick.carried_energy : 0;
+                creep.memory.harvested_energy = creep.carry.energy - creep.memory.lastTick.carried_energy > 0 ? creep.carry.energy - creep.memory.lastTick.carried_energy : 0;
             }
         }
         //update lastTick
