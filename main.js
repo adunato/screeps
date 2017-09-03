@@ -192,9 +192,10 @@ module.exports.loop = function () {
     screepsplus.collect_stats();
     console.log("tick");
     var room = Game.rooms["W28S49"];
-    for(var sourceName in cache.findSources(room)){
+    var sources = cache.findSources(room);
+    for(var sourceName in sources){
         console.log(sourceName);
-        var source = cache.findSources(room)[sourceName];
+        var source = sources[sourceName];
         console.log(source.id + "has " + source.getAvailableWithdrawingSlots() + " available slots");
     }
 };
