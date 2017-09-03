@@ -88,6 +88,7 @@ Creep.prototype.isAlive = function () {
 Creep.prototype.harvestEnergy = function () {
     var source = Game.getObjectById(this.memory.selectedSource);
     var result = this.harvest(source);
+    console.log('result: ' + result);
     //if result is not an error code it adds it to harvest counter
     if (result == ERR_NOT_IN_RANGE) {
         this.moveTo(source, {visualizePathStyle: {stroke: '#0027ff'}});
