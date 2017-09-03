@@ -8,7 +8,7 @@ var roleFeeder = require('role.feeder');
 var roleNomadHarvester = require('role.nomad_harvester');
 
 
-Object.size = function(obj) {
+Object.size = function (obj) {
     var size = 0, key;
     for (key in obj) {
         if (obj.hasOwnProperty(key)) size++;
@@ -16,7 +16,7 @@ Object.size = function(obj) {
     return size;
 };
 
-Array.prototype.contains = function ( value ) {
+Array.prototype.contains = function (value) {
     for (var i in this) {
         if (this[i] == value) return true;
     }
@@ -27,13 +27,14 @@ var defines = {
 
     initDefines: function () {
         global.bodyParts = {
-            "harvester": [WORK, CARRY, MOVE,WORK,WORK,WORK],
-            "builder": [WORK, CARRY, MOVE,WORK,WORK,WORK],
+            "harvester": [CARRY, WORK, WORK, WORK, WORK, WORK, WORK, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE],
+            "builder": [WORK, CARRY, MOVE, WORK, WORK, WORK],
             "nomad_harvester": [WORK, CARRY, MOVE],
-            "upgrader": [WORK, CARRY, MOVE,WORK,WORK,WORK],
+            "upgrader": [WORK, CARRY, MOVE, WORK, WORK, WORK],
             "repairer": [WORK, CARRY, MOVE],
-            "carrier": [CARRY, MOVE,CARRY, MOVE,CARRY, MOVE,CARRY, MOVE,CARRY, MOVE],
-            "collector": [CARRY, MOVE,CARRY, MOVE,CARRY, MOVE,CARRY, MOVE,CARRY, MOVE]
+            "carrier": [MOVE, MOVE, MOVE, MOVE, MOVE,MOVE, MOVE, MOVE, MOVE, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY],
+            "collector": [MOVE, MOVE, MOVE, MOVE, MOVE,MOVE, MOVE, MOVE, MOVE, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY],
+            "feeder": [MOVE, MOVE, MOVE, MOVE, MOVE,MOVE, MOVE, MOVE, MOVE, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY],
         };
         global.creepRoles = {
             "harvester": roleHarvester,
@@ -45,13 +46,13 @@ var defines = {
             "feeder": roleFeeder
         };
         global.squadProfiles = {
-            "HA" : [["harvester",4]],
-            "CO" : [["collector",1]],
-            "BU" : [["builder",0]],
-            "UP" : [["upgrader",0]],
-            "RE" : [["repairer",0]],
-            "CA" : [["carrier",0]],
-            "FE" : [["feeder",1]],
+            "HA": [["harvester", 4]],
+            "CO": [["collector", 1]],
+            "BU": [["builder", 0]],
+            "UP": [["upgrader", 0]],
+            "RE": [["repairer", 0]],
+            "CA": [["carrier", 0]],
+            "FE": [["feeder", 1]],
         };
         global.allowedToSpawnWithdraw = false;
     }
