@@ -82,7 +82,7 @@ var roleHarvester = {
         if (cache.findEnergyContainers(creep.room).length === 0 && stateMachine.can("noEnergyContainers")) {
             stateMachine.noEnergyContainers();
         }
-        if (cache.findEnergyFedStructures(creep.room).length === 0 && stateMachine.can("energyFedStructuresFull")) {
+        if (cache.findEnergyFedStructures(creep.room).length === 0 && creep.carry.energy > 0 && stateMachine.can("energyFedStructuresFull")) {
             stateMachine.energyFedStructuresFull();
         }
         if (creep.timeToDie() && creep.carry.energy === 0 && stateMachine.can("timeToDie")){
