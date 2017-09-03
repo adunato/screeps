@@ -5,7 +5,7 @@ var collectorFSM = new statemachine.StateMachine.factory({
     transitions: [
         {name: 'energyEmpty', from: ['none', 'rest', 'collectEnergy'], to: 'collectEnergy'},
         {name: 'energyFull', from: ['collectEnergy', 'rest','dropEnergy'], to: 'dropEnergy'},
-        {name: 'reDropEnergy', from: ['dropEnergy','reDropEnergy'], to: 'dropEnergy'},
+        {name: 'reDropEnergy', from: ['dropEnergy','reDropEnergy'], to: 'reDropEnergy'},
         {name: 'noSource', from: ['collectEnergy', 'rest'], to: 'rest'},
         {name: 'nowhereToDrop', from: ['dropEnergy','rest'], to: 'rest'},
         {name: 'timeToDie', from: ['*'], to: 'suicide'},
@@ -27,6 +27,10 @@ var collectorFSM = new statemachine.StateMachine.factory({
             creep.collector();
         },
         onEnergyFull: function () {
+            var creep = Game.creeps[this.creepName];
+            creep.dropEnergy();
+        },
+        onReDropEnergy: function () {
             var creep = Game.creeps[this.creepName];
             creep.dropEnergy();
         },
