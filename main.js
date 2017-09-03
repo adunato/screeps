@@ -167,7 +167,7 @@ function trackTickChanges() {
         if(creep.memory.role === 'upgrader') {
             if (creep.memory.lastTick && creep.memory.lastTick.carried_energy) {
                 //add to counter if diff is -
-                creep.memory.upgraded_energy = creep.carry.energy - creep.memory.lastTick.carried_energy < 0 ? creep.carry.energy - creep.memory.lastTick.carried_energy : 0;
+                creep.memory.upgraded_energy = creep.carry.energy - creep.memory.lastTick.carried_energy < 0 ? (creep.carry.energy - creep.memory.lastTick.carried_energy) * -1 : 0;
             }
         }
         //update lastTick
