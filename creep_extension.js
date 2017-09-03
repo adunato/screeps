@@ -23,33 +23,34 @@ Creep.prototype.withdrawEnergyFromCarrier = function () {
     if (carriers.length > 0) {
         var minDistance = 1000;
         var carrier = null;
-        for(var i = 0; i < carriers.length; i++){
-            var distance = this.room.findPath(this.pos,carriers[i].pos).length;
-            if(distance < minDistance){
+        for (var i = 0; i < carriers.length; i++) {
+            var distance = this.room.findPath(this.pos, carriers[i].pos).length;
+            if (distance < minDistance) {
                 carrier = carriers[i];
                 minDistance = distance;
             }
         }
-        if(!carrier)
+        if (!carrier)
             return;
         if (carrier.transfer(this, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
             this.moveTo(carrier, {visualizePathStyle: {stroke: '#0027ff'}});
         }
     }
-    Creep.prototype.dropEnergyToCollector = function () {
+};
+Creep.prototype.dropEnergyToCollector = function () {
     this.memory.selectedSource = null;
     var collectors = cache.findEmptyCollectors(this.room);
     if (collectors.length > 0) {
         var minDistance = 1000;
         var collector = null;
-        for(var i = 0; i < collectors.length; i++){
-            var distance = this.room.findPath(this.pos,collectors[i].pos).length;
-            if(distance < minDistance){
+        for (var i = 0; i < collectors.length; i++) {
+            var distance = this.room.findPath(this.pos, collectors[i].pos).length;
+            if (distance < minDistance) {
                 collector = collectors[i];
                 minDistance = distance;
             }
         }
-        if(!collector)
+        if (!collector)
             return;
         if (this.transfer(collector, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
             this.moveTo(collector, {visualizePathStyle: {stroke: '#0027ff'}});
@@ -64,15 +65,15 @@ Creep.prototype.selectSource = function () {
     var selectedSource = null;
     var minDistance = 1000;
     for (var i = 0; i < sources.length; i++) {
-        var distance = this.room.findPath(this.pos,sources[i].pos).length;
+        var distance = this.room.findPath(this.pos, sources[i].pos).length;
         if (distance < minDistance) {
-            if(sources[i].getAvailableWithdrawingSlots() > 0) {
+            if (sources[i].getAvailableWithdrawingSlots() > 0) {
                 selectedSource = sources[i];
                 minDistance = distance;
             }
         }
     }
-    if(selectedSource)
+    if (selectedSource)
         this.memory.selectedSource = selectedSource.id;
 };
 
@@ -113,14 +114,14 @@ Creep.prototype.dropEnergy = function () {
 
 Creep.prototype.carrier = function () {
     var flag = Game.flags[this.memory.squad];
-    if(flag != null){
+    if (flag != null) {
         this.moveTo(flag, {visualizePathStyle: {stroke: '#ffda00'}});
     }
 };
 
 Creep.prototype.collector = function () {
     var flag = Game.flags[this.memory.squad];
-    if(flag != null){
+    if (flag != null) {
         this.moveTo(flag, {visualizePathStyle: {stroke: '#ffda00'}});
     }
 };
@@ -154,7 +155,7 @@ Creep.prototype.repairConstruction = function () {
 };
 
 Creep.prototype.upgradeController_ = function () {
-    if(this.upgradeController(this.room.controller) == ERR_NOT_IN_RANGE) {
+    if (this.upgradeController(this.room.controller) == ERR_NOT_IN_RANGE) {
         this.moveTo(this.room.controller, {visualizePathStyle: {stroke: '#ffffff'}});
     }
 };
@@ -172,7 +173,7 @@ Creep.prototype.timeToDie = function () {
             hasMovement = true;
     }
     var disabled = !hasMovement && this.hits < this.hitsMax;
-    if(disabled)
+    if (disabled)
         console.log(this.name + " has been disabled");
     return (this.ticksToLive < 50);
 };
