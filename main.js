@@ -136,7 +136,7 @@ function checkSquadFromFlag(role, flagName) {
             if(squads[i].getName() === flagName)
                 squadExist = true;
         }
-        return squadExist;
+        return !squadExist;
     }
 }
 
