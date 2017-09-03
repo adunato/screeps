@@ -63,7 +63,7 @@ function spawnCreeps() {
 }
 
 function manageDefense() {
-    var tower = Game.getObjectById('TOWER_ID');
+    var tower = Game.getObjectById('59ac621b09fb1f796231d101');
     if (tower) {
         var closestDamagedStructure = tower.pos.findClosestByRange(FIND_STRUCTURES, {
             filter: (structure) => structure.hits < structure.hitsMax
