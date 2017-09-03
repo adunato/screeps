@@ -37,11 +37,11 @@ var defines = {
         global.creepRoles = {
             "harvester": roleHarvester,
             "collector": roleCollector,
+            "upgrader": roleUpgrader,
+            "carrier": roleCarrier,
+            "repairer": roleRepairer,
             "builder": roleBuilder,
             "nomad_harvester": roleHarvester,
-            "upgrader": roleUpgrader,
-            "repairer": roleRepairer,
-            "carrier": roleCarrier,
         };
         global.squadProfiles = {
             "HA" : [["harvester",4]],
