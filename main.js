@@ -193,7 +193,7 @@ module.exports.loop = function () {
     console.log("tick");
 
     for(var sourceName in Game.rooms["W28S49"].sources){
-        var source = Game.rooms("W28S49").sources[sourceName];
+        var source = Game.rooms["W28S49"].sources[sourceName];
         console.log(source.id + "has " + source.getAvailableWithdrawingSlots() + " available slots");
     }
 };
