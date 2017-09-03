@@ -45,7 +45,7 @@ var defines = {
         };
         global.squadProfiles = {
             "H" : [["harvester",5]],
-            "B" : [["builder",0]],
+            "B" : [["builder",1]],
             "U" : [["upgrader",3]],
             "R" : [["repairer",1]],
             "CA" : [["carrier",1]],
