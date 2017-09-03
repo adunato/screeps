@@ -87,15 +87,14 @@ Creep.prototype.isAlive = function () {
 
 Creep.prototype.harvestEnergy = function () {
     var source = Game.getObjectById(this.memory.selectedSource);
-    var result = this.harvest(source);
-    console.log('result: ' + result);
-    //if result is not an error code it adds it to harvest counter
-    if (result == ERR_NOT_IN_RANGE) {
+    //if result is not an error code it adds harvest quantity to counter
+    var currentEnergy = this.carry.energy;
+    if (this.harvest(source) == ERR_NOT_IN_RANGE) {
         this.moveTo(source, {visualizePathStyle: {stroke: '#0027ff'}});
-    } else if (!isNaN(result)){
+    } else{
         if(!this.memory.harvested_energy)
             this.memory.harvested_energy = 0;
-        this.memory.harvested_energy += result;
+        this.memory.harvested_energy += this.carry.energy - currentEnergy;
     }
 };
 
