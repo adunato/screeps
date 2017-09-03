@@ -44,10 +44,10 @@ var defines = {
             "collector": roleCollector
         };
         global.squadProfiles = {
-            "H" : [["harvester",4]],
-            "B" : [["builder",1]],
-            "U" : [["upgrader",1]],
-            "R" : [["repairer",1]],
+            "HA" : [["harvester",4]],
+            "BU" : [["builder",1]],
+            "UP" : [["upgrader",1]],
+            "RE" : [["repairer",1]],
             "CA" : [["carrier",1]],
             "CO" : [["collector",1]],
         };

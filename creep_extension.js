@@ -81,7 +81,7 @@ Creep.prototype.goToSource = function () {
         this.moveTo(flag, {visualizePathStyle: {stroke: '#ffda00'}});
     }
     //check if flag's room is visible
-    if(flag.room){
+    if(flag && flag.room){
         for(var i = 0; i < cache.findSources(flag.room).length; i++){
             var source = cache.findSources(flag.room)[i];
             if(source.pos.x === flag.pos.x && source.pos.y === flag.pos.y) {
