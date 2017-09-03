@@ -31,8 +31,19 @@ Creep.prototype.dropEnergyToCollector = function () {
     this.memory.selectedSource = null;
     var collectors = cache.findEmptyCollectors(this.room);
     if (collectors.length > 0) {
-        if (this.transfer(collectors[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-            this.moveTo(collectors[0], {visualizePathStyle: {stroke: '#0027ff'}});
+        var minDistance = 1000;
+        var collector = null;
+        for(var i = 0; i < collectors.length; i++){
+            var distance = this.room.findPath(this.pos,collectors[i].pos).length;
+            if(distance < minDistance){
+                collector = collectors[i];
+                minDistance = distance;
+            }
+        }
+        if(!collector)
+            return;
+        if (this.transfer(collector, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+            this.moveTo(collector, {visualizePathStyle: {stroke: '#0027ff'}});
         }
     }
 };
@@ -44,7 +55,6 @@ Creep.prototype.selectSource = function () {
     var selectedSource = null;
     var minDistance = 1000;
     for (var i = 0; i < sources.length; i++) {
-        console.log(sources[i].getAvailableWithdrawingSlots());
         var distance = this.room.findPath(this.pos,sources[i].pos).length;
         if (distance < minDistance) {
             if(sources[i].getAvailableWithdrawingSlots() > 0) {
