@@ -1,7 +1,7 @@
 var cache = require('cache');
 require('source_extension');
 Creep.prototype.withdrawEnergy = function () {
-    return this.withdrawEnergy(false);
+    return this.withdrawEnergy(true);
 };
 Creep.prototype.withdrawEnergy = function (includeCarriers) {
     var containers = cache.findContainersWithEnergy(this.room);
