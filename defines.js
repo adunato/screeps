@@ -29,9 +29,9 @@ var defines = {
             "harvester": [WORK, CARRY, MOVE,WORK,WORK],
             "builder": [WORK, CARRY, MOVE],
             "nomad_harvester": [WORK, CARRY, MOVE],
-            "upgrader": [WORK, CARRY, MOVE],
+            "upgrader": [WORK, CARRY, MOVE,WORK,WORK],
             "repairer": [WORK, CARRY, MOVE],
-            "carrier": [CARRY, MOVE],
+            "carrier": [CARRY, MOVE,CARRY, MOVE,CARRY, MOVE,CARRY, MOVE],
             "collector": [CARRY, MOVE,CARRY, MOVE,CARRY, MOVE,CARRY, MOVE]
         };
         global.creepRoles = {
@@ -45,8 +45,8 @@ var defines = {
         };
         global.squadProfiles = {
             "H" : [["harvester",5]],
-            "B" : [["builder",1]],
-            "U" : [["upgrader",1]],
+            "B" : [["builder",0]],
+            "U" : [["upgrader",3]],
             "R" : [["repairer",1]],
             "CA" : [["carrier",1]],
             "CO" : [["collector",1]],
