@@ -1,3 +1,5 @@
+var MAX_WALL_LVL = 30000;
+
 var cache = {
     rooms: {
         containersWithEnergy: {},
@@ -107,7 +109,7 @@ var cache = {
         } else {
             repairWalls = room.find(FIND_STRUCTURES, {
                 filter : (structure) => {
-                return structure.structureType === STRUCTURE_WALL;
+                return structure.structureType === STRUCTURE_WALL && structure.hits < MAX_WALL_LVL;
                 }
             });
             this.rooms.repairWalls[room] = repairWalls;

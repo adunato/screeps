@@ -73,7 +73,7 @@ var rolewall_repairer = {
         if (cache.findSpawnWithEnergy(creep.room).length === 0 && stateMachine.can("spawnEmpty")) {
             stateMachine.spawnEmpty();
         }
-        if (cache.findRepairStructures(creep.room).length === 0 && stateMachine.can("noStructures")) {
+        if (cache.findRepairWalls(creep.room).length === 0 && stateMachine.can("noStructures")) {
             stateMachine.noStructures();
         }
         creep.memory.state = stateMachine.state;
