@@ -109,7 +109,7 @@ var cache = {
         } else {
             repairWalls = room.find(FIND_STRUCTURES, {
                 filter : (structure) => {
-                return structure.structureType === STRUCTURE_WALL && structure.hits < MAX_WALL_LVL;
+                return (structure.structureType === STRUCTURE_WALL || structure.structureType === STRUCTURE_RAMPART) && structure.hits < MAX_WALL_LVL;
                 }
             });
             this.rooms.repairWalls[room] = repairWalls;
