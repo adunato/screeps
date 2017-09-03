@@ -7,9 +7,9 @@ var harvesterFSM = new StateMachine.factory({
         {name: 'sourceSelected', from: ['selectSource', 'harvestEnergy','dropCollector'], to: 'harvestEnergy'},
         {name: 'energyFull', from: ['feedEnergy', 'harvestEnergy', 'rest','dropEnergy', 'dropCollector'], to: 'dropCollector'},
         {name: 'collectorFull', from: ['dropEnergy','feedEnergy', 'rest'], to: 'feedEnergy'},
-        {name: 'energyFedStructuresFull', from: ['dropEnergy','feedEnergy', 'rest'], to: 'dropEnergy'},
+        {name: 'energyFedStructuresFull', from: ['dropEnergy','feedEnergy', 'rest', 'dropCollector'], to: 'dropEnergy'},
         {name: 'noSource', from: ['harvestEnergy', 'rest'], to: 'rest'},
-        {name: 'noEnergyContainers', from: ['dropEnergy','rest'], to: 'rest'},
+        {name: 'noEnergyContainers', from: ['dropEnergy','rest', 'dropCollector'], to: 'rest'},
         {name: 'timeToDie', from: ['*'], to: 'suicide'},
         {
             name: 'goto', from: '*', to: function (s) {
