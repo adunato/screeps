@@ -1,6 +1,6 @@
 var statemachine = require('state-machine');
 var cache = require('cache');
-var upgraderFSM = new statemachineStateMachine.factory({
+var upgraderFSM = new statemachine.StateMachine.factory({
     init: 'none',
     transitions: [
         {name: 'energyEmpty', from: '*', to: 'carrier_withdraw'},
