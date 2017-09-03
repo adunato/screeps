@@ -6,7 +6,7 @@ var builderFSM = new statemachine.StateMachine.factory({
         {name: 'energyEmpty', from: '*', to: 'carrier_withdraw'},
         //step to make it pick up energy from carrier if was going to pick up somewhere else (e.g. while carrier refueled) (do not enable 'build' here)
         {name: 'pickupFromCarrier', from: ['carrier_withdraw', 'spawn_withdraw', 'withdraw'], to: 'carrier_withdraw'},
-        {name: 'carrierEmpty', from: 'carrier_withdraw', to: 'withdraw'},
+        {name: 'carrierEmpty', from: ['carrier_withdraw', 'withdraw'], to: 'withdraw'},
         {name: 'energyFull', from: '*', to: 'build'},
         {name: 'noConstructions', from: ['*'], to: 'rest'},
         {name: 'containersEmpty', from: ['withdraw', 'spawn_withdraw','rest'], to: 'spawn_withdraw'},
@@ -80,6 +80,9 @@ var roleBuilder = {
         }
         if (cache.findConstructionSites(creep.room).length === 0 && stateMachine.can("noConstructions")) {
             stateMachine.noConstructions();
+        }
+        if (cache.findCarriersWithEnergy(creep.room).length === 0 && stateMachine.can("carrierEmpty")) {
+            stateMachine.carrierEmpty();
         }
         creep.memory.state = stateMachine.state;
     }
