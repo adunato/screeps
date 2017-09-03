@@ -5,6 +5,7 @@ function SquadProfile(name) {
 }
 SquadProfile.prototype.getCreepQuantity = function(role) {
     if(this.name.startsWith("HA")){
+        console.log(this.name);
         console.log(this.name.substr(this.name.length - 1));
         return this.name.substr(this.name.length - 1)
     }
