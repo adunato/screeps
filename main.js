@@ -80,7 +80,8 @@ function manageDefense() {
     }
 
     console.log(Game.rooms[tower.pos.roomName].controller.safeMode);
-    //Game.rooms[tower.pos.roomName].controller.activateSafeMode();
+    var res = Game.rooms[tower.pos.roomName].controller.activateSafeMode();
+    console.log(res);
 }
 
 function executeCreepBehaviour() {
