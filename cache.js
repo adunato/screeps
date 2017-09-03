@@ -97,6 +97,21 @@ var cache = {
         }
         return repairStructures;
     },
+
+    findRepairWalls: function (room) {
+        var repairWalls = {};
+        if (typeof this.rooms.repairWalls[room] != "undefined") {
+            repairWalls = this.rooms.repairWalls[room];
+        } else {
+            repairWalls = room.find(FIND_STRUCTURES, {
+                filter : (structure) => {
+                return structure.structureType === STRUCTURE_WALL;
+                }
+            });
+            this.rooms.repairWalls[room] = repairWalls;
+        }
+        return repairWalls;
+    },
     findSources: function (room) {
         var sources = {};
 

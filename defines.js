@@ -2,6 +2,7 @@ var roleHarvester = require('role.harvester');
 var roleUpgrader = require('role.upgrader');
 var roleBuilder = require('role.builder');
 var roleRepairer = require('role.repairer');
+var roleWall_repairer = require('role.wall_repairer');
 var roleCarrier = require('role.carrier');
 var roleCollector = require('role.collector');
 var roleFeeder = require('role.feeder');
@@ -32,6 +33,7 @@ var defines = {
             "nomad_harvester": [WORK, CARRY, MOVE],
             "upgrader": [MOVE,MOVE,MOVE,MOVE,MOVE,WORK,WORK,WORK,WORK,WORK,CARRY],
             "repairer": [MOVE,MOVE,MOVE,MOVE,MOVE,WORK,WORK,WORK,WORK,WORK,CARRY],
+            "wall_repairer": [MOVE,MOVE,MOVE,MOVE,MOVE,WORK,WORK,WORK,WORK,WORK,CARRY],
             "carrier": [MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY],
             "collector": [MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY],
             "feeder": [MOVE, MOVE, MOVE, MOVE, MOVE,MOVE, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY],
@@ -41,6 +43,7 @@ var defines = {
             "collector": roleCollector,
             "upgrader": roleUpgrader,
             "carrier": roleCarrier,
+            "wall_repairer": roleWall_repairer,
             "repairer": roleRepairer,
             "builder": roleBuilder,
             "feeder": roleFeeder
@@ -50,7 +53,8 @@ var defines = {
             "CO": [["collector", 1]],
             "BU": [["builder", 0]],
             "UP": [["upgrader", 1]],
-            "RE": [["repairer", 3]],
+            "RE": [["repairer", 1]],
+            "WA": [["repairer", 1]],
             "CA": [["carrier", 1]],
             "FE": [["feeder", 1]],
         };
