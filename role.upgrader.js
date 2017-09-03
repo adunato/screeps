@@ -1,9 +1,11 @@
 var statemachine = require('state-machine');
 var cache = require('cache');
-var upgraderFSM = new statemachine.StateMachine.factory({
+var upgraderFSM = new statemachineStateMachine.factory({
     init: 'none',
     transitions: [
         {name: 'energyEmpty', from: '*', to: 'carrier_withdraw'},
+        //step to make it pick up energy from carrier if was going to pick up somewhere else (e.g. while carrier refueled) (do not enable 'upgrade' here)
+        {name: 'dropToCarrier', from: ['carrier_withdraw', 'spawn_withdraw', 'withdraw'], to: 'carrier_withdraw'},
         {name: 'carrierEmpty', from: 'carrier_withdraw', to: 'withdraw'},
         {name: 'energyFull', from: '*', to: 'upgrade'},
         {name: 'noControllers', from: ['*'], to: 'rest'},
@@ -64,7 +66,10 @@ var roleupgrader = {
             creepState = "withdraw";
         var stateMachine = new upgraderFSM(creep.name, "withdraw");
         stateMachine.goto(creepState);
-        if (creep.carry.energy === 0) {
+        if (creep.carry.energy === 0 && stateMachine.can("energyEmpty")) {
+            stateMachine.energyEmpty();
+        }
+        if (creep.carry.energy < creep.carryCapacity && stateMachine.can("dropToCarrier")) {
             stateMachine.energyEmpty();
         }
         if (creep.carry.energy === creep.carryCapacity && stateMachine.can("energyFull")) {
