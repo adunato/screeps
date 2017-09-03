@@ -8,7 +8,7 @@ var collectorFSM = new statemachine.StateMachine.factory({
         {name: 'reDropEnergy', from: ['feedEnergy','reDropEnergy'], to: 'feedEnergy'},
         {name: 'energyFedStructuresFull', from: ['dropEnergy','feedEnergy', 'rest'], to: 'dropEnergy'},
         {name: 'noSource', from: ['collectEnergy', 'rest'], to: 'rest'},
-        {name: 'noEnergyContainers', from: ['feedEnergy','dropEnergy','rest'], to: 'rest'},
+        {name: 'nowhereToDrop', from: ['feedEnergy','dropEnergy','rest'], to: 'rest'},
         {name: 'timeToDie', from: ['*'], to: 'suicide'},
         {name: 'timeToDie', from: ['collectEnergy', 'suicide'], to: 'suicide'},
         {
@@ -35,7 +35,7 @@ var collectorFSM = new statemachine.StateMachine.factory({
             var creep = Game.creeps[this.creepName];
             creep.rest();
         },
-        onNoEnergyContainers: function () {
+        onNowhereToDrop: function () {
             var creep = Game.creeps[this.creepName];
             creep.rest();
         },
@@ -67,8 +67,8 @@ var roleHarvester = {
         if (creep.carry.energy < creep.carryCapacity && stateMachine.can("energyEmpty")) {
             stateMachine.energyEmpty();
         }
-        if (creep.carry.energy === 0 && stateMachine.can("noEnergyContainers")) {
-            stateMachine.noEnergyContainers();
+        if (creep.carry.energy === 0 && stateMachine.can("nowhereToDrop")) {
+            stateMachine.nowhereToDrop();
         }
         if (creep.carry.energy === creep.carryCapacity && stateMachine.can("energyFull")) {
             stateMachine.energyFull();
@@ -79,8 +79,8 @@ var roleHarvester = {
         if (cache.findSources(creep.room).length === 0 && stateMachine.can("noSource")) {
             stateMachine.noSource();
         }
-        if (cache.findEnergyContainers(creep.room).length === 0 && stateMachine.can("noEnergyContainers")) {
-            stateMachine.noEnergyContainers();
+        if (cache.findEnergyContainers(creep.room).length === 0 && stateMachine.can("nowhereToDrop")) {
+            stateMachine.nowhereToDrop();
         }
         if (cache.findEnergyFedStructures(creep.room).length === 0 && creep.carry.energy > 0 && stateMachine.can("energyFedStructuresFull")) {
             stateMachine.energyFedStructuresFull();
