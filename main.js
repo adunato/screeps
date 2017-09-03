@@ -191,7 +191,7 @@ module.exports.loop = function () {
     trackTickChanges();
     screepsplus.collect_stats();
     console.log("tick");
-
+    console.log(Game.rooms["W28S49"].sources.length);
     for(var sourceName in Game.rooms["W28S49"].sources){
         var source = Game.rooms["W28S49"].sources[sourceName];
         console.log(source.id + "has " + source.getAvailableWithdrawingSlots() + " available slots");
