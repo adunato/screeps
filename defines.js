@@ -32,8 +32,8 @@ var defines = {
             "nomad_harvester": [WORK, CARRY, MOVE],
             "upgrader": [WORK, CARRY, MOVE, WORK, WORK, WORK],
             "repairer": [WORK, CARRY, MOVE],
-            "carrier": [MOVE, MOVE, MOVE, MOVE, MOVE,MOVE, MOVE, MOVE, MOVE, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY],
-            "collector": [MOVE, MOVE, MOVE, MOVE, MOVE,MOVE, MOVE, MOVE, MOVE, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY],
+            "carrier": [MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY],
+            "collector": [MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY],
             "feeder": [MOVE, MOVE, MOVE, MOVE, MOVE,MOVE, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY],
         };
         global.creepRoles = {
@@ -51,7 +51,7 @@ var defines = {
             "BU": [["builder", 0]],
             "UP": [["upgrader", 0]],
             "RE": [["repairer", 0]],
-            "CA": [["carrier", 0]],
+            "CA": [["carrier", 1]],
             "FE": [["feeder", 1]],
         };
         global.allowedToSpawnWithdraw = false;
