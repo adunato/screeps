@@ -1,4 +1,4 @@
-var MAX_WALL_LVL = 30000;
+var MAX_WALL_LVL = 50000;
 
 var cache = {
     rooms: {
