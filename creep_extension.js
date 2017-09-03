@@ -161,7 +161,7 @@ Creep.prototype.timeToDie = function () {
 };
 
 Creep.prototype.suicide_ = function () {
-    this.say("Bye :(");
+    console.log(this.name + " a proud " + this.memory.role + " made the ultimate sacrifice taking " + this.carry.energy + " energy to the grave");
     this.suicide();
 };
 
