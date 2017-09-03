@@ -4,6 +4,7 @@ var cache = {
         spawnsWithEnergy: {},
         constructionSites: {},
         repairStructures: {},
+        repairWalls: {},
         sources: {},
         energyContainers: {},
         energyFedStructures: {},
@@ -19,6 +20,7 @@ var cache = {
         this.rooms.spawnsWithEnergy = {};
         this.rooms.controllers = {};
         this.rooms.repairStructures = {};
+        this.rooms.repairWalls = {};
         this.rooms.energyFedStructures = {};
         this.rooms.carrierFlags = {};
         this.rooms.creeps = {};
