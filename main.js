@@ -195,6 +195,6 @@ module.exports.loop = function () {
     executeCreepBehaviour();
     trackTickChanges();
     screepsplus.collect_stats();
-    Memory.squads = squads;
+    // Memory.squads = squads;
     console.log("tick");
 };
