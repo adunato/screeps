@@ -2,11 +2,29 @@ var cache = require('cache');
 require('source_extension');
 Creep.prototype.withdrawEnergy = function () {
     var containers = cache.findContainersWithEnergy(this.room);
-    if (containers.length > 0) {
-        if (this.withdraw(containers[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-            this.moveTo(containers[0], {visualizePathStyle: {stroke: '#0027ff'}});
+    var carriers = cache.findCarriersWithEnergy(this.room);
+    var energySources = containers.concat(carriers);
+    if (energySources.length > 0) {
+        var minDistance = 1000;
+        var energySource = null;
+        for (var i = 0; i < energySources.length; i++) {
+            var distance = this.room.findPath(this.pos, energySources[i].pos).length;
+            if (distance < minDistance) {
+                energySource = energySources[i];
+                minDistance = distance;
+            }
+        }
+        if (!energySource)
+            return;
+        if (energySource.transfer(this, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+            this.moveTo(energySource, {visualizePathStyle: {stroke: '#0027ff'}});
         }
     }
+    // if (containers.length > 0) {
+    //     if (this.withdraw(containers[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+    //         this.moveTo(containers[0], {visualizePathStyle: {stroke: '#0027ff'}});
+    //     }
+    // }
 };
 
 Creep.prototype.withdrawEnergyFromSpawn = function () {
