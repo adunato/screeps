@@ -1,7 +1,7 @@
-var StateMachine = require('state-machine');
+var statemachine = require('state-machine');
 // var visualize = require('visualize');
 var cache = require('cache');
-var harvesterFSM = new StateMachine.factory({
+var harvesterFSM = new statemachine.StateMachine.factory({
     init: 'none',
     transitions: [
         {name: 'energyEmpty', from: ['none','dropEnergy', 'rest', 'feedEnergy', 'selectSource', 'harvestEnergy', 'dropCollector'], to: 'selectSource'},
