@@ -5,6 +5,7 @@ var collectorFSM = new statemachine.StateMachine.factory({
     transitions: [
         {name: 'energyEmpty', from: ['none', 'rest', 'collectEnergy'], to: 'collectEnergy'},
         {name: 'energyFull', from: ['collectEnergy', 'rest','dropEnergy'], to: 'dropEnergy'},
+        {name: 'reDropEnergy', from: ['dropEnergy','reDropEnergy'], to: 'dropEnergy'},
         {name: 'noSource', from: ['collectEnergy', 'rest'], to: 'rest'},
         {name: 'nowhereToDrop', from: ['dropEnergy','rest'], to: 'rest'},
         {name: 'timeToDie', from: ['*'], to: 'suicide'},
@@ -66,6 +67,9 @@ var roleHarvester = {
         }
         if (creep.carry.energy === creep.carryCapacity && stateMachine.can("energyFull")) {
             stateMachine.energyFull();
+        }
+        if (creep.carry.energy < creep.carryCapacity && stateMachine.can("reDropEnergy")) {
+            stateMachine.reDropEnergy();
         }
         if (cache.findSources(creep.room).length === 0 && stateMachine.can("noSource")) {
             stateMachine.noSource();
