@@ -72,8 +72,8 @@ function manageDefense() {
         //     return;
         // }
         var closestDamagedStructure = cache.findRepairWalls(room);
-        if (closestDamagedStructure) {
-            tower.repair(closestDamagedStructure);
+        if (closestDamagedStructure.length > 0) {
+            tower.repair(closestDamagedStructure[0]);
 
         }
 
