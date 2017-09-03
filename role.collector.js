@@ -1,6 +1,6 @@
-var StateMachine = require('state-machine');
+var statemachine = require('state-machine');
 var cache = require('cache');
-var collectorFSM = new StateMachine.factory({
+var collectorFSM = new statemachine.StateMachine.factory({
     init: 'none',
     transitions: [
         {name: 'energyEmpty', from: ['none','dropEnergy', 'rest', 'feedEnergy', 'selectPickupFlag', 'collectEnergy'], to: 'collectEnergy'},

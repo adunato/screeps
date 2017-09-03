@@ -1,6 +1,6 @@
-var StateMachine = require('state-machine');
+var statemachine = require('state-machine');
 var cache = require('cache');
-var builderFSM = new StateMachine.factory({
+var builderFSM = new statemachine.StateMachine.factory({
     init: 'none',
     transitions: [
         {name: 'energyEmpty', from: ['rest','withdraw', 'build', 'spawn_withdraw'], to: 'withdraw'},

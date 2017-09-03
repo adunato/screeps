@@ -1,6 +1,6 @@
-var StateMachine = require('state-machine');
+var statemachine = require('state-machine');
 var cache = require('cache');
-var repairrFSM = new StateMachine.factory({
+var repairrFSM = new statemachine.StateMachine.factory({
     init: 'none',
     transitions: [
         {name: 'energyEmpty', from: '*', to: 'withdraw'},
