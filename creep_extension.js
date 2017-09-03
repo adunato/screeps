@@ -163,7 +163,8 @@ Creep.prototype.timeToDie = function () {
             hasMovement = true;
     }
     var disabled = !hasMovement && this.hits < this.hitsMax;
-    console.log("disabled: " + disabled);
+    if(disabled)
+        console.log("disabled");
     return (this.ticksToLive < 50);
 };
 
