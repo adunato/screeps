@@ -7,7 +7,7 @@ var feederFSM = new statemachine.StateMachine.factory({
         {name: 'energyFull', from: '*', to: 'feed'},
         {name: 'containersEmpty', from: ['withdraw', 'spawn_withdraw', 'rest'], to: 'rest'},
         {name: 'timeToDie', from: ['withdraw', 'suicide'], to: 'suicide'},
-        {name: 'energyFedStructuresFull', from: ['feedEnergy', 'rest'], to: 'rest'},
+        {name: 'energyFedStructuresFull', from: ['feed', 'rest'], to: 'rest'},
         {
             name: 'goto', from: '*', to: function (s) {
             return s

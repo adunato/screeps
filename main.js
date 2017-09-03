@@ -191,7 +191,7 @@ module.exports.loop = function () {
     assignCreepsToSquads();
     spawnCreeps();
     logSpawing();
-    // manageDefense();
+    manageDefense();
     executeCreepBehaviour();
     trackTickChanges();
     screepsplus.collect_stats();
