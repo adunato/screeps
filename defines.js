@@ -49,6 +49,7 @@ var defines = {
             "builder": roleBuilder
         };
         global.squadProfiles = {
+            "FE": [["feeder", 4]],
             "HA": [["harvester", 4]],
             "CO": [["collector", 1]],
             "BU": [["builder", 2]],
@@ -56,7 +57,6 @@ var defines = {
             "RE": [["repairer", 1]],
             "WA": [["wall_repairer", 0]],
             "CA": [["carrier", 1]],
-            "FE": [["feeder", 4]],
         };
         global.allowedToSpawnWithdraw = false;
     }
