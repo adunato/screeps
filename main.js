@@ -185,34 +185,42 @@ function trackTickChanges() {
     }
 }
 
+function resetCPULog(){
+    global.CPUcounter = Game.cpu.getUsed();
+}
+
+function logCPU(message){
+    var delta = Game.cpu.getUsed() -  global.CPUcounter;
+    console.log(message + ": " + delta);
+}
+
 module.exports.loop = function () {
     //globals definition, every tick to refresh changes
-    var startCpu =Game.cpu.getUsed();
-    console.log("start CPU " + startCpu);
+    resetCPULog();
     clearMemory();
-    console.log( 'clearMemory ' +Game.cpu.getUsed() - startCpu ); // 0.2
+    logCPU( 'clearMemory ');
     defines.initDefines();
-    console.log( 'initDefines ' +Game.cpu.getUsed() - startCpu ); // 0.2
+    logCPU( 'initDefines ');
     cache.resetCache();
-    console.log( 'resetCache ' +Game.cpu.getUsed() - startCpu ); // 0.2
+    logCPU( 'resetCache ');
     initSquads();
-    console.log( 'initSquads ' +Game.cpu.getUsed() - startCpu ); // 0.2
+    logCPU( 'initSquads ');
     createSquads();
-    console.log( 'createSquads ' +Game.cpu.getUsed() - startCpu ); // 0.2
+    logCPU( 'createSquads ');
     assignCreepsToSquads();
-    console.log( 'assignCreepsToSquads ' +Game.cpu.getUsed() - startCpu ); // 0.2
+    logCPU( 'assignCreepsToSquads ');
     spawnCreeps();
-    console.log( 'spawnCreeps ' +Game.cpu.getUsed() - startCpu ); // 0.2
+    logCPU( 'spawnCreeps ');
     logSpawing();
-    console.log( 'logSpawing ' +Game.cpu.getUsed() - startCpu ); // 0.2
+    logCPU( 'logSpawing ');
     manageDefense();
-    console.log( 'manageDefense ' +Game.cpu.getUsed() - startCpu ); // 0.2
+    logCPU( 'manageDefense ');
     executeCreepBehaviour();
-    console.log( 'executeCreepBehaviour ' +Game.cpu.getUsed() - startCpu ); // 0.2
+    logCPU( 'executeCreepBehaviour ');
     trackTickChanges();
-    console.log( 'trackTickChanges ' +Game.cpu.getUsed() - startCpu ); // 0.2
+    logCPU( 'trackTickChanges ');
     screepsplus.collect_stats();
-    console.log( 'collect_stats ' +Game.cpu.getUsed() - startCpu ); // 0.2
+    logCPU( 'collect_stats ');
     // Memory.squads = squads;
     console.log("tick");
 };
