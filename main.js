@@ -46,13 +46,9 @@ function spawn(roleName) {
         for(var i = 0; i < bodyParts[roleName].length; i ++){
             var bodyPart = bodyParts[roleName][i];
             if(Game.spawns['Spawn1'].canCreateCreep(bodyPart) === OK) {
-                console.log(bodyPart);
                 var result = Game.spawns['Spawn1'].createCreep(bodyPart, undefined, {role: roleName});
                 console.log('Spawning new ' + roleName + ' : ' + result);
             }
-            // else {
-            //     console.log('could not create creep with config: ' + bodyPart);
-            // }
         }
 
     }
