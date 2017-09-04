@@ -29,18 +29,55 @@ var defines = {
     initDefines: function () {
         global.bodyParts = {
             // "harvester": [MOVE,MOVE,MOVE,MOVE,MOVE,WORK,WORK,WORK,WORK,WORK,CARRY],
-            "harvester": [MOVE,MOVE,WORK,CARRY,CARRY],
+            "harvester":
+                [
+                    [MOVE, MOVE, MOVE, MOVE, MOVE, WORK, WORK, WORK, WORK, WORK, CARRY],
+                    [MOVE, MOVE, MOVE, MOVE, WORK, WORK, WORK, WORK, CARRY],
+                    [MOVE, MOVE, MOVE, WORK, WORK, WORK, CARRY],
+                    [MOVE, MOVE, WORK, CARRY, CARRY]
+                ],
             //[MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,WORK,WORK,WORK,WORK,WORK,WORK,WORK,WORK,CARRY,CARRY]
-            "builder": [MOVE,MOVE,WORK,CARRY,CARRY],
+            "builder": [
+                [MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, WORK, WORK, CARRY, CARRY, CARRY, CARRY, CARRY],
+                [MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, WORK, CARRY, CARRY, CARRY, CARRY, CARRY],
+                [MOVE, MOVE, MOVE, MOVE, MOVE, WORK, CARRY, CARRY, CARRY, CARRY],
+                [MOVE, MOVE, MOVE, MOVE, WORK, CARRY, CARRY, CARRY],
+                [MOVE, MOVE, WORK, CARRY, CARRY]
+            ],
             // "builder": [MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,WORK,WORK,CARRY,CARRY,CARRY,CARRY,CARRY],
             "nomad_harvester": [WORK, CARRY, MOVE],
-            "upgrader": [MOVE,MOVE,MOVE,MOVE,MOVE,WORK,WORK,WORK,WORK,WORK,CARRY],
-            "repairer": [MOVE,MOVE,MOVE,MOVE,MOVE,WORK,WORK,WORK,WORK,WORK,CARRY],
-            "wall_repairer": [MOVE,MOVE,MOVE,MOVE,MOVE,WORK,WORK,WORK,WORK,WORK,CARRY],
-            "carrier": [MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY],
+            "upgrader": [
+                [MOVE, MOVE, MOVE, MOVE, MOVE, WORK, WORK, WORK, WORK, WORK, CARRY],
+                [MOVE, MOVE, MOVE, MOVE, WORK, WORK, WORK, WORK, CARRY],
+                [MOVE, MOVE, MOVE, WORK, WORK, WORK, CARRY],
+                [MOVE, MOVE, WORK, WORK, CARRY],
+            ],
+            "repairer": [
+                [MOVE, MOVE, MOVE, MOVE, MOVE, WORK, WORK, WORK, WORK, WORK, CARRY],
+                [MOVE, MOVE, MOVE, MOVE, WORK, WORK, WORK, WORK, CARRY],
+                [MOVE, MOVE, MOVE, WORK, WORK, WORK, CARRY],
+                [MOVE, MOVE, WORK, WORK, CARRY],
+            ],
+            "wall_repairer": [MOVE, MOVE, MOVE, MOVE, MOVE, WORK, WORK, WORK, WORK, WORK, CARRY],
+            "carrier": [
+                [MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY],
+                [MOVE, MOVE, MOVE, MOVE, MOVE, CARRY, CARRY, CARRY, CARRY, CARRY],
+                [MOVE, MOVE, MOVE, MOVE, CARRY, CARRY, CARRY, CARRY],
+                [MOVE, MOVE, MOVE, CARRY, CARRY, CARRY],
+            ],
             // "collector": [MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY],
-            "collector": [MOVE,MOVE,MOVE,CARRY,CARRY,CARRY],
-            "feeder": [MOVE,MOVE,MOVE,CARRY,CARRY,CARRY],
+            "collector": [
+                [MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY],
+                [MOVE,MOVE,MOVE,MOVE,MOVE,CARRY,CARRY,CARRY,CARRY,CARRY],
+                [MOVE,MOVE,MOVE,MOVE,CARRY,CARRY,CARRY,CARRY],
+                [MOVE, MOVE, MOVE, CARRY, CARRY, CARRY]
+            ],
+            "feeder": [
+                [MOVE, MOVE, MOVE, MOVE, MOVE,MOVE, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY],
+                [MOVE, MOVE, MOVE, MOVE, MOVE, CARRY, CARRY, CARRY, CARRY, CARRY],
+                [MOVE, MOVE, MOVE, MOVE, CARRY, CARRY, CARRY, CARRY],
+                [MOVE, MOVE, MOVE, CARRY, CARRY, CARRY]
+            ],
             // "feeder": [MOVE, MOVE, MOVE, MOVE, MOVE,MOVE, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY],
         };
         global.creepRoles = {

@@ -42,8 +42,15 @@ function logSpawing() {
 function spawn(roleName) {
     var spawn = Game.spawns['Spawn1'];
     if (spawn) {
-        var newName = Game.spawns['Spawn1'].createCreep(bodyParts[roleName], undefined, {role: roleName});
-        console.log('Spawning new ' + roleName + ' : ' + newName);
+
+        for(var i = 0; i < bodyParts[roleName].length; i ++){
+            var bodyPart = bodyParts[roleName][i];
+            if(Game.spawns['Spawn1'].canCreateCreep(bodyPart)) {
+                var result = Game.spawns['Spawn1'].createCreep(bodyParts[roleName], undefined, {role: roleName});
+                console.log('Spawning new ' + roleName + ' : ' + result);
+            }
+        }
+
     }
 }
 
