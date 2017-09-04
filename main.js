@@ -78,9 +78,9 @@ function manageDefense() {
         }
 
     }
-
-    var res = Game.rooms[tower.pos.roomName].controller.activateSafeMode();
-    console.log(res);
+    //
+    // var res = Game.rooms[tower.pos.roomName].controller.activateSafeMode();
+    // console.log(res);
 }
 
 function executeCreepBehaviour() {
