@@ -161,6 +161,7 @@ var cache = {
             });
             this.rooms.energyFedStructures[room] = energyFedStructures;
         }
+        console.log('findEnergyFedStructures: ' + energyFedStructures.length);
         var ret = [];
         for(var i in energyFedStructures){
             var structure = energyFedStructures[i];
