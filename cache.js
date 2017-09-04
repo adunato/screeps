@@ -170,6 +170,7 @@ var cache = {
             }
         }
         console.log('findEnergyFedStructures: ' + ret.length);
+        console.log('findEnergyFedStructures: ' + energyFedStructures.length);
         return ret;
     },
     getFlagRoomName: function (flagName) {
