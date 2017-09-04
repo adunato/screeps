@@ -6,6 +6,7 @@ var SquadProfile = require('SquadProfile');
 var screepsplus = require('screepsplus');
 var squads = null;
 var printStats = false;
+var printCPU = false;
 
 function clearMemory() {
     for(var i in Memory.creeps) {
@@ -187,18 +188,24 @@ function trackTickChanges() {
 }
 
 function resetCPULog(){
-    global.CPUcounter = Game.cpu.getUsed();
-    console.log("CPU reset: " + global.CPUcounter);
+    if(printCPU) {
+        global.CPUcounter = Game.cpu.getUsed();
+        console.log("CPU reset: " + global.CPUcounter);
+    }
 }
 
 function logCPU(message){
-    var currentCPU = Game.cpu.getUsed();
-    var delta = currentCPU -  global.CPUcounter;
-    global.CPUcounter = currentCPU;
-    console.log(message + ": " + delta + " - total: " + currentCPU);
+    if(printCPU) {
+        var currentCPU = Game.cpu.getUsed();
+        var delta = currentCPU - global.CPUcounter;
+        global.CPUcounter = currentCPU;
+        console.log(message + ": " + delta + " - total: " + currentCPU);
+    }
 }
 function logTotalCPU(){
-    console.log('total CPU: ' + Game.cpu.getUsed());
+    if(printCPU) {
+        console.log('total CPU: ' + Game.cpu.getUsed());
+    }
 }
 
 module.exports.loop = function () {
