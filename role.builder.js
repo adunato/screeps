@@ -28,12 +28,18 @@ var builderFSM = new statemachine.StateMachine.factory({
         onWithdraw: function () {
             var creep = Game.creeps[this.creepName];
             // creep.withdrawEnergy();
-            creep.withdrawEnergyExCarriers();
+            if(cache.getStoredEnergy(creep.room) > 1000)
+                creep.withdrawEnergyExCarriers();
+            else
+                creep.rest();
         },
         onEnergyEmpty: function () {
             var creep = Game.creeps[this.creepName];
             // creep.withdrawEnergyFromCarrier();
-            creep.withdrawEnergyExCarriers();
+            if(cache.getStoredEnergy(creep.room) > 1000)
+                creep.withdrawEnergyExCarriers();
+            else
+                creep.rest();
         },
         onBuild: function () {
             var creep = Game.creeps[this.creepName];
@@ -81,7 +87,7 @@ var roleBuilder = {
         if (creep.carry.energy > 0 && stateMachine.can("energyFull")) {
             stateMachine.energyFull();
         }
-        if ((cache.findContainersWithEnergy(creep.room).length === 0 || cache.getStoredEnergy(creep.room) < 1000) && stateMachine.can("containersEmpty")) {
+        if (cache.findContainersWithEnergy(creep.room).length === 0 && stateMachine.can("containersEmpty")) {
             stateMachine.containersEmpty();
         }
         if (cache.findSpawnWithEnergy(creep.room).length === 0 && stateMachine.can("spawnEmpty")) {
