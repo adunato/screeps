@@ -39,8 +39,8 @@ var defines = {
             "feeder": [MOVE, MOVE, MOVE, MOVE, MOVE,MOVE, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY],
         };
         global.creepRoles = {
-            "harvester": roleHarvester,
             "feeder": roleFeeder,
+            "harvester": roleHarvester,
             "collector": roleCollector,
             "upgrader": roleUpgrader,
             "carrier": roleCarrier,
