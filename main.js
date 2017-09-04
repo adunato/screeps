@@ -187,18 +187,31 @@ function trackTickChanges() {
 
 module.exports.loop = function () {
     //globals definition, every tick to refresh changes
+    var startCpu = Game.getUsedCpu();
     clearMemory();
+    console.log( 'clearMemory ' + Game.getUsedCpu() - startCpu ); // 0.2
     defines.initDefines();
+    console.log( 'initDefines ' + Game.getUsedCpu() - startCpu ); // 0.2
     cache.resetCache();
+    console.log( 'resetCache ' + Game.getUsedCpu() - startCpu ); // 0.2
     initSquads();
+    console.log( 'initSquads ' + Game.getUsedCpu() - startCpu ); // 0.2
     createSquads();
+    console.log( 'createSquads ' + Game.getUsedCpu() - startCpu ); // 0.2
     assignCreepsToSquads();
+    console.log( 'assignCreepsToSquads ' + Game.getUsedCpu() - startCpu ); // 0.2
     spawnCreeps();
+    console.log( 'spawnCreeps ' + Game.getUsedCpu() - startCpu ); // 0.2
     logSpawing();
+    console.log( 'logSpawing ' + Game.getUsedCpu() - startCpu ); // 0.2
     manageDefense();
+    console.log( 'manageDefense ' + Game.getUsedCpu() - startCpu ); // 0.2
     executeCreepBehaviour();
+    console.log( 'executeCreepBehaviour ' + Game.getUsedCpu() - startCpu ); // 0.2
     trackTickChanges();
+    console.log( 'trackTickChanges ' + Game.getUsedCpu() - startCpu ); // 0.2
     screepsplus.collect_stats();
+    console.log( 'collect_stats ' + Game.getUsedCpu() - startCpu ); // 0.2
     // Memory.squads = squads;
     console.log("tick");
 };
