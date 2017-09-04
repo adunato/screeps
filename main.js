@@ -193,6 +193,7 @@ function resetCPULog(){
 function logCPU(message){
     var currentCPU = Game.cpu.getUsed();
     var delta = currentCPU -  global.CPUcounter;
+    global.CPUcounter = currentCPU;
     console.log(message + ": " + delta + " - total: " + currentCPU);
 }
 function logTotalCPU(){
