@@ -20,6 +20,7 @@ var cache = {
         cacheAge++;
         if (cacheAge > CACHE_LIMIT) {
             cacheAge = 0;
+            console.log('reset cache');
             this.rooms.containersWithEnergy = {};
             this.rooms.constructionSites = {};
             this.rooms.sources = {};
