@@ -162,6 +162,7 @@ Creep.prototype.collector = function () {
 Creep.prototype.feedEnergy = function () {
     this.memory.selectedSource = null;
     var structures = cache.findEnergyFedStructures(this.room);
+    console.log('feedEnergy: ' + structures.length);
     if (structures.length > 0) {
         if (this.transfer(structures[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
             this.moveTo(structures[0], {visualizePathStyle: {stroke: '#ffe21f'}});
