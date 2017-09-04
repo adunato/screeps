@@ -151,7 +151,6 @@ var cache = {
 
         if (this.rooms.energyFedStructures[room] && this.rooms.energyFedStructures[room].length > 0) {
             energyFedStructures = this.rooms.energyFedStructures[room];
-            console.log('findEnergyFedStructures(cached): ' + room + ' ' + energyFedStructures.length);
         } else {
             energyFedStructures = room.find(FIND_STRUCTURES, {
                 filter: (structure) => {
@@ -160,7 +159,6 @@ var cache = {
                         structure.structureType == STRUCTURE_TOWER);
                 }
             });
-            console.log('findEnergyFedStructures(new): '  + room + ' ' +  energyFedStructures.length);
             this.rooms.energyFedStructures[room] = energyFedStructures;
         }
         var ret = [];
@@ -173,7 +171,6 @@ var cache = {
                 ret.push(structure);
             }
         }
-        console.log('ret.length: ' + ret.length);
         return ret;
     },
     getFlagRoomName: function (flagName) {

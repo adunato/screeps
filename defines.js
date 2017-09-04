@@ -49,7 +49,7 @@ var defines = {
             "builder": roleBuilder
         };
         global.squadProfiles = {
-            "FE": [["feeder", 4]],
+            "FE": [["feeder", 3]],
             "HA": [["harvester", 4]],
             "CO": [["collector", 1]],
             "BU": [["builder", 2]],
