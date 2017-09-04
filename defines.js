@@ -28,7 +28,8 @@ var defines = {
 
     initDefines: function () {
         global.bodyParts = {
-            "harvester": [MOVE,MOVE,MOVE,MOVE,MOVE,WORK,WORK,WORK,WORK,WORK,CARRY],
+            // "harvester": [MOVE,MOVE,MOVE,MOVE,MOVE,WORK,WORK,WORK,WORK,WORK,CARRY],
+            "harvester": [MOVE,MOVE,WORK,CARRY,CARRY],
             //[MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,WORK,WORK,WORK,WORK,WORK,WORK,WORK,WORK,CARRY,CARRY]
             "builder": [MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,WORK,WORK,CARRY,CARRY,CARRY,CARRY,CARRY],
             "nomad_harvester": [WORK, CARRY, MOVE],
