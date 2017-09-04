@@ -166,6 +166,9 @@ var cache = {
         var ret = [];
         for(var i in energyFedStructures){
             var structure = energyFedStructures[i];
+            console.log('structure: ' + structure);
+            console.log('structure.energy: ' + structure.energy);
+            console.log('structure.energyCapacity: ' + structure.energyCapacity);
             if(structure.energy < structure.energyCapacity){
                 ret.push(structure);
             }
