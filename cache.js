@@ -149,7 +149,7 @@ var cache = {
     findEnergyFedStructures: function (room) {
         var energyFedStructures = {};
 
-        if (this.rooms.energyFedStructures[room]) {
+        if (this.rooms.energyFedStructures[room] && this.rooms.energyFedStructures[room].length > 0) {
             energyFedStructures = this.rooms.energyFedStructures[room];
             console.log('findEnergyFedStructures(cached): ' + energyFedStructures.length);
         } else {
