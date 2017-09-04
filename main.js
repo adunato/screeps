@@ -188,6 +188,7 @@ function trackTickChanges() {
 
 function resetCPULog(){
     global.CPUcounter = Game.cpu.getUsed();
+    console.log("CPU reset: " + global.CPUcounter);
 }
 
 function logCPU(message){
