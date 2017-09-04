@@ -53,7 +53,7 @@ var defines = {
             "HA": [["harvester", 4]],
             "CO": [["collector", 1]],
             "BU": [["builder", 0]],
-            "UP": [["upgrader", 4]],
+            "UP": [["upgrader", 3]],
             "RE": [["repairer", 1]],
             "WA": [["wall_repairer", 0]],
             "CA": [["carrier", 1]],
