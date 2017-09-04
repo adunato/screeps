@@ -1,6 +1,6 @@
 var MAX_WALL_LVL = 50000;
 var cacheAge = 0;
-var CACHE_LIMIT = 3;
+var CACHE_AGE_LIMIT = 0;
 
 var cache = {
     rooms: {
@@ -18,7 +18,7 @@ var cache = {
     },
     resetCache: function () {
         cacheAge++;
-        if (cacheAge > CACHE_LIMIT) {
+        if (cacheAge > CACHE_AGE_LIMIT) {
             cacheAge = 0;
             console.log('reset cache');
             this.rooms.containersWithEnergy = {};
