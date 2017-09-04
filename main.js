@@ -9,8 +9,8 @@ var printStats = false;
 var printCPU = false;
 
 function clearMemory() {
-    for(var i in Memory.creeps) {
-        if(!Game.creeps[i]) {
+    for (var i in Memory.creeps) {
+        if (!Game.creeps[i]) {
             console.log('clearMemory: ' + i);
             delete Memory.creeps[i];
         }
@@ -65,21 +65,33 @@ function spawnCreeps() {
 
 function manageDefense() {
     var tower = Game.getObjectById('59ac621b09fb1f796231d101');
-    var room = Game.rooms[tower.pos.roomName];
     if (tower) {
-        // var closestHostile = cache.findRepairWalls(room);
-        // if (closestHostile) {
-        //     tower.attack(closestHostile);
-        //     return;
-        // }
-        var closestDamagedStructure = cache.findRepairWalls(room);
-        if (closestDamagedStructure.length > 0) {
-            tower.repair(closestDamagedStructure[0]);
+        var room = Game.rooms[tower.pos.roomName];
+        if (tower) {
+            // var closestHostile = cache.findRepairWalls(room);
+            // if (closestHostile) {
+            //     tower.attack(closestHostile);
+            //     return;
+            // }
+            var closestDamagedStructure = cache.findRepairWalls(room);
+            if (closestDamagedStructure.length > 0) {
+                tower.repair(closestDamagedStructure[0]);
+
+            }
 
         }
-
+        if (this.room.hasHostileCreeps() && !this.isEmpty()) {
+            this.attack(this.pos.findClosestByRange(this.room.getHostileCreeps()));
+        } else if (this.energy > this.energyCapacity / 2) {
+            const buildings = this.room.damagedBuildings()
+                .filter(building => building.needsTowerRepaired())
+                .sort((buildingA, buildingB) => (buildingA.hits - buildingB.hits));
+            if (buildings.length) {
+                this.repair(buildings[0]);
+            }
+        }
     }
-    //
+
     // var res = Game.rooms[tower.pos.roomName].controller.activateSafeMode();
     // console.log(res);
 }
@@ -135,8 +147,8 @@ function assignCreepsToSquads() {
 function checkSquadFromFlag(role, flagName) {
     if (flagName.startsWith(role)) {
         var squadExist = false;
-        for(var i = 0; i < squads.length; i++){
-            if(squads[i].getName() === flagName)
+        for (var i = 0; i < squads.length; i++) {
+            if (squads[i].getName() === flagName)
                 squadExist = true;
         }
         return !squadExist;
@@ -160,22 +172,22 @@ function createSquads() {
 
 
 function trackTickChanges() {
-    for(var creepName in Game.creeps) {
+    for (var creepName in Game.creeps) {
         var creep = Game.creeps[creepName];
         //harvesters
-        if(creep.memory.role === 'harvester') {
+        if (creep.memory.role === 'harvester') {
             if (creep.memory.lastTick && creep.memory.lastTick.carried_energy) {
                 //add to counter if diff is +
                 creep.memory.harvested_energy = creep.carry.energy - creep.memory.lastTick.carried_energy > 0 ? creep.carry.energy - creep.memory.lastTick.carried_energy : 0;
             }
         }
-        if(creep.memory.role === 'upgrader') {
+        if (creep.memory.role === 'upgrader') {
             if (creep.memory.lastTick && creep.memory.lastTick.carried_energy) {
                 //add to counter if diff is -
                 creep.memory.upgraded_energy = creep.carry.energy - creep.memory.lastTick.carried_energy < 0 ? (creep.carry.energy - creep.memory.lastTick.carried_energy) * -1 : 0;
             }
         }
-        if(creep.memory.role === 'builder') {
+        if (creep.memory.role === 'builder') {
             if (creep.memory.lastTick && creep.memory.lastTick.carried_energy) {
                 //add to counter if diff is -
                 creep.memory.built_energy = creep.carry.energy - creep.memory.lastTick.carried_energy < 0 ? (creep.carry.energy - creep.memory.lastTick.carried_energy) * -1 : 0;
@@ -187,23 +199,24 @@ function trackTickChanges() {
     }
 }
 
-function resetCPULog(){
-    if(printCPU) {
+function resetCPULog() {
+    if (printCPU) {
         global.CPUcounter = Game.cpu.getUsed();
         console.log("CPU reset: " + global.CPUcounter);
     }
 }
 
-function logCPU(message){
-    if(printCPU) {
+function logCPU(message) {
+    if (printCPU) {
         var currentCPU = Game.cpu.getUsed();
         var delta = currentCPU - global.CPUcounter;
         global.CPUcounter = currentCPU;
         console.log(message + ": " + delta + " - total: " + currentCPU);
     }
 }
-function logTotalCPU(){
-    if(printCPU) {
+
+function logTotalCPU() {
+    if (printCPU) {
         console.log('total CPU: ' + Game.cpu.getUsed());
     }
 }
@@ -212,29 +225,29 @@ module.exports.loop = function () {
     //globals definition, every tick to refresh changes
     resetCPULog();
     clearMemory();
-    logCPU( 'clearMemory ');
+    logCPU('clearMemory ');
     defines.initDefines();
-    logCPU( 'initDefines ');
+    logCPU('initDefines ');
     cache.resetCache();
     // logCPU( 'resetCache ');
     initSquads();
-    logCPU( 'initSquads ');
+    logCPU('initSquads ');
     createSquads();
-    logCPU( 'createSquads ');
+    logCPU('createSquads ');
     assignCreepsToSquads();
-    logCPU( 'assignCreepsToSquads ');
+    logCPU('assignCreepsToSquads ');
     spawnCreeps();
-    logCPU( 'spawnCreeps ');
+    logCPU('spawnCreeps ');
     logSpawing();
-    logCPU( 'logSpawing ');
+    logCPU('logSpawing ');
     // manageDefense();
     // logCPU( 'manageDefense ');
     executeCreepBehaviour();
-    logCPU( 'executeCreepBehaviour ');
+    logCPU('executeCreepBehaviour ');
     trackTickChanges();
-    logCPU( 'trackTickChanges ');
+    logCPU('trackTickChanges ');
     screepsplus.collect_stats();
-    logCPU( 'collect_stats ');
+    logCPU('collect_stats ');
     logTotalCPU();
     // Memory.squads = squads;
     console.log("tick");
