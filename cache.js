@@ -34,6 +34,11 @@ var cache = {
             this.rooms.creeps = {};
         }
     },
+    getStoredEnergy: function(room){
+        const containers = room.find(FIND_STRUCTURES, { filter: s => s.structureType == STRUCTURE_CONTAINER });
+        const container_energy = _.sum(containers, c => c.store.energy);
+        return container_energy;
+    },
     findContainersWithEnergy: function (room) {
         var containers = {};
         if (typeof this.rooms.containersWithEnergy[room] != "undefined") {

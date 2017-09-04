@@ -81,7 +81,7 @@ var roleBuilder = {
         if (creep.carry.energy > 0 && stateMachine.can("energyFull")) {
             stateMachine.energyFull();
         }
-        if (cache.findContainersWithEnergy(creep.room).length === 0 && stateMachine.can("containersEmpty")) {
+        if ((cache.findContainersWithEnergy(creep.room).length === 0 || cache.getStoredEnergy(creep.room) < 1000) && stateMachine.can("containersEmpty")) {
             stateMachine.containersEmpty();
         }
         if (cache.findSpawnWithEnergy(creep.room).length === 0 && stateMachine.can("spawnEmpty")) {
