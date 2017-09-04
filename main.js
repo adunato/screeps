@@ -63,11 +63,8 @@ function spawnCreeps() {
 }
 
 function manageDefense() {
-    logCPU( 'manageDefense 1');
     var tower = Game.getObjectById('59ac621b09fb1f796231d101');
-    logCPU( 'manageDefense 2');
     var room = Game.rooms[tower.pos.roomName];
-    logCPU( 'manageDefense 3');
     if (tower) {
         // var closestHostile = cache.findRepairWalls(room);
         // if (closestHostile) {
@@ -75,7 +72,6 @@ function manageDefense() {
         //     return;
         // }
         var closestDamagedStructure = cache.findRepairWalls(room);
-        logCPU( 'manageDefense 4');
         if (closestDamagedStructure.length > 0) {
             tower.repair(closestDamagedStructure[0]);
 
