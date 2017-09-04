@@ -219,10 +219,10 @@ module.exports.loop = function () {
     logCPU( 'manageDefense ');
     executeCreepBehaviour();
     logCPU( 'executeCreepBehaviour ');
-    // trackTickChanges();
-    // logCPU( 'trackTickChanges ');
-    // screepsplus.collect_stats();
-    // logCPU( 'collect_stats ');
+    trackTickChanges();
+    logCPU( 'trackTickChanges ');
+    screepsplus.collect_stats();
+    logCPU( 'collect_stats ');
     // Memory.squads = squads;
     console.log("tick");
 };
