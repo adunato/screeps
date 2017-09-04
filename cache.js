@@ -151,6 +151,7 @@ var cache = {
 
         if (typeof this.rooms.energyFedStructures[room] != "undefined") {
             energyFedStructures = this.rooms.energyFedStructures[room];
+            console.log('findEnergyFedStructures(cached): ' + energyFedStructures.length);
         } else {
             energyFedStructures = room.find(FIND_STRUCTURES, {
                 filter: (structure) => {
@@ -159,9 +160,9 @@ var cache = {
                         structure.structureType == STRUCTURE_TOWER);
                 }
             });
+            console.log('findEnergyFedStructures(new): ' + energyFedStructures.length);
             this.rooms.energyFedStructures[room] = energyFedStructures;
         }
-        console.log('findEnergyFedStructures: ' + energyFedStructures.length);
         var ret = [];
         for(var i in energyFedStructures){
             var structure = energyFedStructures[i];
