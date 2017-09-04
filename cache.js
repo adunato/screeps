@@ -156,12 +156,20 @@ var cache = {
                 filter: (structure) => {
                     return (structure.structureType == STRUCTURE_EXTENSION ||
                         structure.structureType == STRUCTURE_SPAWN ||
-                        structure.structureType == STRUCTURE_TOWER) && structure.energy < structure.energyCapacity;
+                        structure.structureType == STRUCTURE_TOWER);
                 }
             });
             this.rooms.energyFedStructures[room] = energyFedStructures;
         }
-        return energyFedStructures;
+        var ret = {};
+        for(var i = 0; i< energyFedStructures; i++){
+            var structure = energyFedStructures[i];
+            if(structure.energy < structure.energyCapacity){
+                ret.push(structure)
+            }
+        }
+
+        return ret;
     },
     getFlagRoomName: function (flagName) {
         var flagRoom = Game.flags[flagName].room;
