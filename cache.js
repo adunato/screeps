@@ -169,8 +169,8 @@ var cache = {
                 console.log('ret[i] ' + ret[i]);
             }
         }
-        console.log('findEnergyFedStructures: ' + ret.length);
-        console.log('findEnergyFedStructures: ' + energyFedStructures.length);
+        console.log('findEnergyFedStructures: ' + ret);
+        console.log('findEnergyFedStructures: ' + energyFedStructures);
         return ret;
     },
     getFlagRoomName: function (flagName) {
