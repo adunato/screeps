@@ -9,7 +9,7 @@ var harvesterFSM = new statemachine.StateMachine.factory({
         //only goToSource is gateway to harvestEnergy provided that all drop-states lead to source = null
         {name: 'sourceSelected', from: ['goToSource', 'harvestEnergy'], to: 'harvestEnergy'},
         // all drop-states are linked to account for filling up conditions + rest
-        {name: 'energyFull', from: ['harvestEnergy', 'rest','dropCollector', 'dropEnergy'], to: 'dropCollector'},
+        {name: 'energyFull', from: ['harvestEnergy', 'rest','dropCollector', 'dropEnergy','feedEnergy'], to: 'dropCollector'},
         {name: 'collectorFull', from: ['feedEnergy', 'dropCollector'], to: 'feedEnergy'},
         {name: 'energyFedStructuresFull', from: ['feedEnergy', 'dropEnergy'], to: 'dropEnergy'},
         //rest is connected only to last drop-state in 'no place where to drop' scenario
