@@ -161,16 +161,13 @@ var cache = {
             });
             this.rooms.energyFedStructures[room] = energyFedStructures;
         }
-        var ret = {};
+        var ret = [];
         for(var i in energyFedStructures){
             var structure = energyFedStructures[i];
             if(structure.energy < structure.energyCapacity){
-                ret[i] = structure;
-                console.log('ret[i] ' + ret[i]);
+                ret.push(structure);
             }
         }
-        console.log('findEnergyFedStructures: ' + ret);
-        console.log('findEnergyFedStructures: ' + energyFedStructures);
         return ret;
     },
     getFlagRoomName: function (flagName) {
