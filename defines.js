@@ -31,7 +31,8 @@ var defines = {
             // "harvester": [MOVE,MOVE,MOVE,MOVE,MOVE,WORK,WORK,WORK,WORK,WORK,CARRY],
             "harvester": [MOVE,MOVE,WORK,CARRY,CARRY],
             //[MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,WORK,WORK,WORK,WORK,WORK,WORK,WORK,WORK,CARRY,CARRY]
-            "builder": [MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,WORK,WORK,CARRY,CARRY,CARRY,CARRY,CARRY],
+            "builder": [MOVE,MOVE,WORK,CARRY,CARRY],
+            // "builder": [MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,WORK,WORK,CARRY,CARRY,CARRY,CARRY,CARRY],
             "nomad_harvester": [WORK, CARRY, MOVE],
             "upgrader": [MOVE,MOVE,MOVE,MOVE,MOVE,WORK,WORK,WORK,WORK,WORK,CARRY],
             "repairer": [MOVE,MOVE,MOVE,MOVE,MOVE,WORK,WORK,WORK,WORK,WORK,CARRY],
@@ -56,8 +57,8 @@ var defines = {
             "HA": [["harvester", 4]],
             "CO": [["collector", 1]],
             "BU": [["builder", 2]],
-            "UP": [["upgrader", 1]],
-            "RE": [["repairer", 1]],
+            "UP": [["upgrader", 0]],
+            "RE": [["repairer", 0]],
             "WA": [["wall_repairer", 0]],
             "CA": [["carrier", 1]],
         };
