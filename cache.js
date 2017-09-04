@@ -1,4 +1,6 @@
 var MAX_WALL_LVL = 50000;
+var cacheAge = 0;
+var CACHE_LIMIT = 3;
 
 var cache = {
     rooms: {
@@ -15,17 +17,21 @@ var cache = {
         carrierFlags: {}
     },
     resetCache: function () {
-        this.rooms.containersWithEnergy = {};
-        this.rooms.constructionSites = {};
-        this.rooms.sources = {};
-        this.rooms.energyContainers = {};
-        this.rooms.spawnsWithEnergy = {};
-        this.rooms.controllers = {};
-        this.rooms.repairStructures = {};
-        this.rooms.repairWalls = {};
-        this.rooms.energyFedStructures = {};
-        this.rooms.carrierFlags = {};
-        this.rooms.creeps = {};
+        cacheAge++;
+        if (cacheAge > CACHE_LIMIT) {
+            cacheAge = 0;
+            this.rooms.containersWithEnergy = {};
+            this.rooms.constructionSites = {};
+            this.rooms.sources = {};
+            this.rooms.energyContainers = {};
+            this.rooms.spawnsWithEnergy = {};
+            this.rooms.controllers = {};
+            this.rooms.repairStructures = {};
+            this.rooms.repairWalls = {};
+            this.rooms.energyFedStructures = {};
+            this.rooms.carrierFlags = {};
+            this.rooms.creeps = {};
+        }
     },
     findContainersWithEnergy: function (room) {
         var containers = {};
@@ -43,9 +49,9 @@ var cache = {
     },
     findCarriersWithEnergy: function (room) {
         var carriers = [];
-        for(var i = 0; i < this.getCreepsInRoom(room).length; i++){
+        for (var i = 0; i < this.getCreepsInRoom(room).length; i++) {
             var creep = this.getCreepsInRoom(room)[i];
-            if(creep.carry.energy > 0 && creep.memory.role === "carrier"){
+            if (creep.carry.energy > 0 && creep.memory.role === "carrier") {
                 carriers.push(creep);
             }
         }
@@ -53,9 +59,9 @@ var cache = {
     },
     findEmptyCollectors: function (room) {
         var collectors = [];
-        for(var i = 0; i < this.getCreepsInRoom(room).length; i++){
+        for (var i = 0; i < this.getCreepsInRoom(room).length; i++) {
             var creep = this.getCreepsInRoom(room)[i];
-            if(creep.carry.energy < creep.carryCapacity && creep.memory.role === "collector"){
+            if (creep.carry.energy < creep.carryCapacity && creep.memory.role === "collector") {
                 collectors.push(creep);
             }
         }
@@ -109,8 +115,8 @@ var cache = {
             repairWalls = this.rooms.repairWalls[room];
         } else {
             repairWalls = room.find(FIND_STRUCTURES, {
-                filter : (structure) => {
-                return (structure.structureType === STRUCTURE_WALL || structure.structureType === STRUCTURE_RAMPART) && structure.hits < MAX_WALL_LVL;
+                filter: (structure) => {
+                    return (structure.structureType === STRUCTURE_WALL || structure.structureType === STRUCTURE_RAMPART) && structure.hits < MAX_WALL_LVL;
                 }
             });
             this.rooms.repairWalls[room] = repairWalls;
@@ -156,18 +162,18 @@ var cache = {
                 filter: (structure) => {
                     return (structure.structureType == STRUCTURE_EXTENSION ||
                         structure.structureType == STRUCTURE_SPAWN);
-                        // || structure.structureType == STRUCTURE_TOWER);
+                    // || structure.structureType == STRUCTURE_TOWER);
                 }
             });
             this.rooms.energyFedStructures[room] = energyFedStructures;
         }
         var ret = [];
-        for(var i in energyFedStructures){
+        for (var i in energyFedStructures) {
             var structure = energyFedStructures[i];
             // console.log('structure: ' + structure);
             // console.log('structure.energy: ' + structure.energy);
             // console.log('structure.energyCapacity: ' + structure.energyCapacity);
-            if(structure.energy < structure.energyCapacity){
+            if (structure.energy < structure.energyCapacity) {
                 ret.push(structure);
             }
         }
