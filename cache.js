@@ -173,6 +173,7 @@ var cache = {
                 ret.push(structure);
             }
         }
+        console.log('ret.length: ' + ret.length);
         return ret;
     },
     getFlagRoomName: function (flagName) {
