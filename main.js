@@ -201,7 +201,7 @@ module.exports.loop = function () {
     logCPU( 'clearMemory ');
     defines.initDefines();
     logCPU( 'initDefines ');
-    cache.resetCache();
+    // cache.resetCache();
     logCPU( 'resetCache ');
     initSquads();
     logCPU( 'initSquads ');
