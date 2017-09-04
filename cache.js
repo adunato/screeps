@@ -168,7 +168,7 @@ var cache = {
                 ret.push(structure)
             }
         }
-
+        console.log('findEnergyFedStructures: ' + ret.length);
         return ret;
     },
     getFlagRoomName: function (flagName) {
