@@ -193,8 +193,7 @@ function resetCPULog(){
 function logCPU(message){
     var currentCPU = Game.cpu.getUsed();
     var delta = currentCPU -  global.CPUcounter;
-    // console.log(message + ": " + delta);
-    resetCPULog();
+    console.log(message + ": " + delta);
 }
 
 module.exports.loop = function () {
