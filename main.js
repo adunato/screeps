@@ -195,6 +195,9 @@ function logCPU(message){
     var delta = currentCPU -  global.CPUcounter;
     console.log(message + ": " + delta);
 }
+function logTotalCPU(){
+    console.log('total CPU: ' + Game.cpu.getUsed());
+}
 
 module.exports.loop = function () {
     //globals definition, every tick to refresh changes
@@ -219,6 +222,7 @@ module.exports.loop = function () {
     logCPU( 'manageDefense ');
     executeCreepBehaviour();
     logCPU( 'executeCreepBehaviour ');
+    logTotalCPU();
     // trackTickChanges();
     // logCPU( 'trackTickChanges ');
     // screepsplus.collect_stats();
