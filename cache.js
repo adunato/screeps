@@ -164,6 +164,7 @@ var cache = {
         var ret = {};
         for(var i in energyFedStructures){
             var structure = energyFedStructures[i];
+            console.log('structure ' + structure);
             if(structure.energy < structure.energyCapacity){
                 ret[i] = structure;
             }
