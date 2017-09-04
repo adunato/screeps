@@ -137,10 +137,22 @@ Creep.prototype.harvestEnergy = function () {
 
 Creep.prototype.dropEnergy = function () {
     this.memory.selectedSource = null;
+
     var structures = cache.findEnergyContainers(this.room);
     if (structures.length > 0) {
-        if (this.transfer(structures[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-            this.moveTo(structures[0], {visualizePathStyle: {stroke: '#ffda00'}});
+        var minDistance = 1000;
+        var structure = null;
+        for (var i = 0; i < structures.length; i++) {
+            var distance = this.room.findPath(this.pos, structures[i].pos).length;
+            if (distance < minDistance) {
+                structure = structures[i];
+                minDistance = distance;
+            }
+        }
+        if (!structure)
+            return;
+        if (this.transfer(structure, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+            this.moveTo(structure, {visualizePathStyle: {stroke: '#0027ff'}});
         }
     }
 };

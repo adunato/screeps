@@ -29,7 +29,7 @@ var defines = {
     initDefines: function () {
         global.bodyParts = {
             "harvester": [MOVE,MOVE,MOVE,MOVE,WORK,WORK,WORK,WORK,CARRY],
-            "builder": [MOVE,MOVE,MOVE,MOVE,MOVE,WORK,WORK,WORK,WORK,WORK,CARRY],
+            "builder": [MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,WORK,WORK,CARRY,CARRY,CARRY,CARRY,CARRY],
             "nomad_harvester": [WORK, CARRY, MOVE],
             "upgrader": [MOVE,MOVE,MOVE,MOVE,MOVE,WORK,WORK,WORK,WORK,WORK,CARRY],
             "repairer": [MOVE,MOVE,MOVE,MOVE,MOVE,WORK,WORK,WORK,WORK,WORK,CARRY],
@@ -52,7 +52,7 @@ var defines = {
             "FE": [["feeder", 1]],
             "HA": [["harvester", 4]],
             "CO": [["collector", 1]],
-            "BU": [["builder", 1]],
+            "BU": [["builder", 2]],
             "UP": [["upgrader", 1]],
             "RE": [["repairer", 1]],
             "WA": [["wall_repairer", 0]],
