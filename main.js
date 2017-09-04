@@ -67,27 +67,12 @@ function manageDefense() {
     var tower = Game.getObjectById('59ac621b09fb1f796231d101');
     if (tower) {
         var room = Game.rooms[tower.pos.roomName];
-        if (tower) {
-            // var closestHostile = cache.findRepairWalls(room);
-            // if (closestHostile) {
-            //     tower.attack(closestHostile);
-            //     return;
-            // }
+        if (room.find(FIND_HOSTILE_CREEPS)) {
+            this.attack(this.pos.findClosestByRange(room.find(FIND_HOSTILE_CREEPS)));
+        } else if (this.energy > this.energyCapacity / 2) {
             var closestDamagedStructure = cache.findRepairWalls(room);
             if (closestDamagedStructure.length > 0) {
                 tower.repair(closestDamagedStructure[0]);
-
-            }
-
-        }
-        if (this.room.hasHostileCreeps() && !this.isEmpty()) {
-            this.attack(this.pos.findClosestByRange(this.room.getHostileCreeps()));
-        } else if (this.energy > this.energyCapacity / 2) {
-            const buildings = this.room.damagedBuildings()
-                .filter(building => building.needsTowerRepaired())
-                .sort((buildingA, buildingB) => (buildingA.hits - buildingB.hits));
-            if (buildings.length) {
-                this.repair(buildings[0]);
             }
         }
     }
