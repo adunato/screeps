@@ -162,10 +162,10 @@ var cache = {
             this.rooms.energyFedStructures[room] = energyFedStructures;
         }
         var ret = {};
-        for(var i = 0; i< energyFedStructures; i++){
+        for(var i in energyFedStructures){
             var structure = energyFedStructures[i];
             if(structure.energy < structure.energyCapacity){
-                ret.push(structure)
+                ret[i] = structure;
             }
         }
         console.log('findEnergyFedStructures: ' + ret.length);
