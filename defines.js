@@ -95,8 +95,8 @@ var defines = {
             "HA": [["harvester", 4]],
             "CO": [["collector", 1]],
             "BU": [["builder", 2]],
-            "UP": [["upgrader", 0]],
-            "RE": [["repairer", 0]],
+            "UP": [["upgrader", 1]],
+            "RE": [["repairer", 1]],
             "WA": [["wall_repairer", 0]],
             "CA": [["carrier", 1]],
         };
