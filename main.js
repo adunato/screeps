@@ -227,8 +227,8 @@ module.exports.loop = function () {
     logCPU( 'spawnCreeps ');
     logSpawing();
     logCPU( 'logSpawing ');
-    manageDefense();
-    logCPU( 'manageDefense ');
+    // manageDefense();
+    // logCPU( 'manageDefense ');
     executeCreepBehaviour();
     logCPU( 'executeCreepBehaviour ');
     trackTickChanges();
