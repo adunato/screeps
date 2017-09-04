@@ -188,6 +188,7 @@ function trackTickChanges() {
 module.exports.loop = function () {
     //globals definition, every tick to refresh changes
     var startCpu =Game.cpu.getUsed();
+    console.log("start CPU " + startCpu);
     clearMemory();
     console.log( 'clearMemory ' +Game.cpu.getUsed() - startCpu ); // 0.2
     defines.initDefines();
