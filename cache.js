@@ -112,7 +112,6 @@ var cache = {
     findRepairWalls: function (room) {
         var repairWalls = {};
         if (typeof this.rooms.repairWalls[room] != "undefined") {
-            console.log('findRepairWalls - cached results');
             repairWalls = this.rooms.repairWalls[room];
         } else {
             repairWalls = room.find(FIND_STRUCTURES, {
@@ -121,7 +120,6 @@ var cache = {
                 }
             });
             this.rooms.repairWalls[room] = repairWalls;
-            console.log('findRepairWalls - new results');
         }
         return repairWalls;
     },
