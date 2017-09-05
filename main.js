@@ -12,7 +12,7 @@ var screepsplus = require('screepsplus');
 var squads = null;
 var squadsIndex = {};
 var printStats = false;
-var printCPU = false;
+var printCPU = true;
 
 function clearMemory() {
     for (var i in Memory.creeps) {
