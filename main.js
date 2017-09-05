@@ -11,7 +11,7 @@ var SquadProfile = require('SquadProfile');
 var screepsplus = require('screepsplus');
 var squads = null;
 var printStats = false;
-var printCPU = false;
+var printCPU = true;
 
 function clearMemory() {
     for (var i in Memory.creeps) {
@@ -106,7 +106,7 @@ function executeCreepBehaviour() {
         for (var role in creepRoles) {
             if (creep.memory.role == role) {
                 creepRoles[role].run(creep);
-                // logCPU("executeCreepBehaviour - " + role)
+                logCPU("executeCreepBehaviour - " + role)
             }
         }
     }
