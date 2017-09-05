@@ -5,15 +5,7 @@ Creep.prototype.withdrawEnergy = function () {
     var carriers = cache.findCarriersWithEnergy(this.room);
     var energySources = containers.concat(carriers);
     if (energySources.length > 0) {
-        var minDistance = 1000;
-        var energySource = null;
-        for (var i = 0; i < energySources.length; i++) {
-            var distance = this.room.findPath(this.pos, energySources[i].pos).length;
-            if (distance < minDistance) {
-                energySource = energySources[i];
-                minDistance = distance;
-            }
-        }
+        var energySource = this.getNearestByPath(energySources);
         if (!energySource)
             return;
         if (energySource.transfer(this, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
@@ -116,19 +108,23 @@ Creep.prototype.dropEnergyToCollector = function () {
     }
 };
 
-Creep.prototype.selectSource = function () {
-    var sources = cache.findSources(this.room);
-    var selectedSource = null;
+Creep.prototype.getNearestByPath = function(objects){
+    var selectedObject = null;
     var minDistance = 1000;
-    for (var i = 0; i < sources.length; i++) {
-        var distance = this.room.findPath(this.pos, sources[i].pos).length;
+    for (var i = 0; i < objects.length; i++) {
+        var distance = this.room.findPath(this.pos, objects[i].pos).length;
         if (distance < minDistance) {
-            if (sources[i].getAvailableWithdrawingSlots() > 0) {
-                selectedSource = sources[i];
+            if (objects[i].getAvailableWithdrawingSlots() > 0) {
+                selectedObject = objects[i];
                 minDistance = distance;
             }
         }
     }
+};
+
+Creep.prototype.selectSource = function () {
+    var sources = cache.findSources(this.room);
+    var selectedSource = this.getNearestByPath(sources);
     if (selectedSource)
         this.memory.selectedSource = selectedSource.id;
 };
@@ -220,8 +216,9 @@ Creep.prototype.buildConstruction = function () {
 Creep.prototype.repairConstruction = function () {
     var repairConstructions = cache.findRepairStructures(this.room);
     if (repairConstructions.length) {
-        if (this.repair(repairConstructions[0]) == ERR_NOT_IN_RANGE) {
-            this.moveTo(repairConstructions[0], {visualizePathStyle: {stroke: '#14ff00'}});
+        var construction = this.getNearestByPath(repairConstructions);
+        if (this.repair(construction) == ERR_NOT_IN_RANGE) {
+            this.moveTo(construction, {visualizePathStyle: {stroke: '#14ff00'}});
         }
     }
 };
