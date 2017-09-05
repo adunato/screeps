@@ -43,7 +43,7 @@ var roledefender = {
             creepState = "squad_rally";
         var stateMachine = new defenderFSM(creep.name, creepState);
         stateMachine.goto(creepState);
-        if (creep.room.find(FIND_HOSTILE_CREEPS)) {
+        if (creep.room.find(FIND_HOSTILE_CREEPS).length > 0) {
             console.log("found enemies");
             stateMachine.enemies();
         } else {
