@@ -24,6 +24,7 @@ Squad.prototype.needCreepRole = function (creepRole) {
     }
     console.log("creepRole: " + creepRole);
     console.log("creepQuantity < profileQuantity: " + creepQuantity < profileQuantity);
+    console.log("creepQuantity: " + creepQuantity);
     return (creepQuantity < profileQuantity);
 };
 
