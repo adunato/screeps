@@ -1,4 +1,4 @@
-var MAX_WALL_LVL = 70000;
+var MAX_WALL_LVL = 30000;
 var cacheAge = 0;
 var CACHE_AGE_LIMIT = 0;
 
@@ -168,6 +168,7 @@ var cache = {
     },
 
     findRepairWalls: function (room) {
+        console.log();
         var repairWalls = {};
         if (typeof this.rooms.repairWalls[room] != "undefined") {
             repairWalls = this.rooms.repairWalls[room];
