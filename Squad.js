@@ -27,7 +27,13 @@ Squad.prototype.needCreepRole = function (creepRole) {
 
 
 Squad.prototype.getCreepQuantityWithRole = function (creepRole) {
-    return this.creeps.length;
+    var ret = 0;
+    for(var i = 0; i < this.creeps.length; i++){
+        if(this.creeps[i].hits > 100){
+            ret++
+        }
+    }
+    return ret;
     // var ret = 0;
     // for (var i = 0; i < this.creeps.length; i++) {
     //     var creep = this.creeps[i];
