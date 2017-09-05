@@ -1,4 +1,4 @@
-var MAX_WALL_LVL = 30000;
+var MAX_WALL_LVL = 2;
 var cacheAge = 0;
 var CACHE_AGE_LIMIT = 0;
 
