@@ -59,7 +59,7 @@ var roleCarrier = {
         if (cache.findSourceContainersWithEnergy(creep.room).length > 0 && stateMachine.can("sourceFull")) {
             stateMachine.sourceFull();
         }
-        if (cache.findSourceContainersWithEnergy(creep.room).length === 0 && stateMachine.can("nothingToDo")) {
+        if ((cache.findSourceContainersWithEnergy(creep.room).length === 0 || cache.findEmptyDestinationContainers(cree.room) === 0)&& stateMachine.can("nothingToDo")) {
             stateMachine.nothingToDo();
         }
         if (creep.carry.energy === creep.carryCapacity && cache.findEmptyDestinationContainers(creep.room).length > 0 && stateMachine.can("creepFull")) {
