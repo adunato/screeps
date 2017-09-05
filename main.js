@@ -120,7 +120,7 @@ function assignCreepsToSquads() {
             }
         }
         else {
-            if(!squadsIndex[creep.memory.squad].hasCreep(creep))
+            if(squadsIndex[creep.memory.squad] && !squadsIndex[creep.memory.squad].hasCreep(creep))
                 squadsIndex[creep.memory.squad].addCreep(creep);
         }
     }
