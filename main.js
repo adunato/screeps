@@ -65,17 +65,27 @@ function spawn(roleName) {
 
 function spawnCreeps() {
 
-    for (var profileName in global.squadProfiles) {
-        for (var i = 0; i < squads[profileName].length; i++) {
-            var squad = squads[profileName][i];
-            for (var roleName in global.creepRoles) {
-                if (squad.needCreepRole(roleName)) {
-                    spawn(roleName);
-                    return;
-                }
+    for (var roleName in global.creepRoles) {
+        for (var squadName in squadsIndex) {
+            var squad = squadsIndex[squadName];
+            if (squad.needCreepRole(roleName)) {
+                spawn(roleName);
+                return;
             }
         }
     }
+
+    // for (var profileName in global.squadProfiles) {
+    //     for (var i = 0; i < squads[profileName].length; i++) {
+    //         var squad = squads[profileName][i];
+    //         for (var roleName in global.creepRoles) {
+    //             if (squad.needCreepRole(roleName)) {
+    //                 spawn(roleName);
+    //                 return;
+    //             }
+    //         }
+    //     }
+    // }
 
 }
 
