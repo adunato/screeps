@@ -168,7 +168,7 @@ Creep.prototype.squadRally = function () {
 };
 
 Creep.prototype.attackEnemies = function () {
-    var target = this.pos.findClosestByPath(this.find(FIND_HOSTILE_CREEPS));
+    var target = this.pos.findClosestByPath(this.room.find(FIND_HOSTILE_CREEPS));
     if(target) {
         if (this.attack(target) === ERR_NOT_IN_RANGE) {
             this.move(target);
