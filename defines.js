@@ -126,8 +126,8 @@ var defines = {
             '59ac07c241f3ed2ac5324b0a'
         ];
         global.destinationContainers = [
-            '59aab3b0b08c1b0fa81a4370',
-            '59ae529fbd28427f15402b36'
+            '59ae529fbd28427f15402b36',//tower
+            '59aab3b0b08c1b0fa81a4370',//central
         ];
     }
 
