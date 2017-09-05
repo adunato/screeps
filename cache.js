@@ -168,6 +168,7 @@ var cache = {
     },
 
     findRepairWalls: function (room) {
+        console.log(MAX_WALL_LVL);
         var repairWalls = {};
         if (typeof this.rooms.repairWalls[room] != "undefined") {
             repairWalls = this.rooms.repairWalls[room];
