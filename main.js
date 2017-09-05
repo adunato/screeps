@@ -120,6 +120,7 @@ function assignCreepToSquad(creep) {
         //iterate squads
         for (var i = 0; i < squads[squadRole].length; i++) {
             var squad = squads[squadRole][i];
+            console.log("squad: " + squad.getName());
             if (squad.needCreep(creep)) {
                 squad.addCreep(creep);
                 creep.memory.squad = squad.getName();
