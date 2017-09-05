@@ -48,7 +48,6 @@ var carrierFSM = new statemachine.StateMachine.factory({
 var roleCarrier = {
     /** @param {Creep} creep **/
     run: function (creep) {
-        return;
         var creepState = creep.memory.state;
         if (typeof creepState === "undefined")
             creepState = "rest";
