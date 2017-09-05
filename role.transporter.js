@@ -53,13 +53,13 @@ var roleCarrier = {
             creepState = "rest";
         var stateMachine = new carrierFSM(creep.name, "rest");
         stateMachine.goto(creepState);
-        if (creep.timeToDie() && creep.carry.energy === 0 && cache.findEmptyDestinationContainers(creep.room).length > 0 && stateMachine.can("timeToDie")){
+        if (creep.timeToDie() && creep.carry.energy === 0 && stateMachine.can("timeToDie")){
             stateMachine.timeToDie();
         }
         if (cache.findSourceContainersWithEnergy(creep.room).length > 0 && stateMachine.can("sourceFull")) {
             stateMachine.sourceFull();
         }
-        if (creep.carry.energy === creep.carryCapacity && stateMachine.can("creepFull")) {
+        if (creep.carry.energy === creep.carryCapacity && cache.findEmptyDestinationContainers(creep.room).length > 0 && stateMachine.can("creepFull")) {
             stateMachine.creepFull();
         }
         creep.memory.state = stateMachine.state;
