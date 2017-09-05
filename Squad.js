@@ -27,13 +27,14 @@ Squad.prototype.needCreepRole = function (creepRole) {
 
 
 Squad.prototype.getCreepQuantityWithRole = function (creepRole) {
-    var ret = 0;
-    for (var i = 0; i < this.creeps.length; i++) {
-        var creep = this.creeps[i];
-        if (creep.memory.role === creepRole)
-            ret++;
-    }
-    return ret;
+    return this.creeps.length;
+    // var ret = 0;
+    // for (var i = 0; i < this.creeps.length; i++) {
+    //     var creep = this.creeps[i];
+    //     if (creep.memory.role === creepRole)
+    //         ret++;
+    // }
+    // return ret;
 };
 
 Squad.prototype.getName = function () {
