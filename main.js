@@ -139,14 +139,16 @@ function assignCreepsToSquads() {
             }
         }
         else {
-            for (var squadRole in squads) {
-                var squadRoles = squads[squadRole];
-                for (var n = 0; n < squadRoles.length; n++) {
-                    if (squadRoles[n].getName() === creep.memory.squad && !squadRoles[n].hasCreep(creep)) {
-                        squadRoles[n].addCreep(creep);
-                    }
-                }
-            }
+            if(!squadsIndex[creep.memory.squad].hasCreep(creep))
+                squadsIndex[creep.memory.squad].addCreep(creep);
+            // for (var squadRole in squads) {
+            //     var squadRoles = squads[squadRole];
+            //     for (var n = 0; n < squadRoles.length; n++) {
+            //         if (squadRoles[n].getName() === creep.memory.squad && !squadRoles[n].hasCreep(creep)) {
+            //             squadRoles[n].addCreep(creep);
+            //         }
+            //     }
+            // }
         }
     }
 }
