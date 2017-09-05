@@ -50,8 +50,8 @@ var roleCarrier = {
     run: function (creep) {
         var creepState = creep.memory.state;
         if (typeof creepState === "undefined")
-            creepState = "rest";
-        var stateMachine = new carrierFSM(creep.name, "rest");
+            creepState = "nothingToDo";
+        var stateMachine = new carrierFSM(creep.name, "nothingToDo");
         stateMachine.goto(creepState);
         if (creep.timeToDie() && creep.carry.energy === 0 && stateMachine.can("timeToDie")){
             stateMachine.timeToDie();
