@@ -5,7 +5,7 @@ Creep.prototype.withdrawEnergy = function () {
     var carriers = cache.findCarriersWithEnergy(this.room);
     var energySources = containers.concat(carriers);
     if (energySources.length > 0) {
-        var energySource = this.getNearestByPath(energySources);
+        var energySource = this.getNearestStructureByDistance(energySources);
         if (!energySource)
             return;
         if (energySource.transfer(this, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
@@ -121,9 +121,13 @@ Creep.prototype.getNearestByPath = function(objects){
     return selectedObject;
 };
 
+Creep.prototype.getNearestStructureByDistance = function(objects){
+    return this.room.pos.findClosestByRange(FIND_STRUCTURES, objects);
+};
+
 Creep.prototype.selectSource = function () {
     var sources = cache.findSources(this.room);
-    var selectedSource = this.getNearestByPath(sources);
+    var selectedSource = this.getNearestStructureByDistance(sources);
     if (selectedSource)
         this.memory.selectedSource = selectedSource.id;
 };
@@ -215,8 +219,7 @@ Creep.prototype.buildConstruction = function () {
 Creep.prototype.repairConstruction = function () {
     var repairConstructions = cache.findRepairStructures(this.room);
     if (repairConstructions.length) {
-        //var construction = this.getNearestByPath(repairConstructions);
-        var construction = repairConstructions[0];
+        var construction = this.getNearestStructureByDistance(repairConstructions);
         if (this.repair(construction) == ERR_NOT_IN_RANGE) {
             this.moveTo(construction, {visualizePathStyle: {stroke: '#14ff00'}});
         }
