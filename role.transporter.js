@@ -26,7 +26,7 @@ var carrierFSM = new statemachine.StateMachine.factory({
         },
         onDropDestination: function () {
             var creep = Game.creeps[this.creepName];
-            creep.dropToDestination();
+            creep.dropToDestinationContainer();
         },
         onRest: function () {
             var creep = Game.creeps[this.creepName];

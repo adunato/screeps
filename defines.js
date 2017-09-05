@@ -7,6 +7,7 @@ var roleCarrier = require('role.carrier');
 var roleCollector = require('role.collector');
 var roleFeeder = require('role.feeder');
 var roleDefender = require('role.defender');
+var roleTransporter = require('role.transporter');
 var roleNomadHarvester = require('role.nomad_harvester');
 
 
@@ -70,6 +71,12 @@ var defines = {
                 [MOVE,MOVE,MOVE,MOVE,CARRY,CARRY,CARRY,CARRY],
                 [MOVE, MOVE, MOVE, CARRY, CARRY, CARRY]
             ],
+            "transporter": [
+                [MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY],
+                [MOVE, MOVE, MOVE, MOVE, MOVE, CARRY, CARRY, CARRY, CARRY, CARRY],
+                [MOVE, MOVE, MOVE, MOVE, CARRY, CARRY, CARRY, CARRY],
+                [MOVE, MOVE, MOVE, CARRY, CARRY, CARRY],
+            ],
             "feeder": [
                 [MOVE, MOVE, MOVE, MOVE, MOVE,MOVE, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY],
                 [MOVE, MOVE, MOVE, MOVE, MOVE, CARRY, CARRY, CARRY, CARRY, CARRY],
@@ -99,6 +106,7 @@ var defines = {
             "repairer": roleRepairer,
             "builder": roleBuilder,
             "defender": roleDefender,
+            "transporter": roleTransporter,
         };
         global.squadProfiles = {
             "FE": [["feeder", 2]],
@@ -110,6 +118,7 @@ var defines = {
             "WA": [["wall_repairer", 0]],
             "CA": [["carrier", 1]],
             "DE": [["defender", 1]],
+            "TR": [["transporter", 1]],
         };
         global.allowedToSpawnWithdraw = false;
         global.sourceContainers = [

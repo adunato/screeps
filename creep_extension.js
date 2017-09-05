@@ -64,6 +64,37 @@ Creep.prototype.withdrawEnergyFromSpawn = function () {
     }
 };
 
+Creep.prototype.dropToDestinations = function (destinations) {
+    if (destinations.length > 0) {
+        var minDistance = 1000;
+        var structure = null;
+        for (var i = 0; i < destinations.length; i++) {
+            var distance = this.room.findPath(this.pos, destinations[i].pos).length;
+            if (distance < minDistance) {
+                structure = destinations[i];
+                minDistance = distance;
+            }
+        }
+        if (!structure)
+            return;
+        if (this.transfer(structure, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+            this.moveTo(structure, {visualizePathStyle: {stroke: '#0027ff'}});
+        }
+    }
+};
+
+Creep.prototype.dropToDestinationContainer = function () {
+    this.memory.selectedSource = null;
+    var structures = cache.findEmptyDestinationContainers(this.room);
+    return this.dropToDestinations(structures);
+};
+
+Creep.prototype.dropEnergy = function () {
+    this.memory.selectedSource = null;
+    var structures = cache.findEnergyContainers(this.room);
+    return this.dropToDestinations(structures);
+};
+
 Creep.prototype.dropEnergyToCollector = function () {
     this.memory.selectedSource = null;
     var collectors = cache.findEmptyCollectors(this.room);
@@ -141,28 +172,6 @@ Creep.prototype.attackEnemies = function () {
     if(target) {
         if (this.attack(target) === ERR_NOT_IN_RANGE) {
             this.move(target);
-        }
-    }
-};
-
-Creep.prototype.dropEnergy = function () {
-    this.memory.selectedSource = null;
-
-    var structures = cache.findEnergyContainers(this.room);
-    if (structures.length > 0) {
-        var minDistance = 1000;
-        var structure = null;
-        for (var i = 0; i < structures.length; i++) {
-            var distance = this.room.findPath(this.pos, structures[i].pos).length;
-            if (distance < minDistance) {
-                structure = structures[i];
-                minDistance = distance;
-            }
-        }
-        if (!structure)
-            return;
-        if (this.transfer(structure, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-            this.moveTo(structure, {visualizePathStyle: {stroke: '#0027ff'}});
         }
     }
 };
