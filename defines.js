@@ -132,8 +132,8 @@ var defines = {
         };
         global.allowedToSpawnWithdraw = false;
         global.sourceContainers = [
-            '59ac07c241f3ed2ac5324b0a',
-            '59ae4aea33f29c3b855f02c0',
+            // '59ac07c241f3ed2ac5324b0a',
+            // '59ae4aea33f29c3b855f02c0',
         ];
         global.destinationContainers = [
             '59ae529fbd28427f15402b36',//tower
