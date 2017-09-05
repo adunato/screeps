@@ -245,7 +245,7 @@ module.exports.loop = function () {
     // logCPU('executeCreepBehaviour ');
     // trackTickChanges();
     // logCPU('trackTickChanges ');
-    // screepsplus.collect_stats();
+     screepsplus.collect_stats();
     // logCPU('collect_stats ');
     // logTotalCPU();
     // // Memory.squads = squads;
