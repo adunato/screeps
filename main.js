@@ -82,10 +82,11 @@ function manageDefense() {
             var closestDamagedRampart = cache.findRepairRamparts(room);
             if (closestDamagedRampart.length > 0) {
                 tower.repair(closestDamagedRampart[0]);
-            }
-            var closestDamagedWall = cache.findRepairWalls(room);
-            if (closestDamagedWall.length > 0) {
-                tower.repair(closestDamagedWall[0]);
+            } else {
+                var closestDamagedWall = cache.findRepairWalls(room);
+                if (closestDamagedWall.length > 0) {
+                    tower.repair(closestDamagedWall[0]);
+                }
             }
         }
     }
