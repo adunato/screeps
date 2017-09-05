@@ -228,7 +228,7 @@ function logTotalCPU() {
 module.exports.loop = function () {
     //globals definition, every tick to refresh changes
     resetCPULog();
-    clearMemory();
+    // clearMemory();
     logCPU('clearMemory ');
      defines.initDefines();
     logCPU('initDefines ');
