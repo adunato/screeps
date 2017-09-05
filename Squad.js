@@ -31,6 +31,8 @@ Squad.prototype.getCreepQuantityWithRole = function (creepRole) {
     for(var i = 0; i < this.creeps.length; i++){
         if(this.creeps[i].hits > 100){
             ret++
+        } else {
+            console.log(this.creeps[i].name + ' is about to die of age');
         }
     }
     return ret;
