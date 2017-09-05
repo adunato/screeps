@@ -59,6 +59,9 @@ var roleCarrier = {
         if (cache.findSourceContainersWithEnergy(creep.room).length > 0 && stateMachine.can("sourceFull")) {
             stateMachine.sourceFull();
         }
+        console.log(creep.carry.energy === creep.carryCapacity);
+        console.log(cache.findEmptyDestinationContainers(creep.room).length > 0);
+        console.log(stateMachine.can("creepFull"));
         if (creep.carry.energy === creep.carryCapacity && cache.findEmptyDestinationContainers(creep.room).length > 0 && stateMachine.can("creepFull")) {
             stateMachine.creepFull();
         }
