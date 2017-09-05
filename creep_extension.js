@@ -171,7 +171,9 @@ Creep.prototype.attackEnemies = function () {
     var target = this.pos.findClosestByPath(this.room.find(FIND_HOSTILE_CREEPS));
     console.log('attackEnemies: ' + target);
     if(target) {
-        if (this.attack(target) === ERR_NOT_IN_RANGE) {
+        var res = this.attack(target);
+        console.log(res);
+        if (res === ERR_NOT_IN_RANGE) {
             this.move(target);
         }
     }
