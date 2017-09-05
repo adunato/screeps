@@ -9,7 +9,7 @@ var defines = require('defines');
 var Squad = require('Squad');
 var SquadProfile = require('SquadProfile');
 var screepsplus = require('screepsplus');
-var squads = null;
+var squadsStructureTree = null;
 var squadsIndex = {};
 var printStats = false;
 var printCPU = false;
@@ -24,12 +24,12 @@ function clearMemory() {
 }
 
 function initSquads() {
-    //create squads based on profile configuration
-    if (!squads) {
+    //create squads tree based on profile configuration
+    if (!squadsStructureTree) {
         console.log("global reset");
-        squads = {};
+        squadsStructureTree = {};
         for (var profileName in global.squadProfiles) {
-            squads[profileName] = [];
+            squadsStructureTree[profileName] = [];
         }
     }
 }
@@ -61,22 +61,6 @@ function spawn(roleName) {
         }
 
     }
-}
-
-function spawnCreeps() {
-
-    for (var profileName in global.squadProfiles) {
-        for (var i = 0; i < squads[profileName].length; i++) {
-            var squad = squads[profileName][i];
-            for (var roleName in global.creepRoles) {
-                if (squad.needCreepRole(roleName)) {
-                    spawn(roleName);
-                    return;
-                }
-            }
-        }
-    }
-
 }
 
 function manageDefense() {
@@ -157,8 +141,8 @@ function assignCreepsToSquads() {
 function checkSquadFromFlag(role, flagName) {
     if (flagName.startsWith(role)) {
         var squadExist = false;
-        for (var i = 0; i < squads.length; i++) {
-            if (squads[i].getName() === flagName)
+        for (var i = 0; i < squadsStructureTree.length; i++) {
+            if (squadsStructureTree[i].getName() === flagName)
                 squadExist = true;
         }
         return !squadExist;
@@ -174,7 +158,6 @@ function createSquads() {
         for (var squadRole in global.squadProfiles) {
             if (checkSquadFromFlag(squadRole, flagName)) {
                 var squad = createSquad(squadRole, flagName);
-                squads[squadRole].push(squad);
                 squadsIndex[squad.getName()] = squad;
             }
         }
@@ -248,8 +231,6 @@ module.exports.loop = function () {
     assignCreepsToSquads();
     Memory.squads = squadsIndex;
     logCPU('assignCreepsToSquads ');
-    //spawnCreeps();
-    logCPU('spawnCreeps ');
     logSpawing();
     logCPU('logSpawing ');
     manageDefense();
