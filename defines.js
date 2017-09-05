@@ -51,7 +51,7 @@ var defines = {
                 [MOVE, MOVE, MOVE, MOVE, MOVE, WORK, WORK, WORK, WORK, WORK, CARRY],
                 [MOVE, MOVE, MOVE, MOVE, WORK, WORK, WORK, WORK, CARRY],
                 [MOVE, MOVE, MOVE, WORK, WORK, WORK, CARRY],
-                [MOVE, MOVE, WORK, WORK, CARRY],
+                [MOVE, MOVE, WORK, CARRY, CARRY],
             ],
             "repairer": [
                 [MOVE, MOVE, MOVE, MOVE, MOVE, WORK, WORK, WORK, WORK, WORK, CARRY],
