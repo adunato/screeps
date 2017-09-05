@@ -78,7 +78,7 @@ function manageDefense() {
         var room = Game.rooms[tower.pos.roomName];
         if (room.find(FIND_HOSTILE_CREEPS)) {
             tower.attack(tower.pos.findClosestByRange(room.find(FIND_HOSTILE_CREEPS)));
-        } else if (tower.energy > tower.energyCapacity / 2) {
+        } else if (tower.energy < tower.energyCapacity / 2) {
             var closestDamagedStructure = cache.findRepairWalls(room);
             if (closestDamagedStructure.length > 0) {
                 tower.repair(closestDamagedStructure[0]);

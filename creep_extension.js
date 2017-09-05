@@ -143,9 +143,8 @@ Creep.prototype.squadRally = function () {
 };
 
 Creep.prototype.attackEnemies = function () {
-    var flag = Game.flags[this.memory.squad];
-    if (flag != null) {
-        this.moveTo(flag, {visualizePathStyle: {stroke: '#001dff'}});
+    if(this.attack(this.pos.findClosestByPath(this.find(FIND_HOSTILE_CREEPS)))){
+
     }
 };
 
