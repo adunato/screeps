@@ -172,8 +172,9 @@ Creep.prototype.feedStructure = function (structure) {
 Creep.prototype.buildConstruction = function () {
     var constructionSites = cache.findConstructionSites(this.room);
     if (constructionSites.length) {
-        if (this.build(constructionSites[0]) == ERR_NOT_IN_RANGE) {
-            this.moveTo(constructionSites[0], {visualizePathStyle: {stroke: '#14ff00'}});
+        var construction = this.getNearestObjectByDistance(constructionSites);
+        if (this.build(construction) == ERR_NOT_IN_RANGE) {
+            this.moveTo(construction, {visualizePathStyle: {stroke: '#14ff00'}});
         }
     }
 };
