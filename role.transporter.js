@@ -3,9 +3,9 @@ var cache = require('cache');
 var carrierFSM = new statemachine.StateMachine.factory({
     init: 'none',
     transitions: [
-        {name: 'sourceFull', from: ['rest','transport','drop_destination'], to: 'withdraw_source'},
-        {name: 'creepFull', from: ['rest','transport','drop_destination'], to: 'drop_destination'},
-        {name: 'nothingToDo', from: ['rest','transport','drop_destination'], to: 'rest'},
+        {name: 'sourceFull', from: ['rest','withdraw_source','drop_destination'], to: 'withdraw_source'},
+        {name: 'creepFull', from: ['rest','withdraw_source','drop_destination'], to: 'drop_destination'},
+        {name: 'nothingToDo', from: ['rest','withdraw_source','drop_destination'], to: 'rest'},
         {name: 'timeToDie', from: ['rest','withdraw_source'], to: 'timeToDie'},
         {
             name: 'goto', from: '*', to: function (s) {
