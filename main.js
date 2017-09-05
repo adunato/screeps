@@ -2,7 +2,7 @@ require('creep_extension');
 require('screeps-perf')({
     speedUpArrayFunctions: true,
     cleanUpCreepMemory: true,
-    optimizePathFinding: true
+    optimizePathFinding: false
 });
 var cache = require('cache');
 var defines = require('defines');
