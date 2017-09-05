@@ -6,7 +6,6 @@ Creep.prototype.withdrawEnergy = function () {
     var energySources = containers.concat(carriers);
     if (energySources.length > 0) {
         var energySource = this.getNearestByPath(energySources);
-        console.log('energySource ' + energySource);
         if (!energySource)
             return;
         if (energySource.transfer(this, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
@@ -111,7 +110,7 @@ Creep.prototype.dropEnergyToCollector = function () {
 
 Creep.prototype.getNearestByPath = function(objects){
     var selectedObject = null;
-    var minDistance = 1000;
+    var minDistance = 10000;
     for (var i = 0; i < objects.length; i++) {
         var distance = this.room.findPath(this.pos, objects[i].pos).length;
         if (distance < minDistance) {
@@ -119,6 +118,7 @@ Creep.prototype.getNearestByPath = function(objects){
                 minDistance = distance;
         }
     }
+    return selectedObject;
 };
 
 Creep.prototype.selectSource = function () {
