@@ -215,7 +215,8 @@ Creep.prototype.buildConstruction = function () {
 Creep.prototype.repairConstruction = function () {
     var repairConstructions = cache.findRepairStructures(this.room);
     if (repairConstructions.length) {
-        var construction = this.getNearestByPath(repairConstructions);
+        //var construction = this.getNearestByPath(repairConstructions);
+        var construction = repairConstructions[0];
         if (this.repair(construction) == ERR_NOT_IN_RANGE) {
             this.moveTo(construction, {visualizePathStyle: {stroke: '#14ff00'}});
         }
