@@ -38,10 +38,11 @@ var defenderFSM = new statemachine.StateMachine.factory({
 var roledefender = {
     /** @param {Creep} creep **/
     run: function (creep) {
+        return;
         var creepState = creep.memory.state;
         if (typeof creepState === "undefined")
-            creepState = "squad_rally";
-        var stateMachine = new defenderFSM(creep.name, "squad_rally");
+            creepState = "noEnemies";
+        var stateMachine = new defenderFSM(creep.name, "noEnemies");
         stateMachine.goto(creepState);
         if (creep.room.find(FIND_HOSTILE_CREEPS)) {
             stateMachine.enemies();
