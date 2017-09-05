@@ -115,16 +115,12 @@ function executeCreepBehaviour() {
 }
 
 function assignCreepToSquad(creep) {
-    //iterate squad roles
-    for (var squadRole in squads) {
-        //iterate squads
-        for (var i = 0; i < squads[squadRole].length; i++) {
-            var squad = squads[squadRole][i];
-            if (squad.needCreep(creep)) {
-                squad.addCreep(creep);
-                creep.memory.squad = squad.getName();
-                return squad;
-            }
+    for(var squadName in squadsIndex){
+        var squad = squadsIndex[squadName];
+        if (squad.needCreep(creep)) {
+            squad.addCreep(creep);
+            creep.memory.squad = squad.getName();
+            return squad;
         }
     }
 }
