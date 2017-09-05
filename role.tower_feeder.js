@@ -6,7 +6,7 @@ var towerFeederSM = new statemachine.StateMachine.factory({
     transitions: [
         {name: 'energyEmpty', from: ['rest', 'withdraw', 'feed', 'spawn_withdraw'], to: 'withdraw'},
         {name: 'energyFull', from: '*', to: 'feed'},
-        {name: 'nothingToDo', from: ['withdraw', 'spawn_withdraw', 'feed','rest'], to: 'rest'},
+        {name: 'nothingToDo', from: ['withdraw', 'spawn_withdraw', 'rest'], to: 'rest'},
         {name: 'timeToDie', from: ['withdraw', 'suicide', 'rest'], to: 'suicide'},
         {
             name: 'goto', from: '*', to: function (s) {
