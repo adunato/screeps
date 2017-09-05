@@ -56,7 +56,7 @@ var roleTowerFeeder = {
             creepState = "withdraw";
         var stateMachine = new towerFeederSM(creep.name, "withdraw");
         stateMachine.goto(creepState);
-        if (creep.carry.energy === 0 && stateMachine.can("energyEmpty")) {
+        if (creep.carry.energy <  creep.carryCapacity && stateMachine.can("energyEmpty")) {
             stateMachine.energyEmpty();
         }
         if (creep.carry.energy > 0 && tower.energy < tower.energyCapacity && stateMachine.can("energyFull")) {
