@@ -83,7 +83,8 @@ var cache = {
         var containers = this.findContainers(room);
         var sources = [];
         for(var i = 0; i < containers.length; i++){
-            if(this.isContainerDestination(containers[i]) && containers[i].container.store.energy < containers[i].container.storeCapacity) {
+            var container = containers[i];
+            if(this.isContainerDestination(containers[i]) && container.store.energy < container.storeCapacity) {
                 sources.push(containers[i]);
             }
         }
