@@ -7,7 +7,7 @@ var collectorFSM = new statemachine.StateMachine.factory({
         {name: 'energyFull', from: ['collectEnergy', 'rest','dropEnergy','reDropEnergy'], to: 'dropEnergy'},
         {name: 'reDropEnergy', from: ['dropEnergy','reDropEnergy'], to: 'reDropEnergy'},
         {name: 'noSource', from: ['collectEnergy', 'rest'], to: 'rest'},
-        {name: 'nowhereToDrop', from: ['reDropEnergy','dropEnergy','rest'], to: 'rest'},
+        {name: 'nowhereToDrop', from: ['reDropEnergy','dropEnergy','rest'], to: 'reDropEnergy'},
         {name: 'timeToDie', from: ['*'], to: 'suicide'},
         {name: 'timeToDie', from: ['collectEnergy', 'suicide'], to: 'suicide'},
         {
