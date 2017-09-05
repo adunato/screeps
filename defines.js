@@ -6,6 +6,7 @@ var roleWall_repairer = require('role.wall_repairer');
 var roleCarrier = require('role.carrier');
 var roleCollector = require('role.collector');
 var roleFeeder = require('role.feeder');
+var roleDefender = require('role.defender');
 var roleNomadHarvester = require('role.nomad_harvester');
 
 
@@ -28,15 +29,14 @@ var defines = {
 
     initDefines: function () {
         global.bodyParts = {
-            // "harvester": [MOVE,MOVE,MOVE,MOVE,MOVE,WORK,WORK,WORK,WORK,WORK,CARRY],
             "harvester":
                 [
+                    [MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,WORK,WORK,WORK,WORK,WORK,WORK,WORK,WORK,CARRY,CARRY],
                     [MOVE, MOVE, MOVE, MOVE, MOVE, WORK, WORK, WORK, WORK, WORK, CARRY],
                     [MOVE, MOVE, MOVE, MOVE, WORK, WORK, WORK, WORK, CARRY],
                     [MOVE, MOVE, MOVE, WORK, WORK, WORK, CARRY],
                     [MOVE, MOVE, WORK, CARRY, CARRY]
                 ],
-            //[MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,WORK,WORK,WORK,WORK,WORK,WORK,WORK,WORK,CARRY,CARRY]
             "builder": [
                 [MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, WORK, WORK, CARRY, CARRY, CARRY, CARRY, CARRY],
                 [MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, WORK, CARRY, CARRY, CARRY, CARRY, CARRY],
@@ -44,7 +44,6 @@ var defines = {
                 [MOVE, MOVE, MOVE, MOVE, WORK, CARRY, CARRY, CARRY],
                 [MOVE, MOVE, WORK, CARRY, CARRY]
             ],
-            // "builder": [MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,WORK,WORK,CARRY,CARRY,CARRY,CARRY,CARRY],
             "nomad_harvester": [WORK, CARRY, MOVE],
             "upgrader": [
                 [MOVE, MOVE, MOVE, MOVE, MOVE, WORK, WORK, WORK, WORK, WORK, CARRY],
@@ -65,7 +64,6 @@ var defines = {
                 [MOVE, MOVE, MOVE, MOVE, CARRY, CARRY, CARRY, CARRY],
                 [MOVE, MOVE, MOVE, CARRY, CARRY, CARRY],
             ],
-            // "collector": [MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY],
             "collector": [
                 [MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY],
                 [MOVE,MOVE,MOVE,MOVE,MOVE,CARRY,CARRY,CARRY,CARRY,CARRY],
@@ -99,7 +97,8 @@ var defines = {
             "carrier": roleCarrier,
             "wall_repairer": roleWall_repairer,
             "repairer": roleRepairer,
-            "builder": roleBuilder
+            "builder": roleBuilder,
+            "defender": roleDefender,
         };
         global.squadProfiles = {
             "FE": [["feeder", 2]],
@@ -110,6 +109,7 @@ var defines = {
             "RE": [["repairer", 1]],
             "WA": [["wall_repairer", 0]],
             "CA": [["carrier", 1]],
+            "DE": [["defender", 1]],
         };
         global.allowedToSpawnWithdraw = false;
     }
