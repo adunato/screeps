@@ -23,7 +23,6 @@ var feederFSM = new statemachine.StateMachine.factory({
     methods: {
         onEnergyEmpty: function () {
             var creep = Game.creeps[this.creepName];
-            console.log("withdrawEnergy");
             creep.withdrawEnergy();
         },
         onEnergyFull: function () {
