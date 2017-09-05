@@ -114,10 +114,8 @@ Creep.prototype.getNearestByPath = function(objects){
     for (var i = 0; i < objects.length; i++) {
         var distance = this.room.findPath(this.pos, objects[i].pos).length;
         if (distance < minDistance) {
-            if (objects[i].getAvailableWithdrawingSlots() > 0) {
                 selectedObject = objects[i];
                 minDistance = distance;
-            }
         }
     }
 };
