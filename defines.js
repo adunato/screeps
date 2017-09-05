@@ -132,11 +132,12 @@ var defines = {
         global.allowedToSpawnWithdraw = false;
         global.sourceContainers = [
             '59ae4aea33f29c3b855f02c0',
-            '59ac07c241f3ed2ac5324b0a'
+            '59ac07c241f3ed2ac5324b0a',
         ];
         global.destinationContainers = [
             '59ae529fbd28427f15402b36',//tower
             '59aab3b0b08c1b0fa81a4370',//central
+            '59ae5c75496afa193d2d8a40',//RC
         ];
     }
 
