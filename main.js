@@ -250,6 +250,7 @@ module.exports.loop = function () {
     createSquads();
     logCPU('createSquads ');
     assignCreepsToSquads();
+    Memory.squads = squadsIndex;
     logCPU('assignCreepsToSquads ');
     //spawnCreeps();
     logCPU('spawnCreeps ');
