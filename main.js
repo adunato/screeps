@@ -127,12 +127,15 @@ function assignCreepsToSquads() {
 
     for(var squadName in squadsIndex){
         var squad = squadsIndex[squadName];
+        var spawnSet = false;
         // console.log(squadName + ' ' + squad.creeps.length);
         for (var roleName in global.creepRoles) {
             if (squad.needCreepRole(roleName)) {
                 console.log(squadName + ' needs ' + roleName);
-                spawn(roleName);
-                return;
+                if(!spawnSet) {
+                    spawn(roleName);
+                    spawnSet = true
+                }
             }
         }
     }
