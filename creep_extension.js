@@ -135,6 +135,20 @@ Creep.prototype.harvestEnergy = function () {
     }
 };
 
+Creep.prototype.squadRally = function () {
+    var flag = Game.flags[this.memory.squad];
+    if (flag != null) {
+        this.moveTo(flag, {visualizePathStyle: {stroke: '#001dff'}});
+    }
+};
+
+Creep.prototype.attackEnemies = function () {
+    var flag = Game.flags[this.memory.squad];
+    if (flag != null) {
+        this.moveTo(flag, {visualizePathStyle: {stroke: '#001dff'}});
+    }
+};
+
 Creep.prototype.dropEnergy = function () {
     this.memory.selectedSource = null;
 

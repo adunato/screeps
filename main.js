@@ -73,17 +73,17 @@ function spawnCreeps() {
 }
 
 function manageDefense() {
-    var tower = Game.getObjectById('59adceb84e2c387f4e560647');
+    var tower = Game.getObjectById('59ae431f754f653601b3b5b7');
     if (tower) {
-        // var room = Game.rooms[tower.pos.roomName];
-        // if (room.find(FIND_HOSTILE_CREEPS)) {
-        //     tower.attack(tower.pos.findClosestByRange(room.find(FIND_HOSTILE_CREEPS)));
-        // } else if (tower.energy > tower.energyCapacity / 2) {
-        //     var closestDamagedStructure = cache.findRepairWalls(room);
-        //     if (closestDamagedStructure.length > 0) {
-        //         tower.repair(closestDamagedStructure[0]);
-        //     }
-        // }
+        var room = Game.rooms[tower.pos.roomName];
+        if (room.find(FIND_HOSTILE_CREEPS)) {
+            tower.attack(tower.pos.findClosestByRange(room.find(FIND_HOSTILE_CREEPS)));
+        } else if (tower.energy > tower.energyCapacity / 2) {
+            var closestDamagedStructure = cache.findRepairWalls(room);
+            if (closestDamagedStructure.length > 0) {
+                tower.repair(closestDamagedStructure[0]);
+            }
+        }
     }
 
     // var res = Game.rooms[tower.pos.roomName].controller.activateSafeMode();

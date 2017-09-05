@@ -43,23 +43,10 @@ var roledefender = {
             creepState = "squad_rally";
         var stateMachine = new defenderFSM(creep.name, "squad_rally");
         stateMachine.goto(creepState);
-        if (creep.carry.energy === 0 && stateMachine.can("energyEmpty")) {
-            stateMachine.energyEmpty();
-        }
-        if (creep.carry.energy > 0 && stateMachine.can("energyFull")) {
-            stateMachine.energyFull();
-        }
-        if (cache.findContainersWithEnergy(creep.room).length === 0 && stateMachine.can("containersEmpty")) {
-            stateMachine.containersEmpty();
-        }
-        if (cache.findSpawnWithEnergy(creep.room).length === 0 && stateMachine.can("spawnEmpty")) {
-            stateMachine.spawnEmpty();
-        }
-        if (cache.findConstructionSites(creep.room).length === 0 && stateMachine.can("noConstructions")) {
-            stateMachine.noConstructions();
-        }
-        if (cache.findCarriersWithEnergy(creep.room).length === 0 && stateMachine.can("carrierEmpty")) {
-            stateMachine.carrierEmpty();
+        if (creep.room.find(FIND_HOSTILE_CREEPS)) {
+            stateMachine.enemies();
+        } else {
+            stateMachine.noEnemies();
         }
         if (creep.timeToDie() && creep.carry.energy === 0 && stateMachine.can("timeToDie")) {
             stateMachine.timeToDie();
