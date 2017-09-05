@@ -9,6 +9,7 @@ var cache = {
         constructionSites: {},
         repairStructures: {},
         repairWalls: {},
+        repairRamparts: {},
         sources: {},
         energyContainers: {},
         energyFedStructures: {},
@@ -30,6 +31,7 @@ var cache = {
             this.rooms.controllers = {};
             this.rooms.repairStructures = {};
             this.rooms.repairWalls = {};
+            this.rooms.repairRamparts = {};
             this.rooms.energyFedStructures = {};
             this.rooms.carrierFlags = {};
             this.rooms.creeps = {};
@@ -178,6 +180,20 @@ var cache = {
             this.rooms.repairWalls[room] = repairWalls;
         }
         return repairWalls;
+    },
+    findRepairRamparts: function (room) {
+        var repairRamparts = {};
+        if (typeof this.rooms.repairRamparts[room] != "undefined") {
+            repairRamparts = this.rooms.repairRamparts[room];
+        } else {
+            repairRamparts = room.find(FIND_STRUCTURES, {
+                filter: (structure) => {
+                    return (structure.structureType === STRUCTURE_RAMPART) && structure.hits < MAX_WALL_LVL;
+                }
+            });
+            this.rooms.repairRamparts[room] = repairRamparts;
+        }
+        return repairRamparts;
     },
     findSources: function (room) {
         var sources = {};

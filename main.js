@@ -79,9 +79,13 @@ function manageDefense() {
         if (room.find(FIND_HOSTILE_CREEPS).length > 0) {
             tower.attack(tower.pos.findClosestByRange(room.find(FIND_HOSTILE_CREEPS)));
         } else if (tower.energy > tower.energyCapacity / 2) {
-            var closestDamagedStructure = cache.findRepairWalls(room);
-            if (closestDamagedStructure.length > 0) {
-                tower.repair(closestDamagedStructure[0]);
+            var closestDamagedRampart = cache.findRepairRamparts(room);
+            if (closestDamagedRampart.length > 0) {
+                tower.repair(closestDamagedRampart[0]);
+            }
+            var closestDamagedWall = cache.findRepairWalls(room);
+            if (closestDamagedWall.length > 0) {
+                tower.repair(closestDamagedWall[0]);
             }
         }
     }
