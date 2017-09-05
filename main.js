@@ -73,7 +73,7 @@ function spawnCreeps() {
 }
 
 function manageDefense() {
-    var tower = Game.getObjectById('59ac621b09fb1f796231d101');
+    var tower = Game.getObjectById('59adceb84e2c387f4e560647');
     if (tower) {
         var room = Game.rooms[tower.pos.roomName];
         if (room.find(FIND_HOSTILE_CREEPS)) {
@@ -234,7 +234,7 @@ module.exports.loop = function () {
     logCPU('spawnCreeps ');
     logSpawing();
     logCPU('logSpawing ');
-    // manageDefense();
+    manageDefense();
     // logCPU( 'manageDefense ');
     executeCreepBehaviour();
     logCPU('executeCreepBehaviour ');
