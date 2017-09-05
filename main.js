@@ -10,6 +10,7 @@ var Squad = require('Squad');
 var SquadProfile = require('SquadProfile');
 var screepsplus = require('screepsplus');
 var squads = null;
+var squadsIndex = {};
 var printStats = false;
 var printCPU = false;
 
@@ -171,6 +172,7 @@ function createSquads() {
             if (checkSquadFromFlag(squadRole, flagName)) {
                 var squad = createSquad(squadRole, flagName);
                 squads[squadRole].push(squad);
+                squadsIndex[squad.getName()] = squad;
             }
         }
     }
