@@ -34,49 +34,49 @@ var defines = {
             "harvester":
                 [
                     [MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,WORK,WORK,WORK,WORK,WORK,WORK,WORK,WORK,CARRY,CARRY],
-                    [MOVE, MOVE, MOVE, MOVE, MOVE, WORK, WORK, WORK, WORK, WORK, CARRY],
-                    [MOVE, MOVE, MOVE, MOVE, WORK, WORK, WORK, WORK, CARRY],
-                    [MOVE, MOVE, MOVE, WORK, WORK, WORK, CARRY],
-                    [MOVE, MOVE, WORK, CARRY, CARRY]
+                    // [MOVE, MOVE, MOVE, MOVE, MOVE, WORK, WORK, WORK, WORK, WORK, CARRY],
+                    // [MOVE, MOVE, MOVE, MOVE, WORK, WORK, WORK, WORK, CARRY],
+                    // [MOVE, MOVE, MOVE, WORK, WORK, WORK, CARRY],
+                    // [MOVE, MOVE, WORK, CARRY, CARRY]
                 ],
             "builder": [
                 [MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, WORK, WORK, CARRY, CARRY, CARRY, CARRY, CARRY],
-                [MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, WORK, CARRY, CARRY, CARRY, CARRY, CARRY],
-                [MOVE, MOVE, MOVE, MOVE, MOVE, WORK, CARRY, CARRY, CARRY, CARRY],
-                [MOVE, MOVE, MOVE, MOVE, WORK, CARRY, CARRY, CARRY],
-                [MOVE, MOVE, WORK, CARRY, CARRY]
+                // [MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, WORK, CARRY, CARRY, CARRY, CARRY, CARRY],
+                // [MOVE, MOVE, MOVE, MOVE, MOVE, WORK, CARRY, CARRY, CARRY, CARRY],
+                // [MOVE, MOVE, MOVE, MOVE, WORK, CARRY, CARRY, CARRY],
+                // [MOVE, MOVE, WORK, CARRY, CARRY]
             ],
             "nomad_harvester": [WORK, CARRY, MOVE],
             "upgrader": [
                 [MOVE, MOVE, MOVE, MOVE, MOVE, WORK, WORK, WORK, WORK, WORK, CARRY],
-                [MOVE, MOVE, MOVE, MOVE, WORK, WORK, WORK, WORK, CARRY],
-                [MOVE, MOVE, MOVE, WORK, WORK, WORK, CARRY],
-                [MOVE, MOVE, WORK, CARRY, CARRY],
+                // [MOVE, MOVE, MOVE, MOVE, WORK, WORK, WORK, WORK, CARRY],
+                // [MOVE, MOVE, MOVE, WORK, WORK, WORK, CARRY],
+                // [MOVE, MOVE, WORK, CARRY, CARRY],
             ],
             "repairer": [
                 [MOVE, MOVE, MOVE, MOVE, MOVE, WORK, WORK, WORK, WORK, WORK, CARRY],
-                [MOVE, MOVE, MOVE, MOVE, WORK, WORK, WORK, WORK, CARRY],
-                [MOVE, MOVE, MOVE, WORK, WORK, WORK, CARRY],
-                [MOVE, MOVE, WORK, WORK, CARRY],
+                // [MOVE, MOVE, MOVE, MOVE, WORK, WORK, WORK, WORK, CARRY],
+                // [MOVE, MOVE, MOVE, WORK, WORK, WORK, CARRY],
+                // [MOVE, MOVE, WORK, WORK, CARRY],
             ],
             "wall_repairer": [MOVE, MOVE, MOVE, MOVE, MOVE, WORK, WORK, WORK, WORK, WORK, CARRY],
             "carrier": [
                 [MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY],
-                [MOVE, MOVE, MOVE, MOVE, MOVE, CARRY, CARRY, CARRY, CARRY, CARRY],
-                [MOVE, MOVE, MOVE, MOVE, CARRY, CARRY, CARRY, CARRY],
-                [MOVE, MOVE, MOVE, CARRY, CARRY, CARRY],
+                // [MOVE, MOVE, MOVE, MOVE, MOVE, CARRY, CARRY, CARRY, CARRY, CARRY],
+                // [MOVE, MOVE, MOVE, MOVE, CARRY, CARRY, CARRY, CARRY],
+                // [MOVE, MOVE, MOVE, CARRY, CARRY, CARRY],
             ],
             "collector": [
                 [MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY],
-                [MOVE,MOVE,MOVE,MOVE,MOVE,CARRY,CARRY,CARRY,CARRY,CARRY],
-                [MOVE,MOVE,MOVE,MOVE,CARRY,CARRY,CARRY,CARRY],
-                [MOVE, MOVE, MOVE, CARRY, CARRY, CARRY]
+                // [MOVE,MOVE,MOVE,MOVE,MOVE,CARRY,CARRY,CARRY,CARRY,CARRY],
+                // [MOVE,MOVE,MOVE,MOVE,CARRY,CARRY,CARRY,CARRY],
+                // [MOVE, MOVE, MOVE, CARRY, CARRY, CARRY]
             ],
             "transporter": [
                 [MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY],
-                [MOVE, MOVE, MOVE, MOVE, MOVE, CARRY, CARRY, CARRY, CARRY, CARRY],
-                [MOVE, MOVE, MOVE, MOVE, CARRY, CARRY, CARRY, CARRY],
-                [MOVE, MOVE, MOVE, CARRY, CARRY, CARRY],
+                // [MOVE, MOVE, MOVE, MOVE, MOVE, CARRY, CARRY, CARRY, CARRY, CARRY],
+                // [MOVE, MOVE, MOVE, MOVE, CARRY, CARRY, CARRY, CARRY],
+                // [MOVE, MOVE, MOVE, CARRY, CARRY, CARRY],
             ],
             "feeder": [
                 [MOVE, MOVE, MOVE, MOVE, MOVE,MOVE, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY],
