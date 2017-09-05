@@ -122,7 +122,7 @@ Creep.prototype.getNearestByPath = function(objects){
 };
 
 Creep.prototype.getNearestStructureByDistance = function(objects){
-    return this.room.findClosestByRange(FIND_STRUCTURES, objects);
+    return this.pos.findClosestByRange(FIND_STRUCTURES, objects);
 };
 
 Creep.prototype.selectSource = function () {
