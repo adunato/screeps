@@ -1,4 +1,5 @@
 require('creep_extension');
+require('structure_extension');
 require('screeps-perf')({
     speedUpArrayFunctions: true,
     cleanUpCreepMemory: true,
