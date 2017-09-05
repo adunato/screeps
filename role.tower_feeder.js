@@ -6,7 +6,7 @@ var towerFeederSM = new statemachine.StateMachine.factory({
     transitions: [
         {name: 'energyEmpty', from: ['rest', 'withdraw', 'feed', 'spawn_withdraw'], to: 'withdraw'},
         {name: 'energyFull', from: '*', to: 'feed'},
-        {name: 'containersEmpty', from: ['withdraw', 'spawn_withdraw', 'feed','rest'], to: 'rest'},
+        {name: 'nothingToDo', from: ['withdraw', 'spawn_withdraw', 'feed','rest'], to: 'rest'},
         {name: 'timeToDie', from: ['withdraw', 'suicide', 'rest'], to: 'suicide'},
         {
             name: 'goto', from: '*', to: function (s) {
@@ -29,7 +29,7 @@ var towerFeederSM = new statemachine.StateMachine.factory({
             var creep = Game.creeps[this.creepName];
             creep.feedStructure(tower);
         },
-        onContainersEmpty: function () {
+        onNothingToDo: function () {
             var creep = Game.creeps[this.creepName];
             creep.rest();
         },
@@ -59,11 +59,11 @@ var roleTowerFeeder = {
         if (creep.carry.energy <  creep.carryCapacity && stateMachine.can("energyEmpty")) {
             stateMachine.energyEmpty();
         }
-        if (creep.carry.energy === creep.carryCapacity && tower.energy < tower.energyCapacity && stateMachine.can("energyFull")) {
+        if (creep.carry.energy === creep.carryCapacity && stateMachine.can("energyFull")) {
             stateMachine.energyFull();
         }
-        if (cache.findContainersWithEnergy(creep.room).length === 0 && stateMachine.can("containersEmpty")) {
-            stateMachine.containersEmpty();
+        if ((cache.findContainersWithEnergy(creep.room).length === 0 || tower.store.energy ===  tower.storeCapacity)&& stateMachine.can("containersEmpty")) {
+            stateMachine.nothingToDo();
         }
         if (creep.timeToDie() && creep.carry.energy === 0 && stateMachine.can("timeToDie")) {
             stateMachine.timeToDie();
