@@ -22,7 +22,6 @@ var cache = {
         cacheAge++;
         if (cacheAge > CACHE_AGE_LIMIT) {
             cacheAge = 0;
-            console.log('reset cache');
             this.rooms.containersWithEnergy = {};
             this.rooms.constructionSites = {};
             this.rooms.sources = {};
@@ -168,7 +167,6 @@ var cache = {
     },
 
     findRepairWalls: function (room) {
-        console.log();
         var repairWalls = {};
         if (typeof this.rooms.repairWalls[room] != "undefined") {
             repairWalls = this.rooms.repairWalls[room];

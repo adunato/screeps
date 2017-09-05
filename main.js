@@ -25,6 +25,7 @@ function clearMemory() {
 function initSquads() {
     //create squads based on profile configuration
     if (!squads) {
+        console.log("global reset");
         squads = {};
         for (var profileName in global.squadProfiles) {
             squads[profileName] = [];
