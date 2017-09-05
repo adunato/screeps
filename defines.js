@@ -119,7 +119,7 @@ var defines = {
             "transporter": roleTransporter,
         };
         global.squadProfiles = {
-            "FE": [["feeder", 2]],
+            "FE": [["feeder", 0]],
             "HA": [["harvester", 4]],
             "CO": [["collector", 1]],
             "BU": [["builder", 1]],
