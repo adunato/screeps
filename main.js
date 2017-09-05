@@ -106,7 +106,7 @@ function executeCreepBehaviour() {
         for (var role in creepRoles) {
             if (creep.memory.role == role) {
                 creepRoles[role].run(creep);
-                logCPU("executeCreepBehaviour - " + role)
+                // logCPU("executeCreepBehaviour - " + role)
             }
         }
     }
