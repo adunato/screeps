@@ -3,8 +3,8 @@ var cache = require('cache');
 var defenderFSM = new statemachine.StateMachine.factory({
     init: 'none',
     transitions: [
-        {name: 'noEnemies', from: ['attack', 'noEnemies'], to: 'squad_rally'},
-        {name: 'enemies', from: ['attack', 'noEnemies'], to: 'attack'},
+        {name: 'noEnemies', from: ['attack', 'squad_rally'], to: 'squad_rally'},
+        {name: 'enemies', from: ['attack', 'squad_rally'], to: 'attack'},
         {
             name: 'goto', from: '*', to: function (s) {
             return s
@@ -38,7 +38,6 @@ var defenderFSM = new statemachine.StateMachine.factory({
 var roledefender = {
     /** @param {Creep} creep **/
     run: function (creep) {
-        return;
         var creepState = creep.memory.state;
         if (typeof creepState === "undefined")
             creepState = "noEnemies";
