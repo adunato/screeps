@@ -67,8 +67,11 @@ Creep.prototype.dropToDestinationContainer = function () {
 
 Creep.prototype.dropEnergy = function () {
     this.memory.selectedSource = null;
-    var structures = cache.findEnergyContainers(this.room);
-    return this.dropToDestinations(structures);
+    var containers = cache.findEnergyContainers(this.room);
+    var collectors = cache.findEmptyCollectors(this.room)
+    var energyStructures = cache.findEnergyFedStructures(this.room, false);
+    var targets = containers.concat(collectors).concat(energyStructures);
+    return this.dropToDestinations(targets);
 };
 
 Creep.prototype.dropEnergyToCollector = function () {
