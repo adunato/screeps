@@ -11,7 +11,7 @@ var SquadProfile = require('SquadProfile');
 var screepsplus = require('screepsplus');
 var squads = null;
 var printStats = false;
-var printCPU = true;
+var printCPU = false;
 
 function clearMemory() {
     for (var i in Memory.creeps) {
