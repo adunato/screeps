@@ -6,6 +6,7 @@ Creep.prototype.withdrawEnergy = function () {
     var energySources = containers.concat(carriers);
     if (energySources.length > 0) {
         var energySource = this.getNearestByPath(energySources);
+        console.log('energySource ' + energySource);
         if (!energySource)
             return;
         if (energySource.transfer(this, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
