@@ -75,6 +75,7 @@ function spawnCreeps() {
 function manageDefense() {
     var tower = Game.getObjectById('59ae431f754f653601b3b5b7');
     console.log(tower.energy > tower.energyCapacity / 2);
+    console.log(room.find(FIND_HOSTILE_CREEPS));
     if (tower) {
         var room = Game.rooms[tower.pos.roomName];
         if (room.find(FIND_HOSTILE_CREEPS)) {
