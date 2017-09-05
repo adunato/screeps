@@ -82,7 +82,7 @@ Creep.prototype.dropEnergyToCollector = function () {
     }
 };
 
-Creep.prototype.getNearestObjectByDistance = function(objects){
+Creep.prototype.getNearestObjectByDistance = function (objects) {
     return this.pos.findClosestByRange(objects);
 };
 
@@ -99,10 +99,10 @@ Creep.prototype.goToSource = function () {
         this.moveTo(flag, {visualizePathStyle: {stroke: '#ffda00'}});
     }
     //check if flag's room is visible
-    if(flag && flag.room){
-        for(var i = 0; i < cache.findSources(flag.room).length; i++){
+    if (flag && flag.room) {
+        for (var i = 0; i < cache.findSources(flag.room).length; i++) {
             var source = cache.findSources(flag.room)[i];
-            if(source.pos.x === flag.pos.x && source.pos.y === flag.pos.y) {
+            if (source.pos.x === flag.pos.x && source.pos.y === flag.pos.y) {
                 this.memory.selectedSource = source.id;
             }
         }
@@ -115,9 +115,14 @@ Creep.prototype.isAlive = function () {
 
 Creep.prototype.harvestEnergy = function () {
     var source = Game.getObjectById(this.memory.selectedSource);
-    if (this.harvest(source) == ERR_NOT_IN_RANGE) {
+    var res = this.harvest(source);
+    if (res == ERR_NOT_IN_RANGE) {
         this.moveTo(source, {visualizePathStyle: {stroke: '#0027ff'}});
     }
+    if (this.memory.selectedSource === '5982fcbfb097071b4adbe077') {
+        console.log("res: " + res);
+    }
+
 };
 
 Creep.prototype.squadRally = function () {
@@ -129,7 +134,7 @@ Creep.prototype.squadRally = function () {
 
 Creep.prototype.attackEnemies = function () {
     var target = this.pos.findClosestByPath(this.room.find(FIND_HOSTILE_CREEPS));
-    if(target) {
+    if (target) {
         var res = this.attack(target);
         if (res === ERR_NOT_IN_RANGE) {
             this.moveTo(target, {visualizePathStyle: {stroke: '#ff000b'}});
@@ -153,7 +158,7 @@ Creep.prototype.collector = function () {
 
 Creep.prototype.feedEnergy = function (includeTowers) {
     this.memory.selectedSource = null;
-    var structures = cache.findEnergyFedStructures(this.room,includeTowers);
+    var structures = cache.findEnergyFedStructures(this.room, includeTowers);
     if (structures.length > 0) {
         var structure = this.getNearestObjectByDistance(structures);
         if (this.transfer(structure, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
