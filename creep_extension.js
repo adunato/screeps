@@ -117,10 +117,10 @@ Creep.prototype.harvestEnergy = function () {
     var source = Game.getObjectById(this.memory.selectedSource);
     var res = this.harvest(source);
     if (res == ERR_NOT_IN_RANGE) {
-        this.moveTo(source, {visualizePathStyle: {stroke: '#0027ff'}});
-    }
-    if (this.memory.selectedSource === '5982fcbfb097071b4adbe077') {
-        console.log("res: " + res);
+        res = this.moveTo(source, {visualizePathStyle: {stroke: '#0027ff'}});
+        if (this.memory.selectedSource === '5982fcbfb097071b4adbe077') {
+            console.log("res: " + res);
+        }
     }
 
 };
