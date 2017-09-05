@@ -1,4 +1,9 @@
 require('creep_extension');
+require('screeps-perf')({
+    speedUpArrayFunctions: true,
+    cleanUpCreepMemory: true,
+    optimizePathFinding: true
+});
 var cache = require('cache');
 var defines = require('defines');
 var Squad = require('Squad');
