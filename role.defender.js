@@ -24,7 +24,7 @@ var defenderFSM = new statemachine.StateMachine.factory({
         },
         onAttack: function () {
             var creep = Game.creeps[this.creepName];
-            creep.attackEnemies();
+            creep.attackEnemiesStatic();
         },
         onTransition(lifecycle) {
             // console.log("transition name: " + lifecycle.transition);
