@@ -62,7 +62,7 @@ var roleTowerFeeder = {
         if (creep.carry.energy === creep.carryCapacity && stateMachine.can("energyFull")) {
             stateMachine.energyFull();
         }
-        if ((cache.findContainersWithEnergy(creep.room).length === 0 || tower.store.energy ===  tower.storeCapacity)&& stateMachine.can("containersEmpty")) {
+        if ((cache.findContainersWithEnergy(creep.room).length === 0 || tower.store.energy ===  tower.storeCapacity)&& stateMachine.can("nothingToDo")) {
             stateMachine.nothingToDo();
         }
         if (creep.timeToDie() && creep.carry.energy === 0 && stateMachine.can("timeToDie")) {
