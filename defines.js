@@ -6,6 +6,7 @@ var roleWall_repairer = require('role.wall_repairer');
 var roleCarrier = require('role.carrier');
 var roleCollector = require('role.collector');
 var roleFeeder = require('role.feeder');
+var roleTowerFeeder = require('role.tower_feeder');
 var roleDefender = require('role.defender');
 var roleTransporter = require('role.transporter');
 var roleNomadHarvester = require('role.nomad_harvester');
@@ -83,6 +84,12 @@ var defines = {
                 [MOVE, MOVE, MOVE, MOVE, CARRY, CARRY, CARRY, CARRY],
                 [MOVE, MOVE, MOVE, CARRY, CARRY, CARRY]
             ],
+            "tower_feeder": [
+                [MOVE, MOVE, MOVE, MOVE, MOVE,MOVE, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY],
+                [MOVE, MOVE, MOVE, MOVE, MOVE, CARRY, CARRY, CARRY, CARRY, CARRY],
+                [MOVE, MOVE, MOVE, MOVE, CARRY, CARRY, CARRY, CARRY],
+                [MOVE, MOVE, MOVE, CARRY, CARRY, CARRY]
+            ],
             "defender": [
                 [MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,ATTACK,ATTACK,ATTACK,ATTACK,ATTACK,ATTACK,ATTACK,ATTACK,ATTACK,ATTACK],
                 [MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,ATTACK,ATTACK,ATTACK,ATTACK,ATTACK,ATTACK,ATTACK,ATTACK,ATTACK],
@@ -98,6 +105,7 @@ var defines = {
         };
         global.creepRoles = {
             "feeder": roleFeeder,
+            "tower_feeder": roleTowerFeeder,
             "harvester": roleHarvester,
             "collector": roleCollector,
             "upgrader": roleUpgrader,
@@ -119,6 +127,7 @@ var defines = {
             "CA": [["carrier", 1]],
             "DE": [["defender", 1]],
             "TR": [["transporter", 1]],
+            "TOFE": [["tower_feeder", 1]],
         };
         global.allowedToSpawnWithdraw = false;
         global.sourceContainers = [
