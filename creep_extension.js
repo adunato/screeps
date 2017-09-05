@@ -174,7 +174,8 @@ Creep.prototype.attackEnemies = function () {
         var res = this.attack(target);
         console.log(res);
         if (res === ERR_NOT_IN_RANGE) {
-            this.move(target);
+            console.log('im trying to move');
+            this.moveTo(target, {visualizePathStyle: {stroke: '#001dff'}});
         }
     }
 };
