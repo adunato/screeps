@@ -225,7 +225,7 @@ module.exports.loop = function () {
     resetCPULog();
     clearMemory();
     // logCPU('clearMemory ');
-    // defines.initDefines();
+     defines.initDefines();
     // logCPU('initDefines ');
     // cache.resetCache();
     // // logCPU( 'resetCache ');
