@@ -39,7 +39,7 @@ var harvesterFSM = new statemachine.StateMachine.factory({
         },
         onCollectorFull: function () {
             var creep = Game.creeps[this.creepName];
-            creep.feedEnergy();
+            creep.feedEnergy(false);
         },
         onNoSource: function () {
             var creep = Game.creeps[this.creepName];
@@ -97,7 +97,7 @@ var roleHarvester = {
         if (cache.findEnergyContainers(creep.room).length === 0 && stateMachine.can("noEnergyContainers")) {
             stateMachine.noEnergyContainers();
         }
-        if (cache.findEnergyFedStructures(creep.room).length === 0 && stateMachine.can("energyFedStructuresFull")) {
+        if (cache.findEnergyFedStructures(creep.room, false).length === 0 && stateMachine.can("energyFedStructuresFull")) {
             stateMachine.energyFedStructuresFull();
         }
         if (creep.timeToDie() && creep.carry.energy === 0 && stateMachine.can("timeToDie")){

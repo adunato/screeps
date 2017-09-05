@@ -27,7 +27,7 @@ var feederFSM = new statemachine.StateMachine.factory({
         },
         onEnergyFull: function () {
             var creep = Game.creeps[this.creepName];
-            creep.feedEnergy();
+            creep.feedEnergy(false);
         },
         onContainersEmpty: function () {
             var creep = Game.creeps[this.creepName];
@@ -70,7 +70,7 @@ var roleFeeder = {
         if (Game.flags[creep.memory.squad] === null && stateMachine.can("noFeederFlags")) {
             stateMachine.noFeederFlags();
         }
-        if (cache.findEnergyFedStructures(creep.room).length === 0 && stateMachine.can("energyFedStructuresFull")) {
+        if (cache.findEnergyFedStructures(creep.room,false).length === 0 && stateMachine.can("energyFedStructuresFull")) {
             stateMachine.energyFedStructuresFull();
         }
         if (creep.timeToDie() && creep.carry.energy === 0 && stateMachine.can("timeToDie")) {

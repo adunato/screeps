@@ -223,7 +223,7 @@ var cache = {
         }
         return energyDropStructures;
     },
-    findEnergyFedStructures: function (room) {
+    findEnergyFedStructures: function (room, includeTowers) {
         var energyFedStructures = {};
 
         if (this.rooms.energyFedStructures[room] && this.rooms.energyFedStructures[room].length > 0) {
@@ -233,7 +233,7 @@ var cache = {
                 filter: (structure) => {
                     return (structure.structureType == STRUCTURE_EXTENSION ||
                         structure.structureType == STRUCTURE_SPAWN
-                     || structure.structureType == STRUCTURE_TOWER);
+                     || (includeTowers && structure.structureType == STRUCTURE_TOWER));
                 }
             });
             this.rooms.energyFedStructures[room] = energyFedStructures;

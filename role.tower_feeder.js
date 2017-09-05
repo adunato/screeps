@@ -27,7 +27,7 @@ var towerFeederSM = new statemachine.StateMachine.factory({
         },
         onEnergyFull: function () {
             var creep = Game.creeps[this.creepName];
-            creep.feedEnergy();
+            creep.feedStructure(tower);
         },
         onContainersEmpty: function () {
             var creep = Game.creeps[this.creepName];
@@ -49,6 +49,8 @@ var towerFeederSM = new statemachine.StateMachine.factory({
 var roleTowerFeeder = {
     /** @param {Creep} creep **/
     run: function (creep) {
+        if(!tower)
+            return;
         var creepState = creep.memory.state;
         if (typeof creepState === "undefined")
             creepState = "withdraw";

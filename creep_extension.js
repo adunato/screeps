@@ -190,13 +190,20 @@ Creep.prototype.collector = function () {
     }
 };
 
-Creep.prototype.feedEnergy = function () {
+Creep.prototype.feedEnergy = function (includeTowers) {
     this.memory.selectedSource = null;
-    var structures = cache.findEnergyFedStructures(this.room);
+    var structures = cache.findEnergyFedStructures(this.room,includeTowers);
     if (structures.length > 0) {
         if (this.transfer(structures[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
             this.moveTo(structures[0], {visualizePathStyle: {stroke: '#ffe21f'}});
         }
+    }
+};
+
+Creep.prototype.feedStructure = function (structure) {
+    this.memory.selectedSource = null;
+    if (this.transfer(structure, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+        this.moveTo(structure, {visualizePathStyle: {stroke: '#ffe21f'}});
     }
 };
 
