@@ -105,13 +105,20 @@ var defines = {
             "HA": [["harvester", 4]],
             "CO": [["collector", 1]],
             "BU": [["builder", 3]],
-            "UP": [["upgrader", 0]],
+            "UP": [["upgrader", 1]],
             "RE": [["repairer", 1]],
             "WA": [["wall_repairer", 0]],
             "CA": [["carrier", 1]],
             "DE": [["defender", 1]],
         };
         global.allowedToSpawnWithdraw = false;
+        global.sourceContainers = [
+            '59ae4aea33f29c3b855f02c0',
+            '59ac07c241f3ed2ac5324b0a'
+        ];
+        global.destinationContainers = [
+            '59aab3b0b08c1b0fa81a4370'
+        ];
     }
 
 };

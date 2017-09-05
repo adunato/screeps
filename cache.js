@@ -14,7 +14,8 @@ var cache = {
         energyFedStructures: {},
         creeps: {},
         controllers: {},
-        carrierFlags: {}
+        carrierFlags: {},
+        containers: {},
     },
     resetCache: function () {
         cacheAge++;
@@ -32,6 +33,7 @@ var cache = {
             this.rooms.energyFedStructures = {};
             this.rooms.carrierFlags = {};
             this.rooms.creeps = {};
+            this.rooms.containers = {};
         }
     },
     getStoredEnergy: function(room){
@@ -52,6 +54,54 @@ var cache = {
             this.rooms.containersWithEnergy[room] = containers;
         }
         return containers;
+    },
+    findContainers: function (room) {
+        var containers = {};
+        if (typeof this.rooms.containers[room] != "undefined") {
+            containers = this.rooms.containers[room];
+        } else {
+            containers = room.find(FIND_STRUCTURES, {
+                filter: (container) => {
+                    return (container.structureType == STRUCTURE_CONTAINER);
+                }
+            });
+            this.rooms.containers[room] = containers;
+        }
+        return containers;
+    },
+    findSourceContainersWithEnergy: function (room) {
+        var containers = this.findContainersWithEnergy(room);
+        var sources = [];
+        for(var i = 0; i < containers.length; i++){
+            if(this.isContainerSource(containers[i])) {
+                sources.push(containers[i]);
+            }
+        }
+        return sources;
+    },
+    findEmptyDestinationContainers: function (room) {
+        var containers = this.findContainers(room);
+        var sources = [];
+        for(var i = 0; i < containers.length; i++){
+            if(this.isContainerDestination(containers[i]) && containers[i].container.store.energy < containers[i].container.storeCapacity) {
+                sources.push(containers[i]);
+            }
+        }
+        return sources;
+    },
+    isContainerSource: function (container) {
+        for(var i = 0; i < global.sourceContainers.length; i++){
+            if(container.id === global.sourceContainers[i])
+                return true;
+        }
+        return false;
+    },
+    isContainerDestination: function (container) {
+        for(var i = 0; i < global.destinationContainers.length; i++){
+            if(container.id === global.destinationContainers[i])
+                return true;
+        }
+        return false;
     },
     findCarriersWithEnergy: function (room) {
         var carriers = [];

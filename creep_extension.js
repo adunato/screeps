@@ -21,9 +21,7 @@ Creep.prototype.withdrawEnergy = function () {
         }
     }
 };
-Creep.prototype.withdrawEnergyExCarriers = function () {
-    var containers = cache.findContainersWithEnergy(this.room);
-    var energySources = containers;
+Creep.prototype.withdrawEnergyFromSources = function (energySources) {
     if (energySources.length > 0) {
         var minDistance = 1000;
         var energySource = null;
@@ -42,6 +40,21 @@ Creep.prototype.withdrawEnergyExCarriers = function () {
     }
 };
 
+Creep.prototype.withdrawEnergyExCarriers = function () {
+    var containers = cache.findContainersWithEnergy(this.room);
+    return this.withdrawEnergyFromSources(containers);
+};
+
+Creep.prototype.withdrawEnergyFromSourceContainer = function () {
+    var containers = cache.findSourceContainersWithEnergy(this.room);
+    return this.withdrawEnergyFromSources(containers);
+};
+
+Creep.prototype.withdrawEnergyFromCarrier = function () {
+    var carriers = cache.findCarriersWithEnergy(this.room);
+    return this.withdrawEnergyFromSources(carriers);
+};
+
 Creep.prototype.withdrawEnergyFromSpawn = function () {
     var spawns = cache.findSpawnWithEnergy(this.room);
     if (spawns.length > 0) {
@@ -51,25 +64,6 @@ Creep.prototype.withdrawEnergyFromSpawn = function () {
     }
 };
 
-Creep.prototype.withdrawEnergyFromCarrier = function () {
-    var carriers = cache.findCarriersWithEnergy(this.room);
-    if (carriers.length > 0) {
-        var minDistance = 1000;
-        var carrier = null;
-        for (var i = 0; i < carriers.length; i++) {
-            var distance = this.room.findPath(this.pos, carriers[i].pos).length;
-            if (distance < minDistance) {
-                carrier = carriers[i];
-                minDistance = distance;
-            }
-        }
-        if (!carrier)
-            return;
-        if (carrier.transfer(this, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-            this.moveTo(carrier, {visualizePathStyle: {stroke: '#0027ff'}});
-        }
-    }
-};
 Creep.prototype.dropEnergyToCollector = function () {
     this.memory.selectedSource = null;
     var collectors = cache.findEmptyCollectors(this.room);
