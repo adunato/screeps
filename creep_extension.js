@@ -5,7 +5,7 @@ Creep.prototype.withdrawEnergy = function () {
     var carriers = cache.findCarriersWithEnergy(this.room);
     var energySources = containers.concat(carriers);
     if (energySources.length > 0) {
-        var energySource = this.getNearestStructureByDistance(energySources);
+        var energySource = this.getNearestObjectByDistance(energySources);
         if (!energySource)
             return;
         if (energySource.transfer(this, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
@@ -15,15 +15,7 @@ Creep.prototype.withdrawEnergy = function () {
 };
 Creep.prototype.withdrawEnergyFromSources = function (energySources) {
     if (energySources.length > 0) {
-        var minDistance = 1000;
-        var energySource = null;
-        for (var i = 0; i < energySources.length; i++) {
-            var distance = this.room.findPath(this.pos, energySources[i].pos).length;
-            if (distance < minDistance) {
-                energySource = energySources[i];
-                minDistance = distance;
-            }
-        }
+        var energySource = this.getNearestObjectByDistance(energySources);
         if (!energySource)
             return;
         if (energySource.transfer(this, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
@@ -58,15 +50,7 @@ Creep.prototype.withdrawEnergyFromSpawn = function () {
 
 Creep.prototype.dropToDestinations = function (destinations) {
     if (destinations.length > 0) {
-        var minDistance = 1000;
-        var structure = null;
-        for (var i = 0; i < destinations.length; i++) {
-            var distance = this.room.findPath(this.pos, destinations[i].pos).length;
-            if (distance < minDistance) {
-                structure = destinations[i];
-                minDistance = distance;
-            }
-        }
+        var structure = this.getNearestObjectByDistance(destinations);
         if (!structure)
             return;
         if (this.transfer(structure, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
@@ -90,45 +74,21 @@ Creep.prototype.dropEnergy = function () {
 Creep.prototype.dropEnergyToCollector = function () {
     this.memory.selectedSource = null;
     var collectors = cache.findEmptyCollectors(this.room);
-    if (collectors.length > 0) {
-        var minDistance = 1000;
-        var collector = null;
-        for (var i = 0; i < collectors.length; i++) {
-            var distance = this.room.findPath(this.pos, collectors[i].pos).length;
-            if (distance < minDistance) {
-                collector = collectors[i];
-                minDistance = distance;
-            }
-        }
-        if (!collector)
-            return;
-        if (this.transfer(collector, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-            this.moveTo(collector, {visualizePathStyle: {stroke: '#0027ff'}});
-        }
+    var collector = this.getNearestObjectByDistance(collectors);
+    if (!collector)
+        return;
+    if (this.transfer(collector, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+        this.moveTo(collector, {visualizePathStyle: {stroke: '#0027ff'}});
     }
 };
 
-Creep.prototype.getNearestByPath = function(objects){
-    var selectedObject = null;
-    var minDistance = 10000;
-    for (var i = 0; i < objects.length; i++) {
-        var distance = this.room.findPath(this.pos, objects[i].pos).length;
-        if (distance < minDistance) {
-                selectedObject = objects[i];
-                minDistance = distance;
-        }
-    }
-    return selectedObject;
-};
-
-Creep.prototype.getNearestStructureByDistance = function(objects){
-    // return objects[0];
+Creep.prototype.getNearestObjectByDistance = function(objects){
     return this.pos.findClosestByRange(objects);
 };
 
 Creep.prototype.selectSource = function () {
     var sources = cache.findSources(this.room);
-    var selectedSource = this.getNearestStructureByDistance(sources);
+    var selectedSource = this.getNearestObjectByDistance(sources);
     if (selectedSource)
         this.memory.selectedSource = selectedSource.id;
 };
@@ -220,7 +180,7 @@ Creep.prototype.buildConstruction = function () {
 Creep.prototype.repairConstruction = function () {
     var repairConstructions = cache.findRepairStructures(this.room);
     if (repairConstructions.length) {
-        var construction = this.getNearestStructureByDistance(repairConstructions);
+        var construction = this.getNearestObjectByDistance(repairConstructions);
         if (this.repair(construction) == ERR_NOT_IN_RANGE) {
             this.moveTo(construction, {visualizePathStyle: {stroke: '#14ff00'}});
         }
