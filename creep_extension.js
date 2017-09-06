@@ -188,6 +188,12 @@ Creep.prototype.feedStructure = function (structure) {
 };
 
 Creep.prototype.buildConstruction = function () {
+    var flag = Game.flags[this.memory.squad];
+    //move to flag if not in flag's room
+    if (flag != null && (!flag.room || flag.room.name != this.room.name)) {
+        this.moveTo(flag, {visualizePathStyle: {stroke: '#ffda00'}});
+        return;
+    }
     var constructionSites = cache.findConstructionSites(this.room);
     if (constructionSites.length) {
         var construction = this.getNearestObjectByDistance(constructionSites);
