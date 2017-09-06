@@ -100,7 +100,7 @@ Creep.prototype.goToSource = function () {
     var flag = Game.flags[this.memory.squad];
     if (flag != null) {
         this.memory.lastTick.roomName = this.roomName
-        this.moveTo(flag, {visualizePathStyle: {stroke: '#ffda00'}, reusePath: true});
+        this.moveTo(flag, {visualizePathStyle: {stroke: '#ffda00'}});
     }
     //check if flag's room is visible
     if (flag && flag.room) {
