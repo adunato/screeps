@@ -12,7 +12,7 @@ var harvesterFSM = new statemachine.StateMachine.factory({
         {name: 'energyFull', from: ['harvestEnergy','rest','dropEnergy',], to: 'dropEnergy'},
         {name: 'noEnergyContainers', from: ['dropEnergy','rest'], to: 'rest'},
         //noSource condition: at start and while harvesting
-        {name: 'noSource', from: ['goToSource','harvestEnergy', 'rest'], to: 'rest'},
+        // {name: 'noSource', from: ['goToSource','harvestEnergy', 'rest'], to: 'rest'},
         {name: 'timeToDie', from: ['dropEnergy','suicide'], to: 'suicide'},
         {
             name: 'goto', from: '*', to: function (s) {
@@ -35,10 +35,10 @@ var harvesterFSM = new statemachine.StateMachine.factory({
             creep.dropEnergy();
             // creep.dropEnergy();
         },
-        onNoSource: function () {
-            var creep = Game.creeps[this.creepName];
-            creep.rest();
-        },
+        // onNoSource: function () {
+        //     var creep = Game.creeps[this.creepName];
+        //     creep.rest();
+        // },
         onNoEnergyContainers: function () {
             var creep = Game.creeps[this.creepName];
             creep.rest();
@@ -78,9 +78,9 @@ var roleHarvester = {
         if ((creep.carry.energy === creep.carryCapacity || creep.timeToDie()) && stateMachine.can("energyFull")) {
             stateMachine.energyFull();
         }
-        if (cache.findSources(creep.room).length === 0 && stateMachine.can("noSource")) {
-            stateMachine.noSource();
-        }
+        // if (cache.findSources(creep.room).length === 0 && stateMachine.can("noSource")) {
+        //     stateMachine.noSource();
+        // }
         if (cache.findEnergyContainers(creep.room).length === 0 && cache.findEmptyCollectors(creep.room).length === 0 && cache.findEnergyFedStructures(creep.room, false).length === 0 && stateMachine.can("noEnergyContainers")) {
             stateMachine.noEnergyContainers();
         }
