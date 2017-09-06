@@ -51,9 +51,13 @@ Creep.prototype.withdrawEnergyFromSpawn = function () {
     }
 };
 
-Creep.prototype.dropToDestinations = function (destinations) {
+Creep.prototype.dropToDestinations = function (destinations, sortByDistance) {
     if (destinations.length > 0) {
-        var structure = this.getNearestObjectByDistance(destinations);
+        var structure;
+        if(sortByDistance)
+            structure = this.getNearestObjectByDistance(destinations);
+        else
+            structure = destinations[0];
         if (!structure)
             return;
         if (this.transfer(structure, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
@@ -65,13 +69,13 @@ Creep.prototype.dropToDestinations = function (destinations) {
 Creep.prototype.dropToStorage = function () {
     this.memory.selectedSource = null;
     var structures = cache.findEmptyStorage(this.room);
-    return this.dropToDestinations(structures);
+    return this.dropToDestinations(structures,true);
 };
 
 Creep.prototype.dropToDestinationContainer = function (maxQuantityPc) {
     this.memory.selectedSource = null;
     var structures = cache.findEmptyDestinationContainers(this.room,maxQuantityPc);
-    return this.dropToDestinations(structures);
+    return this.dropToDestinations(structures, false);
 };
 
 Creep.prototype.dropEnergy = function (options) {
@@ -89,7 +93,7 @@ Creep.prototype.dropEnergy = function (options) {
         var energyStructures = cache.findEnergyFedStructures(this.room, false);
         targets = targets.concat(energyStructures);
     }
-    return this.dropToDestinations(targets);
+    return this.dropToDestinations(targets,true);
 };
 
 Creep.prototype.dropEnergyToCollector = function () {
