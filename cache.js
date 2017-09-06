@@ -76,6 +76,7 @@ var cache = {
         var structures = {};
         if (typeof this.rooms.storage[room] != "undefined") {
             structures = this.rooms.storage[room];
+            console.log(structures.length);
         } else {
             structures = room.find(FIND_STRUCTURES, {
                 filter: (structure) => {
