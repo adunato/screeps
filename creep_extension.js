@@ -192,8 +192,12 @@ Creep.prototype.buildConstruction = function () {
     //move to flag if not in flag's room
     if (flag != null && (!flag.room || flag.room.name != this.room.name)) {
         this.moveTo(flag, {visualizePathStyle: {stroke: '#ffda00'}});
+        if(this.name === 'Anna')
+            console.log("no flag")
         return;
     }
+    if(this.name === 'Anna')
+        console.log("flag")
     var constructionSites = cache.findConstructionSites(this.room);
     if (constructionSites.length) {
         var construction = this.getNearestObjectByDistance(constructionSites);
