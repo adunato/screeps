@@ -7,7 +7,7 @@ var carrierFSM = new statemachine.StateMachine.factory({
     transitions: [
         {name: 'sourceFull', from: ['rest','withdraw_source','drop_destination','drop_storage'], to: 'withdraw_source'},
         {name: 'creepFull', from: ['rest','withdraw_source','drop_destination'], to: 'drop_destination'},
-        {name: 'containersFull', from: ['withdraw_source','drop_destination','drop_storage'], to: 'drop_storage'},
+        {name: 'containersFull', from: ['withdraw_source','drop_destination','rest','drop_storage'], to: 'drop_storage'},
         {name: 'nothingToDo', from: ['rest','withdraw_source','drop_destination','drop_storage'], to: 'rest'},
         {name: 'timeToDie', from: ['rest','withdraw_source'], to: 'timeToDie'},
         {
