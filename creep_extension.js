@@ -195,6 +195,10 @@ Creep.prototype.buildConstruction = function () {
         return;
     }
     var constructionSites = cache.findConstructionSites(flag.room);
+    if(this.name === 'Anna') {
+        console.log("flag")
+        console.log(constructionSites)
+    }
     if (constructionSites.length) {
         var construction = this.getNearestObjectByDistance(constructionSites);
         if (this.build(construction) == ERR_NOT_IN_RANGE) {
