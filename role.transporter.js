@@ -5,9 +5,10 @@ var MAX_DESTINATION_CONTAINER_QUANTITY_PC = 80;
 var carrierFSM = new statemachine.StateMachine.factory({
     init: 'none',
     transitions: [
-        {name: 'sourceFull', from: ['rest','withdraw_source','drop_destination'], to: 'withdraw_source'},
+        {name: 'sourceFull', from: ['rest','withdraw_source','drop_destination','drop_storage'], to: 'withdraw_source'},
         {name: 'creepFull', from: ['rest','withdraw_source','drop_destination'], to: 'drop_destination'},
-        {name: 'nothingToDo', from: ['rest','withdraw_source','drop_destination'], to: 'rest'},
+        {name: 'containersFull', from: ['drop_destination','drop_storage'], to: 'drop_storage'},
+        {name: 'nothingToDo', from: ['rest','withdraw_source','drop_destination','drop_storage'], to: 'rest'},
         {name: 'timeToDie', from: ['rest','withdraw_source'], to: 'timeToDie'},
         {
             name: 'goto', from: '*', to: function (s) {
@@ -30,6 +31,10 @@ var carrierFSM = new statemachine.StateMachine.factory({
             var creep = Game.creeps[this.creepName];
             creep.dropToDestinationContainer(MAX_DESTINATION_CONTAINER_QUANTITY_PC);
         },
+        onDropStorage: function () {
+            var creep = Game.creeps[this.creepName];
+            creep.dropToStorage();
+        },
         onRest: function () {
             var creep = Game.creeps[this.creepName];
             creep.rest();
@@ -51,21 +56,33 @@ var roleCarrier = {
     /** @param {Creep} creep **/
     run: function (creep) {
         var creepState = creep.memory.state;
+        var sourceContainers = cache.findSourceContainersWithEnergy(creep.room,MIN_SOURCE_CONTAINER_QUANTITY_PC).length;
+        var destinationContainers = cache.findEmptyDestinationContainers(creep.room,MAX_DESTINATION_CONTAINER_QUANTITY_PC).length;
+        var storage = cache.findEmptyStorage(creep.room).length;
+        var creepCarryEnergy = creep.carry.energy;
+        var creepCarryCapacity = creep.carryCapacity;
+
         if (typeof creepState === "undefined")
             creepState = "rest";
         var stateMachine = new carrierFSM(creep.name, "rest");
         stateMachine.goto(creepState);
-        if (creep.timeToDie() && creep.carry.energy === 0 && stateMachine.can("timeToDie")){
+        if (creep.timeToDie() && creepCarryEnergy === 0 && stateMachine.can("timeToDie")){
             stateMachine.timeToDie();
         }
-        if (cache.findSourceContainersWithEnergy(creep.room,MIN_SOURCE_CONTAINER_QUANTITY_PC).length > 0 && stateMachine.can("sourceFull")) {
+        if (sourceContainers > 0 && stateMachine.can("sourceFull")) {
             stateMachine.sourceFull();
         }
-        if (cache.findSourceContainersWithEnergy(creep.room,MIN_SOURCE_CONTAINER_QUANTITY_PC).length === 0 && stateMachine.can("nothingToDo")) {
+        //no source and creep is empty
+        if ((sourceContainers === 0 && creepCarryEnergy === 0)
+            || (destinationContainers === 0 && storage === 0 && creepCarryEnergy === creepCarryCapacity)
+            && stateMachine.can("nothingToDo")) {
             stateMachine.nothingToDo();
         }
-        if (creep.carry.energy === creep.carryCapacity && cache.findEmptyDestinationContainers(creep.room,MAX_DESTINATION_CONTAINER_QUANTITY_PC).length > 0 && stateMachine.can("creepFull")) {
+        if (creepCarryEnergy === creepCarryCapacity && destinationContainers > 0 && stateMachine.can("creepFull")) {
             stateMachine.creepFull();
+        }
+        if (destinationContainers === 0 && stateMachine.can("containersFull")) {
+            stateMachine.containersFull();
         }
         creep.memory.state = stateMachine.state;
     }

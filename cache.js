@@ -12,6 +12,7 @@ var cache = {
         repairRamparts: {},
         sources: {},
         energyContainers: {},
+        storage: {},
         energyFedStructures: {},
         creeps: {},
         controllers: {},
@@ -35,6 +36,7 @@ var cache = {
             this.rooms.carrierFlags = {};
             this.rooms.creeps = {};
             this.rooms.containers = {};
+            this.rooms.storage = {};
         }
     },
     getStoredEnergy: function(room){
@@ -69,6 +71,20 @@ var cache = {
             this.rooms.containers[room] = containers;
         }
         return containers;
+    },
+    findEmptyStorage: function (room) {
+        var structures = {};
+        if (typeof this.rooms.containers[room] != "undefined") {
+            structures = this.rooms.containers[room];
+        } else {
+            structures = room.find(FIND_STRUCTURES, {
+                filter: (structure) => {
+                    return (structure.structureType == STRUCTURE_STORAGE) && structure.store < structure.storeCapacity;
+                }
+            });
+            this.rooms.storage[room] = structures;
+        }
+        return structures;
     },
     findSourceContainersWithEnergy: function (room, minQuantityPc) {
         var containers = this.findContainersWithEnergy(room);

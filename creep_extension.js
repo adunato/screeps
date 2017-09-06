@@ -62,6 +62,12 @@ Creep.prototype.dropToDestinations = function (destinations) {
     }
 };
 
+Creep.prototype.dropToStorage = function () {
+    this.memory.selectedSource = null;
+    var structures = cache.findEmptyStorage(this.room);
+    return this.dropToDestinations(structures);
+};
+
 Creep.prototype.dropToDestinationContainer = function (maxQuantityPc) {
     this.memory.selectedSource = null;
     var structures = cache.findEmptyDestinationContainers(this.room,maxQuantityPc);
