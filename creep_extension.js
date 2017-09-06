@@ -131,6 +131,13 @@ Creep.prototype.goToSource = function () {
     }
 };
 
+Creep.prototype.isInSquadRoom = function () {
+    var flag = Game.flags[this.memory.squad];
+    return flag.pos.roomName === this.pos.roomName;
+};
+
+
+
 Creep.prototype.isAlive = function () {
     return !(!Game.creeps[this.name]);
 };
@@ -239,6 +246,7 @@ Creep.prototype.rest = function () {
     this.moveTo(Game.flags["RestArea"], {visualizePathStyle: {stroke: '#ffffff'}});
     this.say("Rest");
 };
+
 
 Creep.prototype.timeToDie = function () {
     var hasMovement = false;

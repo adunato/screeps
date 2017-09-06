@@ -93,7 +93,8 @@ var roleBuilder = {
         if (cache.findSpawnWithEnergy(creep.room).length === 0 && stateMachine.can("spawnEmpty")) {
             stateMachine.spawnEmpty();
         }
-        if (cache.findConstructionSites(creep.room).length === 0 && stateMachine.can("noConstructions")) {
+        //only check if in squad's room
+        if (cache.findConstructionSites(creep.room).length === 0 && creep.isInSquadRoom() && stateMachine.can("noConstructions")) {
             stateMachine.noConstructions();
         }
         if (cache.findCarriersWithEnergy(creep.room).length === 0 && stateMachine.can("carrierEmpty")) {
