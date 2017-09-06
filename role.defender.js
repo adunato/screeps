@@ -1,6 +1,6 @@
 var statemachine = require('state-machine');
 var cache = require('cache');
-var isStatic = false;
+var isStatic = true;
 var defenderFSM = new statemachine.StateMachine.factory({
     init: 'none',
     transitions: [
