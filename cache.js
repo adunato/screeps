@@ -70,11 +70,11 @@ var cache = {
         }
         return containers;
     },
-    findSourceContainersWithEnergy: function (room) {
+    findSourceContainersWithEnergy: function (room, minQuantity) {
         var containers = this.findContainersWithEnergy(room);
         var sources = [];
         for(var i = 0; i < containers.length; i++){
-            if(this.isContainerSource(containers[i])) {
+            if(this.isContainerSource(containers[i]) && containers[i].store.energy > minQuantity) {
                 sources.push(containers[i]);
             }
         }

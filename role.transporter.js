@@ -1,5 +1,6 @@
 var statemachine = require('state-machine');
 var cache = require('cache');
+var MIN_SOURCE_CONTAINER_QUANTITY = 200;
 var carrierFSM = new statemachine.StateMachine.factory({
     init: 'none',
     transitions: [
@@ -22,7 +23,7 @@ var carrierFSM = new statemachine.StateMachine.factory({
     methods: {
         onWithdrawSource: function () {
             var creep = Game.creeps[this.creepName];
-            creep.withdrawEnergyFromSourceContainer();
+            creep.withdrawEnergyFromSourceContainer(MIN_SOURCE_CONTAINER_QUANTITY);
         },
         onDropDestination: function () {
             var creep = Game.creeps[this.creepName];
@@ -56,10 +57,10 @@ var roleCarrier = {
         if (creep.timeToDie() && creep.carry.energy === 0 && stateMachine.can("timeToDie")){
             stateMachine.timeToDie();
         }
-        if (cache.findSourceContainersWithEnergy(creep.room).length > 0 && stateMachine.can("sourceFull")) {
+        if (cache.findSourceContainersWithEnergy(creep.room,MIN_SOURCE_CONTAINER_QUANTITY).length > 0 && stateMachine.can("sourceFull")) {
             stateMachine.sourceFull();
         }
-        if (cache.findSourceContainersWithEnergy(creep.room).length === 0 && stateMachine.can("nothingToDo")) {
+        if (cache.findSourceContainersWithEnergy(creep.room,MIN_SOURCE_CONTAINER_QUANTITY).length === 0 && stateMachine.can("nothingToDo")) {
             stateMachine.nothingToDo();
         }
         if (creep.carry.energy === creep.carryCapacity && cache.findEmptyDestinationContainers(creep.room).length > 0 && stateMachine.can("creepFull")) {
