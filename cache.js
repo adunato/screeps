@@ -79,7 +79,7 @@ var cache = {
         } else {
             structures = room.find(FIND_STRUCTURES, {
                 filter: (structure) => {
-                    return (structure.structureType == STRUCTURE_STORAGE) && structure.store < structure.storeCapacity;
+                    return (structure.structureType == STRUCTURE_STORAGE);
                 }
             });
             this.rooms.storage[room] = structures;
