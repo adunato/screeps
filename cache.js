@@ -75,8 +75,10 @@ var cache = {
     findEmptyStorage: function (room) {
         var structures = {};
         if (typeof this.rooms.storage[room] != "undefined") {
+            console.log("A");
             structures = this.rooms.storage[room];
         } else {
+            console.log("B");
             structures = room.find(FIND_STRUCTURES, {
                 filter: (structure) => {
                     return (structure.structureType == STRUCTURE_STORAGE) && structure.store < structure.storeCapacity;
