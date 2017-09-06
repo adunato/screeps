@@ -1,3 +1,6 @@
+const DROP_CONTAINER = "DROP_CONTAINER";
+const DROP_STRUCTURE = "DROP_STRUCTURE";
+const DROP_COLLECTOR = "DROP_COLLECTOR";
 var cache = require('cache');
 require('source_extension');
 Creep.prototype.withdrawEnergy = function () {
@@ -65,12 +68,21 @@ Creep.prototype.dropToDestinationContainer = function () {
     return this.dropToDestinations(structures);
 };
 
-Creep.prototype.dropEnergy = function () {
+Creep.prototype.dropEnergy = function (options) {
     this.memory.selectedSource = null;
-    var containers = cache.findEnergyContainers(this.room);
-    var collectors = cache.findEmptyCollectors(this.room)
-    var energyStructures = cache.findEnergyFedStructures(this.room, false);
-    var targets = containers.concat(collectors).concat(energyStructures);
+    var targets = {};
+    if(options[DROP_CONTAINER]) {
+        var containers = cache.findEnergyContainers(this.room);
+        targets = targets.concat(containers);
+    }
+    if(options[DROP_COLLECTOR]) {
+        var collectors = cache.findEmptyCollectors(this.room)
+        targets = targets.concat(collectors);
+    }
+    if(options[DROP_STRUCTURE]) {
+        var energyStructures = cache.findEnergyFedStructures(this.room, false);
+        targets = targets.concat(energyStructures);
+    }
     return this.dropToDestinations(targets);
 };
 

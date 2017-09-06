@@ -28,11 +28,11 @@ var collectorFSM = new statemachine.StateMachine.factory({
         },
         onEnergyFull: function () {
             var creep = Game.creeps[this.creepName];
-            creep.dropEnergy();
+            creep.dropEnergy({DROP_CONTAINER,DROP_STRUCTURE});
         },
         onReDropEnergy: function () {
             var creep = Game.creeps[this.creepName];
-            creep.dropEnergy();
+            creep.dropEnergy({DROP_CONTAINER,DROP_STRUCTURE});
         },
         onNoSource: function () {
             var creep = Game.creeps[this.creepName];
