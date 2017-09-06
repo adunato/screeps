@@ -145,13 +145,13 @@ Creep.prototype.squadRally = function () {
     }
 };
 
-Creep.prototype.attackEnemiesStatic = function () {
+Creep.prototype.attackEnemies = function (isStatic) {
     var target = this.pos.findClosestByPath(this.room.find(FIND_HOSTILE_CREEPS));
     if (target) {
         var res = this.attack(target);
-        // if (res === ERR_NOT_IN_RANGE) {
-        //     this.moveTo(target, {visualizePathStyle: {stroke: '#ff000b'}});
-        // }
+        if (res === ERR_NOT_IN_RANGE && !isStatic) {
+            this.moveTo(target, {visualizePathStyle: {stroke: '#ff000b'}});
+        }
     }
 };
 

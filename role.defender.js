@@ -1,5 +1,6 @@
 var statemachine = require('state-machine');
 var cache = require('cache');
+var isStatic = false;
 var defenderFSM = new statemachine.StateMachine.factory({
     init: 'none',
     transitions: [
@@ -24,7 +25,7 @@ var defenderFSM = new statemachine.StateMachine.factory({
         },
         onAttack: function () {
             var creep = Game.creeps[this.creepName];
-            creep.attackEnemiesStatic();
+            creep.attackEnemies(isStatic);
         },
         onTransition(lifecycle) {
             // console.log("transition name: " + lifecycle.transition);
