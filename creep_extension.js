@@ -166,6 +166,13 @@ Creep.prototype.squadRally = function () {
     }
 };
 
+Creep.prototype.goToNextWaypoint = function () {
+    var flag = Game.flags[this.memory.squad];
+    if (flag != null) {
+        this.moveTo(flag, {visualizePathStyle: {stroke: '#001dff'}});
+    }
+};
+
 Creep.prototype.attackEnemies = function (isStatic) {
     var target = this.pos.findClosestByPath(this.room.find(FIND_HOSTILE_CREEPS));
     if (target) {
@@ -225,6 +232,12 @@ Creep.prototype.buildConstruction = function () {
 };
 
 Creep.prototype.repairConstruction = function () {
+    var flag = Game.flags[this.memory.squad];
+    //move to flag if not in flag's room
+    if (flag != null && (!flag.room || flag.room.name != this.room.name)) {
+        this.moveTo(flag, {visualizePathStyle: {stroke: '#ffda00'}});
+        return;
+    }
     var repairConstructions = cache.findRepairStructures(this.room);
     if (repairConstructions.length) {
         var construction = this.getNearestObjectByDistance(repairConstructions);
