@@ -51,7 +51,7 @@ var cache = {
         } else {
             containers = room.find(FIND_STRUCTURES, {
                 filter: (container) => {
-                    return (container.structureType == STRUCTURE_CONTAINER) && container.store.energy > 0;
+                    return (container.structureType == STRUCTURE_CONTAINER || container.structureType == STRUCTURE_STORAGE) && container.store.energy > 0;
                 }
             });
             this.rooms.containersWithEnergy[room] = containers;
