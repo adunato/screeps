@@ -70,22 +70,22 @@ var cache = {
         }
         return containers;
     },
-    findSourceContainersWithEnergy: function (room, minQuantity) {
+    findSourceContainersWithEnergy: function (room, minQuantityPc) {
         var containers = this.findContainersWithEnergy(room);
         var sources = [];
         for(var i = 0; i < containers.length; i++){
-            if(this.isContainerSource(containers[i]) && containers[i].store.energy > minQuantity) {
+            if(this.isContainerSource(containers[i]) && containers[i].store.energy > (containers[i].storeCapacity / 100 * minQuantityPc)) {
                 sources.push(containers[i]);
             }
         }
         return sources;
     },
-    findEmptyDestinationContainers: function (room) {
+    findEmptyDestinationContainers: function (room, maxQuantityPc) {
         var containers = this.findContainers(room);
         var sources = [];
         for(var i = 0; i < containers.length; i++){
             var container = containers[i];
-            if(this.isContainerDestination(containers[i]) && container.store.energy < container.storeCapacity) {
+            if(this.isContainerDestination(containers[i]) && container.store.energy < (container.storeCapacity / 100 * maxQuantityPc)) {
                 sources.push(containers[i]);
             }
         }

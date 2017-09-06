@@ -32,8 +32,8 @@ Creep.prototype.withdrawEnergyExCarriers = function () {
     return this.withdrawEnergyFromSources(containers);
 };
 
-Creep.prototype.withdrawEnergyFromSourceContainer = function (minQuantity) {
-    var containers = cache.findSourceContainersWithEnergy(this.room,minQuantity);
+Creep.prototype.withdrawEnergyFromSourceContainer = function (minQuantityPc) {
+    var containers = cache.findSourceContainersWithEnergy(this.room,minQuantityPc);
     return this.withdrawEnergyFromSources(containers);
 };
 
@@ -62,9 +62,9 @@ Creep.prototype.dropToDestinations = function (destinations) {
     }
 };
 
-Creep.prototype.dropToDestinationContainer = function () {
+Creep.prototype.dropToDestinationContainer = function (maxQuantityPc) {
     this.memory.selectedSource = null;
-    var structures = cache.findEmptyDestinationContainers(this.room);
+    var structures = cache.findEmptyDestinationContainers(this.room,maxQuantityPc);
     return this.dropToDestinations(structures);
 };
 

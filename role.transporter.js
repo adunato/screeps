@@ -1,6 +1,7 @@
 var statemachine = require('state-machine');
 var cache = require('cache');
-var MIN_SOURCE_CONTAINER_QUANTITY = 200;
+var MIN_SOURCE_CONTAINER_QUANTITY_PC = 20;
+var MAX_DESTINATION_CONTAINER_QUANTITY_PC = 80;
 var carrierFSM = new statemachine.StateMachine.factory({
     init: 'none',
     transitions: [
@@ -23,11 +24,11 @@ var carrierFSM = new statemachine.StateMachine.factory({
     methods: {
         onWithdrawSource: function () {
             var creep = Game.creeps[this.creepName];
-            creep.withdrawEnergyFromSourceContainer(MIN_SOURCE_CONTAINER_QUANTITY);
+            creep.withdrawEnergyFromSourceContainer(MIN_SOURCE_CONTAINER_QUANTITY_PC);
         },
         onDropDestination: function () {
             var creep = Game.creeps[this.creepName];
-            creep.dropToDestinationContainer();
+            creep.dropToDestinationContainer(MAX_DESTINATION_CONTAINER_QUANTITY_PC);
         },
         onRest: function () {
             var creep = Game.creeps[this.creepName];
@@ -57,13 +58,13 @@ var roleCarrier = {
         if (creep.timeToDie() && creep.carry.energy === 0 && stateMachine.can("timeToDie")){
             stateMachine.timeToDie();
         }
-        if (cache.findSourceContainersWithEnergy(creep.room,MIN_SOURCE_CONTAINER_QUANTITY).length > 0 && stateMachine.can("sourceFull")) {
+        if (cache.findSourceContainersWithEnergy(creep.room,MIN_SOURCE_CONTAINER_QUANTITY_PC).length > 0 && stateMachine.can("sourceFull")) {
             stateMachine.sourceFull();
         }
-        if (cache.findSourceContainersWithEnergy(creep.room,MIN_SOURCE_CONTAINER_QUANTITY).length === 0 && stateMachine.can("nothingToDo")) {
+        if (cache.findSourceContainersWithEnergy(creep.room,MIN_SOURCE_CONTAINER_QUANTITY_PC).length === 0 && stateMachine.can("nothingToDo")) {
             stateMachine.nothingToDo();
         }
-        if (creep.carry.energy === creep.carryCapacity && cache.findEmptyDestinationContainers(creep.room).length > 0 && stateMachine.can("creepFull")) {
+        if (creep.carry.energy === creep.carryCapacity && cache.findEmptyDestinationContainers(creep.room,MAX_DESTINATION_CONTAINER_QUANTITY_PC).length > 0 && stateMachine.can("creepFull")) {
             stateMachine.creepFull();
         }
         creep.memory.state = stateMachine.state;
