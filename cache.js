@@ -85,6 +85,7 @@ var cache = {
                     return (structure.structureType == STRUCTURE_STORAGE) && structure.store < structure.storeCapacity;
                 }
             });
+            console.log("storage: " + storage);
             this.rooms.storage[room] = storage;
         }
         return storage;
