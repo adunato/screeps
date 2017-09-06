@@ -76,16 +76,15 @@ var cache = {
         var structures = {};
         if (typeof this.rooms.storage[room] != "undefined") {
             structures = this.rooms.storage[room];
-            console.log(structures.length);
         } else {
             structures = room.find(FIND_STRUCTURES, {
                 filter: (structure) => {
                     return (structure.structureType == STRUCTURE_STORAGE) && structure.store < structure.storeCapacity;
                 }
             });
-            console.log(structures.length);
             this.rooms.storage[room] = structures;
         }
+        console.log(structures.length);
         return structures;
     },
     findSourceContainersWithEnergy: function (room, minQuantityPc) {
