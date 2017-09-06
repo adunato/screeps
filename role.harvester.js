@@ -1,4 +1,5 @@
 var statemachine = require('state-machine');
+require('creep_extension');
 // var visualize = require('visualize');
 var cache = require('cache');
 var harvesterFSM = new statemachine.StateMachine.factory({
