@@ -137,6 +137,10 @@ Creep.prototype.goToSource = function () {
 
 Creep.prototype.isInSquadRoom = function () {
     var flag = Game.flags[this.memory.squad];
+    if(!flag){
+        console.log("could not find flag for squad: " + this.memory.squad);
+        return false;
+    }
     return flag.pos.roomName === this.pos.roomName;
 };
 
