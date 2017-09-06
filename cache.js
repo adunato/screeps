@@ -86,7 +86,7 @@ var cache = {
             });
             this.rooms.storage[room] = structures;
         }
-        console.log(structures.length);
+        console.log(structures);
         return structures;
     },
     findSourceContainersWithEnergy: function (room, minQuantityPc) {
