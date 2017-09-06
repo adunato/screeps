@@ -73,21 +73,21 @@ var cache = {
         return containers;
     },
     findEmptyStorage: function (room) {
-        var structures = {};
+        console.log("findEmptyStorage");
+        var storage = {};
         if (typeof this.rooms.storage[room] != "undefined") {
-            console.log("A");
-            structures = this.rooms.storage[room];
+            console.log("findEmptyStorage - A");
+            storage = this.rooms.storage[room];
         } else {
-            console.log("B");
-            structures = room.find(FIND_STRUCTURES, {
+            console.log("findEmptyStorage - B");
+            storage = room.find(FIND_STRUCTURES, {
                 filter: (structure) => {
                     return (structure.structureType == STRUCTURE_STORAGE) && structure.store < structure.storeCapacity;
                 }
             });
-            this.rooms.storage[room] = structures;
+            this.rooms.storage[room] = storage;
         }
-        console.log(structures);
-        return structures;
+        return storage;
     },
     findSourceContainersWithEnergy: function (room, minQuantityPc) {
         var containers = this.findContainersWithEnergy(room);
