@@ -1,5 +1,4 @@
 var statemachine = require('state-machine');
-require('creep_extension');
 // var visualize = require('visualize');
 var cache = require('cache');
 var harvesterFSM = new statemachine.StateMachine.factory({
@@ -33,7 +32,7 @@ var harvesterFSM = new statemachine.StateMachine.factory({
         },
         onEnergyFull: function () {
             var creep = Game.creeps[this.creepName];
-            creep.dropEnergy({DROP_CONTAINER,DROP_STRUCTURE, DROP_COLLECTOR});
+            creep.dropEnergy({DROP_CONTAINER : true,DROP_STRUCTURE : true, DROP_COLLECTOR: true});
             // creep.dropEnergy();
         },
         // onNoSource: function () {
