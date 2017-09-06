@@ -82,7 +82,7 @@ var cache = {
             console.log("findEmptyStorage - B");
             storage = room.find(FIND_STRUCTURES, {
                 filter: (structure) => {
-                    return (structure.structureType == STRUCTURE_STORAGE) && structure.store < structure.storeCapacity;
+                    return (structure.structureType == STRUCTURE_STORAGE);
                 }
             });
             console.log("storage: " + storage);
