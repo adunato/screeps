@@ -82,6 +82,7 @@ var roleCarrier = {
             stateMachine.creepFull();
         }
         if (destinationContainers === 0 && stateMachine.can("containersFull")) {
+            console.log("containersFull")
             stateMachine.containersFull();
         }
         creep.memory.state = stateMachine.state;
