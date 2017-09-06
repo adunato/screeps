@@ -97,15 +97,13 @@ var cache = {
         return sources;
     },
     findEmptyDestinationContainers: function (room, maxQuantityPc) {
-        var containers = this.findContainers(room);
-        var sources = [];
-        for(var i = 0; i < containers.length; i++){
-            var container = containers[i];
-            if(this.isContainerDestination(containers[i]) && container.store.energy < (container.storeCapacity / 100 * maxQuantityPc)) {
-                sources.push(containers[i]);
-            }
+        var containers = [];
+        for(var i = 0; i < global.sourceContainers.length; i++){
+            var container = Game.getObjectById(global.sourceContainers[i])
+            if(container.store.energy < (container.storeCapacity / 100 * maxQuantityPc))
+                containers.push(container);
         }
-        return sources;
+        return containers;
     },
     isContainerSource: function (container) {
         for(var i = 0; i < global.sourceContainers.length; i++){
