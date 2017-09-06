@@ -61,8 +61,6 @@ var roleCarrier = {
         var storage = cache.findEmptyStorage(creep.room).length;
         var creepCarryEnergy = creep.carry.energy;
         var creepCarryCapacity = creep.carryCapacity;
-        console.log("destinationContainers " + destinationContainers)
-        console.log("storage " + storage)
 
         if (typeof creepState === "undefined")
             creepState = "rest";
