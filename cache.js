@@ -98,8 +98,8 @@ var cache = {
     },
     findEmptyDestinationContainers: function (room, maxQuantityPc) {
         var containers = [];
-        for(var i = 0; i < global.sourceContainers.length; i++){
-            var container = Game.getObjectById(global.sourceContainers[i])
+        for(var i = 0; i < global.destinationContainers.length; i++){
+            var container = Game.getObjectById(global.destinationContainers[i])
             if(container.store.energy < (container.storeCapacity / 100 * maxQuantityPc))
                 containers.push(container);
         }
