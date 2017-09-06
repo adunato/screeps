@@ -70,7 +70,7 @@ Creep.prototype.dropToDestinationContainer = function () {
 
 Creep.prototype.dropEnergy = function (options) {
     this.memory.selectedSource = null;
-    var targets = {};
+    var targets = [];
     if(options[DROP_CONTAINER]) {
         var containers = cache.findEnergyContainers(this.room);
         targets = targets.concat(containers);
