@@ -191,6 +191,8 @@ Creep.prototype.setNextWaypoint = function () {
         console.log("creep " + this.name + " " + this.memory.role + " could not find next waypoint from " + this.memory.current_waypoint);
     }
 
+    console.log(this.memory.current_waypoint)
+
 }
 
 Creep.prototype.previousWaypoint = function () {
