@@ -121,9 +121,11 @@ Creep.prototype.selectSource = function () {
 
 Creep.prototype.goToSource = function () {
     var flag = Game.flags[this.memory.squad];
-    if (flag != null && this.roomName) {
+    if (flag && this.roomName) {
         this.memory.lastTick.roomName = this.roomName
         this.moveTo(flag, {visualizePathStyle: {stroke: '#ffda00'}});
+    } else{
+        console.log("no flag with name: " + this.memory.squad);
     }
     //check if flag's room is visible
     if (flag && flag.room) {
