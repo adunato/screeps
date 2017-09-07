@@ -26,6 +26,7 @@ var towerFeederSM = new statemachine.StateMachine.factory({
             creep.withdrawEnergy();
         },
         onFeed: function () {
+            console.log("onFeed");
             var creep = Game.creeps[this.creepName];
             creep.feedTower();
         },
