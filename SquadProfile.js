@@ -1,6 +1,9 @@
 function SquadProfile(name) {
     //e.g. [["harvester",3], ["builder",1]]
     this.squadProfile = global.squadProfiles[name];
+    if(!this.squadProfile){
+        console.log("error: " + name);
+    }
     this.name = name;
 }
 SquadProfile.prototype.getCreepQuantity = function(role) {
