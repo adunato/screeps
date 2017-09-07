@@ -127,6 +127,7 @@ Creep.prototype.goToSource = function () {
 
     if(flag){
         this.moveTo(flag, {visualizePathStyle: {stroke: '#ffda00'}});
+        console.log("moving to flag: " + flag.name);
     } else{
         console.log("no flag with name: " + this.memory.squad);
     }
