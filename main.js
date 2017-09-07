@@ -143,7 +143,8 @@ function assignCreepsToSquads() {
 }
 
 function flagToSquadName (flagName) {
-    return flagName.split('_')[0];
+    return flagName;
+    // return flagName.split('_')[0];
 }
 
 function isFlagSquad(flagName) {
@@ -157,7 +158,7 @@ function isFlagSquad(flagName) {
 }
 
 function createSquad(squadName) {
-    return new Squad(new SquadProfile(squadName.substr(0,squadName.length - 1)), squadName);
+    return new Squad(new SquadProfile(squadName.substr(0,2)), squadName);
 }
 
 function createSquads() {
