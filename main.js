@@ -238,7 +238,7 @@ module.exports.loop = function () {
     createSquads();
     logCPU('createSquads ');
     assignCreepsToSquads();
-    Memory.squads = squadsIndex;
+    // Memory.squads = squadsIndex;
     logCPU('assignCreepsToSquads ');
     logSpawing();
     logCPU('logSpawing ');
