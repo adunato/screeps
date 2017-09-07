@@ -182,8 +182,10 @@ Creep.prototype.setNextWaypoint = function () {
             console.log("creep " + this.name + " " + this.memory.role + " could not find waypoint " + this.generateWaypointName(1));
         }
     } else if (this.nextWaypoint()){
+        console.log("setting " + this.nextWaypoint() + " as next waypoint")
         this.memory.current_waypoint = this.nextWaypoint();
     } else if (this.previousWaypoint()){
+        console.log("setting " + this.previousWaypoint() + " as next waypoint")
         this.memory.current_waypoint = this.previousWaypoint();
     } else{
         console.log("creep " + this.name + " " + this.memory.role + " could not find next waypoint from " + this.memory.current_waypoint);
