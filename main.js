@@ -157,6 +157,7 @@ function isFlagSquad(flagName) {
 }
 
 function createSquad(squadName) {
+    console.log(squadName.substr(squadName.length - 1))
     return new Squad(new SquadProfile(squadName.substr(squadName.length - 1)), squadName);
 }
 
