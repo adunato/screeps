@@ -190,9 +190,6 @@ Creep.prototype.setNextWaypoint = function () {
     } else{
         console.log("creep " + this.name + " " + this.memory.role + " could not find next waypoint from " + this.memory.current_waypoint);
     }
-
-    console.log(this.memory.current_waypoint)
-
 }
 
 Creep.prototype.previousWaypoint = function () {
@@ -233,6 +230,7 @@ Creep.prototype.goToWaypoint = function () {
 };
 
 Creep.prototype.isInCurrentWaypointRange = function () {
+    console.log(this.memory.current_waypoint)
     var flag = Game.flags[this.memory.current_waypoint];
     if (!flag) {
         return
