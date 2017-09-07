@@ -133,7 +133,7 @@ function assignCreepsToSquads() {
             if (squad.needCreepRole(roleName)) {
                 console.log(squadName + ' needs ' + roleName);
                 if(!spawnSet) {
-                    spawn(roleName);
+                    // spawn(roleName);
                     spawnSet = true
                 }
             }
@@ -142,27 +142,30 @@ function assignCreepsToSquads() {
 
 }
 
-function checkSquadFromFlag(role, flagName) {
-    if (flagName.startsWith(role)) {
-        var squadExist = false;
-        for (var i = 0; i < squadsStructureTree.length; i++) {
-            if (squadsStructureTree[i].getName() === flagName)
-                squadExist = true;
-        }
-        return !squadExist;
-    }
+function flagToSquadName (flagName) {
+    return flagName.split('_')[0];
 }
 
-function createSquad(squadRole, squadName) {
-    return new Squad(new SquadProfile(squadRole), squadName);
+function isFlagSquad(flagName) {
+    var squadName = flagToSquadName(flagName);
+    for (var squadProfile in global.squadProfiles) {
+        if(squadName.startsWith(squadProfile)){
+            return true;
+        }
+    }
+    return false;
+}
+
+function createSquad(squadName) {
+    return new Squad(new SquadProfile(squadName.substr(squadName.length - 1)), squadName);
 }
 
 function createSquads() {
     for (var flagName in Game.flags) {
-        for (var squadRole in global.squadProfiles) {
-            if (checkSquadFromFlag(squadRole, flagName)) {
-                var squad = createSquad(squadRole, flagName);
-                squadsIndex[squad.getName()] = squad;
+        if (isFlagSquad(flagName)) {
+            var squadName = flagToSquadName(flagName);
+            if(!squadsIndex[squadName]){
+                squadsIndex[squadName] = createSquad(squadName);
             }
         }
     }
