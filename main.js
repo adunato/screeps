@@ -68,11 +68,11 @@ function spawn(roleName) {
 function manageDefense() {
     for (var i = 0; i < cache.findTowers(room); i++) {
         var tower = cache.findTowers(room)[i];
+        console.log(tower.energy > tower.energyCapacity / 2);
         if (room.find(FIND_HOSTILE_CREEPS).length > 0) {
             tower.attack(tower.pos.findClosestByRange(room.find(FIND_HOSTILE_CREEPS)));
         } else if (tower.energy > tower.energyCapacity / 2) {
             var closestDamagedRampart = cache.findRepairRamparts(room);
-            console.log(closestDamagedRampart);
             if (closestDamagedRampart.length > 0) {
                 tower.repair(closestDamagedRampart[0]);
             } else {
