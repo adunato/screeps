@@ -21,19 +21,19 @@ var towerFeederSM = new statemachine.StateMachine.factory({
         }
     },
     methods: {
-        onEnergyEmpty: function () {
+        onWithdraw: function () {
             var creep = Game.creeps[this.creepName];
             creep.withdrawEnergy();
         },
-        onEnergyFull: function () {
+        onFeed: function () {
             var creep = Game.creeps[this.creepName];
             creep.feedTower();
         },
-        onNothingToDo: function () {
+        onRest: function () {
             var creep = Game.creeps[this.creepName];
             creep.rest();
         },
-        onTimeToDie: function () {
+        onSuicide: function () {
             var creep = Game.creeps[this.creepName];
             creep.suicide_();
         },
