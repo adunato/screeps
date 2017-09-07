@@ -262,12 +262,12 @@ var cache = {
         }
         return ret;
     },
-    findEmptyTowers: function (room) {
+    findEmptyTowers: function (room, minQuantityPc) {
         var towers = this.findTowers(room);
         var ret = [];
         for (var i in towers) {
             var tower = towers[i];
-            if (tower.energy < tower.energyCapacity) {
+            if (tower.energy < (tower.energyCapacity / 100 * minQuantityPc)) {
                 ret.push(tower);
             }
         }

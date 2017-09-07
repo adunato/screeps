@@ -1,6 +1,6 @@
 var statemachine = require('state-machine');
 var cache = require('cache');
-var tower = Game.getObjectById('59ae431f754f653601b3b5b7');
+var MIN_TOWER_REFILL_QUANTITY_PC = 80;
 var towerFeederSM = new statemachine.StateMachine.factory({
     init: 'none',
     transitions: [
@@ -27,7 +27,7 @@ var towerFeederSM = new statemachine.StateMachine.factory({
         },
         onFeed: function () {
             var creep = Game.creeps[this.creepName];
-            creep.feedTower();
+            creep.feedTower(MIN_TOWER_REFILL_QUANTITY_PC);
         },
         onRest: function () {
             var creep = Game.creeps[this.creepName];
@@ -62,7 +62,7 @@ var roleTowerFeeder = {
         if (creep.carry.energy === creep.carryCapacity && stateMachine.can("energyFull")) {
             stateMachine.energyFull();
         }
-        if ((cache.findContainersWithEnergy(creep.room).length === 0 || cache.findEmptyTowers(creep.room) === 0 && stateMachine.can("nothingToDo"))) {
+        if ((cache.findContainersWithEnergy(creep.room).length === 0 || cache.findEmptyTowers(creep.room, MIN_TOWER_REFILL_QUANTITY_PC) === 0 && stateMachine.can("nothingToDo"))) {
             stateMachine.nothingToDo();
         }
         if (creep.timeToDie() && creep.carry.energy === 0 && stateMachine.can("timeToDie")) {

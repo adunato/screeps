@@ -288,8 +288,8 @@ Creep.prototype.feedStructure = function (structure) {
     }
 };
 
-Creep.prototype.feedTower = function () {
-    var tower = cache.findEmptyTowers(this.room)[0];
+Creep.prototype.feedTower = function (minQuantityPc) {
+    var tower = cache.findEmptyTowers(this.room, minQuantityPc)[0];
     if (tower && this.transfer(tower, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
         this.moveTo(tower, {visualizePathStyle: {stroke: '#ffe21f'}});
     }
