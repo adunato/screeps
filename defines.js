@@ -132,7 +132,7 @@ var defines = {
         };
         global.squadProfiles = {
             "FE": [["feeder", 1]],
-            "HA": [["harvester", 4]],
+            "HA": [["harvester", 1]],
             "CO": [["collector", 1]],
             "BU": [["builder", 1]],
             "UP": [["upgrader", 1]],

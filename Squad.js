@@ -3,6 +3,7 @@ function Squad(squadProfile, squadName) {
     this.squadProfile = squadProfile;
     this.squadName = squadName;
 }
+
 Squad.prototype.addCreep = function (creep) {
     this.creeps.push(creep);
 };
@@ -19,8 +20,7 @@ Squad.prototype.needCreep = function (creep) {
 Squad.prototype.needCreepRole = function (creepRole) {
     var creepQuantity = this.getCreepQuantityWithRole(creepRole);
     var profileQuantity = this.squadProfile.getCreepQuantity(creepRole);
-    if ((this.squadName.startsWith('HA') && creepRole === 'harvester') ||
-        (this.squadName.startsWith('PA') && creepRole === 'patroller')) {
+    if (this.squadName.startsWith('PA') && creepRole === 'patroller') {
         profileQuantity = this.squadName.substr(this.squadName.length - 1)
     }
     return (creepQuantity < profileQuantity);
@@ -29,8 +29,8 @@ Squad.prototype.needCreepRole = function (creepRole) {
 
 Squad.prototype.getCreepQuantityWithRole = function (creepRole) {
     var ret = 0;
-    for(var i = 0; i < this.creeps.length; i++){
-        if(this.creeps[i].ticksToLive > 100){
+    for (var i = 0; i < this.creeps.length; i++) {
+        if (this.creeps[i].ticksToLive > 100) {
             ret++
         }
         // else {
