@@ -173,6 +173,7 @@ Creep.prototype.squadRally = function () {
 };
 
 Creep.prototype.setNextWaypoint = function () {
+    console.log("setNextWaypoint")
     //check existing waypoint
     if(!this.memory.current_waypoint){
         //if not set check if flag '1' exist and set it as WP
