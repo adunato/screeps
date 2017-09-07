@@ -173,7 +173,6 @@ Creep.prototype.squadRally = function () {
 };
 
 Creep.prototype.setNextWaypoint = function () {
-    console.log("setNextWaypoint")
     //check existing waypoint
     if(!this.memory.current_waypoint){
         //if not set check if flag '1' exist and set it as WP
@@ -235,6 +234,7 @@ Creep.prototype.isInCurrentWaypointRange = function () {
         return
     } else {
         var flags = this.pos.findInRange(FIND_FLAGS, WAYPOINT_RANGE);
+        console.log(flags)
         for(var i = 0; i < flags.length; i++){
             if(flags[i] === flag ) {
                 console.log("creep " + this.name + " " + this.memory.role + " in range of: " + this.memory.current_waypoint);
