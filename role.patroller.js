@@ -44,7 +44,7 @@ var rolepatroller = {
     run: function (creep) {
         var creepState = creep.memory.state;
         if (typeof creepState === "undefined")
-            creepState = "move";
+            creepState = "waypoint";
         var stateMachine = new patrollerFSM(creep.name, creepState);
         stateMachine.goto(creepState);
         if (creep.room.find(FIND_HOSTILE_CREEPS).length > 0) {
