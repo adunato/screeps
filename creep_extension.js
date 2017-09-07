@@ -284,8 +284,8 @@ Creep.prototype.feedStructure = function (structure) {
 };
 
 Creep.prototype.feedTower = function () {
-    this.memory.selectedSource = null;
     var tower = cache.findEmptyTowers(this.room);
+    console.log(tower);
     if (tower && this.transfer(tower, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
         this.moveTo(tower, {visualizePathStyle: {stroke: '#ffe21f'}});
     }
