@@ -50,7 +50,7 @@ var roleTowerFeeder = {
     /** @param {Creep} creep **/
     run: function (creep) {
         if(!tower)
-            return;
+        return;
         var creepState = creep.memory.state;
         if (typeof creepState === "undefined")
             creepState = "withdraw";
