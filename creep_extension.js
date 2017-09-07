@@ -202,7 +202,7 @@ Creep.prototype.previousWaypoint = function () {
 
 
 Creep.prototype.nextWaypoint = function () {
-    var currentWaypointNum = this.memory.current_waypoint.substr(this.memory.current_waypoint.length - 1)
+    var currentWaypointNum = Number(this.memory.current_waypoint.substr(this.memory.current_waypoint.length - 1))
     if(this.waypointExist(currentWaypointNum+1)){
         return this.generateWaypointName(currentWaypointNum+1);
     } else {
@@ -212,7 +212,6 @@ Creep.prototype.nextWaypoint = function () {
 
 Creep.prototype.waypointExist = function (waypointNumber) {
     let flag = Game.flags[this.memory.squad + '_' + waypointNumber];
-    console.log(this.memory.squad + '_' + waypointNumber)
     return !!flag;
 }
 
