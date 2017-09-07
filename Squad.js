@@ -22,6 +22,7 @@ Squad.prototype.needCreepRole = function (creepRole) {
     if ((this.squadName.startsWith('HA') && creepRole === 'harvester') ||
         (this.squadName.startsWith('PA') && creepRole === 'patroller')) {
         profileQuantity = this.squadName.substr(this.squadName.length - 1)
+        console.log(profileQuantity)
     }
     return (creepQuantity < profileQuantity);
 };
