@@ -297,11 +297,13 @@ Creep.prototype.buildConstruction = function () {
         this.moveTo(flag, {visualizePathStyle: {stroke: '#ffda00'}});
         return;
     }
-    var constructionSites = cache.findConstructionSites(flag.room);
-    if (constructionSites.length) {
-        var construction = this.getNearestObjectByDistance(constructionSites);
-        if (this.build(construction) == ERR_NOT_IN_RANGE) {
-            this.moveTo(construction, {visualizePathStyle: {stroke: '#14ff00'}});
+    if(flag && flag.room) {
+        var constructionSites = cache.findConstructionSites(flag.room);
+        if (constructionSites.length) {
+            var construction = this.getNearestObjectByDistance(constructionSites);
+            if (this.build(construction) == ERR_NOT_IN_RANGE) {
+                this.moveTo(construction, {visualizePathStyle: {stroke: '#14ff00'}});
+            }
         }
     }
 };
