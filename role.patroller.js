@@ -39,7 +39,7 @@ var patrollerFSM = new statemachine.StateMachine.factory({
 });
 
 
-var roledefender = {
+var rolepatroller = {
     /** @param {Creep} creep **/
     run: function (creep) {
         var creepState = creep.memory.state;
