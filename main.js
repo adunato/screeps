@@ -66,9 +66,9 @@ function spawn(roleName) {
 }
 
 function manageDefense() {
-    console.log(cache.findTowers(room));
     for (var i = 0; i < cache.findTowers(room); i++) {
         var tower = cache.findTowers(room)[i];
+        console.log(tower);
         console.log(tower.energy > tower.energyCapacity / 2);
         if (room.find(FIND_HOSTILE_CREEPS).length > 0) {
             tower.attack(tower.pos.findClosestByRange(room.find(FIND_HOSTILE_CREEPS)));
