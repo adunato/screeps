@@ -168,6 +168,16 @@ Creep.prototype.squadRally = function () {
 
 Creep.prototype.goToNextWaypoint = function () {
     var flag = Game.flags[this.memory.squad];
+    //replace with cache...
+    var wayPoints = [];
+    for(var i = 0;;i++) {
+        var waypointFlag = Game.flags[this.memory.squad+'_'+i]
+        if(waypointFlag)
+            wayPoints.push(waypointFlag);
+        else
+            break;
+    }
+
     if (flag != null) {
         this.moveTo(flag, {visualizePathStyle: {stroke: '#001dff'}});
     }

@@ -1,10 +1,11 @@
 var statemachine = require('state-machine');
 var cache = require('cache');
-var defenderFSM = new statemachine.StateMachine.factory({
+var patrollerFSM = new statemachine.StateMachine.factory({
     init: 'none',
     transitions: [
-        {name: 'noEnemies', from: ['attack', 'next_waypoint'], to: 'next_waypoint'},
-        {name: 'enemies', from: ['attack', 'next_waypoint'], to: 'attack'},
+        {name: 'noEnemies', from: ['attack', 'next_waypoint', 'move'], to: 'move'},
+        {name: 'atWaypoint', from: ['attack', 'move', 'next_waypoint'], to: 'next_waypoint'},
+        {name: 'enemies', from: ['attack', 'next_waypoint', 'move'], to: 'attack'},
         {
             name: 'goto', from: '*', to: function (s) {
             return s
@@ -40,8 +41,8 @@ var roledefender = {
     run: function (creep) {
         var creepState = creep.memory.state;
         if (typeof creepState === "undefined")
-            creepState = "squad_rally";
-        var stateMachine = new defenderFSM(creep.name, creepState);
+            creepState = "move";
+        var stateMachine = new patrollerFSM(creep.name, creepState);
         stateMachine.goto(creepState);
         if (creep.room.find(FIND_HOSTILE_CREEPS).length > 0) {
             console.log("found enemies");
@@ -49,6 +50,7 @@ var roledefender = {
         } else {
             stateMachine.noEnemies();
         }
+        if(creep.pos)
         if (creep.timeToDie() && creep.carry.energy === 0 && stateMachine.can("timeToDie")) {
             stateMachine.timeToDie();
         }
