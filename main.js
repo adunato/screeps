@@ -72,6 +72,7 @@ function manageDefense() {
             tower.attack(tower.pos.findClosestByRange(room.find(FIND_HOSTILE_CREEPS)));
         } else if (tower.energy > tower.energyCapacity / 2) {
             var closestDamagedRampart = cache.findRepairRamparts(room);
+            console.log(closestDamagedRampart);
             if (closestDamagedRampart.length > 0) {
                 tower.repair(closestDamagedRampart[0]);
             } else {
