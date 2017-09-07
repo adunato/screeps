@@ -52,10 +52,10 @@ function spawn(roleName) {
     var spawn = Game.spawns['Spawn1'];
     if (spawn) {
 
-        for(var i = 0; i < bodyParts[roleName].length; i ++){
+        for (var i = 0; i < bodyParts[roleName].length; i++) {
             var bodyPart = bodyParts[roleName][i];
             // console.log('spawn - trying config: ' + bodyPart);
-            if(Game.spawns['Spawn1'].canCreateCreep(bodyPart) === OK) {
+            if (Game.spawns['Spawn1'].canCreateCreep(bodyPart) === OK) {
                 var result = Game.spawns['Spawn1'].createCreep(bodyPart, undefined, {role: roleName});
                 console.log('Spawning new ' + roleName + ' with body: ' + bodyPart + ' - ' + result);
                 return;
@@ -100,7 +100,7 @@ function executeCreepBehaviour() {
 }
 
 function assignCreepToSquad(creep) {
-    for(var squadName in squadsIndex){
+    for (var squadName in squadsIndex) {
         var squad = squadsIndex[squadName];
         if (squad.needCreep(creep)) {
             squad.addCreep(creep);
@@ -120,19 +120,19 @@ function assignCreepsToSquads() {
             }
         }
         else {
-            if(squadsIndex[creep.memory.squad] && !squadsIndex[creep.memory.squad].hasCreep(creep))
+            if (squadsIndex[creep.memory.squad] && !squadsIndex[creep.memory.squad].hasCreep(creep))
                 squadsIndex[creep.memory.squad].addCreep(creep);
         }
     }
 
-    for(var squadName in squadsIndex){
-        var squad = squadsIndex[squadName];
-        var spawnSet = false;
-        // console.log(squadName + ' ' + squad.creeps.length);
-        for (var roleName in global.creepRoles) {
+    for (var roleName in global.creepRoles) {
+        for (var squadName in squadsIndex) {
+            var squad = squadsIndex[squadName];
+            var spawnSet = false;
+            // console.log(squadName + ' ' + squad.creeps.length);
             if (squad.needCreepRole(roleName)) {
                 console.log(squadName + ' needs ' + roleName);
-                if(!spawnSet) {
+                if (!spawnSet) {
                     spawn(roleName);
                     spawnSet = true
                 }
@@ -142,14 +142,14 @@ function assignCreepsToSquads() {
 
 }
 
-function flagToSquadName (flagName) {
+function flagToSquadName(flagName) {
     return flagName.split('_')[0];
 }
 
 function isFlagSquad(flagName) {
     var squadName = flagToSquadName(flagName);
     for (var squadProfile in global.squadProfiles) {
-        if(squadName.startsWith(squadProfile)){
+        if (squadName.startsWith(squadProfile)) {
             return true;
         }
     }
@@ -157,14 +157,14 @@ function isFlagSquad(flagName) {
 }
 
 function createSquad(squadName) {
-    return new Squad(new SquadProfile(squadName.substr(0,squadName.length-1)), squadName);
+    return new Squad(new SquadProfile(squadName.substr(0, squadName.length - 1)), squadName);
 }
 
 function createSquads() {
     for (var flagName in Game.flags) {
         if (isFlagSquad(flagName)) {
             var squadName = flagToSquadName(flagName);
-            if(!squadsIndex[squadName]){
+            if (!squadsIndex[squadName]) {
                 squadsIndex[squadName] = createSquad(squadName);
             }
         }
@@ -227,7 +227,7 @@ module.exports.loop = function () {
     resetCPULog();
     // clearMemory();
     logCPU('clearMemory ');
-     defines.initDefines();
+    defines.initDefines();
     logCPU('initDefines ');
     cache.resetCache();
     // logCPU( 'resetCache ');
@@ -246,7 +246,7 @@ module.exports.loop = function () {
     logCPU('executeCreepBehaviour ');
     trackTickChanges();
     logCPU('trackTickChanges ');
-     screepsplus.collect_stats();
+    screepsplus.collect_stats();
     logCPU('collect_stats ');
     logTotalCPU();
     // Memory.squads = squads;
