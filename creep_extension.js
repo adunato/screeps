@@ -124,8 +124,13 @@ Creep.prototype.goToSource = function () {
     if (flag && this.roomName) {
         this.memory.lastTick.roomName = this.roomName
         this.moveTo(flag, {visualizePathStyle: {stroke: '#ffda00'}});
-    } else{
+    }
+
+    if(!flag){
         console.log("no flag with name: " + this.memory.squad);
+    }
+    if(!this.roomName){
+        console.log("no room name for creep in squad: " + this.memory.squad);
     }
     //check if flag's room is visible
     if (flag && flag.room) {
