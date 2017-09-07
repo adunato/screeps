@@ -14,6 +14,7 @@ var squadsStructureTree = null;
 var squadsIndex = {};
 var printStats = false;
 var printCPU = false;
+var room = Game.spawns['Spawn1'].room;
 
 function clearMemory() {
     for (var i in Memory.creeps) {
@@ -65,9 +66,8 @@ function spawn(roleName) {
 }
 
 function manageDefense() {
-    var tower = Game.getObjectById('59ae431f754f653601b3b5b7');
-    if (tower) {
-        var room = Game.rooms[tower.pos.roomName];
+    for (var i = 0; i < cache.findTowers(room); i++) {
+        var tower = cache.findTowers(room)[i];
         if (room.find(FIND_HOSTILE_CREEPS).length > 0) {
             tower.attack(tower.pos.findClosestByRange(room.find(FIND_HOSTILE_CREEPS)));
         } else if (tower.energy > tower.energyCapacity / 2) {

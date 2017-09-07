@@ -285,7 +285,6 @@ Creep.prototype.feedStructure = function (structure) {
 
 Creep.prototype.feedTower = function () {
     var tower = cache.findEmptyTowers(this.room)[0];
-    console.log(tower);
     if (tower && this.transfer(tower, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
         this.moveTo(tower, {visualizePathStyle: {stroke: '#ffe21f'}});
     }

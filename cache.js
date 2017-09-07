@@ -263,6 +263,17 @@ var cache = {
         return ret;
     },
     findEmptyTowers: function (room) {
+        var towers = this.findTowers(room);
+        var ret = [];
+        for (var i in towers) {
+            var tower = towers[i];
+            if (tower.energy < tower.energyCapacity) {
+                ret.push(tower);
+            }
+        }
+        return ret;
+    },
+    findTowers: function (room) {
         var towers = {};
 
         if (this.rooms.towers[room] && this.rooms.towers[room].length > 0) {
@@ -275,14 +286,7 @@ var cache = {
             });
             this.rooms.towers[room] = towers;
         }
-        var ret = [];
-        for (var i in towers) {
-            var tower = towers[i];
-            if (tower.energy < tower.energyCapacity) {
-                ret.push(tower);
-            }
-        }
-        return ret;
+        return towers;
     },
     getFlagRoomName: function (flagName) {
         var flagRoom = Game.flags[flagName].room;
