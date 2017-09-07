@@ -19,7 +19,8 @@ Squad.prototype.needCreep = function (creep) {
 Squad.prototype.needCreepRole = function (creepRole) {
     var creepQuantity = this.getCreepQuantityWithRole(creepRole);
     var profileQuantity = this.squadProfile.getCreepQuantity(creepRole);
-    if (this.squadName.startsWith('HA') && creepRole === 'harvester') {
+    if ((this.squadName.startsWith('HA') && creepRole === 'harvester') ||
+        (this.squadName.startsWith('PA') && creepRole === 'patroller')) {
         profileQuantity = this.squadName.substr(this.squadName.length - 1)
     }
     return (creepQuantity < profileQuantity);

@@ -9,6 +9,7 @@ var roleFeeder = require('role.feeder');
 var roleTowerFeeder = require('role.tower_feeder');
 var roleDefender = require('role.defender');
 var roleTransporter = require('role.transporter');
+var rolePatroller = require('role.patroller');
 var roleNomadHarvester = require('role.nomad_harvester');
 
 
@@ -117,6 +118,7 @@ var defines = {
             "builder": roleBuilder,
             "defender": roleDefender,
             "transporter": roleTransporter,
+            "patroller": rolePatroller,
         };
         global.squadProfiles = {
             "FE": [["feeder", 1]],
@@ -129,6 +131,7 @@ var defines = {
             "CA": [["carrier", 1]],
             "DE": [["defender", 1]],
             "TR": [["transporter", 1]],
+            "PA": [["patroller", 1]],
             "TOFE": [["tower_feeder", 1]],
         };
         global.allowedToSpawnWithdraw = false;

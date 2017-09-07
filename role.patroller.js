@@ -1,11 +1,10 @@
 var statemachine = require('state-machine');
-var cache = require('cache');
 var patrollerFSM = new statemachine.StateMachine.factory({
     init: 'none',
     transitions: [
-        {name: 'noEnemies', from: ['attack', 'next_waypoint', 'move'], to: 'move'},
-        {name: 'atWaypoint', from: ['attack', 'move', 'next_waypoint'], to: 'next_waypoint'},
-        {name: 'enemies', from: ['attack', 'next_waypoint', 'move'], to: 'attack'},
+        {name: 'noEnemies', from: ['attack', 'waypoint', 'move'], to: 'move'},
+        {name: 'atWaypoint', from: ['attack', 'move', 'waypoint'], to: 'waypoint'},
+        {name: 'enemies', from: ['attack', 'waypoint', 'move'], to: 'attack'},
         {
             name: 'goto', from: '*', to: function (s) {
             return s
@@ -19,9 +18,13 @@ var patrollerFSM = new statemachine.StateMachine.factory({
         }
     },
     methods: {
-        onNextWaypoint: function () {
+        onMove: function () {
             var creep = Game.creeps[this.creepName];
-            creep.goToNextWaypoint();
+            creep.goToWaypoint();
+        },
+        onWaypoint: function () {
+            var creep = Game.creeps[this.creepName];
+            creep.setNextWaypoint();
         },
         onAttack: function () {
             var creep = Game.creeps[this.creepName];
@@ -50,7 +53,9 @@ var roledefender = {
         } else {
             stateMachine.noEnemies();
         }
-        if(creep.pos)
+        if(creep.isInCurrentWaypointRange()){
+            stateMachine.atWaypoint();
+        }
         if (creep.timeToDie() && creep.carry.energy === 0 && stateMachine.can("timeToDie")) {
             stateMachine.timeToDie();
         }
@@ -58,4 +63,4 @@ var roledefender = {
     }
 };
 
-module.exports = roledefender;
+module.exports = rolepatroller;

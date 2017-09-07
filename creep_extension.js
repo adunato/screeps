@@ -1,6 +1,7 @@
 const DROP_CONTAINER = "DROP_CONTAINER";
 const DROP_STRUCTURE = "DROP_STRUCTURE";
 const DROP_COLLECTOR = "DROP_COLLECTOR";
+const WAYPOINT_RANGE = 3;
 var cache = require('cache');
 require('source_extension');
 Creep.prototype.withdrawEnergy = function () {
@@ -166,22 +167,79 @@ Creep.prototype.squadRally = function () {
     }
 };
 
-Creep.prototype.goToNextWaypoint = function () {
-    var flag = Game.flags[this.memory.squad];
-    //replace with cache...
-    var wayPoints = [];
-    for(var i = 0;;i++) {
-        var waypointFlag = Game.flags[this.memory.squad+'_'+i]
-        if(waypointFlag)
-            wayPoints.push(waypointFlag);
-        else
-            break;
+Creep.prototype.setNextWaypoint = function () {
+    //check existing waypoint
+    if(!this.memory.current_waypoint){
+        //if not set check if flag '1' exist and set it as WP
+        if(this.waypointExist(1)){
+            this.memory.current_waypoint = this.generateWaypointName(1);
+        } else{
+            console.log("creep " + this.name + " " + this.memory.role + " could not find waypoint " + this.generateWaypointName(1));
+        }
+    } else if (this.nextWaypoint()){
+        this.memory.current_waypoint = this.nextWaypoint();
+    } else if (this.previousWaypoint()){
+        this.memory.current_waypoint = this.previousWaypoint();
+    } else{
+        console.log("creep " + this.name + " " + this.memory.role + " could not find next waypoint from" + this.memory.current_waypoint);
     }
 
+}
+
+Creep.prototype.previousWaypoint = function () {
+    var currentWaypointNum = this.memory.current_waypoint.substr(this.memory.current_waypoint.length - 1)
+    if(this.waypointExist(currentWaypointNum-1)){
+        return this.generateWaypointName(currentWaypointNum-1);
+    } else {
+        return null;
+    }
+}
+
+
+Creep.prototype.nextWaypoint = function () {
+    var currentWaypointNum = this.memory.current_waypoint.substr(this.memory.current_waypoint.length - 1)
+    if(this.waypointExist(currentWaypointNum+1)){
+        return this.generateWaypointName(currentWaypointNum+1);
+    } else {
+        return null;
+    }
+}
+
+Creep.prototype.waypointExist = function (waypointNumber) {
+    let flag = Game.flags[this.memory.squad + '_' + waypointNumber];
+    return !!flag;
+}
+
+Creep.prototype.generateWaypointName = function (waypointNumber) {
+    return this.memory.squad+'_'+waypointNumber;
+}
+
+Creep.prototype.goToWaypoint = function () {
+    var flag = Game.flags[this.memory.current_waypoint];
     if (flag != null) {
-        this.moveTo(flag, {visualizePathStyle: {stroke: '#001dff'}});
+        this.moveTo(flag, {visualizePathStyle: {stroke: '#ffda00'}});
+    } else {
+        console.log("creep " + this.name + " " + this.memory.role + " could not find current waypoint: " + this.memory.current_waypoint);
     }
 };
+
+Creep.prototype.isInCurrentWaypointRange = function () {
+    var flag = Game.flags[this.memory.current_waypoint];
+    if (flag != null) {
+        return
+    } else {
+        var flags = this.pos.findInRange(FIND_FLAGS, WAYPOINT_RANGE);
+        for(var i = 0; i < flags.length; i++){
+            if(flags[i] === flag ) {
+                console.log("creep " + this.name + " " + this.memory.role + " in range of: " + this.memory.current_waypoint);
+                return true;
+            }
+        }
+        return false;
+    }
+};
+
+
 
 Creep.prototype.attackEnemies = function (isStatic) {
     var target = this.pos.findClosestByPath(this.room.find(FIND_HOSTILE_CREEPS));
