@@ -192,7 +192,7 @@ Creep.prototype.setNextWaypoint = function () {
 }
 
 Creep.prototype.previousWaypoint = function () {
-    var currentWaypointNum = this.memory.current_waypoint.substr(this.memory.current_waypoint.length - 1)
+    var currentWaypointNum = Number(this.memory.current_waypoint.substr(this.memory.current_waypoint.length - 1))
     if(this.waypointExist(currentWaypointNum-1)){
         return this.generateWaypointName(currentWaypointNum-1);
     } else {
