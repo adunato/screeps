@@ -66,6 +66,7 @@ function spawn(roleName) {
 }
 
 function manageDefense() {
+    console.log(cache.findTowers(room));
     for (var i = 0; i < cache.findTowers(room); i++) {
         var tower = cache.findTowers(room)[i];
         console.log(tower.energy > tower.energyCapacity / 2);
