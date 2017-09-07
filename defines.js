@@ -141,7 +141,7 @@ var defines = {
             "CA": [["carrier", 1]],
             "DE": [["defender", 1]],
             "TR": [["transporter", 1]],
-            "PA": [["patroller", 1]],
+            "PA": [["patroller", 0]],
             "TOFE": [["tower_feeder", 1]],
         };
         global.allowedToSpawnWithdraw = false;

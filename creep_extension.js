@@ -230,7 +230,6 @@ Creep.prototype.goToWaypoint = function () {
 };
 
 Creep.prototype.isInCurrentWaypointRange = function () {
-    console.log(this.memory.current_waypoint)
     var flag = Game.flags[this.memory.current_waypoint];
     if (!flag) {
         return
