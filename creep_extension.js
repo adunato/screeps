@@ -283,6 +283,14 @@ Creep.prototype.feedStructure = function (structure) {
     }
 };
 
+Creep.prototype.feedTower = function () {
+    this.memory.selectedSource = null;
+    var tower = cache.findEmptyTowers(this.room);
+    if (tower && this.transfer(tower, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+        this.moveTo(tower, {visualizePathStyle: {stroke: '#ffe21f'}});
+    }
+};
+
 Creep.prototype.buildConstruction = function () {
     var flag = Game.flags[this.memory.squad];
     //move to flag if not in flag's room

@@ -27,7 +27,7 @@ var towerFeederSM = new statemachine.StateMachine.factory({
         },
         onEnergyFull: function () {
             var creep = Game.creeps[this.creepName];
-            creep.feedStructure(tower);
+            creep.feedTower();
         },
         onNothingToDo: function () {
             var creep = Game.creeps[this.creepName];
@@ -62,7 +62,7 @@ var roleTowerFeeder = {
         if (creep.carry.energy === creep.carryCapacity && stateMachine.can("energyFull")) {
             stateMachine.energyFull();
         }
-        if ((cache.findContainersWithEnergy(creep.room).length === 0 || tower.energy ===  tower.energyCapacity)&& stateMachine.can("nothingToDo")) {
+        if ((cache.findContainersWithEnergy(creep.room).length === 0 || cache.findEmptyTowers(creep.room) === 0 && stateMachine.can("nothingToDo"))) {
             stateMachine.nothingToDo();
         }
         if (creep.timeToDie() && creep.carry.energy === 0 && stateMachine.can("timeToDie")) {

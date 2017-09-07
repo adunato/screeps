@@ -18,6 +18,7 @@ var cache = {
         controllers: {},
         carrierFlags: {},
         containers: {},
+        towers: {},
     },
     resetCache: function () {
         cacheAge++;
@@ -37,6 +38,7 @@ var cache = {
             this.rooms.creeps = {};
             this.rooms.containers = {};
             this.rooms.storage = {};
+            this.rooms.towers = {};
         }
     },
     getStoredEnergy: function(room){
@@ -256,6 +258,28 @@ var cache = {
             var structure = energyFedStructures[i];
             if (structure.energy < structure.energyCapacity) {
                 ret.push(structure);
+            }
+        }
+        return ret;
+    },
+    findEmptyTowers: function (room) {
+        var towers = {};
+
+        if (this.rooms.towers[room] && this.rooms.towers[room].length > 0) {
+            towers = this.rooms.towers[room];
+        } else {
+            towers = room.find(FIND_STRUCTURES, {
+                filter: (structure) => {
+                    return (structure.structureType === STRUCTURE_TOWER);
+                }
+            });
+            this.rooms.towers[room] = towers;
+        }
+        var ret = [];
+        for (var i in towers) {
+            var tower = towers[i];
+            if (tower.energy < tower.energyCapacity) {
+                ret.push(tower);
             }
         }
         return ret;
