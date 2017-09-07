@@ -7,6 +7,9 @@ function SquadProfile(name) {
     this.name = name;
 }
 SquadProfile.prototype.getCreepQuantity = function(role) {
+    if(!this.squadProfile){
+        console.log("error: " + this.name);
+    }
     for(var i = 0; i <  this.squadProfile.length; i++){
         //e.g. squadRole = [["harvester",3]
         var squadRole = this.squadProfile[i];
