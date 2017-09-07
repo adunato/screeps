@@ -133,7 +133,7 @@ function assignCreepsToSquads() {
             if (squad.needCreepRole(roleName)) {
                 console.log(squadName + ' needs ' + roleName);
                 if(!spawnSet) {
-                    // spawn(roleName);
+                    spawn(roleName);
                     spawnSet = true
                 }
             }
