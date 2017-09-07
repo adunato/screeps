@@ -49,8 +49,6 @@ var towerFeederSM = new statemachine.StateMachine.factory({
 var roleTowerFeeder = {
     /** @param {Creep} creep **/
     run: function (creep) {
-        if(!tower)
-        return;
         var creepState = creep.memory.state;
         if (typeof creepState === "undefined")
             creepState = "withdraw";
