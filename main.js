@@ -249,6 +249,6 @@ module.exports.loop = function () {
     screepsplus.collect_stats();
     logCPU('collect_stats ');
     logTotalCPU();
-    // Memory.squads = squads;
+    Memory.squads = squads;
     console.log("tick");
 };
