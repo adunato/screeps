@@ -3,7 +3,7 @@ var patrollerFSM = new statemachine.StateMachine.factory({
     init: 'none',
     transitions: [
         {name: 'noEnemies', from: ['attack', 'waypoint', 'move'], to: 'move'},
-        {name: 'atWaypoint', from: ['attack', 'move', 'waypoint'], to: 'waypoint'},
+        {name: 'atWaypoint', from: ['move', 'waypoint'], to: 'waypoint'},
         {name: 'enemies', from: ['attack', 'waypoint', 'move'], to: 'attack'},
         {
             name: 'goto', from: '*', to: function (s) {
@@ -58,20 +58,18 @@ var rolepatroller = {
         //kick off WP selection if first step
         if(firstStep){
             console.log("setting default patroller WP")
-            stateMachine.onAtWaypoint();
+            stateMachine.atWaypoint();
             creep.memory.state = stateMachine.state;
             return;
         }
-        if (creep.room.find(FIND_HOSTILE_CREEPS).length > 0) {
+        if (creep.room.find(FIND_HOSTILE_CREEPS).length > 0 && stateMachine.can("enemies")) {
             console.log("found enemies");
-            stateMachine.onEnemies();
-        } else {
-            stateMachine.onNoEnemies();
+            stateMachine.enemies();
         }
-        if(creep.isInCurrentWaypointRange()){
-            stateMachine.onAtWaypoint();
-        } else {
-            stateMachine.onNoEnemies();
+        else if(creep.isInCurrentWaypointRange() && stateMachine.can("atWaypoint")){
+            stateMachine.atWaypoint();
+        } else if (stateMachine.can("noEnemies")){
+            stateMachine.noEnemies();
         }
         if (creep.timeToDie() && creep.carry.energy === 0 && stateMachine.can("timeToDie")) {
             stateMachine.timeToDie();
