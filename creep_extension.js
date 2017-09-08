@@ -242,6 +242,7 @@ Creep.prototype.waypointExist = function (waypointNumber) {
 }
 
 Creep.prototype.generateWaypointName = function (waypointNumber) {
+    console.log(this.memory.squad)
     return this.memory.squad+'_'+waypointNumber;
 }
 
