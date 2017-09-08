@@ -227,8 +227,8 @@ module.exports.loop = function () {
     logCPU('initDefines ');
     cache.resetCache();
     // logCPU( 'resetCache ');
-    initSquads();
-    logCPU('initSquads ');
+    // initSquads();
+    // logCPU('initSquads ');
     createSquads();
     logCPU('createSquads ');
     assignCreepsToSquads();
