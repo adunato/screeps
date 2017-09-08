@@ -236,7 +236,7 @@ module.exports.loop = function () {
     createSquads();
     logCPU('createSquads ');
     assignCreepsToSquads();
-    // Memory.squads = squadsIndex;
+    Memory.squads = squadsIndex;
     logCPU('assignCreepsToSquads ');
     logSpawing();
     logCPU('logSpawing ');
@@ -249,6 +249,5 @@ module.exports.loop = function () {
     screepsplus.collect_stats();
     logCPU('collect_stats ');
     logTotalCPU();
-    Memory.squads = squads;
     console.log("tick");
 };
