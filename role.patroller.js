@@ -44,10 +44,19 @@ var rolepatroller = {
     /** @param {Creep} creep **/
     run: function (creep) {
         var creepState = creep.memory.state;
-        if (typeof creepState === "undefined")
+        var firstStep = false;
+        if (typeof creepState === "undefined") {
             creepState = "waypoint";
+            firstStep = true;
+        }
         var stateMachine = new patrollerFSM(creep.name, creepState);
         stateMachine.goto(creepState);
+        //kick off WP selection if first step
+        if(firstStep){
+            stateMachine.onAtWaypoint();
+            creep.memory.state = stateMachine.state;
+            return;
+        }
         if (creep.room.find(FIND_HOSTILE_CREEPS).length > 0) {
             console.log("found enemies");
             stateMachine.onEnemies();
