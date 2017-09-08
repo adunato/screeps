@@ -19,10 +19,12 @@ var patrollerFSM = new statemachine.StateMachine.factory({
     },
     methods: {
         onMove: function () {
+            console.log("patroller on move")
             var creep = Game.creeps[this.creepName];
             creep.goToWaypoint();
         },
         onWaypoint: function () {
+            console.log("patroller on waypoint")
             var creep = Game.creeps[this.creepName];
             creep.setNextWaypoint();
         },
