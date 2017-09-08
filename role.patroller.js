@@ -18,13 +18,12 @@ var patrollerFSM = new statemachine.StateMachine.factory({
         }
     },
     methods: {
+        //invoked as events to avoid state being invoked when loaded by the state machine
         onNoEnemies: function () {
-            console.log("patroller on move")
             var creep = Game.creeps[this.creepName];
             creep.goToWaypoint();
         },
         onAtWaypoint: function () {
-            console.log("patroller on waypoint")
             var creep = Game.creeps[this.creepName];
             creep.setNextWaypoint();
         },
@@ -56,10 +55,8 @@ var rolepatroller = {
             stateMachine.onNoEnemies();
         }
         if(creep.isInCurrentWaypointRange()){
-            console.log("isInCurrentWaypointRange true")
             stateMachine.onAtWaypoint();
         } else {
-            console.log("isInCurrentWaypointRange false")
             stateMachine.onNoEnemies();
         }
         if (creep.timeToDie() && creep.carry.energy === 0 && stateMachine.can("timeToDie")) {

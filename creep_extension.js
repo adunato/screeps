@@ -178,7 +178,7 @@ Creep.prototype.setNextWaypoint = function () {
     if(!this.memory.current_waypoint){
         //if not set check if flag '1' exist and set it as WP and fwd as default direction
         if(this.waypointExist(1)){
-            console.log("setting default waypoint as " + this.generateWaypointName(1))
+            console.log(this.memory.role + " setting default waypoint as " + this.generateWaypointName(1))
             this.memory.current_waypoint = this.generateWaypointName(1);
             this.memory.waypoint_fwd_direction = true;
         } else{
@@ -189,12 +189,12 @@ Creep.prototype.setNextWaypoint = function () {
     //fwd WP check
     if(this.memory.waypoint_fwd_direction === true){
         if (this.nextWaypoint()){
-            console.log("setting " + this.nextWaypoint() + " as next waypoint")
+            console.log(this.memory.role + " setting " + this.nextWaypoint() + " as next waypoint")
             this.memory.current_waypoint = this.nextWaypoint();
         } else {
             this.memory.waypoint_fwd_direction = false;
             if (this.previousWaypoint()){
-                console.log("setting " + this.previousWaypoint() + " as next waypoint")
+                console.log(this.memory.role + " setting " + this.previousWaypoint() + " as next waypoint")
                 this.memory.current_waypoint = this.previousWaypoint();
             } else {
                 console.log("No backward or forward waypoints from " + this.memory.current_waypoint + " for creep " + this.name + " " + this.memory.role)
@@ -203,12 +203,12 @@ Creep.prototype.setNextWaypoint = function () {
     } else {
         //bkwd WP check
         if (this.previousWaypoint()){
-            console.log("setting " + this.previousWaypoint() + " as next waypoint")
+            console.log(this.memory.role + " setting " + this.previousWaypoint() + " as next waypoint")
             this.memory.current_waypoint = this.previousWaypoint();
         } else {
             this.memory.waypoint_fwd_direction = true;
             if (this.nextWaypoint()){
-                console.log("setting " + this.nextWaypoint() + " as next waypoint")
+                console.log(this.memory.role + " setting " + this.nextWaypoint() + " as next waypoint")
                 this.memory.current_waypoint = this.nextWaypoint();
             } else {
                 console.log("No backward or forward waypoints from " + this.memory.current_waypoint + " for creep " + this.name + " " + this.memory.role)
