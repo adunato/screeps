@@ -1,10 +1,5 @@
 require('creep_extension');
 require('structure_extension');
-require('screeps-perf')({
-    speedUpArrayFunctions: true,
-    cleanUpCreepMemory: true,
-    optimizePathFinding: false
-});
 var cache = require('cache');
 var defines = require('defines');
 var Squad = require('Squad');
@@ -20,6 +15,7 @@ function clearMemory() {
     for (var i in Memory.creeps) {
         if (!Game.creeps[i]) {
             console.log('clearMemory: ' + i);
+            delete squadsIndex[i];
             delete Memory.creeps[i];
         }
     }
@@ -225,7 +221,7 @@ function logTotalCPU() {
 module.exports.loop = function () {
     //globals definition, every tick to refresh changes
     resetCPULog();
-    // clearMemory();
+    clearMemory();
     logCPU('clearMemory ');
     defines.initDefines();
     logCPU('initDefines ');

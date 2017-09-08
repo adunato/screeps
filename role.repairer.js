@@ -6,8 +6,7 @@ var repairrFSM = new statemachine.StateMachine.factory({
         {name: 'energyEmpty', from: '*', to: 'withdraw'},
         {name: 'energyFull', from: '*', to: 'repair'},
         {name: 'noStructures', from: ['*'], to: 'rest'},
-        {name: 'containersEmpty', from: ['withdraw', 'spawn_withdraw'], to: 'spawn_withdraw'},
-        {name: 'spawnEmpty', from: 'spawn_withdraw', to: 'rest'},
+        {name: 'containersEmpty', from: ['withdraw', 'rest'], to: 'rest'},
         {
             name: 'goto', from: '*', to: function (s) {
             return s
@@ -29,18 +28,7 @@ var repairrFSM = new statemachine.StateMachine.factory({
             var creep = Game.creeps[this.creepName];
             creep.repairConstruction();
         },
-        onContainersEmpty: function () {
-            var creep = Game.creeps[this.creepName];
-            if(global.allowedToSpawnWithdraw)
-                creep.withdrawEnergyFromSpawn();
-            else
-                creep.rest();
-        },
-        onSpawnEmpty: function () {
-            var creep = Game.creeps[this.creepName];
-            creep.rest();
-        },
-        onNoStructures: function () {
+        onRest: function () {
             var creep = Game.creeps[this.creepName];
             creep.rest();
         },
@@ -69,9 +57,6 @@ var rolerepairr = {
         }
         if (cache.findContainersWithEnergy(creep.room).length === 0 && stateMachine.can("containersEmpty")) {
             stateMachine.containersEmpty();
-        }
-        if (cache.findSpawnWithEnergy(creep.room).length === 0 && stateMachine.can("spawnEmpty")) {
-            stateMachine.spawnEmpty();
         }
         if (cache.findRepairStructures(creep.room).length === 0 && stateMachine.can("noStructures")) {
             stateMachine.noStructures();
