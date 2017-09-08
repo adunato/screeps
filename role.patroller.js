@@ -18,17 +18,17 @@ var patrollerFSM = new statemachine.StateMachine.factory({
         }
     },
     methods: {
-        onMove: function () {
+        onNoEnemies: function () {
             console.log("patroller on move")
             var creep = Game.creeps[this.creepName];
             creep.goToWaypoint();
         },
-        onWaypoint: function () {
+        onAtWaypoint: function () {
             console.log("patroller on waypoint")
             var creep = Game.creeps[this.creepName];
             creep.setNextWaypoint();
         },
-        onAttack: function () {
+        onEnemies: function () {
             var creep = Game.creeps[this.creepName];
             creep.attackEnemies(false);
         },
