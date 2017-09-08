@@ -15,7 +15,8 @@ function clearMemory() {
     for (var i in Memory.creeps) {
         if (!Game.creeps[i]) {
             console.log('clearMemory: ' + i);
-            delete squadsIndex[i];
+            //reset squads index upon clearing memory
+            squadsIndex = {};
             delete Memory.creeps[i];
         }
     }
