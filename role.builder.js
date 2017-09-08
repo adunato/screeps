@@ -35,11 +35,7 @@ var builderFSM = new statemachine.StateMachine.factory({
         },
         onEnergyEmpty: function () {
             var creep = Game.creeps[this.creepName];
-            // creep.withdrawEnergyFromCarrier();
-            if(cache.getStoredEnergy(creep.room) > 1000)
-                creep.withdrawEnergyExCarriers();
-            else
-                creep.rest();
+            creep.withdrawEnergyFromCarrier();
         },
         onBuild: function () {
             var creep = Game.creeps[this.creepName];
