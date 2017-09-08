@@ -51,16 +51,16 @@ var rolepatroller = {
         stateMachine.goto(creepState);
         if (creep.room.find(FIND_HOSTILE_CREEPS).length > 0) {
             console.log("found enemies");
-            stateMachine.enemies();
+            stateMachine.onEnemies();
         } else {
-            stateMachine.noEnemies();
+            stateMachine.onNoEnemies();
         }
         if(creep.isInCurrentWaypointRange()){
             console.log("isInCurrentWaypointRange true")
-            stateMachine.atWaypoint();
+            stateMachine.onAtWaypoint();
         } else {
             console.log("isInCurrentWaypointRange false")
-            stateMachine.onMove();
+            stateMachine.onNoEnemies();
         }
         if (creep.timeToDie() && creep.carry.energy === 0 && stateMachine.can("timeToDie")) {
             stateMachine.timeToDie();
