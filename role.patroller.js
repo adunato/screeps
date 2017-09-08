@@ -45,7 +45,7 @@ var rolepatroller = {
     run: function (creep) {
         var creepState = creep.memory.state;
         var firstStep = false;
-        if (typeof creepState === "undefined") {
+        if (!creepState || typeof creepState === "undefined") {
             creepState = "waypoint";
             firstStep = true;
         }
@@ -53,6 +53,7 @@ var rolepatroller = {
         stateMachine.goto(creepState);
         //kick off WP selection if first step
         if(firstStep){
+            console.log("setting default patroller WP")
             stateMachine.onAtWaypoint();
             creep.memory.state = stateMachine.state;
             return;

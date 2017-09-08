@@ -129,7 +129,7 @@ Creep.prototype.goToSource = function () {
         this.moveTo(flag, {visualizePathStyle: {stroke: '#ffda00'}});
         // console.log("moving to source on flag: " + flag.name);
     } else{
-        console.log("no flag with name: " + this.memory.squad);
+        // console.log("no flag with name: " + this.memory.squad);
     }
     //check if flag's room is visible
     if (flag && flag.room) {
