@@ -237,7 +237,6 @@ Creep.prototype.nextWaypoint = function () {
 }
 
 Creep.prototype.waypointExist = function (waypointNumber) {
-    console.log(this.memory.squad + '_' + waypointNumber)
     let flag = Game.flags[this.memory.squad + '_' + waypointNumber];
     return !!flag;
 }

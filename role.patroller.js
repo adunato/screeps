@@ -3,7 +3,7 @@ var patrollerFSM = new statemachine.StateMachine.factory({
     init: 'none',
     transitions: [
         {name: 'noEnemies', from: ['attack', 'waypoint', 'move'], to: 'move'},
-        {name: 'atWaypoint', from: ['attack', 'move', 'waypoint'], to: 'waypoint'},
+        {name: 'atWaypoint', from: ['attack', 'move'], to: 'waypoint'},
         {name: 'enemies', from: ['attack', 'waypoint', 'move'], to: 'attack'},
         {
             name: 'goto', from: '*', to: function (s) {
