@@ -46,8 +46,12 @@ var rolepatroller = {
         var creepState = creep.memory.state;
         var firstStep = false;
         if (!creepState || typeof creepState === "undefined") {
-            creepState = "waypoint";
-            firstStep = true;
+            //set firstStep = true if squad has been set
+            if(creep.memory.squad) {
+                creepState = "waypoint";
+                firstStep = true;
+            } else
+                return;
         }
         var stateMachine = new patrollerFSM(creep.name, creepState);
         stateMachine.goto(creepState);
