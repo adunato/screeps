@@ -56,8 +56,10 @@ var rolepatroller = {
             stateMachine.noEnemies();
         }
         if(creep.isInCurrentWaypointRange()){
+            console.log("isInCurrentWaypointRange true")
             stateMachine.atWaypoint();
         } else {
+            console.log("isInCurrentWaypointRange false")
             stateMachine.onMove();
         }
         if (creep.timeToDie() && creep.carry.energy === 0 && stateMachine.can("timeToDie")) {
