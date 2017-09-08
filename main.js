@@ -47,7 +47,6 @@ function logSpawing() {
 function spawn(roleName) {
     var spawn = Game.spawns['Spawn1'];
     if (spawn) {
-
         for (var i = 0; i < bodyParts[roleName].length; i++) {
             var bodyPart = bodyParts[roleName][i];
             // console.log('spawn - trying config: ' + bodyPart);
@@ -121,10 +120,10 @@ function assignCreepsToSquads() {
         }
     }
 
+    var spawnSet = false;
     for (var roleName in global.creepRoles) {
         for (var squadName in squadsIndex) {
             var squad = squadsIndex[squadName];
-            var spawnSet = false;
             // console.log(squadName + ' ' + squad.creeps.length);
             if (squad.needCreepRole(roleName)) {
                 console.log(squadName + ' needs ' + roleName);
