@@ -141,6 +141,16 @@ var cache = {
         }
         return collectors;
     },
+    findEmptyCarriers: function (room) {
+        var carriers = [];
+        for (var i = 0; i < this.getCreepsInRoom(room).length; i++) {
+            var creep = this.getCreepsInRoom(room)[i];
+            if (creep.carry.energy < creep.carryCapacity && creep.memory.role === "carrier") {
+                carriers.push(creep);
+            }
+        }
+        return carriers;
+    },
     findSpawnWithEnergy: function (room) {
         var spawnsWithEnergy = {};
         if (typeof this.rooms.spawnsWithEnergy[room] != "undefined") {

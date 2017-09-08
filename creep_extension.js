@@ -1,6 +1,7 @@
 const DROP_CONTAINER = "DROP_CONTAINER";
 const DROP_STRUCTURE = "DROP_STRUCTURE";
 const DROP_COLLECTOR = "DROP_COLLECTOR";
+const DROP_CARRIER = "DROP_CARRIER";
 const WAYPOINT_RANGE = 3;
 var cache = require('cache');
 require('source_extension');
@@ -93,6 +94,10 @@ Creep.prototype.dropEnergy = function (options) {
     if(options[DROP_STRUCTURE]) {
         var energyStructures = cache.findEnergyFedStructures(this.room, false);
         targets = targets.concat(energyStructures);
+    }
+    if(options[DROP_CARRIER]) {
+        var carriers = cache.findEmptyCarriers(this.room);
+        targets = targets.concat(carriers);
     }
     return this.dropToDestinations(targets,true);
 };
