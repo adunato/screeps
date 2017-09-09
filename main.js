@@ -9,7 +9,7 @@ var squadsStructureTree = null;
 var squadsIndex = {};
 var printStats = false;
 var printCPU = false;
-var room = Game.spawns['Spawn1'].room;
+var rooms = [];
 
 function clearMemory() {
     for (var i in Memory.creeps) {
@@ -62,18 +62,21 @@ function spawn(roleName) {
 }
 
 function manageDefense() {
-    for (var i = 0; i < cache.findTowers(room).length; i++) {
-        var tower = cache.findTowers(room)[i];
-        if (room.find(FIND_HOSTILE_CREEPS).length > 0) {
-            tower.attack(tower.pos.findClosestByRange(room.find(FIND_HOSTILE_CREEPS)));
-        } else if (tower.energy > tower.energyCapacity / 2) {
-            var closestDamagedRampart = cache.findRepairRamparts(room);
-            if (closestDamagedRampart.length > 0) {
-                tower.repair(closestDamagedRampart[0]);
-            } else {
-                var closestDamagedWall = cache.findRepairWalls(room);
-                if (closestDamagedWall.length > 0) {
-                    tower.repair(closestDamagedWall[0]);
+    for(var roomName in rooms) {
+        var room = rooms[roomName];
+        for (var i = 0; i < cache.findTowers(room).length; i++) {
+            var tower = cache.findTowers(room)[i];
+            if (room.find(FIND_HOSTILE_CREEPS).length > 0) {
+                tower.attack(tower.pos.findClosestByRange(room.find(FIND_HOSTILE_CREEPS)));
+            } else if (tower.energy > tower.energyCapacity / 2) {
+                var closestDamagedRampart = cache.findRepairRamparts(room);
+                if (closestDamagedRampart.length > 0) {
+                    tower.repair(closestDamagedRampart[0]);
+                } else {
+                    var closestDamagedWall = cache.findRepairWalls(room);
+                    if (closestDamagedWall.length > 0) {
+                        tower.repair(closestDamagedWall[0]);
+                    }
                 }
             }
         }
@@ -184,6 +187,12 @@ function trackTickChanges() {
                 creep.memory.upgraded_energy = creep.carry.energy - creep.memory.lastTick.carried_energy < 0 ? (creep.carry.energy - creep.memory.lastTick.carried_energy) * -1 : 0;
             }
         }
+        if (creep.memory.role === 'repairer') {
+            if (creep.memory.lastTick && creep.memory.lastTick.carried_energy) {
+                //add to counter if diff is -
+                creep.memory.repaired_energy = creep.carry.energy - creep.memory.lastTick.carried_energy < 0 ? (creep.carry.energy - creep.memory.lastTick.carried_energy) * -1 : 0;
+            }
+        }
         if (creep.memory.role === 'builder') {
             if (creep.memory.lastTick && creep.memory.lastTick.carried_energy) {
                 //add to counter if diff is -
@@ -218,6 +227,14 @@ function logTotalCPU() {
     }
 }
 
+function initRooms() {
+    if(rooms.length === Game.spawns.length)
+        return;
+    for(var spawn in Game.spawns){
+        rooms.push(Game.spawns[spawn].room);
+    }
+}
+
 module.exports.loop = function () {
     //globals definition, every tick to refresh changes
     resetCPULog();
@@ -226,9 +243,8 @@ module.exports.loop = function () {
     defines.initDefines();
     logCPU('initDefines ');
     cache.resetCache();
-    // logCPU( 'resetCache ');
-    // initSquads();
-    // logCPU('initSquads ');
+    initRooms();
+    logCPU('initRooms ');
     createSquads();
     logCPU('createSquads ');
     assignCreepsToSquads();
