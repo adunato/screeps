@@ -230,6 +230,7 @@ function logTotalCPU() {
 function initRooms() {
     if(rooms.length === Game.spawns.length)
         return;
+    rooms = [];
     for(var spawn in Game.spawns){
         rooms.push(Game.spawns[spawn].room);
     }
