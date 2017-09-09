@@ -198,6 +198,9 @@ function trackTickChanges() {
         if(!Memory.lastTick.towers_energy){
             Memory.lastTick.towers_energy = [];
         }
+        if(!Memory.lastTick.towers_energy_delta){
+            Memory.lastTick.towers_energy_delta = [];
+        }
         for (var i = 0; i < rooms.length; i++) {
             var room = rooms[i];
             for (var i = 0; i < cache.findTowers(room).length; i++) {
