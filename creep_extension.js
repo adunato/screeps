@@ -259,6 +259,11 @@ Creep.prototype.goToWaypoint = function () {
     }
 };
 
+Creep.prototype.getCurrentWaypoint = function () {
+    return this.memory.current_waypoint;
+}
+
+
 Creep.prototype.isInCurrentWaypointRange = function () {
     var flag = Game.flags[this.memory.current_waypoint];
     if (!flag) {

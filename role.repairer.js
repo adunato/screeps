@@ -4,9 +4,10 @@ var repairrFSM = new statemachine.StateMachine.factory({
     init: 'none',
     transitions: [
         {name: 'energyEmpty', from: '*', to: 'withdraw'},
-        {name: 'energyFull', from: '*', to: 'repair'},
-        {name: 'noStructures', from: ['*'], to: 'rest'},
+        {name: 'energyFull', from: 'withdraw', to: 'move'},
         {name: 'containersEmpty', from: ['withdraw', 'rest'], to: 'rest'},
+        {name: 'structuresFound', from: ['move', 'repair'], to: 'repair'},
+        {name: 'atWaypoint', from: ['move', 'waypoint'], to: 'waypoint'},
         {
             name: 'goto', from: '*', to: function (s) {
             return s
@@ -24,6 +25,10 @@ var repairrFSM = new statemachine.StateMachine.factory({
             var creep = Game.creeps[this.creepName];
             creep.withdrawEnergy();
         },
+        onMove: function () {
+            var creep = Game.creeps[this.creepName];
+            creep.goToWaypoint();
+        },
         onRepair: function () {
             var creep = Game.creeps[this.creepName];
             creep.repairConstruction();
@@ -31,6 +36,11 @@ var repairrFSM = new statemachine.StateMachine.factory({
         onRest: function () {
             var creep = Game.creeps[this.creepName];
             creep.rest();
+        },
+        //invoked as event to avoid state being invoked when loaded by the state machine
+        onAtWaypoint: function () {
+            var creep = Game.creeps[this.creepName];
+            creep.setNextWaypoint();
         },
         onTransition(lifecycle) {
             // console.log("transition name: " + lifecycle.transition);
@@ -45,21 +55,28 @@ var rolerepairr = {
     /** @param {Creep} creep **/
     run: function (creep) {
         var creepState = creep.memory.state;
-        if (typeof creepState === "undefined")
+        if (typeof creepState === "undefined") {
             creepState = "withdraw";
+        }
+        if(!creep.getCurrentWaypoint()){
+            creep.setNextWaypoint();
+        }
         var stateMachine = new repairrFSM(creep.name, "withdraw");
         stateMachine.goto(creepState);
         if (creep.carry.energy === 0) {
             stateMachine.energyEmpty();
         }
-        if (creep.carry.energy > 0 && stateMachine.can("energyFull")) {
-            stateMachine.energyFull();
-        }
         if (cache.findContainersWithEnergy(creep.room).length === 0 && stateMachine.can("containersEmpty")) {
             stateMachine.containersEmpty();
         }
-        if (cache.findRepairStructures(creep.room).length === 0 && stateMachine.can("noStructures")) {
-            stateMachine.noStructures();
+        if (creep.isInCurrentWaypointRange() && stateMachine.can("atWaypoint")) {
+            stateMachine.atWaypoint();
+        }
+        else if (cache.findRepairStructures(creep.room).length > 0 && stateMachine.can("structuresFound")) {
+            stateMachine.structuresFound();
+        }
+        else if (creep.carry.energy > 0 && stateMachine.can("energyFull")) {
+            stateMachine.energyFull();
         }
         creep.memory.state = stateMachine.state;
     }
