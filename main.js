@@ -196,7 +196,7 @@ function trackTickChanges() {
             var room = rooms[i];
             for (var i = 0; i < cache.findTowers(room).length; i++) {
                 var tower = cache.findTowers(room)[i];
-                if(Memory.lastTick.towers_energy[tower.id]){
+                if(Memory.lastTick && Memory.lastTick.towers_energy[tower.id]){
                     Memory.lastTick.towers_energy_delta[tower.id] = Memory.lastTick.towers_energy[tower.id] - tower.energy > 0 ? Memory.lastTick.towers_energy[tower.id] - tower.energy : 0;
                 } else{
                     Memory.lastTick.towers_energy_delta[tower.id] = 0;
