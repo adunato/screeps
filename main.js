@@ -192,6 +192,9 @@ function trackTickChanges() {
         creep.memory.lastTick = {};
         creep.memory.lastTick.carried_energy = creep.carry.energy;
 
+        if(!Memory.lastTick){
+            Memory.lastTick = {};
+        }
         for (var i = 0; i < rooms.length; i++) {
             var room = rooms[i];
             for (var i = 0; i < cache.findTowers(room).length; i++) {
