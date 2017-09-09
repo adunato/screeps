@@ -62,7 +62,7 @@ function spawn(roleName) {
 }
 
 function manageDefense() {
-    for(var i = 0; i < rooms.length, i++) {
+    for(var i = 0; i < rooms.length; i++) {
         var room = rooms[i];
         for (var i = 0; i < cache.findTowers(room).length; i++) {
             var tower = cache.findTowers(room)[i];
