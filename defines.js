@@ -137,7 +137,7 @@ var defines = {
             "CO": [["collector", 1]],
             "BU": [["builder", 1]],
             "UP": [["upgrader", 1]],
-            "RE": [["repairer", 3]],
+            "RE": [["repairer", 4]],
             "WA": [["wall_repairer", 0]],
             "CA": [["carrier", 1]],
             "DE": [["defender", 1]],
