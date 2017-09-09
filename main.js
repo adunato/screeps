@@ -62,9 +62,8 @@ function spawn(roleName) {
 }
 
 function manageDefense() {
-    console.log(rooms);
-    for(var roomName in rooms) {
-        var room = Game.rooms[roomName];
+    for(var i = 0; i < rooms.length, i++) {
+        var room = rooms[i];
         for (var i = 0; i < cache.findTowers(room).length; i++) {
             var tower = cache.findTowers(room)[i];
             if (room.find(FIND_HOSTILE_CREEPS).length > 0) {
