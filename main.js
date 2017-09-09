@@ -22,17 +22,6 @@ function clearMemory() {
     }
 }
 
-function initSquads() {
-    //create squads tree based on profile configuration
-    if (!squadsStructureTree) {
-        console.log("global reset");
-        squadsStructureTree = {};
-        for (var profileName in global.squadProfiles) {
-            squadsStructureTree[profileName] = [];
-        }
-    }
-}
-
 function logSpawing() {
     var spawn = Game.spawns['Spawn1'];
     if (spawn && Game.spawns['Spawn1'].spawning) {
@@ -62,7 +51,7 @@ function spawn(roleName) {
 }
 
 function manageDefense() {
-    for(var i = 0; i < rooms.length; i++) {
+    for (var i = 0; i < rooms.length; i++) {
         var room = rooms[i];
         for (var i = 0; i < cache.findTowers(room).length; i++) {
             var tower = cache.findTowers(room)[i];
@@ -202,7 +191,23 @@ function trackTickChanges() {
         //update lastTick
         creep.memory.lastTick = {};
         creep.memory.lastTick.carried_energy = creep.carry.energy;
+
+        for (var i = 0; i < rooms.length; i++) {
+            var room = rooms[i];
+            for (var i = 0; i < cache.findTowers(room).length; i++) {
+                var tower = cache.findTowers(room)[i];
+                if(Memory.lastTick.towers_energy[tower.id]){
+                    Memory.lastTick.towers_energy_delta[tower.id] = Memory.lastTick.towers_energy[tower.id] - tower.energy > 0 ? Memory.lastTick.towers_energy[tower.id] - tower.energy : 0;
+                } else{
+                    Memory.lastTick.towers_energy_delta[tower.id] = 0;
+                }
+                Memory.lastTick.towers_energy[tower.id] = tower.energy;
+            }
+        }
+
     }
+
+
 }
 
 function resetCPULog() {
@@ -228,10 +233,10 @@ function logTotalCPU() {
 }
 
 function initRooms() {
-    if(rooms.length === Game.spawns.length)
+    if (rooms.length === Game.spawns.length)
         return;
     rooms = [];
-    for(var spawn in Game.spawns){
+    for (var spawn in Game.spawns) {
         rooms.push(Game.spawns[spawn].room);
     }
 }
