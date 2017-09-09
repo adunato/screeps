@@ -1,5 +1,6 @@
 var statemachine = require('state-machine');
 var cache = require('cache');
+var MIN_REPAIR_LVL_PC = 80;
 var repairrFSM = new statemachine.StateMachine.factory({
     init: 'none',
     transitions: [
@@ -31,7 +32,7 @@ var repairrFSM = new statemachine.StateMachine.factory({
         },
         onRepair: function () {
             var creep = Game.creeps[this.creepName];
-            creep.repairConstruction();
+            creep.repairConstruction(MIN_REPAIR_LVL_PC);
         },
         onRest: function () {
             var creep = Game.creeps[this.creepName];
@@ -72,7 +73,7 @@ var rolerepairr = {
         if (creep.isInCurrentWaypointRange() && stateMachine.can("atWaypoint")) {
             stateMachine.atWaypoint();
         }
-        else if (cache.findRepairStructures(creep.room).length > 0 && stateMachine.can("structuresFound")) {
+        else if (cache.findRepairStructures(creep.room,MIN_REPAIR_LVL_PC).length > 0 && stateMachine.can("structuresFound")) {
             stateMachine.structuresFound();
         }
         else if (creep.carry.energy > 0 && stateMachine.can("energyFull")) {

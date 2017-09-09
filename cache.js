@@ -176,7 +176,7 @@ var cache = {
         }
         return constructionSites;
     },
-    findRepairStructures: function (room) {
+    findRepairStructures: function (room, minRepairLevelPc) {
         var repairStructures = {};
 
         if (typeof this.rooms.repairStructures[room] != "undefined") {
@@ -184,7 +184,7 @@ var cache = {
         } else {
             repairStructures = room.find(FIND_STRUCTURES, {
                 filter: (structure) => {
-                    return structure.hits < structure.hitsMax && structure.structureType !== STRUCTURE_WALL && structure.structureType !== STRUCTURE_RAMPART;
+                    return structure.hits < (structure.hitsMax / 100 * minRepairLevelPc)&& structure.structureType !== STRUCTURE_WALL && structure.structureType !== STRUCTURE_RAMPART;
                 }
             });
             this.rooms.repairStructures[room] = repairStructures;

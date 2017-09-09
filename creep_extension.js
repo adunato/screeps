@@ -349,14 +349,14 @@ Creep.prototype.buildConstruction = function () {
     }
 };
 
-Creep.prototype.repairConstruction = function () {
+Creep.prototype.repairConstruction = function (minRepairLevelPc) {
     var flag = Game.flags[this.memory.squad];
     //move to flag if not in flag's room
     if (flag != null && (!flag.room || flag.room.name != this.room.name)) {
         this.moveTo(flag, {visualizePathStyle: {stroke: '#ffda00'}});
         return;
     }
-    var repairConstructions = cache.findRepairStructures(this.room);
+    var repairConstructions = cache.findRepairStructures(this.room, minRepairLevelPc);
     if (repairConstructions.length) {
         var construction = this.getNearestObjectByDistance(repairConstructions);
         if (this.repair(construction) == ERR_NOT_IN_RANGE) {
