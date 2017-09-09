@@ -62,8 +62,8 @@ function spawn(roleName) {
 }
 
 function manageDefense() {
+    console.log(rooms);
     for(var roomName in rooms) {
-        console.log(roomName);
         var room = Game.rooms[roomName];
         for (var i = 0; i < cache.findTowers(room).length; i++) {
             var tower = cache.findTowers(room)[i];
