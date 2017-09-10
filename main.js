@@ -192,6 +192,8 @@ function trackTickChanges() {
 
     for (var creepName in Game.creeps) {
         var creep = Game.creeps[creepName];
+        if(!creep.memory.lastTick)
+            creep.memory.lastTick = {};
         //harvesters
         if (creep.memory.role === 'harvester') {
             if (creep.memory.lastTick && creep.memory.lastTick.carried_energy) {
