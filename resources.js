@@ -101,7 +101,8 @@ function summarize_room_internal(room) {
     const creep_upgraded_energy = _.sum(Game.creeps, c => c.pos.roomName == room.name && c.memory.upgraded_energy ? c.memory.upgraded_energy : 0);
     const creep_repaired_energy = _.sum(Game.creeps, c => c.pos.roomName == room.name && c.memory.upgraded_energy ? c.memory.upgraded_energy : 0);
     const creep_built_energy = _.sum(Game.creeps, c => c.pos.roomName == room.name && c.memory.built_energy ? c.memory.built_energy : 0);
-    const tower_consumed_energy = Memory.lastTick.towers_energy_delta ? _.sum(Memory.lastTick.towers_energy_delta) : 0;
+    const tower_consumed_energy = Memory.towers_energy_delta ? _.sum(Memory.towers_energy_delta) : 0;
+    const spawn_consumed_energy = Memory.energy_available_delta;
     const num_enemies = enemy_creeps ? enemy_creeps.length : 0;
     const spawns = room.find(FIND_MY_SPAWNS);
     const num_spawns = spawns ? spawns.length : 0;
@@ -198,6 +199,7 @@ function summarize_room_internal(room) {
         num_towers,
         tower_energy,
         tower_consumed_energy,
+        spawn_consumed_energy,
         structure_info,
         num_construction_sites,
         num_my_construction_sites,

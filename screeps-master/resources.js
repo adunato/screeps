@@ -78,6 +78,7 @@ function summarize_room_internal(room) {
     const storage_energy = room.storage ? room.storage.store[RESOURCE_ENERGY] : 0;
     const storage_minerals = room.storage ? _.sum(room.storage.store) - storage_energy : 0;
     const energy_avail = room.energyAvailable;
+    const spawn_consumed_energy = room.energyAvailable;
     const energy_cap = room.energyCapacityAvailable;
     const containers = room.find(FIND_STRUCTURES, { filter: s => s.structureType == STRUCTURE_CONTAINER });
     const num_containers = containers == null ? 0 : containers.length;
