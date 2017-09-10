@@ -209,11 +209,11 @@ function trackTickChanges() {
     //towers
     if(!Memory.lastTick.towers_energy){
         console.log("init Memory.lastTick.towers_energy")
-        Memory.lastTick.towers_energy = [];
+        Memory.lastTick.towers_energy = {};
     }
     if(!Memory.lastTick.towers_energy_delta){
         console.log("init Memory.lastTick.towers_energy_delta")
-        Memory.lastTick.towers_energy_delta = [];
+        Memory.lastTick.towers_energy_delta = {};
     }
     console.log('Memory.lastTick: ' + Memory.lastTick);
     console.log('Memory.lastTick.towers_energy: ' + Memory.lastTick.towers_energy);
