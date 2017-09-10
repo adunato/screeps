@@ -55,6 +55,7 @@ function manageDefense() {
         var room = rooms[i];
         for (var i = 0; i < cache.findTowers(room).length; i++) {
             var tower = cache.findTowers(room)[i];
+            var currenTowerEnergy = tower.energy;
             if (room.find(FIND_HOSTILE_CREEPS).length > 0) {
                 tower.attack(tower.pos.findClosestByRange(room.find(FIND_HOSTILE_CREEPS)));
             } else if (tower.energy > tower.energyCapacity / 2) {
@@ -67,6 +68,9 @@ function manageDefense() {
                         tower.repair(closestDamagedWall[0]);
                     }
                 }
+            }
+            if(tower.energy < currenTowerEnergy){
+                console.log('tower energy delta: ' + tower.energy - currenTowerEnergy);
             }
         }
     }
