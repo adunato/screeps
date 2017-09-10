@@ -215,9 +215,6 @@ function trackTickChanges() {
         console.log("init Memory.lastTick.towers_energy_delta")
         Memory.lastTick.towers_energy_delta = {};
     }
-    console.log('Memory.lastTick: ' + Memory.lastTick);
-    console.log('Memory.lastTick.towers_energy: ' + Memory.lastTick.towers_energy);
-    console.log('Memory.lastTick.towers_energy_delta: ' + Memory.lastTick.towers_energy_delta);
     for (var i = 0; i < rooms.length; i++) {
         var room = rooms[i];
         var towers = cache.findTowers(room);
@@ -225,10 +222,8 @@ function trackTickChanges() {
             var tower = towers[i];
             if(Memory.lastTick.towers_energy[tower.id]){
                 Memory.lastTick.towers_energy_delta[tower.id] = Memory.lastTick.towers_energy[tower.id] - tower.energy > 0 ? Memory.lastTick.towers_energy[tower.id] - tower.energy : 0;
-                console.log('tower delta: ' + Memory.lastTick.towers_energy_delta[tower.id]);
             } else{
                 Memory.lastTick.towers_energy_delta[tower.id] = 0;
-                console.log('tower delta new: ' + Memory.lastTick.towers_energy_delta[tower.id]);
             }
             Memory.lastTick.towers_energy[tower.id] = tower.energy;
         }
