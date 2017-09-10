@@ -202,14 +202,17 @@ function trackTickChanges() {
     //non-creep update
 
     if(!Memory.lastTick){
+        console.log("init Memory.lastTick")
         Memory.lastTick = {};
     }
 
     //towers
     if(!Memory.lastTick.towers_energy){
+        console.log("init Memory.lastTick.towers_energy")
         Memory.lastTick.towers_energy = [];
     }
     if(!Memory.lastTick.towers_energy_delta){
+        console.log("init Memory.lastTick.towers_energy_delta")
         Memory.lastTick.towers_energy_delta = [];
     }
     for (var i = 0; i < rooms.length; i++) {
@@ -217,7 +220,6 @@ function trackTickChanges() {
         var towers = cache.findTowers(room);
         for (var i = 0; i < towers.length; i++) {
             var tower = towers[i];
-            console.log(Memory.lastTick.towers_energy[tower.id]);
             if(Memory.lastTick.towers_energy[tower.id]){
                 Memory.lastTick.towers_energy_delta[tower.id] = Memory.lastTick.towers_energy[tower.id] - tower.energy > 0 ? Memory.lastTick.towers_energy[tower.id] - tower.energy : 0;
                 console.log('tower delta: ' + Memory.lastTick.towers_energy_delta[tower.id]);
