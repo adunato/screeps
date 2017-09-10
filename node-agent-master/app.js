@@ -6,6 +6,8 @@ const { ScreepsAPI } = require('screeps-api')
 const request = require('request')
 const editor = require('editor')
 const pkg = require('./package.json');
+const PUSH_INTERVAL = 1000;
+var last_tick = null;
 let api = new ScreepsAPI()
 let setupRan = false
 
@@ -67,7 +69,7 @@ function formatStats (data) {
 
 function beginMemoryStats(){
   tick()
-  setInterval(tick,15000)
+  setInterval(tick,PUSH_INTERVAL)
 }
 function addProfileData(stats){
     return api.me().then(res=>{
@@ -112,12 +114,15 @@ function tick(){
 }
 
 function processStats(data){
-	console.log(data);
-  return Promise.resolve(data)
-    .then(formatStats)
-    .then(addProfileData)
-    .then(addLeaderboardData)
-    .then(pushStats)
+	if(last_tick === null || last_tick !== data.tick){
+		last_tick = data.tick;
+		console.log(data);
+	  return Promise.resolve(data)
+		.then(formatStats)
+		.then(addProfileData)
+		.then(addLeaderboardData)
+		.then(pushStats)
+	}
 }
 
 function getStats(){

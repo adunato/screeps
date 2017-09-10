@@ -55,7 +55,6 @@ function manageDefense() {
         var room = rooms[i];
         for (var i = 0; i < cache.findTowers(room).length; i++) {
             var tower = cache.findTowers(room)[i];
-            var currenTowerEnergy = tower.energy;
             if (room.find(FIND_HOSTILE_CREEPS).length > 0) {
                 tower.attack(tower.pos.findClosestByRange(room.find(FIND_HOSTILE_CREEPS)));
             } else if (tower.energy > tower.energyCapacity / 2) {
@@ -68,11 +67,6 @@ function manageDefense() {
                         tower.repair(closestDamagedWall[0]);
                     }
                 }
-            }
-            if(tower.energy < currenTowerEnergy){
-                console.log('tower energy delta: ' + tower.energy - currenTowerEnergy);
-            } else {
-                console.log('tower energy: ' + tower.energy);
             }
         }
     }
@@ -202,17 +196,14 @@ function trackTickChanges() {
     //non-creep update
 
     if(!Memory.lastTick){
-        console.log("init Memory.lastTick")
         Memory.lastTick = {};
     }
 
     //towers
     if(!Memory.lastTick.towers_energy){
-        console.log("init Memory.lastTick.towers_energy")
         Memory.lastTick.towers_energy = {};
     }
     if(!Memory.lastTick.towers_energy_delta){
-        console.log("init Memory.lastTick.towers_energy_delta")
         Memory.lastTick.towers_energy_delta = {};
     }
     for (var i = 0; i < rooms.length; i++) {
