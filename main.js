@@ -197,32 +197,35 @@ function trackTickChanges() {
         //update lastTick
         creep.memory.lastTick = {};
         creep.memory.lastTick.carried_energy = creep.carry.energy;
-
-        if(!Memory.lastTick){
-            Memory.lastTick = {};
-        }
-        if(!Memory.lastTick.towers_energy){
-            Memory.lastTick.towers_energy = [];
-        }
-        if(!Memory.lastTick.towers_energy_delta){
-            Memory.lastTick.towers_energy_delta = [];
-        }
-        for (var i = 0; i < rooms.length; i++) {
-            var room = rooms[i];
-            for (var i = 0; i < cache.findTowers(room).length; i++) {
-                var tower = cache.findTowers(room)[i];
-                if(Memory.lastTick.towers_energy[tower.id]){
-                    Memory.lastTick.towers_energy_delta[tower.id] = Memory.lastTick.towers_energy[tower.id] - tower.energy > 0 ? Memory.lastTick.towers_energy[tower.id] - tower.energy : 0;
-                    console.log('tower delta: ' + Memory.lastTick.towers_energy_delta[tower.id]);
-                } else{
-                    Memory.lastTick.towers_energy_delta[tower.id] = 0;
-                }
-                Memory.lastTick.towers_energy[tower.id] = tower.energy;
-            }
-        }
-
     }
 
+    //non-creep update
+
+    if(!Memory.lastTick){
+        Memory.lastTick = {};
+    }
+
+    //towers
+    if(!Memory.lastTick.towers_energy){
+        Memory.lastTick.towers_energy = [];
+    }
+    if(!Memory.lastTick.towers_energy_delta){
+        Memory.lastTick.towers_energy_delta = [];
+    }
+    for (var i = 0; i < rooms.length; i++) {
+        var room = rooms[i];
+        var towers = cache.findTowers(room);
+        for (var i = 0; i < towers.length; i++) {
+            var tower = towers[i];
+            if(Memory.lastTick.towers_energy[tower.id]){
+                Memory.lastTick.towers_energy_delta[tower.id] = Memory.lastTick.towers_energy[tower.id] - tower.energy > 0 ? Memory.lastTick.towers_energy[tower.id] - tower.energy : 0;
+                console.log('tower delta: ' + Memory.lastTick.towers_energy_delta[tower.id]);
+            } else{
+                Memory.lastTick.towers_energy_delta[tower.id] = 0;
+            }
+            Memory.lastTick.towers_energy[tower.id] = tower.energy;
+        }
+    }
 
 }
 
