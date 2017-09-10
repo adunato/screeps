@@ -97,14 +97,12 @@ function summarize_room_internal(room) {
     const num_creeps = creeps ? creeps.length : 0;
     const enemy_creeps = room.find(FIND_HOSTILE_CREEPS);
     const creep_energy = _.sum(Game.creeps, c => c.pos.roomName == room.name ? c.carry.energy : 0);
-    const creep_harvested_energy = _.sum(Game.creeps, c => c.pos.roomName == room.name && c.memory.harvested_energy ? c.memory.harvested_energy : 0);
-    const creep_upgraded_energy = _.sum(Game.creeps, c => c.pos.roomName == room.name && c.memory.upgraded_energy ? c.memory.upgraded_energy : 0);
-    const creep_repaired_energy = _.sum(Game.creeps, c => c.pos.roomName == room.name && c.memory.upgraded_energy ? c.memory.upgraded_energy : 0);
-    const creep_built_energy = _.sum(Game.creeps, c => c.pos.roomName == room.name && c.memory.built_energy ? c.memory.built_energy : 0);
-    const tower_consumed_energy = Memory.towers_energy_delta ? _.sum(Memory.towers_energy_delta) : 0;
-    const spawn_consumed_energy = Memory.energy_available_delta;
-    if(spawn_consumed_energy > 0)
-        console.log('spawn_consumed_energy: ' + spawn_consumed_energy);
+    const creep_harvested_energy = Memory.custom_stats.rooms[room.name].harvested_energy;
+    const creep_upgraded_energy = Memory.custom_stats.rooms[room.name].upgraded_energy;
+    const creep_repaired_energy = Memory.custom_stats.rooms[room.name].repaired_energy;
+    const creep_built_energy = Memory.custom_stats.rooms[room.name].built_energy;
+    const tower_consumed_energy = Memory.custom_stats.rooms[room.name].towers_consumed_energy;
+    const spawn_consumed_energy = Memory.custom_stats.rooms[room.name].spawn_consumed_energy;
     const num_enemies = enemy_creeps ? enemy_creeps.length : 0;
     const spawns = room.find(FIND_MY_SPAWNS);
     const num_spawns = spawns ? spawns.length : 0;

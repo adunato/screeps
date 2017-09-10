@@ -161,31 +161,64 @@ function createSquads() {
 
 
 function trackTickChanges() {
+
+    if(!Memory.custom_stats){
+        Memory.custom_stats = {};
+    }
+
+    if(!Memory.custom_stats.rooms){
+        Memory.custom_stats.rooms = {};
+    }
+
+    if(!Memory.lastTick){
+        Memory.lastTick = {};
+    }
+
+    if(!Memory.lastTick.rooms){
+        Memory.lastTick.rooms = {};
+    }
+
+    for(var roomName in Game.rooms){
+        if(!Memory.custom_stats.rooms[roomName]){
+            Memory.custom_stats.rooms[roomName] = {};
+        }
+        if(!Memory.lastTick.rooms[roomName]){
+            Memory.lastTick.rooms[roomName] = {};
+        }
+        if(!Memory.lastTick.rooms[roomName].towers){
+            Memory.lastTick.rooms[roomName].towers = {};
+        }
+    }
+
     for (var creepName in Game.creeps) {
         var creep = Game.creeps[creepName];
         //harvesters
         if (creep.memory.role === 'harvester') {
             if (creep.memory.lastTick && creep.memory.lastTick.carried_energy) {
                 //add to counter if diff is +
-                creep.memory.harvested_energy = creep.carry.energy - creep.memory.lastTick.carried_energy > 0 ? creep.carry.energy - creep.memory.lastTick.carried_energy : 0;
+                var creep_harvested_energy = creep.carry.energy - creep.memory.lastTick.carried_energy > 0 ? creep.carry.energy - creep.memory.lastTick.carried_energy : 0;
+                Memory.custom_stats.rooms[creep.pos.roomName].harvested_energy += creep_harvested_energy;
             }
         }
         if (creep.memory.role === 'upgrader') {
             if (creep.memory.lastTick && creep.memory.lastTick.carried_energy) {
                 //add to counter if diff is -
-                creep.memory.upgraded_energy = creep.carry.energy - creep.memory.lastTick.carried_energy < 0 ? (creep.carry.energy - creep.memory.lastTick.carried_energy) * -1 : 0;
+                var creep_upgraded_energy = creep.carry.energy - creep.memory.lastTick.carried_energy < 0 ? (creep.carry.energy - creep.memory.lastTick.carried_energy) * -1 : 0;
+                Memory.custom_stats.rooms[creep.pos.roomName].upgraded_energy += creep_upgraded_energy;
             }
         }
         if (creep.memory.role === 'repairer') {
             if (creep.memory.lastTick && creep.memory.lastTick.carried_energy) {
                 //add to counter if diff is -
-                creep.memory.repaired_energy = creep.carry.energy - creep.memory.lastTick.carried_energy < 0 ? (creep.carry.energy - creep.memory.lastTick.carried_energy) * -1 : 0;
+               var creep_repaired_energy = creep.carry.energy - creep.memory.lastTick.carried_energy < 0 ? (creep.carry.energy - creep.memory.lastTick.carried_energy) * -1 : 0;
+                Memory.custom_stats.rooms[creep.pos.roomName].repaired_energy += creep_repaired_energy;
             }
         }
         if (creep.memory.role === 'builder') {
             if (creep.memory.lastTick && creep.memory.lastTick.carried_energy) {
                 //add to counter if diff is -
-                creep.memory.built_energy = creep.carry.energy - creep.memory.lastTick.carried_energy < 0 ? (creep.carry.energy - creep.memory.lastTick.carried_energy) * -1 : 0;
+                var creep_built_energy = creep.carry.energy - creep.memory.lastTick.carried_energy < 0 ? (creep.carry.energy - creep.memory.lastTick.carried_energy) * -1 : 0;
+                Memory.custom_stats.rooms[creep.pos.roomName].built_energy += creep_built_energy;
             }
         }
         //update lastTick
@@ -195,40 +228,26 @@ function trackTickChanges() {
 
     //non-creep update
 
-    if(!Memory.lastTick){
-        Memory.lastTick = {};
-    }
-
-    //towers
-    if(!Memory.lastTick.towers_energy){
-        Memory.lastTick.towers_energy = {};
-    }
-    if(!Memory.towers_energy_delta){
-        Memory.towers_energy_delta = {};
-    }
-    //spawn energy
-    Memory.energy_available = 0;
-
     for (var i = 0; i < rooms.length; i++) {
         var room = rooms[i];
         var towers = cache.findTowers(room);
         for (var i = 0; i < towers.length; i++) {
             var tower = towers[i];
-            if(Memory.lastTick.towers_energy[tower.id]){
-                Memory.towers_energy_delta[tower.id] = Memory.lastTick.towers_energy[tower.id] - tower.energy > 0 ? Memory.lastTick.towers_energy[tower.id] - tower.energy : 0;
-            } else{
-                Memory.towers_energy_delta[tower.id] = 0;
+            let delta =0
+            if(Memory.lastTick[room.name].towers[tower.id]){
+                delta = Memory.lastTick[room.name].towers[tower.id].energy - tower.energy;
+                Memory.lastTick[room.name].towers[tower.id].energy = delta > 0 ? delta : 0;
             }
-            Memory.lastTick.towers_energy[tower.id] = tower.energy;
+            Memory.custom_stats.rooms[room.name].towers_consumed_energy += delta;
         }
         //spawn energy
-        Memory.energy_available += room.energyAvailable;
-        if(Memory.lastTick.energy_available){
-            var delta = (Memory.lastTick.energy_available - Memory.energy_available);
-            Memory.energy_available_delta = delta > 0 ?  delta : 0;
-            console.log('Memory.energy_available_delta: ' + Memory.energy_available_delta);
+        room.energyAvailable;
+        if(Memory.lastTick[room.name].energy_available){
+            var delta = (Memory.lastTick[room.name].energy_available - room.energyAvailable);
+            delta = delta > 0 ?  delta : 0;
+            Memory.custom_stats.rooms[room.name].spawn_consumed_energy += delta;
         }
-        Memory.lastTick.energy_available = Memory.energy_available;
+        Memory.lastTick[room.name].energy_available = room.energyAvailable;
 
     }
 
