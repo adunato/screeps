@@ -356,7 +356,10 @@ Creep.prototype.repairConstruction = function (minRepairLevelPc) {
     //     this.moveTo(flag, {visualizePathStyle: {stroke: '#ffda00'}});
     //     return;
     // }
-    let construction = this.memory.repairConstruction;
+    var construction = null;
+    if(this.memory.repairConstructionId){
+        construction = Game.getObjectById(repairConstructionId);
+    }
     if(!construction){
         var repairConstructions = cache.findRepairStructures(this.room, minRepairLevelPc);
         if (repairConstructions.length) {
@@ -364,11 +367,11 @@ Creep.prototype.repairConstruction = function (minRepairLevelPc) {
         }
     }
     if(construction) {
-        this.memory.repairConstruction = construction;
+        this.memory.repairConstructionId = construction.id;
         if (this.repair(construction) === ERR_NOT_IN_RANGE) {
             this.moveTo(construction, {visualizePathStyle: {stroke: '#14ff00'}});
         } else if(construction.hits === construction.hitsMax) {
-            this.memory.repairConstruction = null;
+            this.memory.repairConstructionId = null;
         }
     }
 };
