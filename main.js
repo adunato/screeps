@@ -239,6 +239,7 @@ function trackTickChanges() {
                 Memory.lastTick.rooms[room.name].towers[tower.id].energy = delta > 0 ? delta : 0;
             }
             Memory.custom_stats.rooms[room.name].towers_consumed_energy += delta;
+            console.log('Memory.custom_stats.rooms[room.name].towers_consumed_energy: ' + Memory.custom_stats.rooms[room.name].towers_consumed_energy);
         }
         //spawn energy
         room.energyAvailable;
