@@ -221,10 +221,6 @@ function trackTickChanges() {
                 //add to counter if diff is -
                 var creep_built_energy = creep.carry.energy - creep.memory.lastTick.carried_energy < 0 ? (creep.carry.energy - creep.memory.lastTick.carried_energy) * -1 : 0;
                 Memory.custom_stats.rooms[creep.room.name].built_energy += creep_built_energy;
-                if(creep_built_energy > 0) {
-                    console.log('creep_built_energy: ' + creep_built_energy);
-                    console.log('Memory.custom_stats.rooms[creep.room.name].built_energy: ' + Memory.custom_stats.rooms[creep.room.name].built_energy);
-                }
             }
         }
         creep.memory.lastTick.carried_energy = creep.carry.energy;
