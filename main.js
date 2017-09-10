@@ -226,6 +226,7 @@ function trackTickChanges() {
         if(Memory.lastTick.energy_available){
             var delta = (Memory.lastTick.energy_available - Memory.energy_available) * -1;
             Memory.energy_available_delta = delta > 0 ?  delta : 0;
+            console.log('Memory.energy_available_delta: ' + Memory.energy_available_delta);
         }
         Memory.lastTick.energy_available = Memory.energy_available;
 
