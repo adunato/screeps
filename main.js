@@ -217,7 +217,7 @@ function trackTickChanges() {
         var towers = cache.findTowers(room);
         for (var i = 0; i < towers.length; i++) {
             var tower = towers[i];
-            if(Memory.lastTick.towers_energy[tower.id]){
+            if(Memory.lastTick.towers_energy[tower.id] != null){
                 Memory.lastTick.towers_energy_delta[tower.id] = Memory.lastTick.towers_energy[tower.id] - tower.energy > 0 ? Memory.lastTick.towers_energy[tower.id] - tower.energy : 0;
                 console.log('tower delta: ' + Memory.lastTick.towers_energy_delta[tower.id]);
             } else{
