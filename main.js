@@ -213,6 +213,7 @@ function trackTickChanges() {
                 var tower = cache.findTowers(room)[i];
                 if(Memory.lastTick.towers_energy[tower.id]){
                     Memory.lastTick.towers_energy_delta[tower.id] = Memory.lastTick.towers_energy[tower.id] - tower.energy > 0 ? Memory.lastTick.towers_energy[tower.id] - tower.energy : 0;
+                    console.log('tower delta: ' + .lastTick.towers_energy_delta[tower.id]);
                 } else{
                     Memory.lastTick.towers_energy_delta[tower.id] = 0;
                 }
