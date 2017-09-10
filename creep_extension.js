@@ -358,7 +358,7 @@ Creep.prototype.repairConstruction = function (minRepairLevelPc) {
     // }
     var construction = null;
     if(this.memory.repairConstructionId){
-        construction = Game.getObjectById(repairConstructionId);
+        construction = Game.getObjectById(this.memory.repairConstructionId);
     }
     if(!construction){
         var repairConstructions = cache.findRepairStructures(this.room, minRepairLevelPc);
