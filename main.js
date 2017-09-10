@@ -221,8 +221,6 @@ function trackTickChanges() {
                 Memory.custom_stats.rooms[creep.pos.roomName].built_energy += creep_built_energy;
             }
         }
-        //update lastTick
-        creep.memory.lastTick = {};
         creep.memory.lastTick.carried_energy = creep.carry.energy;
     }
 
@@ -234,20 +232,20 @@ function trackTickChanges() {
         for (var i = 0; i < towers.length; i++) {
             var tower = towers[i];
             let delta =0
-            if(Memory.lastTick[room.name].towers[tower.id]){
-                delta = Memory.lastTick[room.name].towers[tower.id].energy - tower.energy;
-                Memory.lastTick[room.name].towers[tower.id].energy = delta > 0 ? delta : 0;
+            if(Memory.lastTick.rooms[room.name].towers[tower.id]){
+                delta = Memory.lastTick.rooms[room.name].towers[tower.id].energy - tower.energy;
+                Memory.lastTick.rooms[room.name].towers[tower.id].energy = delta > 0 ? delta : 0;
             }
             Memory.custom_stats.rooms[room.name].towers_consumed_energy += delta;
         }
         //spawn energy
         room.energyAvailable;
-        if(Memory.lastTick[room.name].energy_available){
-            var delta = (Memory.lastTick[room.name].energy_available - room.energyAvailable);
+        if(Memory.lastTick.rooms[room.name].energy_available){
+            var delta = (Memory.lastTick.rooms[room.name].energy_available - room.energyAvailable);
             delta = delta > 0 ?  delta : 0;
             Memory.custom_stats.rooms[room.name].spawn_consumed_energy += delta;
         }
-        Memory.lastTick[room.name].energy_available = room.energyAvailable;
+        Memory.lastTick.rooms[room.name].energy_available = room.energyAvailable;
 
     }
 
