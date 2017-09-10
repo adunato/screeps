@@ -215,6 +215,9 @@ function trackTickChanges() {
         console.log("init Memory.lastTick.towers_energy_delta")
         Memory.lastTick.towers_energy_delta = [];
     }
+    console.log('Memory.lastTick: ' + Memory.lastTick);
+    console.log('Memory.lastTick.towers_energy: ' + Memory.lastTick.towers_energy);
+    console.log('Memory.lastTick.towers_energy_delta: ' + Memory.lastTick.towers_energy_delta);
     for (var i = 0; i < rooms.length; i++) {
         var room = rooms[i];
         var towers = cache.findTowers(room);
