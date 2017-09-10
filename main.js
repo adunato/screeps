@@ -71,6 +71,8 @@ function manageDefense() {
             }
             if(tower.energy < currenTowerEnergy){
                 console.log('tower energy delta: ' + tower.energy - currenTowerEnergy);
+            } else {
+                console.log('tower energy: ' + tower.energy);
             }
         }
     }
