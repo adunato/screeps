@@ -255,7 +255,8 @@ Creep.prototype.goToWaypoint = function () {
     if (flag != null) {
         this.moveTo(flag, {visualizePathStyle: {stroke: '#ffda00'}});
     } else {
-        console.log("creep " + this.name + " " + this.memory.role + " could not find current waypoint: " + this.memory.current_waypoint);
+        console.log("creep " + this.name + " " + this.memory.role + " could not find current waypoint: " + this.memory.current_waypoint + ". Invoking setNextWaypoint()");
+        this.setNextWaypoint();
     }
 };
 
