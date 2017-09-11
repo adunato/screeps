@@ -351,12 +351,6 @@ Creep.prototype.buildConstruction = function () {
 };
 
 Creep.prototype.repairConstruction = function (minRepairLevelPc) {
-    // var flag = Game.flags[this.memory.squad];
-    // //move to flag if not in flag's room
-    // if (flag != null && (!flag.room || flag.room.name != this.room.name)) {
-    //     this.moveTo(flag, {visualizePathStyle: {stroke: '#ffda00'}});
-    //     return;
-    // }
     var construction = null;
     if(this.memory.repairConstructionId){
         construction = Game.getObjectById(this.memory.repairConstructionId);

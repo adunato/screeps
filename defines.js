@@ -11,6 +11,7 @@ var roleDefender = require('role.defender');
 var roleTransporter = require('role.transporter');
 var rolePatroller = require('role.patroller');
 var roleNomadHarvester = require('role.nomad_harvester');
+require('SquadProfile');
 
 
 Object.size = function (obj) {
@@ -131,19 +132,33 @@ var defines = {
             "transporter": roleTransporter,
             "patroller": rolePatroller,
         };
+        // global.squadProfiles = {
+        //     "FE": [["feeder", 1]],
+        //     "HA": [["harvester", 1]],
+        //     "CO": [["collector", 1]],
+        //     "BU": [["builder", 1]],
+        //     "UP": [["upgrader", 1]],
+        //     "RE": [["repairer", 4]],
+        //     "WA": [["wall_repairer", 0]],
+        //     "CA": [["carrier", 1]],
+        //     "DE": [["defender", 1]],
+        //     "TR": [["transporter", 1]],
+        //     "PA": [["patroller", 2]],
+        //     "TOFE": [["tower_feeder", 1]],
+        // };
         global.squadProfiles = {
-            "FE": [["feeder", 1]],
-            "HA": [["harvester", 1]],
-            "CO": [["collector", 1]],
-            "BU": [["builder", 1]],
-            "UP": [["upgrader", 1]],
-            "RE": [["repairer", 4]],
-            "WA": [["wall_repairer", 0]],
-            "CA": [["carrier", 1]],
-            "DE": [["defender", 1]],
-            "TR": [["transporter", 1]],
-            "PA": [["patroller", 2]],
-            "TOFE": [["tower_feeder", 1]],
+            "FE": new SquadProfile([["feeder", 1]],false),
+            "HA": new SquadProfile([["harvester", 1]],false),
+            "CO": new SquadProfile([["collector", 1]],false),
+            "BU": new SquadProfile([["builder", 1]],false),
+            "UP": new SquadProfile([["upgrader", 1]],false),
+            "RE": new SquadProfile([["repairer", 4]],true),
+            "WA": new SquadProfile([["wall_repairer", 0]],false),
+            "CA": new SquadProfile([["carrier", 1]],false),
+            "DE": new SquadProfile([["defender", 1]],false),
+            "TR": new SquadProfile([["transporter", 1]],false),
+            "PA": new SquadProfile([["patroller", 2]],true),
+            "TOFE": new SquadProfile([["tower_feeder", 1]],false)
         };
         global.allowedToSpawnWithdraw = false;
         global.sourceContainers = [
