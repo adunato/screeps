@@ -7,8 +7,8 @@ var repairrFSM = new statemachine.StateMachine.factory({
         {name: 'energyEmpty', from: '*', to: 'withdraw'},
         {name: 'energyFull', from: ['withdraw','repair','waypoint'], to: 'move'},
         {name: 'containersEmpty', from: ['withdraw', 'rest'], to: 'rest'},
-        {name: 'structuresFound', from: ['move', 'repair'], to: 'repair'},
-        {name: 'atWaypoint', from: ['move', 'waypoint'], to: 'waypoint'},
+        {name: 'noStructuresFound', from: ['repair', 'waypoint'], to: 'waypoint'},
+        {name: 'atWaypoint', from: ['move', 'repair'], to: 'repair'},
         {
             name: 'goto', from: '*', to: function (s) {
             return s
@@ -39,7 +39,7 @@ var repairrFSM = new statemachine.StateMachine.factory({
             creep.rest();
         },
         //invoked as event to avoid state being invoked when loaded by the state machine
-        onAtWaypoint: function () {
+        onNoStructuresFound: function () {
             var creep = Game.creeps[this.creepName];
             creep.setNextWaypoint();
         },
@@ -73,8 +73,8 @@ var rolerepairr = {
         if (creep.isInCurrentWaypointRange() && stateMachine.can("atWaypoint")) {
             stateMachine.atWaypoint();
         }
-        else if (cache.findRepairStructures(creep.room,MIN_REPAIR_LVL_PC).length > 0 && stateMachine.can("structuresFound")) {
-            stateMachine.structuresFound();
+        else if (cache.findRepairStructures(creep.room,MIN_REPAIR_LVL_PC).length === 0 && stateMachine.can("noStructuresFound")) {
+            stateMachine.noStructuresFound();
         }
         else if (creep.carry.energy > 0 && stateMachine.can("energyFull")) {
             stateMachine.energyFull();
