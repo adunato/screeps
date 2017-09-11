@@ -3,7 +3,7 @@ require('structure_extension');
 var cache = require('cache');
 var defines = require('defines');
 var Squad = require('Squad');
-var SquadProfile = require('SquadProfile');
+var squadprofile = require('SquadProfile');
 var screepsplus = require('screepsplus');
 var squadsStructureTree = null;
 var squadsIndex = {};
@@ -145,7 +145,7 @@ function isFlagSquad(flagName) {
 }
 
 function createSquad(squadName) {
-    return new Squad(new SquadProfile(squadName.substr(0, squadName.length - 1)), squadName);
+    return new Squad(new squadprofile.SquadProfile(squadName.substr(0, squadName.length - 1)), squadName);
 }
 
 function createSquads() {
