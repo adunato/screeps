@@ -1,7 +1,7 @@
 var statemachine = require('state-machine');
 // var visualize = require('visualize');
 var cache = require('cache');
-var harvesterFSM = new statemachine.StateMachine.factory({
+var claimerFSM = new statemachine.StateMachine.factory({
     init: 'none',
     transitions: [
         //all "end-states" lead back to start
@@ -36,13 +36,13 @@ var harvesterFSM = new statemachine.StateMachine.factory({
 });
 
 
-var roleHarvester = {
+var roleClaimer = {
     /** @param {Creep} creep **/
     run: function (creep) {
         var creepState = creep.memory.state;
         if (typeof creepState === "undefined")
             creepState = "claiming";
-        var stateMachine = new harvesterFSM(creep.name);
+        var stateMachine = new claimerFSM(creep.name);
         // console.log(statemachine.visualize(stateMachine));
         stateMachine.goto(creepState);
         if (creep.timeToDie() && creep.carry.energy === 0 && stateMachine.can("timeToDie")){
@@ -52,4 +52,4 @@ var roleHarvester = {
     }
 };
 
-module.exports = roleHarvester;
+module.exports = roleClaimer;
