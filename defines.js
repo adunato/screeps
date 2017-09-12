@@ -44,7 +44,7 @@ var defines = {
             "claimer":
                 [
                     [MOVE,MOVE,CLAIM,CLAIM],
-                    [MOVE,CLAIM],
+                    // [MOVE,CLAIM],
                 ],
             "builder": [
                 [MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, WORK, WORK, CARRY, CARRY, CARRY, CARRY, CARRY],
@@ -158,7 +158,7 @@ var defines = {
             "CO": new squadprofile.SquadAttributes([["collector", 1]],false),
             "BU": new squadprofile.SquadAttributes([["builder", 1]],false),
             "UP": new squadprofile.SquadAttributes([["upgrader", 1]],false),
-            "RE": new squadprofile.SquadAttributes([["repairer", 5]],true),
+            "RE": new squadprofile.SquadAttributes([["repairer", 3]],true),
             "WA": new squadprofile.SquadAttributes([["wall_repairer", 0]],false),
             "CA": new squadprofile.SquadAttributes([["carrier", 1]],false),
             "DE": new squadprofile.SquadAttributes([["defender", 1]],false),
@@ -174,7 +174,7 @@ var defines = {
         ];
         global.destinationContainers = [
             '59aab3b0b08c1b0fa81a4370',//central
-            '59ae529fbd28427f15402b36',//tower
+            '59b78fe638afd04af132806b',//tower
             '59ae5c75496afa193d2d8a40',//RC
         ];
     }
