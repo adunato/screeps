@@ -23,37 +23,47 @@ function clearMemory() {
 }
 
 function logSpawing() {
-    var spawn = Game.spawns['Spawn1'];
-    if (spawn && Game.spawns['Spawn1'].spawning) {
-        var spawningCreep = Game.creeps[Game.spawns['Spawn1'].spawning.name];
-        Game.spawns['Spawn1'].room.visual.text(
-            '🛠️' + spawningCreep.memory.role,
-            Game.spawns['Spawn1'].pos.x + 1,
-            Game.spawns['Spawn1'].pos.y,
-            {align: 'left', opacity: 0.8});
+    for (var spawnName in Game.spawns) {
+        var spawn = Game.spawns[spawnName];
+        if (spawn && spawn.spawning) {
+            var spawningCreep = Game.creeps[spawn.spawning.name];
+            spawn.room.visual.text(
+                '🛠️' + spawningCreep.memory.role,
+                spawn.pos.x + 1,
+                spawn.pos.y,
+                {align: 'left', opacity: 0.8});
+        }
     }
 }
 
 function spawn(roleName, squad) {
-    var spawn = null;
-    var midDistance = 1000;
+    var selectedSpawn = null;
+    var minDistance = 1000;
     for (var spawnName in Game.spawns) {
-        spawn = Game.spawns[spawnName];
-    }
-        if (spawn) {
-            for (var i = 0; i < bodyParts[roleName].length; i++) {
-                var bodyPart = bodyParts[roleName][i];
-                // console.log('spawn - trying config: ' + bodyPart);
-                if (Game.spawns['Spawn1'].canCreateCreep(bodyPart) === OK) {
-                    var result = Game.spawns['Spawn1'].createCreep(bodyPart, undefined, {
-                        role: roleName,
-                        spawnRoom: spawn.room.name
-                    });
-                    console.log('Spawning new ' + roleName + ' with body: ' + bodyPart + ' - ' + result);
-                    return;
-                }
+        var spawn = Game.spawns[spawnName];
+        var squadFlag = Game.flags[squad.getFlagName()]
+        if (squadFlag) {
+            var distance = Game.map.getRoomLinearDistance(spawn.room.name, squadFlag.room.name);
+            if (distance < minDistance) {
+                selectedSpawn = spawn;
+                minDistance = distance;
             }
         }
+    }
+    if (selectedSpawn) {
+        for (var i = 0; i < bodyParts[roleName].length; i++) {
+            var bodyPart = bodyParts[roleName][i];
+            // console.log('spawn - trying config: ' + bodyPart);
+            if (selectedSpawn.canCreateCreep(bodyPart) === OK) {
+                var result = selectedSpawn.createCreep(bodyPart, undefined, {
+                    role: roleName,
+                    spawnRoom: spawn.room.name
+                });
+                console.log('Spawning new ' + roleName + ' with body: ' + bodyPart + ' - ' + result);
+                return;
+            }
+        }
+    }
 }
 
 function manageDefense() {
@@ -150,8 +160,8 @@ function isFlagSquad(flagName) {
     return false;
 }
 
-function createSquad(squadName) {
-    return new Squad(new squadprofile.SquadProfile(squadName.substr(0, squadName.length - 1)), squadName);
+function createSquad(squadName, flagName) {
+    return new Squad(new squadprofile.SquadProfile(squadName.substr(0, squadName.length - 1)), squadName, flagName);
 }
 
 function createSquads() {
@@ -159,7 +169,7 @@ function createSquads() {
         if (isFlagSquad(flagName)) {
             var squadName = flagToSquadName(flagName);
             if (!squadsIndex[squadName]) {
-                squadsIndex[squadName] = createSquad(squadName);
+                squadsIndex[squadName] = createSquad(squadName, flagName);
             }
         }
     }
