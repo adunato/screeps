@@ -1,8 +1,5 @@
-const DROP_CONTAINER = "DROP_CONTAINER";
-const DROP_STRUCTURE = "DROP_STRUCTURE";
-const DROP_COLLECTOR = "DROP_COLLECTOR";
-const DROP_CARRIER = "DROP_CARRIER";
 const WAYPOINT_RANGE = 3;
+require('defines');
 var cache = require('cache');
 require('source_extension');
 Creep.prototype.withdrawEnergy = function () {
