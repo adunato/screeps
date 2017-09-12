@@ -36,26 +36,28 @@ var defines = {
         global.bodyParts = {
             "harvester":
                 [
-                    [MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,WORK,WORK,WORK,WORK,WORK,WORK,WORK,WORK,CARRY,CARRY],
-                    // [MOVE, MOVE, MOVE, MOVE, MOVE, WORK, WORK, WORK, WORK, WORK, CARRY],
-                    // [MOVE, MOVE, MOVE, MOVE, WORK, WORK, WORK, WORK, CARRY],
-                    // [MOVE, MOVE, MOVE, WORK, WORK, WORK, CARRY],
-                    // [MOVE, MOVE, WORK, CARRY, CARRY]
+                    [MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, CARRY, CARRY],
+                    [MOVE, MOVE, MOVE, MOVE, MOVE, WORK, WORK, WORK, WORK, WORK, CARRY],
+                    [MOVE, MOVE, MOVE, MOVE, WORK, WORK, WORK, WORK, CARRY],
+                    [MOVE, MOVE, MOVE, WORK, WORK, WORK, CARRY],
+                    [MOVE, MOVE, WORK, CARRY, CARRY],
+                    [MOVE, WORK, CARRY]
                 ],
             "reserver":
                 [
-                    [MOVE,MOVE,CLAIM,CLAIM],
+                    [MOVE, MOVE, CLAIM, CLAIM],
                 ],
             "claimer":
                 [
-                    [MOVE,CLAIM],
+                    [MOVE, CLAIM],
                 ],
             "builder": [
                 [MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, WORK, WORK, CARRY, CARRY, CARRY, CARRY, CARRY],
-                // [MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, WORK, CARRY, CARRY, CARRY, CARRY, CARRY],
-                // [MOVE, MOVE, MOVE, MOVE, MOVE, WORK, CARRY, CARRY, CARRY, CARRY],
-                // [MOVE, MOVE, MOVE, MOVE, WORK, CARRY, CARRY, CARRY],
-                // [MOVE, MOVE, WORK, CARRY, CARRY]
+                [MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, WORK, CARRY, CARRY, CARRY, CARRY, CARRY],
+                [MOVE, MOVE, MOVE, MOVE, MOVE, WORK, CARRY, CARRY, CARRY, CARRY],
+                [MOVE, MOVE, MOVE, MOVE, WORK, CARRY, CARRY, CARRY],
+                [MOVE, MOVE, WORK, CARRY, CARRY],
+                [MOVE, WORK, CARRY]
             ],
             "nomad_harvester": [WORK, CARRY, MOVE],
             "upgrader": [
@@ -78,45 +80,45 @@ var defines = {
                 // [MOVE, MOVE, MOVE, CARRY, CARRY, CARRY],
             ],
             "collector": [
-                [MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY],
+                [MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY],
                 // [MOVE,MOVE,MOVE,MOVE,MOVE,CARRY,CARRY,CARRY,CARRY,CARRY],
                 // [MOVE,MOVE,MOVE,MOVE,CARRY,CARRY,CARRY,CARRY],
                 // [MOVE, MOVE, MOVE, CARRY, CARRY, CARRY]
             ],
             "transporter": [
-                [MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY],
+                [MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY],
                 [MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY],
                 // [MOVE, MOVE, MOVE, MOVE, MOVE, CARRY, CARRY, CARRY, CARRY, CARRY],
                 // [MOVE, MOVE, MOVE, MOVE, CARRY, CARRY, CARRY, CARRY],
                 // [MOVE, MOVE, MOVE, CARRY, CARRY, CARRY],
             ],
             "feeder": [
-                [MOVE, MOVE, MOVE, MOVE, MOVE,MOVE, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY],
+                [MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY],
                 [MOVE, MOVE, MOVE, MOVE, MOVE, CARRY, CARRY, CARRY, CARRY, CARRY],
                 [MOVE, MOVE, MOVE, MOVE, CARRY, CARRY, CARRY, CARRY],
                 [MOVE, MOVE, MOVE, CARRY, CARRY, CARRY],
                 [MOVE, CARRY]
             ],
             "tower_feeder": [
-                [MOVE, MOVE, MOVE, MOVE, MOVE,MOVE, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY],
+                [MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY],
                 [MOVE, MOVE, MOVE, MOVE, MOVE, CARRY, CARRY, CARRY, CARRY, CARRY],
                 [MOVE, MOVE, MOVE, MOVE, CARRY, CARRY, CARRY, CARRY],
                 [MOVE, MOVE, MOVE, CARRY, CARRY, CARRY]
             ],
             "defender": [
-                [MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,ATTACK,ATTACK,ATTACK,ATTACK,ATTACK,ATTACK,ATTACK,ATTACK,ATTACK,ATTACK],
-                [MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,ATTACK,ATTACK,ATTACK,ATTACK,ATTACK,ATTACK,ATTACK,ATTACK,ATTACK],
-                [MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,ATTACK,ATTACK,ATTACK,ATTACK,ATTACK,ATTACK,ATTACK,ATTACK],
-                [MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,ATTACK,ATTACK,ATTACK,ATTACK,ATTACK,ATTACK,ATTACK],
-                [MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,ATTACK,ATTACK,ATTACK,ATTACK,ATTACK,ATTACK],
-                [MOVE,MOVE,MOVE,MOVE,MOVE,ATTACK,ATTACK,ATTACK,ATTACK,ATTACK],
-                [MOVE,MOVE,MOVE,MOVE,MOVE,ATTACK,ATTACK,ATTACK],
-                [MOVE,MOVE,MOVE,MOVE,ATTACK,ATTACK],
+                [MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK],
+                [MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK],
+                [MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK],
+                [MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK],
+                [MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK],
+                [MOVE, MOVE, MOVE, MOVE, MOVE, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK],
+                [MOVE, MOVE, MOVE, MOVE, MOVE, ATTACK, ATTACK, ATTACK],
+                [MOVE, MOVE, MOVE, MOVE, ATTACK, ATTACK],
             ],
             "patroller": [
                 // [MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,ATTACK,ATTACK,ATTACK,ATTACK,ATTACK,ATTACK,ATTACK,ATTACK,ATTACK,ATTACK],
-                [MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,ATTACK,ATTACK,ATTACK,ATTACK,ATTACK,ATTACK,ATTACK,ATTACK,ATTACK],
-                [MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,ATTACK,ATTACK,ATTACK,ATTACK,ATTACK,ATTACK,ATTACK,ATTACK],
+                [MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK],
+                [MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK],
                 // [MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,ATTACK,ATTACK,ATTACK,ATTACK,ATTACK,ATTACK,ATTACK],
                 // [MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,ATTACK,ATTACK,ATTACK,ATTACK,ATTACK,ATTACK],
                 // [MOVE,MOVE,MOVE,MOVE,MOVE,ATTACK,ATTACK,ATTACK,ATTACK,ATTACK],
@@ -158,20 +160,20 @@ var defines = {
         //     "TOFE": [["tower_feeder", 1]],
         // };
         global.squadProfiles = {
-            "FE": new squadprofile.SquadAttributes([["feeder", 1]],false),
-            "HA": new squadprofile.SquadAttributes([["harvester", 1]],false),
-            "CO": new squadprofile.SquadAttributes([["collector", 1]],false),
-            "BU": new squadprofile.SquadAttributes([["builder", 1]],false),
-            "UP": new squadprofile.SquadAttributes([["upgrader", 1]],false),
-            "RE": new squadprofile.SquadAttributes([["repairer", 2]],true),
-            "WA": new squadprofile.SquadAttributes([["wall_repairer", 0]],false),
-            "CA": new squadprofile.SquadAttributes([["carrier", 1]],false),
-            "DE": new squadprofile.SquadAttributes([["defender", 1]],false),
-            "TR": new squadprofile.SquadAttributes([["transporter", 1]],false),
-            "PA": new squadprofile.SquadAttributes([["patroller", 2]],true),
-            "CL": new squadprofile.SquadAttributes([["claimer", 1]],false),
-            "RES": new squadprofile.SquadAttributes([["reserver", 1]],false),
-            "TOFE": new squadprofile.SquadAttributes([["tower_feeder", 1]],false)
+            "FE": new squadprofile.SquadAttributes([["feeder", 1]], false),
+            "HA": new squadprofile.SquadAttributes([["harvester", 1]], false),
+            "CO": new squadprofile.SquadAttributes([["collector", 1]], false),
+            "BU": new squadprofile.SquadAttributes([["builder", 1]], false),
+            "UP": new squadprofile.SquadAttributes([["upgrader", 1]], false),
+            "RE": new squadprofile.SquadAttributes([["repairer", 2]], true),
+            "WA": new squadprofile.SquadAttributes([["wall_repairer", 0]], false),
+            "CA": new squadprofile.SquadAttributes([["carrier", 1]], false),
+            "DE": new squadprofile.SquadAttributes([["defender", 1]], false),
+            "TR": new squadprofile.SquadAttributes([["transporter", 1]], false),
+            "PA": new squadprofile.SquadAttributes([["patroller", 2]], true),
+            "CL": new squadprofile.SquadAttributes([["claimer", 1]], false),
+            "RES": new squadprofile.SquadAttributes([["reserver", 1]], false),
+            "TOFE": new squadprofile.SquadAttributes([["tower_feeder", 1]], false)
         };
         global.allowedToSpawnWithdraw = false;
         global.sourceContainers = [
