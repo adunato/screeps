@@ -11,6 +11,7 @@ var roleDefender = require('role.defender');
 var roleTransporter = require('role.transporter');
 var rolePatroller = require('role.patroller');
 var roleClaimer = require('role.claimer');
+var roleReserver = require('role.reserver');
 var squadprofile = require('SquadProfile');
 
 
@@ -140,7 +141,7 @@ var defines = {
             "transporter": roleTransporter,
             "patroller": rolePatroller,
             "claimer": roleClaimer,
-            "reserver": roleClaimer,
+            "reserver": roleReserver,
         };
         // global.squadProfiles = {
         //     "FE": [["feeder", 1]],
