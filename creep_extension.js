@@ -1,5 +1,5 @@
 const WAYPOINT_RANGE = 3;
-require('defines');
+var defines = require('defines');
 var cache = require('cache');
 require('source_extension');
 Creep.prototype.withdrawEnergy = function () {
@@ -80,19 +80,19 @@ Creep.prototype.dropToDestinationContainer = function (maxQuantityPc) {
 Creep.prototype.dropEnergy = function (options) {
     this.memory.selectedSource = null;
     var targets = [];
-    if(options[DROP_CONTAINER]) {
+    if(options[defines.DROP_CONTAINER]) {
         var containers = cache.findEnergyContainers(this.room);
         targets = targets.concat(containers);
     }
-    if(options[DROP_COLLECTOR]) {
+    if(options[defines.DROP_COLLECTOR]) {
         var collectors = cache.findEmptyCollectors(this.room)
         targets = targets.concat(collectors);
     }
-    if(options[DROP_STRUCTURE]) {
+    if(options[defines.DROP_STRUCTURE]) {
         var energyStructures = cache.findEnergyFedStructures(this.room, false);
         targets = targets.concat(energyStructures);
     }
-    if(options[DROP_CARRIER]) {
+    if(options[defines.DROP_CARRIER]) {
         var carriers = cache.findEmptyCarriers(this.room);
         targets = targets.concat(carriers);
     }
