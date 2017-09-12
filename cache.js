@@ -256,7 +256,6 @@ var cache = {
             var targets = [];
             if(options[DROP_CONTAINER]) {
                 var containers = cache.findEnergyContainers(room);
-                console.log("findEmptyPlaceToDropStuff containers " + containers);
                 targets = targets.concat(containers);
             }
             if(options[DROP_COLLECTOR]) {
