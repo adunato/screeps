@@ -66,10 +66,10 @@ var roleCarrier = {
             creepState = "withdraw";
         var stateMachine = new carrierFSM(creep.name, "withdraw");
         stateMachine.goto(creepState);
-        if (creep.carry.energy === 0 && stateMachine.can("energyEmpty")) {
+        if (creep.carry.energy > 0 && stateMachine.can("energyEmpty")) {
             stateMachine.energyEmpty();
         }
-        if (creep.carry.energy === creep.carryCapacity && stateMachine.can("energyFull")) {
+        if (creep.carry.energy === creep.carry && stateMachine.can("energyFull")) {
             stateMachine.energyFull();
         }
         if (cache.findContainersWithEnergy(creep.room).length === 0 && stateMachine.can("containersEmpty")) {
