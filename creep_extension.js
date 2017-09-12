@@ -194,7 +194,7 @@ Creep.prototype.setNextWaypoint = function () {
     //fwd WP check
     if(this.memory.waypoint_fwd_direction === true){
         if (this.nextWaypoint()){
-            console.log(this.memory.role + " setting " + this.nextWaypoint() + " as next waypoint")
+            console.log(this.name + ' ' + this.memory.role + " setting " + this.nextWaypoint() + " as next waypoint")
             this.memory.current_waypoint = this.nextWaypoint();
         } else {
             this.memory.waypoint_fwd_direction = false;
@@ -208,7 +208,7 @@ Creep.prototype.setNextWaypoint = function () {
     } else {
         //bkwd WP check
         if (this.previousWaypoint()){
-            console.log(this.memory.role + " setting " + this.previousWaypoint() + " as next waypoint")
+            console.log(this.name + ' ' + this.memory.role + " setting " + this.previousWaypoint() + " as next waypoint")
             this.memory.current_waypoint = this.previousWaypoint();
         } else {
             this.memory.waypoint_fwd_direction = true;
