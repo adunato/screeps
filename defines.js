@@ -10,7 +10,7 @@ var roleTowerFeeder = require('role.tower_feeder');
 var roleDefender = require('role.defender');
 var roleTransporter = require('role.transporter');
 var rolePatroller = require('role.patroller');
-var roleNomadHarvester = require('role.nomad_harvester');
+var roleClaimer = require('role.claimer');
 var squadprofile = require('SquadProfile');
 
 
@@ -40,6 +40,11 @@ var defines = {
                     // [MOVE, MOVE, MOVE, MOVE, WORK, WORK, WORK, WORK, CARRY],
                     // [MOVE, MOVE, MOVE, WORK, WORK, WORK, CARRY],
                     // [MOVE, MOVE, WORK, CARRY, CARRY]
+                ],
+            "claimer":
+                [
+                    [MOVE,MOVE,CLAIM,CLAIM],
+                    [MOVE,CLAIM],
                 ],
             "builder": [
                 [MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, WORK, WORK, CARRY, CARRY, CARRY, CARRY, CARRY],
@@ -131,6 +136,7 @@ var defines = {
             "defender": roleDefender,
             "transporter": roleTransporter,
             "patroller": rolePatroller,
+            "claimer": roleClaimer,
         };
         // global.squadProfiles = {
         //     "FE": [["feeder", 1]],
@@ -158,6 +164,7 @@ var defines = {
             "DE": new squadprofile.SquadAttributes([["defender", 1]],false),
             "TR": new squadprofile.SquadAttributes([["transporter", 1]],false),
             "PA": new squadprofile.SquadAttributes([["patroller", 2]],true),
+            "CL": new squadprofile.SquadAttributes([["claimer", 1]],false),
             "TOFE": new squadprofile.SquadAttributes([["tower_feeder", 1]],false)
         };
         global.allowedToSpawnWithdraw = false;

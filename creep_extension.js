@@ -147,6 +147,26 @@ Creep.prototype.goToSource = function () {
     }
 };
 
+Creep.prototype.goToClaim = function () {
+    var flag = Game.flags[this.memory.squad];
+    if (this.roomName) {
+        this.memory.lastTick.roomName = this.roomName
+    }
+
+    if(flag){
+        this.moveTo(flag, {visualizePathStyle: {stroke: '#001dff'}});
+        // console.log("moving to source on flag: " + flag.name);
+    } else{
+        // console.log("no flag with name: " + this.memory.squad);
+    }
+    //check if flag's room is visible
+    if (flag && flag.room) {
+        if (this.claimController(this.room.controller) == ERR_NOT_IN_RANGE) {
+            this.moveTo(this.room.controller, {visualizePathStyle: {stroke: '#ffffff'}});
+        }
+    }
+};
+
 Creep.prototype.isInSquadRoom = function () {
     var flag = Game.flags[this.memory.squad];
     if(!flag){
