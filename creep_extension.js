@@ -168,6 +168,7 @@ Creep.prototype.goToClaim = function () {
 };
 
 Creep.prototype.goToReserve = function () {
+    console.log("goToReserve")
     var flag = Game.flags[this.memory.squad];
     if (this.roomName) {
         this.memory.lastTick.roomName = this.roomName
