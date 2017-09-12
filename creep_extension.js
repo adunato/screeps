@@ -101,7 +101,6 @@ Creep.prototype.dropEnergy = function (options) {
         var carriers = cache.findEmptyCarriers(this.room);
         targets = targets.concat(carriers);
     }
-    console.log("dropEnergy: " + targets);
     return this.dropToDestinations(targets,true);
 };
 
