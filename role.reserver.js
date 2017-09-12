@@ -39,6 +39,7 @@ var reserverFSM = new statemachine.StateMachine.factory({
 var roleReserver = {
     /** @param {Creep} creep **/
     run: function (creep) {
+        console.log("reserver")
         var creepState = creep.memory.state;
         if (typeof creepState === "undefined")
             creepState = "reserving";
