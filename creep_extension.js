@@ -160,7 +160,7 @@ Creep.prototype.goToClaim = function () {
         // console.log("no flag with name: " + this.memory.squad);
     }
     //check if flag's room is visible
-    if (flag && flag.room) {
+    if (this.isInSquadRoom() && flag && flag.room) {
         if (this.claimController(this.room.controller) == ERR_NOT_IN_RANGE) {
             this.moveTo(this.room.controller, {visualizePathStyle: {stroke: '#ffffff'}});
         }
