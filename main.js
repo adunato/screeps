@@ -43,7 +43,7 @@ function spawn(roleName, squad) {
         var spawn = Game.spawns[spawnName];
         var squadFlag = Game.flags[squad.getFlagName()]
         if (squadFlag) {
-            var distance = Game.map.getRoomLinearDistance(spawn.room.name, squadFlag.room.name);
+            var distance = Game.map.getRoomLinearDistance(spawn.room.name, squadFlag.pos.roomName);
             if (distance < minDistance) {
                 selectedSpawn = spawn;
                 minDistance = distance;
