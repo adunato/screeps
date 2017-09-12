@@ -78,7 +78,7 @@ var roleHarvester = {
         if (cache.findSources(creep.room).length === 0 && stateMachine.can("noSource")) {
             stateMachine.noSource();
         }
-        if (cache.findEnergyContainers(creep.room).length === 0 && stateMachine.can("nowhereToDrop")) {
+        if (cache.findEmptyPlaceToDropStuff(creep.room, {DROP_CONTAINER : true,DROP_STRUCTURE : true, DROP_CARRIER : true}).length === 0 && stateMachine.can("nowhereToDrop")) {
             stateMachine.nowhereToDrop();
         }
         if (creep.timeToDie() && creep.carry.energy === 0 && stateMachine.can("timeToDie")){

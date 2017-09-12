@@ -247,6 +247,27 @@ var cache = {
         }
         return energyDropStructures;
     },
+    findEmptyPlaceToDropStuff: function(room, options){
+            var targets = [];
+            if(options[DROP_CONTAINER]) {
+                var containers = cache.findEnergyContainers(room);
+                targets = targets.concat(containers);
+            }
+            if(options[DROP_COLLECTOR]) {
+                var collectors = cache.findEmptyCollectors(room)
+                targets = targets.concat(collectors);
+            }
+            if(options[DROP_STRUCTURE]) {
+                var energyStructures = cache.findEnergyFedStructures(room, false);
+                targets = targets.concat(energyStructures);
+            }
+            if(options[DROP_CARRIER]) {
+                var carriers = cache.findEmptyCarriers(room);
+                targets = targets.concat(carriers);
+            }
+            return targets;
+    },
+
     findEnergyFedStructures: function (room, includeTowers) {
         var energyFedStructures = {};
 
