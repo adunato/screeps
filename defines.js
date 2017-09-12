@@ -13,12 +13,6 @@ var rolePatroller = require('role.patroller');
 var roleClaimer = require('role.claimer');
 var squadprofile = require('SquadProfile');
 
-const DROP_CONTAINER = "DROP_CONTAINER";
-const DROP_STRUCTURE = "DROP_STRUCTURE";
-const DROP_COLLECTOR = "DROP_COLLECTOR";
-const DROP_CARRIER = "DROP_CARRIER";
-const DROP_STORAGE = "DROP_STORAGE";
-
 
 Object.size = function (obj) {
     var size = 0, key;

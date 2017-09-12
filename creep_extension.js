@@ -1,7 +1,12 @@
 const WAYPOINT_RANGE = 3;
-var defines = require('defines');
 var cache = require('cache');
 require('source_extension');
+const DROP_CONTAINER = "DROP_CONTAINER";
+const DROP_STRUCTURE = "DROP_STRUCTURE";
+const DROP_COLLECTOR = "DROP_COLLECTOR";
+const DROP_CARRIER = "DROP_CARRIER";
+const DROP_STORAGE = "DROP_STORAGE";
+
 Creep.prototype.withdrawEnergy = function () {
     var containers = cache.findContainersWithEnergy(this.room);
     var carriers = cache.findCarriersWithEnergy(this.room);
@@ -80,19 +85,19 @@ Creep.prototype.dropToDestinationContainer = function (maxQuantityPc) {
 Creep.prototype.dropEnergy = function (options) {
     this.memory.selectedSource = null;
     var targets = [];
-    if(options[defines.DROP_CONTAINER]) {
+    if(options[DROP_CONTAINER]) {
         var containers = cache.findEnergyContainers(this.room);
         targets = targets.concat(containers);
     }
-    if(options[defines.DROP_COLLECTOR]) {
+    if(options[DROP_COLLECTOR]) {
         var collectors = cache.findEmptyCollectors(this.room)
         targets = targets.concat(collectors);
     }
-    if(options[defines.DROP_STRUCTURE]) {
+    if(options[DROP_STRUCTURE]) {
         var energyStructures = cache.findEnergyFedStructures(this.room, false);
         targets = targets.concat(energyStructures);
     }
-    if(options[defines.DROP_CARRIER]) {
+    if(options[DROP_CARRIER]) {
         var carriers = cache.findEmptyCarriers(this.room);
         targets = targets.concat(carriers);
     }
