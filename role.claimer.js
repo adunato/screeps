@@ -1,0 +1,94 @@
+var statemachine = require('state-machine');
+// var visualize = require('visualize');
+var cache = require('cache');
+var harvesterFSM = new statemachine.StateMachine.factory({
+    init: 'none',
+    transitions: [
+        //all "end-states" lead back to start
+        {name: 'energyEmpty', from: ['none','dropEnergy', 'rest', 'goToSource'], to: 'goToController'},
+        //only goToSource is gateway to harvestEnergy provided that all drop-states lead to source = null
+        {name: 'sourceSelected', from: ['goToSource', 'harvestEnergy'], to: 'harvestEnergy'},
+        // all drop-states are linked to account for filling up conditions + rest
+        {name: 'energyFull', from: ['harvestEnergy','rest','dropEnergy',], to: 'dropEnergy'},
+        {name: 'noEnergyContainers', from: ['dropEnergy','rest'], to: 'rest'},
+        //noSource condition: at start and while harvesting
+        // {name: 'noSource', from: ['goToSource','harvestEnergy', 'rest'], to: 'rest'},
+        {name: 'timeToDie', from: ['dropEnergy','suicide'], to: 'suicide'},
+        {
+            name: 'goto', from: '*', to: function (s) {
+            return s
+        }
+        }
+    ],
+    data: function (creepName) {
+        return {
+            creepName: creepName
+        }
+    },
+    methods: {
+        onGoToSource: function () {
+            var creep = Game.creeps[this.creepName];
+            creep.goToSource();
+        },
+        onEnergyFull: function () {
+            var creep = Game.creeps[this.creepName];
+            creep.dropEnergy({DROP_CONTAINER : true,DROP_STRUCTURE : true, DROP_COLLECTOR: true, DROP_CARRIER: true});
+            // creep.dropEnergy();
+        },
+        // onNoSource: function () {
+        //     var creep = Game.creeps[this.creepName];
+        //     creep.rest();
+        // },
+        onNoEnergyContainers: function () {
+            var creep = Game.creeps[this.creepName];
+            creep.rest();
+        },
+        onHarvestEnergy: function() {
+            var creep = Game.creeps[this.creepName];
+            creep.harvestEnergy();
+        },
+        onTimeToDie: function() {
+            var creep = Game.creeps[this.creepName];
+            creep.suicide_();
+        },
+        onTransition(lifecycle) {
+            // console.log("transition name: " + lifecycle.transition);
+            // console.log("transition from: " + lifecycle.from);
+            // console.log("transition to: " + lifecycle.to);
+        }
+    }
+});
+
+
+var roleHarvester = {
+    /** @param {Creep} creep **/
+    run: function (creep) {
+        var creepState = creep.memory.state;
+        if (typeof creepState === "undefined")
+            creepState = "none";
+        var stateMachine = new harvesterFSM(creep.name);
+        // console.log(statemachine.visualize(stateMachine));
+        stateMachine.goto(creepState);
+        if (creep.carry.energy < creep.carryCapacity &&  !creep.memory.selectedSource && !creep.timeToDie() && stateMachine.can("energyEmpty")) {
+            stateMachine.energyEmpty();
+        }
+        if (creep.carry.energy < creep.carryCapacity && creep.memory.selectedSource && stateMachine.can("sourceSelected")) {
+            stateMachine.sourceSelected();
+        }
+        if ((creep.carry.energy === creep.carryCapacity || creep.timeToDie()) && stateMachine.can("energyFull")) {
+            stateMachine.energyFull();
+        }
+        // if (cache.findSources(creep.room).length === 0 && stateMachine.can("noSource")) {
+        //     stateMachine.noSource();
+        // }
+        if (cache.findEnergyContainers(creep.room).length === 0 && cache.findEmptyCollectors(creep.room).length === 0 && cache.findEnergyFedStructures(creep.room, false).length === 0 && stateMachine.can("noEnergyContainers")) {
+            stateMachine.noEnergyContainers();
+        }
+        if (creep.timeToDie() && creep.carry.energy === 0 && stateMachine.can("timeToDie")){
+            stateMachine.timeToDie();
+        }
+        creep.memory.state = stateMachine.state;
+    }
+};
+
+module.exports = roleHarvester;
