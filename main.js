@@ -34,20 +34,26 @@ function logSpawing() {
     }
 }
 
-function spawn(roleName) {
-    var spawn = Game.spawns['Spawn1'];
-    if (spawn) {
-        for (var i = 0; i < bodyParts[roleName].length; i++) {
-            var bodyPart = bodyParts[roleName][i];
-            // console.log('spawn - trying config: ' + bodyPart);
-            if (Game.spawns['Spawn1'].canCreateCreep(bodyPart) === OK) {
-                var result = Game.spawns['Spawn1'].createCreep(bodyPart, undefined, {role: roleName, spawnRoom: spawn.room.name});
-                console.log('Spawning new ' + roleName + ' with body: ' + bodyPart + ' - ' + result);
-                return;
+function spawn(roleName, squad) {
+    var spawn = null;
+    var midDistance = 1000;
+    for (var spawnName in Game.spawns) {
+        spawn = Game.spawns[spawnName];
+    }
+        if (spawn) {
+            for (var i = 0; i < bodyParts[roleName].length; i++) {
+                var bodyPart = bodyParts[roleName][i];
+                // console.log('spawn - trying config: ' + bodyPart);
+                if (Game.spawns['Spawn1'].canCreateCreep(bodyPart) === OK) {
+                    var result = Game.spawns['Spawn1'].createCreep(bodyPart, undefined, {
+                        role: roleName,
+                        spawnRoom: spawn.room.name
+                    });
+                    console.log('Spawning new ' + roleName + ' with body: ' + bodyPart + ' - ' + result);
+                    return;
+                }
             }
         }
-
-    }
 }
 
 function manageDefense() {
@@ -121,7 +127,7 @@ function assignCreepsToSquads() {
             if (squad.needCreepRole(roleName)) {
                 console.log(squadName + ' needs ' + roleName);
                 if (!spawnSet) {
-                    spawn(roleName);
+                    spawn(roleName, squad);
                     spawnSet = true
                 }
             }
@@ -162,37 +168,37 @@ function createSquads() {
 
 function trackTickChanges() {
 
-    if(!Memory.custom_stats){
+    if (!Memory.custom_stats) {
         Memory.custom_stats = {};
     }
 
-    if(!Memory.custom_stats.rooms){
+    if (!Memory.custom_stats.rooms) {
         Memory.custom_stats.rooms = {};
     }
 
-    if(!Memory.lastTick){
+    if (!Memory.lastTick) {
         Memory.lastTick = {};
     }
 
-    if(!Memory.lastTick.rooms){
+    if (!Memory.lastTick.rooms) {
         Memory.lastTick.rooms = {};
     }
 
-    for(var roomName in Game.rooms){
-        if(!Memory.custom_stats.rooms[roomName]){
+    for (var roomName in Game.rooms) {
+        if (!Memory.custom_stats.rooms[roomName]) {
             Memory.custom_stats.rooms[roomName] = {};
         }
-        if(!Memory.lastTick.rooms[roomName]){
+        if (!Memory.lastTick.rooms[roomName]) {
             Memory.lastTick.rooms[roomName] = {};
         }
-        if(!Memory.lastTick.rooms[roomName].towers){
+        if (!Memory.lastTick.rooms[roomName].towers) {
             Memory.lastTick.rooms[roomName].towers = {};
         }
     }
 
     for (var creepName in Game.creeps) {
         var creep = Game.creeps[creepName];
-        if(!creep.memory.lastTick)
+        if (!creep.memory.lastTick)
             creep.memory.lastTick = {};
         //harvesters
         if (creep.memory.role === 'harvester') {
@@ -212,7 +218,7 @@ function trackTickChanges() {
         if (creep.memory.role === 'repairer') {
             if (creep.memory.lastTick && creep.memory.lastTick.carried_energy) {
                 //add to counter if diff is -
-               var creep_repaired_energy = creep.carry.energy - creep.memory.lastTick.carried_energy < 0 ? (creep.carry.energy - creep.memory.lastTick.carried_energy) * -1 : 0;
+                var creep_repaired_energy = creep.carry.energy - creep.memory.lastTick.carried_energy < 0 ? (creep.carry.energy - creep.memory.lastTick.carried_energy) * -1 : 0;
                 Memory.custom_stats.rooms[creep.room.name].repaired_energy += creep_repaired_energy;
             }
         }
@@ -233,12 +239,12 @@ function trackTickChanges() {
         var towers = cache.findTowers(room);
         for (var i = 0; i < towers.length; i++) {
             var tower = towers[i];
-            let delta =0
-            if(Memory.lastTick.rooms[room.name].towers[tower.id]){
+            let delta = 0
+            if (Memory.lastTick.rooms[room.name].towers[tower.id]) {
                 delta = Memory.lastTick.rooms[room.name].towers[tower.id].energy - tower.energy;
-                delta =  delta > 0 ? delta : 0;
+                delta = delta > 0 ? delta : 0;
             }
-            if(!Memory.lastTick.rooms[room.name].towers[tower.id]){
+            if (!Memory.lastTick.rooms[room.name].towers[tower.id]) {
                 Memory.lastTick.rooms[room.name].towers[tower.id] = {};
             }
             Memory.lastTick.rooms[room.name].towers[tower.id].energy = tower.energy;
@@ -246,9 +252,9 @@ function trackTickChanges() {
         }
         //spawn energy
         room.energyAvailable;
-        if(Memory.lastTick.rooms[room.name].energy_available){
+        if (Memory.lastTick.rooms[room.name].energy_available) {
             var delta = (Memory.lastTick.rooms[room.name].energy_available - room.energyAvailable);
-            delta = delta > 0 ?  delta : 0;
+            delta = delta > 0 ? delta : 0;
             Memory.custom_stats.rooms[room.name].spawn_consumed_energy += delta;
         }
         Memory.lastTick.rooms[room.name].energy_available = room.energyAvailable;

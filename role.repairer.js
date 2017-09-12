@@ -68,7 +68,6 @@ var rolerepairr = {
             stateMachine.energyEmpty();
         }
         if (cache.findContainersWithEnergy(creep.room).length === 0 && stateMachine.can("containersEmpty")) {
-            console.log(creep.room);
             stateMachine.containersEmpty();
         }
         if (creep.isInCurrentWaypointRange() && stateMachine.can("atWaypoint")) {

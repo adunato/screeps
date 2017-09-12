@@ -102,7 +102,7 @@ var cache = {
         var containers = [];
         for(var i = 0; i < global.destinationContainers.length; i++){
             var container = Game.getObjectById(global.destinationContainers[i])
-            if(container.store.energy < (container.storeCapacity / 100 * maxQuantityPc))
+            if(container && container.store.energy < (container.storeCapacity / 100 * maxQuantityPc))
                 containers.push(container);
         }
         return containers;
