@@ -1,5 +1,6 @@
 function Squad(squadProfile, squadName) {
     this.creeps = [];
+    this.squadProfile = squadProfile;
     this.squadRoles = squadProfile.squadRoles;
     this.squadName = squadName;
     this.patrolling = squadProfile.patrolling;
@@ -11,13 +12,13 @@ Squad.prototype.addCreep = function (creep) {
 
 Squad.prototype.needCreep = function (creep) {
     var creepQuantity = this.getCreepQuantityWithRole(creep.memory.role);
-    var profileQuantity = this.squadRoles.getCreepQuantity(creep.memory.role);
+    var profileQuantity = this.squadProfile.getCreepQuantity(creep.memory.role);
     return (creepQuantity < profileQuantity);
 };
 
 Squad.prototype.needCreepRole = function (creepRole) {
     var creepQuantity = this.getCreepQuantityWithRole(creepRole);
-    var profileQuantity = this.squadRoles.getCreepQuantity(creepRole);
+    var profileQuantity = this.squadProfile.getCreepQuantity(creepRole);
     return (creepQuantity < profileQuantity);
 };
 
