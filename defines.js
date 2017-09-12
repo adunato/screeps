@@ -41,10 +41,13 @@ var defines = {
                     // [MOVE, MOVE, MOVE, WORK, WORK, WORK, CARRY],
                     // [MOVE, MOVE, WORK, CARRY, CARRY]
                 ],
-            "claimer":
+            "reserver":
                 [
                     [MOVE,MOVE,CLAIM,CLAIM],
-                    // [MOVE,CLAIM],
+                ],
+            "claimer":
+                [
+                    [MOVE,CLAIM],
                 ],
             "builder": [
                 [MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, WORK, WORK, CARRY, CARRY, CARRY, CARRY, CARRY],
@@ -137,6 +140,7 @@ var defines = {
             "transporter": roleTransporter,
             "patroller": rolePatroller,
             "claimer": roleClaimer,
+            "reserver": roleClaimer,
         };
         // global.squadProfiles = {
         //     "FE": [["feeder", 1]],
@@ -165,6 +169,7 @@ var defines = {
             "TR": new squadprofile.SquadAttributes([["transporter", 1]],false),
             "PA": new squadprofile.SquadAttributes([["patroller", 2]],true),
             "CL": new squadprofile.SquadAttributes([["claimer", 1]],false),
+            "RES": new squadprofile.SquadAttributes([["reserver", 1]],false),
             "TOFE": new squadprofile.SquadAttributes([["tower_feeder", 1]],false)
         };
         global.allowedToSpawnWithdraw = false;
