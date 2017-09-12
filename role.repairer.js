@@ -75,6 +75,7 @@ var rolerepairr = {
         }
         else if (cache.findRepairStructures(creep.room,MIN_REPAIR_LVL_PC).length === 0 && stateMachine.can("noStructuresFound")) {
             creep.memory.repairConstructionId = null;
+            console.log(creep.name + " no structures")
             stateMachine.noStructuresFound();
         }
         else if (creep.carry.energy > 0 && stateMachine.can("energyFull")) {
