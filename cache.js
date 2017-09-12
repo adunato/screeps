@@ -239,6 +239,9 @@ var cache = {
         } else {
             energyDropStructures = room.find(FIND_STRUCTURES, {
                 filter: (container) => {
+                    if((container.structureType == STRUCTURE_CONTAINER) && container.store.energy < container.storeCapacity){
+                        console.log(container + " has space with " + container.store.energy + " < " + container.storeCapacity)
+                    }
                     return (container.structureType == STRUCTURE_CONTAINER) && container.store.energy < container.storeCapacity;
                 }
 
