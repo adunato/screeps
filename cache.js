@@ -1,4 +1,7 @@
-var defines = require('defines');
+const DROP_CONTAINER = "DROP_CONTAINER";
+const DROP_STRUCTURE = "DROP_STRUCTURE";
+const DROP_COLLECTOR = "DROP_COLLECTOR";
+const DROP_CARRIER = "DROP_CARRIER";
 var MAX_WALL_LVL = 50000;
 var cacheAge = 0;
 var CACHE_AGE_LIMIT = 0;
@@ -250,19 +253,19 @@ var cache = {
     },
     findEmptyPlaceToDropStuff: function(room, options){
             var targets = [];
-            if(options[defines.DROP_CONTAINER]) {
+            if(options[DROP_CONTAINER]) {
                 var containers = cache.findEnergyContainers(room);
                 targets = targets.concat(containers);
             }
-            if(options[defines.DROP_COLLECTOR]) {
+            if(options[DROP_COLLECTOR]) {
                 var collectors = cache.findEmptyCollectors(room)
                 targets = targets.concat(collectors);
             }
-            if(options[defines.DROP_STRUCTURE]) {
+            if(options[DROP_STRUCTURE]) {
                 var energyStructures = cache.findEnergyFedStructures(room, false);
                 targets = targets.concat(energyStructures);
             }
-            if(options[defines.DROP_CARRIER]) {
+            if(options[DROP_CARRIER]) {
                 var carriers = cache.findEmptyCarriers(room);
                 targets = targets.concat(carriers);
             }
