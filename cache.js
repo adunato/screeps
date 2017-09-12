@@ -2,6 +2,7 @@ const DROP_CONTAINER = "DROP_CONTAINER";
 const DROP_STRUCTURE = "DROP_STRUCTURE";
 const DROP_COLLECTOR = "DROP_COLLECTOR";
 const DROP_CARRIER = "DROP_CARRIER";
+const DROP_STORAGE = "DROP_STORAGE";
 var MAX_WALL_LVL = 50000;
 var cacheAge = 0;
 var CACHE_AGE_LIMIT = 0;
@@ -269,6 +270,11 @@ var cache = {
                 var carriers = cache.findEmptyCarriers(room);
                 targets = targets.concat(carriers);
             }
+            if(options[DROP_CARRIER]) {
+                var carriers = cache.findEmptyCarriers(room);
+                targets = targets.concat(carriers);
+            }
+        console.log("findEmptyPlaceToDropStuff" + targets);
             return targets;
     },
 
