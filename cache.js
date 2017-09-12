@@ -256,6 +256,7 @@ var cache = {
             var targets = [];
             if(options[DROP_CONTAINER]) {
                 var containers = cache.findEnergyContainers(room);
+                console.log("findEmptyPlaceToDropStuff containers " + containers);
                 targets = targets.concat(containers);
             }
             if(options[DROP_COLLECTOR]) {
@@ -274,7 +275,6 @@ var cache = {
                 var carriers = cache.findEmptyCarriers(room);
                 targets = targets.concat(carriers);
             }
-        console.log("findEmptyPlaceToDropStuff" + targets);
             return targets;
     },
 
