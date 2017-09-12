@@ -45,21 +45,6 @@ var roleHarvester = {
         var stateMachine = new harvesterFSM(creep.name);
         // console.log(statemachine.visualize(stateMachine));
         stateMachine.goto(creepState);
-        if (creep.carry.energy < creep.carryCapacity &&  !creep.memory.selectedSource && !creep.timeToDie() && stateMachine.can("energyEmpty")) {
-            stateMachine.energyEmpty();
-        }
-        if (creep.carry.energy < creep.carryCapacity && creep.memory.selectedSource && stateMachine.can("sourceSelected")) {
-            stateMachine.sourceSelected();
-        }
-        if ((creep.carry.energy === creep.carryCapacity || creep.timeToDie()) && stateMachine.can("energyFull")) {
-            stateMachine.energyFull();
-        }
-        // if (cache.findSources(creep.room).length === 0 && stateMachine.can("noSource")) {
-        //     stateMachine.noSource();
-        // }
-        if (cache.findEnergyContainers(creep.room).length === 0 && cache.findEmptyCollectors(creep.room).length === 0 && cache.findEnergyFedStructures(creep.room, false).length === 0 && stateMachine.can("noEnergyContainers")) {
-            stateMachine.noEnergyContainers();
-        }
         if (creep.timeToDie() && creep.carry.energy === 0 && stateMachine.can("timeToDie")){
             stateMachine.timeToDie();
         }
