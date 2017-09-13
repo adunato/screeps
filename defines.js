@@ -61,11 +61,11 @@ var defines = {
             ],
             "nomad_harvester": [WORK, CARRY, MOVE],
             "upgrader": [
-                [MOVE, MOVE, MOVE, MOVE, MOVE, WORK, WORK, WORK, WORK, WORK, CARRY],
-                [MOVE, MOVE, MOVE, MOVE, WORK, WORK, WORK, WORK, CARRY],
-                [MOVE, MOVE, MOVE, WORK, WORK, WORK, CARRY],
-                [MOVE, MOVE, WORK, CARRY, CARRY],
-                [MOVE, WORK, CARRY],
+                [MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, WORK, WORK, WORK, WORK, WORK, CARRY],
+                [MOVE, MOVE, MOVE, MOVE, MOVE, WORK, WORK, WORK, WORK, CARRY],
+                [MOVE, MOVE, MOVE, MOVE, WORK, WORK, WORK, CARRY],
+                [MOVE, MOVE, MOVE, WORK, CARRY, CARRY],
+                [MOVE, MOVE, WORK, CARRY],
             ],
             "repairer": [
                 [MOVE, MOVE, MOVE, MOVE, MOVE, WORK, WORK, WORK, WORK, WORK, CARRY],
