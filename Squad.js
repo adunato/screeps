@@ -12,12 +12,16 @@ Squad.prototype.addCreep = function (creep) {
 };
 
 Squad.prototype.needCreep = function (creep) {
+    if (!this.squadFlagExist())
+        return false;
     var creepQuantity = this.getCreepQuantityWithRole(creep.memory.role);
     var profileQuantity = this.squadProfile.getCreepQuantity(creep.memory.role);
     return (creepQuantity < profileQuantity);
 };
 
 Squad.prototype.needCreepRole = function (creepRole) {
+    if (!this.squadFlagExist())
+        return false;
     var creepQuantity = this.getCreepQuantityWithRole(creepRole);
     var profileQuantity = this.squadProfile.getCreepQuantity(creepRole);
     return (creepQuantity < profileQuantity);
@@ -26,6 +30,8 @@ Squad.prototype.needCreepRole = function (creepRole) {
 
 Squad.prototype.getCreepQuantityWithRole = function (creepRole) {
     var ret = 0;
+    if (!this.squadFlagExist())
+        return ret;
     for (var i = 0; i < this.creeps.length; i++) {
         if (this.creeps[i].ticksToLive > 100) {
             ret++
@@ -56,5 +62,10 @@ Squad.prototype.hasCreep = function (creep) {
     }
     return false;
 };
+
+Squad.prototype.squadFlagExist = function () {
+    return !(!Game.flags[this.flagName]);
+};
+
 
 module.exports = Squad;
