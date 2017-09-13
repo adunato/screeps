@@ -52,7 +52,7 @@ Squad.prototype.getName = function () {
 };
 
 Squad.prototype.getSpawn = function () {
-    return this.memory.spawn;
+    return this.getFlag().memory.spawn;
 };
 
 Squad.prototype.getFlagName = function () {
