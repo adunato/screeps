@@ -423,8 +423,16 @@ Creep.prototype.repairWalls = function () {
 };
 
 Creep.prototype.upgradeController_ = function () {
-    if (this.upgradeController(this.room.controller) == ERR_NOT_IN_RANGE) {
-        this.moveTo(this.room.controller, {visualizePathStyle: {stroke: '#ffffff'}});
+    var flag = Game.flags[this.memory.squad];
+    //move to flag if not in flag's room
+    if (flag != null && (!flag.room || flag.room.name != this.room.name)) {
+        this.moveTo(flag, {visualizePathStyle: {stroke: '#ffda00'}});
+        return;
+    }
+    if(flag && flag.room) {
+        if (this.upgradeController(this.room.controller) == ERR_NOT_IN_RANGE) {
+            this.moveTo(this.room.controller, {visualizePathStyle: {stroke: '#ffffff'}});
+        }
     }
 };
 
