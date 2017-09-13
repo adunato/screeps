@@ -6,7 +6,7 @@ var Squad = require('Squad');
 var squadprofile = require('SquadProfile');
 var screepsplus = require('screepsplus');
 var squadsStructureTree = null;
-var squadsIndex = {};
+global.squadsIndex = {};
 var printStats = false;
 var printCPU = false;
 var rooms = [];
@@ -18,7 +18,7 @@ function clearMemory() {
         if (!Game.creeps[i]) {
             console.log('clearMemory: ' + i);
             //reset squads index upon clearing memory
-            squadsIndex = {};
+            global.squadsIndex = {};
             delete Memory.creeps[i];
         }
     }
@@ -120,8 +120,8 @@ function executeCreepBehaviour() {
 }
 
 function assignCreepToSquad(creep) {
-    for (var squadName in squadsIndex) {
-        var squad = squadsIndex[squadName];
+    for (var squadName in global.squadsIndex) {
+        var squad = global.squadsIndex[squadName];
         if (squad.needCreep(creep)) {
             squad.addCreep(creep);
             creep.memory.squad = squad.getName();
@@ -140,16 +140,16 @@ function assignCreepsToSquads() {
             }
         }
         else {
-            if (squadsIndex[creep.memory.squad] && !squadsIndex[creep.memory.squad].hasCreep(creep))
-                squadsIndex[creep.memory.squad].addCreep(creep);
+            if (global.squadsIndex[creep.memory.squad] && !global.squadsIndex[creep.memory.squad].hasCreep(creep))
+                global.squadsIndex[creep.memory.squad].addCreep(creep);
         }
     }
 
     //reset spawnsSlots before every tick
     spawnSlots = {};
     for (var roleName in global.creepRoles) {
-        for (var squadName in squadsIndex) {
-            var squad = squadsIndex[squadName];
+        for (var squadName in global.squadsIndex) {
+            var squad = global.squadsIndex[squadName];
             // console.log(squadName + ' ' + squad.creeps.length);
             if (squad.needCreepRole(roleName)) {
                 console.log(squadName + ' needs ' + roleName);
@@ -181,8 +181,8 @@ function createSquads() {
     for (var flagName in Game.flags) {
         if (isFlagSquad(flagName)) {
             var squadName = flagToSquadName(flagName);
-            if (!squadsIndex[squadName]) {
-                squadsIndex[squadName] = createSquad(squadName, flagName);
+            if (!global.squadsIndex[squadName]) {
+                global.squadsIndex[squadName] = createSquad(squadName, flagName);
             }
         }
     }
@@ -342,7 +342,7 @@ module.exports.loop = function () {
     createSquads();
     logCPU('createSquads ');
     assignCreepsToSquads();
-    // Memory.squads = squadsIndex;
+    // Memory.squads = global.squadsIndex;
     logCPU('assignCreepsToSquads ');
     logSpawing();
     logCPU('logSpawing ');

@@ -63,7 +63,8 @@ Squad.prototype.isPinnedToFlag = function () {
     var flag = Game.flags[this.flagName];
     if(flag && flag.memory){
         return flag.memory.pinnedToFlag;
-    }
+    } else
+        return false;
 };
 
 

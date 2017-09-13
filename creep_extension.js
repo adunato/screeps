@@ -189,6 +189,10 @@ Creep.prototype.goToReserve = function () {
     }
 };
 
+Creep.prototype.getSquad = function (){
+    return global.squadsIndex[this.memory.squadName];
+}
+
 Creep.prototype.isInSquadRoom = function () {
     var flag = Game.flags[this.memory.squad];
     if(!flag){
@@ -438,8 +442,16 @@ Creep.prototype.upgradeController_ = function () {
 
 Creep.prototype.rest = function () {
     this.memory.selectedSource = null;
-    this.moveTo(Game.flags["RestArea"], {visualizePathStyle: {stroke: '#ffffff'}});
-    this.say("Rest");
+    var pinnedToRoom = false;
+    if(this.getSquad()){
+        pinnedToRoom = this.getSquad().isPinnedToFlag();
+    }
+    if(Game.flags["RestArea"].pos.roomName === this.pos.roomName || !pinnedToRoom) {
+        this.moveTo(Game.flags["RestArea"], {visualizePathStyle: {stroke: '#ffffff'}});
+        this.say("Go Rest");
+    } else {
+        this.say("Stay");
+    }
 };
 
 
