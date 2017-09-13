@@ -81,9 +81,10 @@ var defines = {
             ],
             "collector": [
                 [MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY],
-                // [MOVE,MOVE,MOVE,MOVE,MOVE,CARRY,CARRY,CARRY,CARRY,CARRY],
-                // [MOVE,MOVE,MOVE,MOVE,CARRY,CARRY,CARRY,CARRY],
-                // [MOVE, MOVE, MOVE, CARRY, CARRY, CARRY]
+                [MOVE,MOVE,MOVE,MOVE,MOVE,CARRY,CARRY,CARRY,CARRY,CARRY],
+                [MOVE,MOVE,MOVE,MOVE,CARRY,CARRY,CARRY,CARRY],
+                [MOVE, MOVE, MOVE, CARRY, CARRY, CARRY],
+                [MOVE, CARRY]
             ],
             "transporter": [
                 [MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY],
