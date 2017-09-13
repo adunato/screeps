@@ -11,6 +11,7 @@ var printStats = false;
 var printCPU = false;
 var rooms = [];
 var spawnSlots = {};
+var disabledSpawns = ['Spawn2'];
 
 function clearMemory() {
     for (var i in Memory.creeps) {
@@ -41,6 +42,8 @@ function spawn(roleName, squad) {
     var selectedSpawn = null;
     var minDistance = 1000;
     for (var spawnName in Game.spawns) {
+        if(spawnName in disabledSpawns)
+            continue;
         var spawn = Game.spawns[spawnName];
         var squadFlag = Game.flags[squad.getFlagName()]
         if (squadFlag) {
