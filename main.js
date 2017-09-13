@@ -45,6 +45,8 @@ function spawn(roleName, squad) {
         if(spawnName in disabledSpawns) {
             console.log("skipped " + spawnName);
             continue;
+        } else {
+            console.log("included " + spawnName);
         }
         var spawn = Game.spawns[spawnName];
         var squadFlag = Game.flags[squad.getFlagName()]
