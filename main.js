@@ -147,7 +147,9 @@ function assignCreepsToSquads() {
             }
         }
     }
-    console.log(spawnSlots);
+    for(var spawnName in spawnSlots){
+        console.log(spawnName + ': ' + spawnSlots[spawnName]);
+    }
 
 }
 
