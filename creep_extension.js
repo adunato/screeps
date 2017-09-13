@@ -450,6 +450,7 @@ Creep.prototype.rest = function () {
         this.moveTo(Game.flags["RestArea"], {visualizePathStyle: {stroke: '#ffffff'}});
         this.say("Go Rest");
     } else {
+        console.log(this.memory.role + " " + Game.flags[this.memory.squad]);
         this.moveTo(Game.flags[this.memory.squad], {visualizePathStyle: {stroke: '#ffffff'}});
         this.say("Stay");
     }
