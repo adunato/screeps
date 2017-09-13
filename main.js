@@ -147,6 +147,7 @@ function assignCreepsToSquads() {
             }
         }
     }
+    console.log(spawnSlots);
 
 }
 
