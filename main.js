@@ -67,8 +67,6 @@ function spawn(roleName, squad) {
                 });
                 console.log(selectedSpawn.name + ': Spawning new ' + roleName + ' with body: ' + bodyPart + ' - ' + result);
                 return;
-            } else {
-                console.log(selectedSpawn.name + ': cannot spawn ' + roleName);
             }
         }
     }
@@ -149,10 +147,6 @@ function assignCreepsToSquads() {
             }
         }
     }
-    for(var spawnName in spawnSlots){
-        console.log(spawnName + ': ' + spawnSlots[spawnName]);
-    }
-
 }
 
 function flagToSquadName(flagName) {
