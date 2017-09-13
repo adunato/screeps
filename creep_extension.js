@@ -443,6 +443,7 @@ Creep.prototype.upgradeController_ = function () {
 Creep.prototype.rest = function () {
     this.memory.selectedSource = null;
     var pinnedToRoom = false;
+    console.log("global.squadsIndex " + global.squadsIndex);
     if(this.getSquad()){
         console.log("has squad")
         pinnedToRoom = this.getSquad().isPinnedToFlag();
