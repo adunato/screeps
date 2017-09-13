@@ -321,7 +321,7 @@ function initRooms() {
 function initFlags() {
     for (var flagName in Game.flags) {
         var flag = Game.flags[flagName];
-        if(!flag.memory){
+        if(!flag.memory.pinnedToFlag){
             flag.memory.pinnedToFlag = false;
         }
     }
