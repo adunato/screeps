@@ -67,6 +67,8 @@ function spawn(roleName, squad) {
                 });
                 console.log(selectedSpawn.name + ': Spawning new ' + roleName + ' with body: ' + bodyPart + ' - ' + result);
                 return;
+            } else {
+                console.log(selectedSpawn.name + ': cannot spawn ' + roleName);
             }
         }
     }
