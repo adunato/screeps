@@ -170,7 +170,7 @@ var defines = {
             "CA": new squadprofile.SquadAttributes([["carrier", 1]], false),
             "DE": new squadprofile.SquadAttributes([["defender", 1]], false),
             "TR": new squadprofile.SquadAttributes([["transporter", 1]], false),
-            "PA": new squadprofile.SquadAttributes([["patroller", 2]], true),
+            "PA": new squadprofile.SquadAttributes([["patroller", 1]], true),
             "CL": new squadprofile.SquadAttributes([["claimer", 1]], false),
             "RES": new squadprofile.SquadAttributes([["reserver", 1]], false),
             "TOFE": new squadprofile.SquadAttributes([["tower_feeder", 1]], false)
