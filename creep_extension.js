@@ -190,7 +190,7 @@ Creep.prototype.goToReserve = function () {
 };
 
 Creep.prototype.getSquad = function (){
-    return global.squadsIndex[this.memory.squadName];
+    return global.squadsIndex[this.memory.squad];
 }
 
 Creep.prototype.isInSquadRoom = function () {
@@ -443,8 +443,6 @@ Creep.prototype.upgradeController_ = function () {
 Creep.prototype.rest = function () {
     this.memory.selectedSource = null;
     var pinnedToRoom = false;
-    console.log("my squad is: " + this.memory.squadName);
-    console.log("global.squadsIndex " + global.squadsIndex[this.memory.squadName]);
     if(this.getSquad()){
         console.log("has squad")
         pinnedToRoom = this.getSquad().isPinnedToFlag();
@@ -454,7 +452,7 @@ Creep.prototype.rest = function () {
         this.moveTo(Game.flags["RestArea"], {visualizePathStyle: {stroke: '#ffffff'}});
         this.say("Go Rest");
     } else {
-        this.moveTo(Game.flags[this.memory.squadName], {visualizePathStyle: {stroke: '#ffffff'}});
+        this.moveTo(Game.flags[this.memory.squad], {visualizePathStyle: {stroke: '#ffffff'}});
         this.say("Stay");
     }
 };
