@@ -42,8 +42,10 @@ function spawn(roleName, squad) {
     var selectedSpawn = null;
     var minDistance = 1000;
     for (var spawnName in Game.spawns) {
-        if(spawnName in disabledSpawns)
+        if(spawnName in disabledSpawns) {
+            console.log("skipped " + spawnName);
             continue;
+        }
         var spawn = Game.spawns[spawnName];
         var squadFlag = Game.flags[squad.getFlagName()]
         if (squadFlag) {
