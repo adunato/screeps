@@ -168,6 +168,7 @@ var defines = {
             "BU": new squadprofile.SquadAttributes([["builder", 1]], false),
             "UP": new squadprofile.SquadAttributes([["upgrader", 1]], false),
             "RE": new squadprofile.SquadAttributes([["repairer", 2]], true),
+            "REXS": new squadprofile.SquadAttributes([["repairer", 1]], true),
             "WA": new squadprofile.SquadAttributes([["wall_repairer", 0]], false),
             "CA": new squadprofile.SquadAttributes([["carrier", 1]], false),
             "DE": new squadprofile.SquadAttributes([["defender", 1]], false),
