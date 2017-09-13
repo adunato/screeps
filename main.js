@@ -22,6 +22,12 @@ function clearMemory() {
             delete Memory.creeps[i];
         }
     }
+    for (var i in Memory.flags) {
+        if (!Game.flags[i]) {
+            console.log('clearMemory: ' + i);
+            delete Memory.flags[i];
+        }
+    }
 }
 
 function logSpawing() {
@@ -312,6 +318,15 @@ function initRooms() {
     }
 }
 
+function initFlags() {
+    for (var flagName in Game.flags) {
+        var flag = Game.flags[flagName];
+        if(!flag.memory){
+            flag.memory.pinnedToFlag = false;
+        }
+    }
+}
+
 module.exports.loop = function () {
     //globals definition, every tick to refresh changes
     resetCPULog();
@@ -322,6 +337,8 @@ module.exports.loop = function () {
     cache.resetCache();
     initRooms();
     logCPU('initRooms ');
+    initFlags();
+    logCPU('initFlags ');
     createSquads();
     logCPU('createSquads ');
     assignCreepsToSquads();

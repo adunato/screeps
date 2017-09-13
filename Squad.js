@@ -55,6 +55,18 @@ Squad.prototype.getFlagName = function () {
     return this.flagName;
 };
 
+Squad.prototype.getFlag = function () {
+    return Game.flags[this.flagName];
+};
+
+Squad.prototype.isPinnedToFlag = function () {
+    var flag = Game.flags[this.flagName];
+    if(flag && flag.memory){
+        return flag.memory.pinnedToFlag;
+    }
+};
+
+
 Squad.prototype.hasCreep = function (creep) {
     for (var i = 0; i < this.creeps.length; i++) {
         if (this.creeps[i].id === creep.id)
