@@ -59,7 +59,7 @@ function spawn(roleName, squad) {
                     role: roleName,
                     spawnRoom: spawn.room.name
                 });
-                console.log('Spawning new ' + roleName + ' with body: ' + bodyPart + ' - ' + result);
+                console.log(selectedSpawn.name + ': Spawning new ' + roleName + ' with body: ' + bodyPart + ' - ' + result);
                 return;
             }
         }
