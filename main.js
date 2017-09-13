@@ -51,6 +51,10 @@ function spawn(roleName, squad) {
         if(_.contains(disabledSpawns, spawnName)) {
             continue;
         }
+        if(squad.getSpawn()){
+            selectedSpawn = Game.spawns[squad.getSpawn()];
+            break;
+        }
         var spawn = Game.spawns[spawnName];
         var squadFlag = Game.flags[squad.getFlagName()]
         if (squadFlag) {
@@ -323,6 +327,9 @@ function initFlags() {
         var flag = Game.flags[flagName];
         if(!flag.memory.pinnedToFlag){
             flag.memory.pinnedToFlag = false;
+        }
+        if(!flag.memory.spawn){
+            flag.memory.spawn = null;
         }
     }
 }

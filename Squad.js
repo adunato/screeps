@@ -51,6 +51,10 @@ Squad.prototype.getName = function () {
     return this.squadName;
 };
 
+Squad.prototype.getSpawn = function () {
+    return this.memory.spawn;
+};
+
 Squad.prototype.getFlagName = function () {
     return this.flagName;
 };
