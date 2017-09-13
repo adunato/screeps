@@ -42,7 +42,7 @@ function spawn(roleName, squad) {
     var selectedSpawn = null;
     var minDistance = 1000;
     for (var spawnName in Game.spawns) {
-        if(spawnName in disabledSpawns) {
+        if(_.contains(disabledSpawns, spawnName)) {
             console.log("skipped " + spawnName);
             continue;
         } else {
