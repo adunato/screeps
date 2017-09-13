@@ -10,6 +10,7 @@ var squadsIndex = {};
 var printStats = false;
 var printCPU = false;
 var rooms = [];
+var spawnSlots = {};
 
 function clearMemory() {
     for (var i in Memory.creeps) {
@@ -51,6 +52,11 @@ function spawn(roleName, squad) {
         }
     }
     if (selectedSpawn) {
+        //check if spawn is locked, if it is only proceeds it role is the locked one
+        if(spawnSlots[selectedSpawn.name] && spawnSlots[selectedSpawn.name] !== roleName)
+            return;
+        else
+            spawnSlots[selectedSpawn.name] = roleName;
         for (var i = 0; i < bodyParts[roleName].length; i++) {
             var bodyPart = bodyParts[roleName][i];
             // console.log('spawn - trying config: ' + bodyPart);
@@ -129,17 +135,15 @@ function assignCreepsToSquads() {
         }
     }
 
-    var spawnSet = false;
+    //reset spawnsSlots before every tick
+    spawnSlots = {};
     for (var roleName in global.creepRoles) {
         for (var squadName in squadsIndex) {
             var squad = squadsIndex[squadName];
             // console.log(squadName + ' ' + squad.creeps.length);
             if (squad.needCreepRole(roleName)) {
                 console.log(squadName + ' needs ' + roleName);
-                if (!spawnSet) {
                     spawn(roleName, squad);
-                    spawnSet = true
-                }
             }
         }
     }
