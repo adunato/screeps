@@ -444,7 +444,9 @@ Creep.prototype.rest = function () {
     this.memory.selectedSource = null;
     var pinnedToRoom = false;
     if(this.getSquad()){
+        console.log("has squad")
         pinnedToRoom = this.getSquad().isPinnedToFlag();
+        console.log("pinnedToRoom: " + pinnedToRoom)
     }
     if(Game.flags["RestArea"].pos.roomName === this.pos.roomName || !pinnedToRoom) {
         this.moveTo(Game.flags["RestArea"], {visualizePathStyle: {stroke: '#ffffff'}});
