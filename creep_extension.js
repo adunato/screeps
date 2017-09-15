@@ -1,6 +1,7 @@
 const WAYPOINT_RANGE = 3;
 var cache = require('cache');
 require('source_extension');
+var Squad = require('Squad');
 const DROP_CONTAINER = "DROP_CONTAINER";
 const DROP_STRUCTURE = "DROP_STRUCTURE";
 const DROP_COLLECTOR = "DROP_COLLECTOR";
