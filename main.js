@@ -158,11 +158,11 @@ function assignCreepsToSquads() {
             // squad.getFlag().memory.squad = squad;
             // console.log(squadName + ' ' + squad.creeps.length);
             if (squad.needCreepRole(roleName)) {
-                squad.getFlag().setColor(COLOR_ORANGE, COLOR_ORANGE);
+                // squad.getFlag().setColor(COLOR_ORANGE, COLOR_ORANGE);
                 console.log(squad.getSquadRoomName() + ": " + squadName + ' needs ' + roleName);
                     spawn(roleName, squad);
             } else {
-                squad.getFlag().setColor(COLOR_GREEN, COLOR_GREEN);
+                // squad.getFlag().setColor(COLOR_GREEN, COLOR_GREEN);
             }
         }
     }
