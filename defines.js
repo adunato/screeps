@@ -163,7 +163,6 @@ var defines = {
         // };
         global.squadProfiles = {
             "FE": new squadprofile.SquadAttributes([["feeder", 1]], false, function (){
-                console.log("delete me: " + this.getName());
                 return true;
             }),
             "HA": new squadprofile.SquadAttributes([["harvester", 1]], false, function (){return true}),
@@ -178,7 +177,10 @@ var defines = {
             "TR": new squadprofile.SquadAttributes([["transporter", 1]], false, function (){return true}),
             "PA": new squadprofile.SquadAttributes([["patroller", 1]], true, function (){return true}),
             "CL": new squadprofile.SquadAttributes([["claimer", 1]], false, function (){return true}),
-            "RES": new squadprofile.SquadAttributes([["reserver", 1]], false, function (){return true}),
+            "RES": new squadprofile.SquadAttributes([["reserver", 1]], false, function (){
+                var roomName = Game.flags[this.getFlagName()].room;
+                return Game.map.rooms[roomName].controller.reservation < 500;
+            }),
             "TOFE": new squadprofile.SquadAttributes([["tower_feeder", 1]], false, function (){return true})
         };
         global.allowedToSpawnWithdraw = false;
