@@ -105,8 +105,8 @@ var cache = {
     },
     findEmptyDestinationContainers: function (room, maxQuantityPc) {
         var containers = [];
-        for(var i = 0; i < global.destinationContainers.length; i++){
-            var container = Game.getObjectById(global.destinationContainers[i])
+        for(var i = 0; i < global.destinationContainers[room.name].length; i++){
+            var container = Game.getObjectById(global.destinationContainers[room.name][i])
             if(container && _.sum(container.store) < (container.storeCapacity / 100 * maxQuantityPc))
                 containers.push(container);
         }
@@ -115,13 +115,6 @@ var cache = {
     isContainerSource: function (room, container) {
         for(var i = 0; i < global.sourceContainers[room.name].length; i++){
             if(container.id === global.sourceContainers[room.name][i])
-                return true;
-        }
-        return false;
-    },
-    isContainerDestination: function (container) {
-        for(var i = 0; i < global.destinationContainers.length; i++){
-            if(container.id === global.destinationContainers[i])
                 return true;
         }
         return false;
