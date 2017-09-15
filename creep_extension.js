@@ -7,12 +7,16 @@ const DROP_STRUCTURE = "DROP_STRUCTURE";
 const DROP_COLLECTOR = "DROP_COLLECTOR";
 const DROP_CARRIER = "DROP_CARRIER";
 const DROP_STORAGE = "DROP_STORAGE";
+const WITHDRAW_FROM_SPAWN = true;
 const WAYPOINT_LOG = false;
 
 Creep.prototype.withdrawEnergy = function () {
     var containers = cache.findContainersWithEnergy(this.room);
     var carriers = cache.findCarriersWithEnergy(this.room);
     var energySources = containers.concat(carriers);
+    if(WITHDRAW_FROM_SPAWN){
+        energySources = energySources.concat(cache.findSpawnWithEnergy(this.room));
+    }
     if (energySources.length > 0) {
         var energySource = this.getNearestObjectByDistance(energySources);
         if (!energySource)
