@@ -167,7 +167,7 @@ var defines = {
             "CO": new squadprofile.SquadAttributes([["collector", 1]], false, function (){return true}),
             "BU": new squadprofile.SquadAttributes([["builder", 1]], false, function (){return true}),
             "UP": new squadprofile.SquadAttributes([["upgrader", 1]], false, function (){return true}),
-            "RE": new squadprofile.SquadAttributes([["repairer", 2]], true, function (){return true}),
+            "RE": new squadprofile.SquadAttributes([["repairer", 2]], true, function (){return false}),
             "REXS": new squadprofile.SquadAttributes([["repairer", 1]], true, function (){return true}),
             "WA": new squadprofile.SquadAttributes([["wall_repairer", 0]], false, function (){return true}),
             "CA": new squadprofile.SquadAttributes([["carrier", 1]], false, function (){return true}),
