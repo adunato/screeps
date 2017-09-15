@@ -447,7 +447,7 @@ Creep.prototype.multiFunction = function () {
         var spawns = cache.findSpawnsWithEnergy(this.room);
         if(spawns.length > 0){
             var spawn = spawns[0];
-            if(spawn.energy < 300){
+            if(spawn.energy < spawn.energyCapacity){
                 this.dropEnergy({DROP_STRUCTURE : true});
                 return;
             }
