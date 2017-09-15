@@ -337,13 +337,6 @@ function initFlags() {
     }
 }
 
-function colourFlags() {
-    for(var squadName in squadsIndex){
-        var squad = squadsIndex[squadName]
-        if(squad.needCreepRole())
-    }
-}
-
 module.exports.loop = function () {
     //globals definition, every tick to refresh changes
     resetCPULog();
@@ -363,8 +356,6 @@ module.exports.loop = function () {
     logCPU('assignCreepsToSquads ');
     logSpawing();
     logCPU('logSpawing ');
-    colourFlags()
-    logCPU('colourFlags ');
     manageDefense();
     logCPU( 'manageDefense ');
     executeCreepBehaviour();
