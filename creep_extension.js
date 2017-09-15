@@ -241,12 +241,14 @@ Creep.prototype.setNextWaypoint = function () {
     //fwd WP check
     if (this.memory.waypoint_fwd_direction === true) {
         if (this.nextWaypoint()) {
-            console.log(this.name + ' ' + this.memory.role + " setting " + this.nextWaypoint() + " as next waypoint")
+            if (WAYPOINT_LOG)
+                console.log(this.name + ' ' + this.memory.role + " setting " + this.nextWaypoint() + " as next waypoint")
             this.memory.current_waypoint = this.nextWaypoint();
         } else {
             this.memory.waypoint_fwd_direction = false;
             if (this.previousWaypoint()) {
-                console.log(this.memory.role + " setting " + this.previousWaypoint() + " as next waypoint")
+                if (WAYPOINT_LOG)
+                    console.log(this.memory.role + " setting " + this.previousWaypoint() + " as next waypoint")
                 this.memory.current_waypoint = this.previousWaypoint();
             } else {
                 console.log("No backward or forward waypoints from " + this.memory.current_waypoint + " for creep " + this.name + " " + this.memory.role)
@@ -255,15 +257,18 @@ Creep.prototype.setNextWaypoint = function () {
     } else {
         //bkwd WP check
         if (this.previousWaypoint()) {
-            console.log(this.name + ' ' + this.memory.role + " setting " + this.previousWaypoint() + " as next waypoint")
+            if (WAYPOINT_LOG)
+                console.log(this.name + ' ' + this.memory.role + " setting " + this.previousWaypoint() + " as next waypoint")
             this.memory.current_waypoint = this.previousWaypoint();
         } else {
             this.memory.waypoint_fwd_direction = true;
             if (this.nextWaypoint()) {
-                console.log(this.memory.role + " setting " + this.nextWaypoint() + " as next waypoint")
+                if (WAYPOINT_LOG)
+                    console.log(this.memory.role + " setting " + this.nextWaypoint() + " as next waypoint")
                 this.memory.current_waypoint = this.nextWaypoint();
             } else {
-                console.log("No backward or forward waypoints from " + this.memory.current_waypoint + " for creep " + this.name + " " + this.memory.role)
+                if (WAYPOINT_LOG)
+                    console.log("No backward or forward waypoints from " + this.memory.current_waypoint + " for creep " + this.name + " " + this.memory.role)
             }
         }
     }
@@ -320,7 +325,8 @@ Creep.prototype.isInCurrentWaypointRange = function () {
         var flags = this.pos.findInRange(FIND_FLAGS, WAYPOINT_RANGE);
         for (var i = 0; i < flags.length; i++) {
             if (flags[i] === flag) {
-                if(WAYPOINT_LOG) console.log("creep " + this.name + " " + this.memory.role + " in range of: " + this.memory.current_waypoint);
+                if (WAYPOINT_LOG)
+                    console.log("creep " + this.name + " " + this.memory.role + " in range of: " + this.memory.current_waypoint);
                 return true;
             }
         }
