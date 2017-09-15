@@ -452,13 +452,12 @@ Creep.prototype.multiFunction = function () {
                 return;
             }
         }
-        var extensions = room.find(FIND_MY_STRUCTURES, {
+        var extensions = this.room.find(FIND_MY_STRUCTURES, {
             filter: (structure) => {
                 return structure.structureType == STRUCTURE_EXTENSION && structure.energy < structure.energyCapacity;
             }
         });
         if (extensions.length > 0) {
-            var extension = extensions[0];
             this.dropEnergy({DROP_STRUCTURE: true});
             return;
         }
