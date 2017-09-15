@@ -162,10 +162,13 @@ var defines = {
         //     "TOFE": [["tower_feeder", 1]],
         // };
         global.squadProfiles = {
-            "FE": new squadprofile.SquadAttributes([["feeder", 1]], false, function (){return true}),
+            "FE": new squadprofile.SquadAttributes([["feeder", 1]], false, function (){
+                console.log(this);
+                return true;
+            }),
             "HA": new squadprofile.SquadAttributes([["harvester", 1]], false, function (){return true}),
             "CO": new squadprofile.SquadAttributes([["collector", 1]], false, function (){return true}),
-            "BU": new squadprofile.SquadAttributes([["builder", 1]], false, function (){return false}),
+            "BU": new squadprofile.SquadAttributes([["builder", 1]], false, function (){return true}),
             "UP": new squadprofile.SquadAttributes([["upgrader", 1]], false, function (){return true}),
             "RE": new squadprofile.SquadAttributes([["repairer", 2]], true, function (){return true}),
             "REXS": new squadprofile.SquadAttributes([["repairer", 1]], true, function (){return true}),
