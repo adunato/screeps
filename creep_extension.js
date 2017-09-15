@@ -437,7 +437,7 @@ Creep.prototype.repairWalls = function () {
     }
 };
 
-Creep.prototype.multiTool = function () {
+Creep.prototype.multiFunction = function () {
     if(this.room.controller.ticksToDowngrade < 1000) {
         this.upgradeController_()
         return;

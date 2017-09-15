@@ -36,7 +36,7 @@ var harvesterFSM = new statemachine.StateMachine.factory({
             if(!MULTI_FUNCTION) {
                 creep.dropEnergy({DROP_CONTAINER : true,DROP_STRUCTURE : true, DROP_COLLECTOR: true, DROP_CARRIER: true});
             } else {
-                creep.multiTool();
+                creep.multiFunction();
             }
             // creep.dropEnergy();
         },
