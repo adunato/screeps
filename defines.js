@@ -179,7 +179,7 @@ var defines = {
             "CL": new squadprofile.SquadAttributes([["claimer", 1]], false, function (roomName){return true}),
             "RES": new squadprofile.SquadAttributes([["reserver", 1]], false, function (flagName){
                 var roomName = Game.flags[flagName].room;
-                console.log("RES SPAWN -> " + Game.rooms[roomName.name].controller.reservation < 500);
+                console.log("RES SPAWN -> " + Game.rooms[roomName.name].controller.reservation);
                 return Game.rooms[roomName.name].controller.reservation < 500;
             }),
             "TOFE": new squadprofile.SquadAttributes([["tower_feeder", 1]], false, function (){return true})
