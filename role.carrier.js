@@ -75,7 +75,7 @@ var roleCarrier = {
         if (cache.findContainersWithEnergy(creep.room).length === 0 && stateMachine.can("containersEmpty")) {
             stateMachine.containersEmpty();
         }
-        if (cache.findSpawnWithEnergy(creep.room).length === 0 && stateMachine.can("spawnEmpty")) {
+        if (cache.findSpawnsWithEnergy(creep.room).length === 0 && stateMachine.can("spawnEmpty")) {
             stateMachine.spawnEmpty();
         }
         if (Game.flags[creep.memory.squad] === null && stateMachine.can("noCarrierFlags")) {

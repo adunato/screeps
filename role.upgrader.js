@@ -81,7 +81,7 @@ var roleupgrader = {
         if (cache.findCarriersWithEnergy(creep.room).length === 0 && stateMachine.can("carrierEmpty")) {
             stateMachine.carrierEmpty();
         }
-        if (cache.findSpawnWithEnergy(creep.room).length === 0 && stateMachine.can("spawnEmpty")) {
+        if (cache.findSpawnsWithEnergy(creep.room).length === 0 && stateMachine.can("spawnEmpty")) {
             stateMachine.spawnEmpty();
         }
         if (creep.room.controller === null && stateMachine.can("noControllers")) {

@@ -15,7 +15,7 @@ Creep.prototype.withdrawEnergy = function () {
     var carriers = cache.findCarriersWithEnergy(this.room);
     var energySources = containers.concat(carriers);
     if(WITHDRAW_FROM_SPAWN){
-        energySources = energySources.concat(cache.findSpawnWithEnergy(this.room));
+        energySources = energySources.concat(cache.findSpawnsWithEnergy(this.room));
     }
     if (energySources.length > 0) {
         var energySource = this.getNearestObjectByDistance(energySources);
@@ -53,7 +53,7 @@ Creep.prototype.withdrawEnergyFromCarrier = function () {
 };
 
 Creep.prototype.withdrawEnergyFromSpawn = function () {
-    var spawns = cache.findSpawnWithEnergy(this.room);
+    var spawns = cache.findSpawnsWithEnergy(this.room);
     if (spawns.length > 0) {
         if (this.withdraw(spawns[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
             this.moveTo(spawns[0], {visualizePathStyle: {stroke: '#0027ff'}});

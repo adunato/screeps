@@ -149,7 +149,7 @@ var cache = {
         }
         return carriers;
     },
-    findSpawnWithEnergy: function (room) {
+    findSpawnsWithEnergy: function (room) {
         var spawnsWithEnergy = {};
         if (typeof this.rooms.spawnsWithEnergy[room] != "undefined") {
             spawnsWithEnergy = this.rooms.spawnsWithEnergy[room];
