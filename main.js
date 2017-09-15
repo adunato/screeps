@@ -156,8 +156,11 @@ function assignCreepsToSquads() {
             var squad = global.squadsIndex[squadName];
             // console.log(squadName + ' ' + squad.creeps.length);
             if (squad.needCreepRole(roleName)) {
+                squad.getFlag().color = COLOR_ORANGE;
                 console.log(squadName + ' needs ' + roleName);
                     spawn(roleName, squad);
+            } else {
+                squad.getFlag().color = COLOR_GREEN;
             }
         }
     }
@@ -334,6 +337,13 @@ function initFlags() {
     }
 }
 
+function colourFlags() {
+    for(var squadName in squadsIndex){
+        var squad = squadsIndex[squadName]
+        if(squad.needCreepRole())
+    }
+}
+
 module.exports.loop = function () {
     //globals definition, every tick to refresh changes
     resetCPULog();
@@ -353,8 +363,10 @@ module.exports.loop = function () {
     logCPU('assignCreepsToSquads ');
     logSpawing();
     logCPU('logSpawing ');
+    colourFlags()
+    logCPU('colourFlags ');
     manageDefense();
-    // logCPU( 'manageDefense ');
+    logCPU( 'manageDefense ');
     executeCreepBehaviour();
     logCPU('executeCreepBehaviour ');
     trackTickChanges();
