@@ -129,6 +129,7 @@ Creep.prototype.selectSource = function () {
 };
 
 Creep.prototype.goToSource = function () {
+    console.log("goToSource")
     var flag = Game.flags[this.memory.squad];
     if (this.roomName) {
         this.memory.lastTick.roomName = this.roomName
