@@ -163,7 +163,7 @@ var defines = {
         // };
         global.squadProfiles = {
             "FE": new squadprofile.SquadAttributes([["feeder", 1]], false, function (){
-                console.log("delete me: " + this);
+                console.log("delete me: " + typeof this);
                 return true;
             }),
             "HA": new squadprofile.SquadAttributes([["harvester", 1]], false, function (){return true}),
