@@ -4,3 +4,6 @@ StructureContainer.prototype.transfer = function (creep, resourceType) {
 StructureStorage.prototype.transfer = function (creep, resourceType) {
     return creep.withdraw(this, resourceType);
 };
+StructureSpawn.prototype.transfer = function (creep, resourceType) {
+    return creep.withdraw(this, resourceType);
+};
