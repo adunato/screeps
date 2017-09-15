@@ -59,6 +59,7 @@ var harvesterFSM = new statemachine.StateMachine.factory({
 var roleHarvester = {
     /** @param {Creep} creep **/
     run: function (creep) {
+        console.log("harvestEnergy")
         var creepState = creep.memory.state;
         if (typeof creepState === "undefined")
             creepState = "none";
