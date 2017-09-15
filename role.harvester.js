@@ -1,6 +1,6 @@
 var statemachine = require('state-machine');
-// var visualize = require('visualize');
 var cache = require('cache');
+const MULTI_FUNCTION = true;
 var harvesterFSM = new statemachine.StateMachine.factory({
     init: 'none',
     transitions: [
@@ -33,8 +33,14 @@ var harvesterFSM = new statemachine.StateMachine.factory({
         onDropEnergy: function () {
             var creep = Game.creeps[this.creepName];
             creep.memory.selectedSource = null;
-            // creep.dropEnergy({DROP_CONTAINER : true,DROP_STRUCTURE : true, DROP_COLLECTOR: true, DROP_CARRIER: true});
-            creep.buildConstruction();
+            if(!MULTI_FUNCTION) {
+                creep.dropEnergy({DROP_CONTAINER : true,DROP_STRUCTURE : true, DROP_COLLECTOR: true, DROP_CARRIER: true});
+            } else {
+                if(creep.room.controller.ticksToDowngrade < 5000)
+                    creep.upgradeController_()
+                else
+                    creep.buildConstruction();
+            }
             // creep.dropEnergy();
         },
         onNoEnergyContainers: function () {
