@@ -12,10 +12,11 @@ Squad.prototype.addCreep = function (creep) {
 };
 
 Squad.prototype.getSquad = function(creep){
-    console.log("getSquad");
     for(var squadName in global.squadsIndex){
-        if(squadsIndex[squadName].hasCreep(creep))
+        if(squadsIndex[squadName].hasCreep(creep)) {
+            console.log(squadName);
             return squadsIndex[squadName];
+        }
     }
     return null;
 }
