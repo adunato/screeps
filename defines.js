@@ -162,21 +162,21 @@ var defines = {
         //     "TOFE": [["tower_feeder", 1]],
         // };
         global.squadProfiles = {
-            "FE": new squadprofile.SquadAttributes([["feeder", 1]], false),
-            "HA": new squadprofile.SquadAttributes([["harvester", 1]], false),
-            "CO": new squadprofile.SquadAttributes([["collector", 1]], false),
-            "BU": new squadprofile.SquadAttributes([["builder", 1]], false),
-            "UP": new squadprofile.SquadAttributes([["upgrader", 1]], false),
-            "RE": new squadprofile.SquadAttributes([["repairer", 2]], true),
-            "REXS": new squadprofile.SquadAttributes([["repairer", 1]], true),
-            "WA": new squadprofile.SquadAttributes([["wall_repairer", 0]], false),
-            "CA": new squadprofile.SquadAttributes([["carrier", 1]], false),
-            "DE": new squadprofile.SquadAttributes([["defender", 1]], false),
-            "TR": new squadprofile.SquadAttributes([["transporter", 1]], false),
-            "PA": new squadprofile.SquadAttributes([["patroller", 1]], true),
-            "CL": new squadprofile.SquadAttributes([["claimer", 1]], false),
-            "RES": new squadprofile.SquadAttributes([["reserver", 1]], false),
-            "TOFE": new squadprofile.SquadAttributes([["tower_feeder", 1]], false)
+            "FE": new squadprofile.SquadAttributes([["feeder", 1]], false, function (){return true}),
+            "HA": new squadprofile.SquadAttributes([["harvester", 1]], false, function (){return true}),
+            "CO": new squadprofile.SquadAttributes([["collector", 1]], false, function (){return true}),
+            "BU": new squadprofile.SquadAttributes([["builder", 1]], false, function (){return true}),
+            "UP": new squadprofile.SquadAttributes([["upgrader", 1]], false, function (){return true}),
+            "RE": new squadprofile.SquadAttributes([["repairer", 2]], true, function (){return true}),
+            "REXS": new squadprofile.SquadAttributes([["repairer", 1]], true, function (){return true}),
+            "WA": new squadprofile.SquadAttributes([["wall_repairer", 0]], false, function (){return true}),
+            "CA": new squadprofile.SquadAttributes([["carrier", 1]], false, function (){return true}),
+            "DE": new squadprofile.SquadAttributes([["defender", 1]], false, function (){return true}),
+            "TR": new squadprofile.SquadAttributes([["transporter", 1]], false, function (){return true}),
+            "PA": new squadprofile.SquadAttributes([["patroller", 1]], true, function (){return true}),
+            "CL": new squadprofile.SquadAttributes([["claimer", 1]], false, function (){return true}),
+            "RES": new squadprofile.SquadAttributes([["reserver", 1]], false, function (){return true}),
+            "TOFE": new squadprofile.SquadAttributes([["tower_feeder", 1]], false, function (){return true})
         };
         global.allowedToSpawnWithdraw = false;
         global.sourceContainers = [

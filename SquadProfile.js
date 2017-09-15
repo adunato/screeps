@@ -3,6 +3,7 @@ function SquadProfile(name) {
     var squadAttributes = global.squadProfiles[name];
     this.squadRoles = squadAttributes.squadRoles;
     this.patrolling = squadAttributes.patrolling;
+    this.spawnConditions = squadAttributes.spawnConditions;
     this.name = name;
 }
 SquadProfile.prototype.getCreepQuantity = function(role) {
@@ -19,9 +20,10 @@ SquadProfile.prototype.getName = function() {
     return this.name;
 };
 
-function SquadAttributes(squadRoles, patrolling){
+function SquadAttributes(squadRoles, patrolling, spawnConditions){
     this.squadRoles = squadRoles;
     this.patrolling = patrolling;
+    this.spawnConditions = spawnConditions;
 }
 
 module.exports = {SquadProfile, SquadAttributes};
