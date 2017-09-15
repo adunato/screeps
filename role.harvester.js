@@ -42,7 +42,7 @@ var harvesterFSM = new statemachine.StateMachine.factory({
                     var spawns = cache.findSpawnsWithEnergy(creep.room);
                     if(spawns.length > 0){
                         var spawn = spawns[0];
-                        if(spawn.store.energy < 300){
+                        if(spawn.energy < 300){
                             creep.dropEnergy({DROP_STRUCTURE : true});
                         }
                     }
