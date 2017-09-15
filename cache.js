@@ -46,8 +46,8 @@ var cache = {
             this.rooms.towers = {};
         }
     },
-    getStoredEnergy: function(room){
-        const containers = room.find(FIND_STRUCTURES, { filter: s => s.structureType == STRUCTURE_CONTAINER });
+    getStoredEnergy: function (room) {
+        const containers = room.find(FIND_STRUCTURES, {filter: s => s.structureType == STRUCTURE_CONTAINER});
         const container_energy = _.sum(containers, c => c.store.energy);
         return container_energy;
     },
@@ -96,25 +96,25 @@ var cache = {
     findSourceContainersWithEnergy: function (room, minQuantityPc) {
         var containers = this.findContainersWithEnergy(room);
         var sources = [];
-        for(var i = 0; i < containers.length; i++){
-            if(this.isContainerSource(room, containers[i]) && containers[i].store.energy > (containers[i].storeCapacity / 100 * minQuantityPc)) {
+        for (var i = 0; i < containers.length; i++) {
+            if (this.isContainerSource(room.name, containers[i]) && containers[i].store.energy > containers[i].storeCapacity / 100 * minQuantityPc) {
                 sources.push(containers[i]);
             }
         }
         return sources;
     },
-    findEmptyDestinationContainers: function (room, maxQuantityPc) {
+    findEmptyDestinationContainers: function (containersGroup, maxQuantityPc) {
         var containers = [];
-        for(var i = 0; i < global.destinationContainers[room.name].length; i++){
-            var container = Game.getObjectById(global.destinationContainers[room.name][i])
-            if(container && _.sum(container.store) < (container.storeCapacity / 100 * maxQuantityPc))
+        for (var i = 0; i < global.destinationContainers[containersGroup].length; i++) {
+            var container = Game.getObjectById(global.destinationContainers[containersGroup][i])
+            if (container && _.sum(container.store) < (container.storeCapacity / 100 * maxQuantityPc))
                 containers.push(container);
         }
         return containers;
     },
-    isContainerSource: function (room, container) {
-        for(var i = 0; i < global.sourceContainers[room.name].length; i++){
-            if(container.id === global.sourceContainers[room.name][i])
+    isContainerSource: function (containersGroup, container) {
+        for (var i = 0; i < global.sourceContainers[containersGroup].length; i++) {
+            if (container.id === global.sourceContainers[containersGroup][i])
                 return true;
         }
         return false;
@@ -182,7 +182,7 @@ var cache = {
         } else {
             repairStructures = room.find(FIND_STRUCTURES, {
                 filter: (structure) => {
-                    return structure.hits < (structure.hitsMax / 100 * minRepairLevelPc)&& structure.structureType !== STRUCTURE_WALL && structure.structureType !== STRUCTURE_RAMPART;
+                    return structure.hits < (structure.hitsMax / 100 * minRepairLevelPc) && structure.structureType !== STRUCTURE_WALL && structure.structureType !== STRUCTURE_RAMPART;
                 }
             });
             this.rooms.repairStructures[room] = repairStructures;
@@ -237,7 +237,7 @@ var cache = {
         } else {
             energyDropStructures = room.find(FIND_STRUCTURES, {
                 filter: (container) => {
-                    return (container.structureType == STRUCTURE_CONTAINER) &&  _.sum(container.store) < container.storeCapacity;
+                    return (container.structureType == STRUCTURE_CONTAINER) && _.sum(container.store) < container.storeCapacity;
                 }
 
             });
@@ -245,29 +245,29 @@ var cache = {
         }
         return energyDropStructures;
     },
-    findEmptyPlaceToDropStuff: function(room, options){
-            var targets = [];
-            if(options[DROP_CONTAINER]) {
-                var containers = cache.findEnergyContainers(room);
-                targets = targets.concat(containers);
-            }
-            if(options[DROP_COLLECTOR]) {
-                var collectors = cache.findEmptyCollectors(room)
-                targets = targets.concat(collectors);
-            }
-            if(options[DROP_STRUCTURE]) {
-                var energyStructures = cache.findEnergyFedStructures(room, false);
-                targets = targets.concat(energyStructures);
-            }
-            if(options[DROP_CARRIER]) {
-                var carriers = cache.findEmptyCarriers(room);
-                targets = targets.concat(carriers);
-            }
-            if(options[DROP_CARRIER]) {
-                var carriers = cache.findEmptyCarriers(room);
-                targets = targets.concat(carriers);
-            }
-            return targets;
+    findEmptyPlaceToDropStuff: function (room, options) {
+        var targets = [];
+        if (options[DROP_CONTAINER]) {
+            var containers = cache.findEnergyContainers(room);
+            targets = targets.concat(containers);
+        }
+        if (options[DROP_COLLECTOR]) {
+            var collectors = cache.findEmptyCollectors(room)
+            targets = targets.concat(collectors);
+        }
+        if (options[DROP_STRUCTURE]) {
+            var energyStructures = cache.findEnergyFedStructures(room, false);
+            targets = targets.concat(energyStructures);
+        }
+        if (options[DROP_CARRIER]) {
+            var carriers = cache.findEmptyCarriers(room);
+            targets = targets.concat(carriers);
+        }
+        if (options[DROP_CARRIER]) {
+            var carriers = cache.findEmptyCarriers(room);
+            targets = targets.concat(carriers);
+        }
+        return targets;
     },
 
     findEnergyFedStructures: function (room, includeTowers) {
@@ -280,7 +280,7 @@ var cache = {
                 filter: (structure) => {
                     return (structure.structureType == STRUCTURE_EXTENSION ||
                         structure.structureType == STRUCTURE_SPAWN
-                     || (includeTowers && structure.structureType == STRUCTURE_TOWER));
+                        || (includeTowers && structure.structureType == STRUCTURE_TOWER));
                 }
             });
             this.rooms.energyFedStructures[room] = energyFedStructures;

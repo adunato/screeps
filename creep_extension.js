@@ -80,7 +80,7 @@ Creep.prototype.dropToStorage = function () {
 
 Creep.prototype.dropToDestinationContainer = function (maxQuantityPc) {
     this.memory.selectedSource = null;
-    var structures = cache.findEmptyDestinationContainers(this.room, maxQuantityPc);
+    var structures = cache.findEmptyDestinationContainers(this.room.name, maxQuantityPc);
     return this.dropToDestinations(structures, false);
 };
 
