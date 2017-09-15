@@ -33,7 +33,7 @@ Squad.prototype.needCreepRole = function (creepRole) {
         return false;
     var creepQuantity = this.getCreepQuantityWithRole(creepRole);
     var profileQuantity = this.squadProfile.getCreepQuantity(creepRole);
-    return (creepQuantity < profileQuantity) && this.squadProfile.spawnConditions();
+    return this.squadProfile.spawnConditions() && (creepQuantity < profileQuantity);
 };
 
 
