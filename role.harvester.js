@@ -36,21 +36,7 @@ var harvesterFSM = new statemachine.StateMachine.factory({
             if(!MULTI_FUNCTION) {
                 creep.dropEnergy({DROP_CONTAINER : true,DROP_STRUCTURE : true, DROP_COLLECTOR: true, DROP_CARRIER: true});
             } else {
-                if(creep.room.controller.ticksToDowngrade < 1000) {
-                    creep.upgradeController_()
-                    return;
-                }
-                else {
-                    var spawns = cache.findSpawnsWithEnergy(creep.room);
-                    if(spawns.length > 0){
-                        var spawn = spawns[0];
-                        if(spawn.energy < 300){
-                            creep.dropEnergy({DROP_STRUCTURE : true});
-                            return;
-                        }
-                    }
-                    creep.buildConstruction();
-                }
+                creep.multiTool();
             }
             // creep.dropEnergy();
         },

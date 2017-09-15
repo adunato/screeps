@@ -437,6 +437,24 @@ Creep.prototype.repairWalls = function () {
     }
 };
 
+Creep.prototype.multiTool = function () {
+    if(this.room.controller.ticksToDowngrade < 1000) {
+        this.upgradeController_()
+        return;
+    }
+    else {
+        var spawns = cache.findSpawnsWithEnergy(this.room);
+        if(spawns.length > 0){
+            var spawn = spawns[0];
+            if(spawn.energy < 300){
+                this.dropEnergy({DROP_STRUCTURE : true});
+                return;
+            }
+        }
+        this.buildConstruction();
+    }
+};
+
 Creep.prototype.upgradeController_ = function () {
     var flag = Game.flags[this.memory.squad];
     //move to flag if not in flag's room
