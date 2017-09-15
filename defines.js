@@ -165,20 +165,19 @@ var defines = {
             "FE": new squadprofile.SquadAttributes([["feeder", 1]], false, function (){
                 return true;
             }),
-            "HA": new squadprofile.SquadAttributes([["harvester", 1]], false, function (){return true}),
-            "CO": new squadprofile.SquadAttributes([["collector", 1]], false, function (){return true}),
-            "BU": new squadprofile.SquadAttributes([["builder", 1]], false, function (){return true}),
-            "UP": new squadprofile.SquadAttributes([["upgrader", 1]], false, function (){return true}),
-            "RE": new squadprofile.SquadAttributes([["repairer", 2]], true, function (){return true}),
-            "REXS": new squadprofile.SquadAttributes([["repairer", 1]], true, function (){return true}),
-            "WA": new squadprofile.SquadAttributes([["wall_repairer", 0]], false, function (){return true}),
-            "CA": new squadprofile.SquadAttributes([["carrier", 1]], false, function (){return true}),
-            "DE": new squadprofile.SquadAttributes([["defender", 1]], false, function (){return true}),
-            "TR": new squadprofile.SquadAttributes([["transporter", 1]], false, function (){return true}),
-            "PA": new squadprofile.SquadAttributes([["patroller", 1]], true, function (){return true}),
-            "CL": new squadprofile.SquadAttributes([["claimer", 1]], false, function (){return true}),
-            "RES": new squadprofile.SquadAttributes([["reserver", 1]], false, function (){
-                var roomName = Game.flags[this.getFlagName()].room;
+            "HA": new squadprofile.SquadAttributes([["harvester", 1]], false, function (roomName){return true}),
+            "CO": new squadprofile.SquadAttributes([["collector", 1]], false, function (roomName){return true}),
+            "BU": new squadprofile.SquadAttributes([["builder", 1]], false, function (roomName){return true}),
+            "UP": new squadprofile.SquadAttributes([["upgrader", 1]], false, function (roomName){return true}),
+            "RE": new squadprofile.SquadAttributes([["repairer", 2]], true, function (roomName){return true}),
+            "REXS": new squadprofile.SquadAttributes([["repairer", 1]], true, function (roomName){return true}),
+            "WA": new squadprofile.SquadAttributes([["wall_repairer", 0]], false, function (roomName){return true}),
+            "CA": new squadprofile.SquadAttributes([["carrier", 1]], false, function (roomName){return true}),
+            "DE": new squadprofile.SquadAttributes([["defender", 1]], false, function (roomName){return true}),
+            "TR": new squadprofile.SquadAttributes([["transporter", 1]], false, function (roomName){return true}),
+            "PA": new squadprofile.SquadAttributes([["patroller", 1]], true, function (roomName){return true}),
+            "CL": new squadprofile.SquadAttributes([["claimer", 1]], false, function (roomName){return true}),
+            "RES": new squadprofile.SquadAttributes([["reserver", 1]], false, function (roomName){
                 return Game.map.rooms[roomName].controller.reservation < 500;
             }),
             "TOFE": new squadprofile.SquadAttributes([["tower_feeder", 1]], false, function (){return true})
