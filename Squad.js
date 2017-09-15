@@ -25,6 +25,7 @@ Squad.prototype.needCreep = function (creep) {
         return false;
     var creepQuantity = this.getCreepQuantityWithRole(creep.memory.role);
     var profileQuantity = this.squadProfile.getCreepQuantity(creep.memory.role);
+    console.log("delete me : " + this.squadProfile.spawnConditions());
     return (creepQuantity < profileQuantity) && this.squadProfile.spawnConditions();
 };
 
