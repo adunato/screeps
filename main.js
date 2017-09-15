@@ -155,7 +155,7 @@ function assignCreepsToSquads() {
         for (var squadName in global.squadsIndex) {
             var squad = global.squadsIndex[squadName];
             //assign squad to flag's memory
-            squad.getFlag().memory.squad = squad;
+            // squad.getFlag().memory.squad = squad;
             // console.log(squadName + ' ' + squad.creeps.length);
             if (squad.needCreepRole(roleName)) {
                 // squad.getFlag().setColor(COLOR_ORANGE, COLOR_ORANGE);
