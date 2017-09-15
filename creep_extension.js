@@ -14,7 +14,7 @@ Creep.prototype.withdrawEnergy = function () {
     var containers = cache.findContainersWithEnergy(this.room);
     var carriers = cache.findCarriersWithEnergy(this.room);
     var energySources = containers.concat(carriers);
-    if(WITHDRAW_FROM_SPAWN){
+    if (WITHDRAW_FROM_SPAWN) {
         energySources = energySources.concat(cache.findSpawnsWithEnergy(this.room));
     }
     if (energySources.length > 0) {
@@ -439,22 +439,30 @@ Creep.prototype.repairWalls = function () {
 };
 
 Creep.prototype.multiFunction = function () {
-    if(this.room.controller.ticksToDowngrade < 1000) {
+    if (this.room.controller.ticksToDowngrade < 1000) {
         this.upgradeController_()
         return;
     }
     else {
         var spawns = cache.findSpawnsWithEnergy(this.room);
-        if(spawns.length > 0){
+        if (spawns.length > 0) {
             var spawn = spawns[0];
-            console.log("energy" + spawn.energy)
-            console.log("energyCapacity" + spawn.energyCapacity)
-            if(spawn.energy < spawn.energyCapacity){
-                this.dropEnergy({DROP_STRUCTURE : true});
+            if (spawn.energy < spawn.energyCapacity) {
+                this.dropEnergy({DROP_STRUCTURE: true});
                 return;
             }
         }
-        if(!this.buildConstruction()){
+        var extensions = room.find(FIND_MY_STRUCTURES, {
+            filter: (structure) => {
+                return structure.structureType == STRUCTURE_EXTENSION && structure.energy < structure.energyCapacity;
+            }
+        });
+        if (extensions.length > 0) {
+            var extension = extensions[0];
+            this.dropEnergy({DROP_STRUCTURE: true});
+            return;
+        }
+        if (!this.buildConstruction()) {
             this.upgradeController_()
         }
     }
