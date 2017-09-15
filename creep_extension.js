@@ -392,7 +392,7 @@ Creep.prototype.buildConstruction = function () {
     //move to flag if not in flag's room
     if (flag != null && (!flag.room || flag.room.name != this.room.name)) {
         this.moveTo(flag, {visualizePathStyle: {stroke: '#ffda00'}});
-        return;
+        return true;
     }
     if (flag && flag.room) {
         var constructionSites = cache.findConstructionSites(flag.room);
@@ -401,8 +401,10 @@ Creep.prototype.buildConstruction = function () {
             if (this.build(construction) == ERR_NOT_IN_RANGE) {
                 this.moveTo(construction, {visualizePathStyle: {stroke: '#14ff00'}});
             }
-        }
+        } else
+            return false;
     }
+    return false;
 };
 
 Creep.prototype.repairConstruction = function (minRepairLevelPc) {
@@ -449,7 +451,9 @@ Creep.prototype.multiFunction = function () {
                 return;
             }
         }
-        this.buildConstruction();
+        if(!this.buildConstruction()){
+            this.upgradeController_()
+        }
     }
 };
 
