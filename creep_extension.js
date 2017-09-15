@@ -458,7 +458,8 @@ Creep.prototype.rest = function () {
 
 Creep.prototype.goHome = function () {
     var room = Game.rooms[this.memory.spawnRoom];
-    this.moveTo(room, {visualizePathStyle: {stroke: '#ffffff'}});
+    var spawn = room.find(FIND_MY_SPAWNS)[0];
+    this.moveTo(spawn, {visualizePathStyle: {stroke: '#ffffff'}});
     this.say("Going Home");
 };
 
