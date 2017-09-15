@@ -210,6 +210,7 @@ Creep.prototype.isAlive = function () {
 };
 
 Creep.prototype.harvestEnergy = function () {
+    console.log("harvestEnergy")
     var source = Game.getObjectById(this.memory.selectedSource);
     var res = this.harvest(source);
     if (res == ERR_NOT_IN_RANGE) {
