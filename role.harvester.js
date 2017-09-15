@@ -41,7 +41,6 @@ var harvesterFSM = new statemachine.StateMachine.factory({
         },
         onHarvestEnergy: function() {
             var creep = Game.creeps[this.creepName];
-            console.log(creep.name + " onHarvestEnergy")
             creep.harvestEnergy();
         },
         onTimeToDie: function() {

@@ -215,6 +215,7 @@ Creep.prototype.harvestEnergy = function () {
     if (res == ERR_NOT_IN_RANGE) {
         this.moveTo(source, {visualizePathStyle: {stroke: '#0027ff'}});
     }
+    console.log(this.name + res)
 
 };
 
