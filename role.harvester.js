@@ -36,7 +36,7 @@ var harvesterFSM = new statemachine.StateMachine.factory({
             if(!MULTI_FUNCTION) {
                 creep.dropEnergy({DROP_CONTAINER : true,DROP_STRUCTURE : true, DROP_COLLECTOR: true, DROP_CARRIER: true});
             } else {
-                if(creep.room.controller.ticksToDowngrade < 5000)
+                if(creep.room.controller.ticksToDowngrade < 1000)
                     creep.upgradeController_()
                 else {
                     var spawns = cache.findSpawnsWithEnergy(creep.room);
