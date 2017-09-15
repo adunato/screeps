@@ -217,10 +217,8 @@ Creep.prototype.harvestEnergy = function () {
     var source = Game.getObjectById(this.memory.selectedSource);
     var res = this.harvest(source);
     if (res == ERR_NOT_IN_RANGE) {
-        res = this.moveTo(source, {visualizePathStyle: {stroke: '#0027ff'}});
+        this.moveTo(source, {visualizePathStyle: {stroke: '#0027ff'}});
     }
-    console.log(this.name + res)
-
 };
 
 Creep.prototype.squadRally = function () {
