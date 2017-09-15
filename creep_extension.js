@@ -191,7 +191,7 @@ Creep.prototype.goToReserve = function () {
 };
 
 Creep.prototype.getSquad = function (){
-    Squad.prototype.getSquad(this);
+    return Squad.prototype.getSquad(this);
 }
 
 Creep.prototype.isInSquadRoom = function () {
