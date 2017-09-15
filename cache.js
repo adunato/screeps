@@ -97,7 +97,7 @@ var cache = {
         var containers = this.findContainersWithEnergy(room);
         var sources = [];
         for(var i = 0; i < containers.length; i++){
-            if(this.isContainerSource(containers[i]) && containers[i].store.energy > (containers[i].storeCapacity / 100 * minQuantityPc)) {
+            if(this.isContainerSource(room, containers[i]) && containers[i].store.energy > (containers[i].storeCapacity / 100 * minQuantityPc)) {
                 sources.push(containers[i]);
             }
         }
@@ -112,9 +112,9 @@ var cache = {
         }
         return containers;
     },
-    isContainerSource: function (container) {
-        for(var i = 0; i < global.sourceContainers.length; i++){
-            if(container.id === global.sourceContainers[i])
+    isContainerSource: function (room, container) {
+        for(var i = 0; i < global.sourceContainers[room.name].length; i++){
+            if(container.id === global.sourceContainers[room.name][i])
                 return true;
         }
         return false;
