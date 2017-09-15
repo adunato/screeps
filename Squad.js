@@ -11,6 +11,14 @@ Squad.prototype.addCreep = function (creep) {
     this.creeps.push(creep);
 };
 
+Squad.prototype.getSquad = function(creep){
+    for(var squadName in global.squadsIndex){
+        if(squadsIndex[squadName].hasCreep(creep))
+            return squadsIndex[squadName];
+    }
+    return null;
+}
+
 Squad.prototype.needCreep = function (creep) {
     if (!this.squadFlagExist())
         return false;

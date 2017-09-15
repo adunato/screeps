@@ -190,7 +190,7 @@ Creep.prototype.goToReserve = function () {
 };
 
 Creep.prototype.getSquad = function (){
-    return global.squadsIndex[this.memory.squad];
+    Squad.prototype.getSquad(this);
 }
 
 Creep.prototype.isInSquadRoom = function () {
@@ -442,18 +442,19 @@ Creep.prototype.upgradeController_ = function () {
 
 Creep.prototype.rest = function () {
     this.memory.selectedSource = null;
-    var pinnedToRoom = false;
+    //var pinnedToRoom = false;
     if(this.getSquad()){
-        pinnedToRoom = this.getSquad().isPinnedToFlag();
+        //pinnedToRoom = this.getSquad().isPinnedToFlag();
+        this.moveTo(this.getSquad().getFlag(), {visualizePathStyle: {stroke: '#ffffff'}});
+        this.say("Rest");
     }
-    if(Game.flags["RestArea"].pos.roomName === this.pos.roomName || !pinnedToRoom) {
-        this.moveTo(Game.flags["RestArea"], {visualizePathStyle: {stroke: '#ffffff'}});
-        this.say("Go Rest");
-    } else {
-        console.log(this.memory.squad + " " + Game.flags[this.memory.squad]);
-        this.moveTo(Game.flags[this.memory.squad], {visualizePathStyle: {stroke: '#ffffff'}});
-        this.say("Stay");
-    }
+    // if(Game.flags["RestArea"].pos.roomName === this.pos.roomName || !pinnedToRoom) {
+    //     this.moveTo(Game.flags["RestArea"], {visualizePathStyle: {stroke: '#ffffff'}});
+    //     this.say("Go Rest");
+    // } else {
+    //     this.moveTo(Game.flags[this.memory.squad], {visualizePathStyle: {stroke: '#ffffff'}});
+    //     this.say("Stay");
+    // }
 };
 
 
