@@ -7,6 +7,7 @@ const DROP_STRUCTURE = "DROP_STRUCTURE";
 const DROP_COLLECTOR = "DROP_COLLECTOR";
 const DROP_CARRIER = "DROP_CARRIER";
 const DROP_STORAGE = "DROP_STORAGE";
+const WAYPOINT_LOG = false;
 
 Creep.prototype.withdrawEnergy = function () {
     var containers = cache.findContainersWithEnergy(this.room);
@@ -319,7 +320,7 @@ Creep.prototype.isInCurrentWaypointRange = function () {
         var flags = this.pos.findInRange(FIND_FLAGS, WAYPOINT_RANGE);
         for (var i = 0; i < flags.length; i++) {
             if (flags[i] === flag) {
-                console.log("creep " + this.name + " " + this.memory.role + " in range of: " + this.memory.current_waypoint);
+                if(WAYPOINT_LOG) console.log("creep " + this.name + " " + this.memory.role + " in range of: " + this.memory.current_waypoint);
                 return true;
             }
         }

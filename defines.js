@@ -147,20 +147,6 @@ var defines = {
             "claimer": roleClaimer,
             "reserver": roleReserver,
         };
-        // global.squadProfiles = {
-        //     "FE": [["feeder", 1]],
-        //     "HA": [["harvester", 1]],
-        //     "CO": [["collector", 1]],
-        //     "BU": [["builder", 1]],
-        //     "UP": [["upgrader", 1]],
-        //     "RE": [["repairer", 4]],
-        //     "WA": [["wall_repairer", 0]],
-        //     "CA": [["carrier", 1]],
-        //     "DE": [["defender", 1]],
-        //     "TR": [["transporter", 1]],
-        //     "PA": [["patroller", 2]],
-        //     "TOFE": [["tower_feeder", 1]],
-        // };
         global.squadProfiles = {
             "FE": new squadprofile.SquadAttributes([["feeder", 1]], false, function (){
                 return true;
