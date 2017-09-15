@@ -401,6 +401,7 @@ Creep.prototype.buildConstruction = function () {
             if (this.build(construction) == ERR_NOT_IN_RANGE) {
                 this.moveTo(construction, {visualizePathStyle: {stroke: '#14ff00'}});
             }
+            return true;
         } else
             return false;
     }
