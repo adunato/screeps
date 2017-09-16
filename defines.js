@@ -199,15 +199,13 @@ var defines = {
         global.allowedToSpawnWithdraw = false;
         global.sourceContainers = {
             "E59N3": [
-                // '59ae9c954c5f1d59562175e5',
-                // '59ae4aea33f29c3b855f02c0',
+                '59bcf2e30c847c1a83980262',
+                '59bcf1e54bf950778a52e344',
             ]
         };
         global.destinationContainers = {
             "E59N3": [
-                // '59aab3b0b08c1b0fa81a4370',//central
-                // '59b78fe638afd04af132806b',//tower
-                // '59ae5c75496afa193d2d8a40',//RC
+                '59bd0490359d4b354e549af3',//central
             ]
         };
     }
