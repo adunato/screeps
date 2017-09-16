@@ -10,10 +10,11 @@ var carrierFSM = new statemachine.StateMachine.factory({
             from: ['rest', 'withdraw_source', 'drop_destination', 'drop_storage'],
             to: 'withdraw_source'
         },
-        {name: 'creepFull', from: ['rest', 'withdraw_source', 'drop_destination'], to: 'drop_destination'},
-        {name: 'containersFull', from: ['drop_destination', 'rest', 'drop_storage'], to: 'drop_storage'},
-        {name: 'nothingToDo', from: ['rest', 'withdraw_source', 'drop_destination', 'drop_storage'], to: 'rest'},
-        {name: 'timeToDie', from: ['rest', 'withdraw_source'], to: 'timeToDie'},
+        {name: 'goToRoom', from: ['*'], to: 'go_home'},
+        {name: 'creepFull', from: ['go_home','rest', 'withdraw_source', 'drop_destination'], to: 'drop_destination'},
+        {name: 'containersFull', from: ['go_home','drop_destination', 'rest', 'drop_storage'], to: 'drop_storage'},
+        {name: 'nothingToDo', from: ['go_home','rest', 'withdraw_source', 'drop_destination', 'drop_storage'], to: 'rest'},
+        {name: 'timeToDie', from: ['go_home','rest', 'withdraw_source'], to: 'timeToDie'},
         {
             name: 'goto', from: '*', to: function (s) {
             return s
@@ -30,6 +31,10 @@ var carrierFSM = new statemachine.StateMachine.factory({
         onWithdrawSource: function () {
             var creep = Game.creeps[this.creepName];
             creep.withdrawEnergyFromSourceContainer(MIN_SOURCE_CONTAINER_QUANTITY_PC);
+        },
+        onGoHome: function () {
+            var creep = Game.creeps[this.creepName];
+            creep.goHome();
         },
         onDropDestination: function () {
             var creep = Game.creeps[this.creepName];
@@ -72,6 +77,9 @@ var roleCarrier = {
         stateMachine.goto(creepState);
         if (creep.timeToDie() && creepCarryEnergy === 0 && stateMachine.can("timeToDie")) {
             stateMachine.timeToDie();
+        }
+        if (!creep.isInSquadRoom()){
+            stateMachine.goToRoom();
         }
         if (sourceContainers > 0 && stateMachine.can("sourceFull")) {
             stateMachine.sourceFull();
