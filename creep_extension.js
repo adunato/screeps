@@ -258,7 +258,8 @@ Creep.prototype.setNextWaypoint = function () {
                     console.log(this.memory.role + " setting " + this.previousWaypoint() + " as next waypoint")
                 this.memory.current_waypoint = this.previousWaypoint();
             } else {
-                console.log("No backward or forward waypoints from " + this.memory.current_waypoint + " for creep " + this.name + " " + this.memory.role)
+                if(WAYPOINT_LOG)
+                    console.log("No backward or forward waypoints from " + this.memory.current_waypoint + " for creep " + this.name + " " + this.memory.role)
             }
         }
     } else {
