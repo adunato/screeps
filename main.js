@@ -98,10 +98,8 @@ function manageDefense() {
             } else if (tower.energy > tower.energyCapacity / 2) {
                 var closestDamagedRampart = cache.findRepairRamparts(room);
                 if (closestDamagedRampart.length > 0) {
-                    console.log("closestDamagedRampart");
                     tower.repair(closestDamagedRampart[0]);
                 } else if (cache.findRepairWalls(room).length > 0){
-                    console.log("closestDamagedWall");
                     var closestDamagedWall = cache.findRepairWalls(room);
                     if (closestDamagedWall.length > 0) {
                         tower.repair(closestDamagedWall[0]);
