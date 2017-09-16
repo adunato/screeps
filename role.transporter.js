@@ -10,7 +10,7 @@ var carrierFSM = new statemachine.StateMachine.factory({
             from: ['rest', 'withdraw_source', 'drop_destination', 'drop_storage'],
             to: 'withdraw_source'
         },
-        {name: 'goToRoom', from: ['*'], to: 'go_home'},
+        {name: 'goToRoom', from: ['*'], to: 'rest'},
         {name: 'creepFull', from: ['go_home','rest', 'withdraw_source', 'drop_destination'], to: 'drop_destination'},
         {name: 'containersFull', from: ['go_home','drop_destination', 'rest', 'drop_storage'], to: 'drop_storage'},
         {name: 'nothingToDo', from: ['go_home','rest', 'withdraw_source', 'drop_destination', 'drop_storage'], to: 'rest'},
@@ -32,7 +32,7 @@ var carrierFSM = new statemachine.StateMachine.factory({
             var creep = Game.creeps[this.creepName];
             creep.withdrawEnergyFromSourceContainer(MIN_SOURCE_CONTAINER_QUANTITY_PC);
         },
-        onGoHome: function () {
+        onRest: function () {
             var creep = Game.creeps[this.creepName];
             creep.rest();
         },
@@ -78,7 +78,7 @@ var roleCarrier = {
         if (creep.timeToDie() && creepCarryEnergy === 0 && stateMachine.can("timeToDie")) {
             stateMachine.timeToDie();
         }
-        if (!creep.isInSquadRoom()){
+        if (!creep.isInSquadRoom() && creepCarryEnergy === 0){
             stateMachine.goToRoom();
         }
         if (sourceContainers > 0 && stateMachine.can("sourceFull")) {
