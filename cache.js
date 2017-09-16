@@ -302,7 +302,7 @@ var cache = {
                 filter: (structure) => {
                     return (structure.structureType == STRUCTURE_EXTENSION ||
                         structure.structureType == STRUCTURE_SPAWN
-                        || (includeTowers && structure.structureType == STRUCTURE_TOWER && structure.energy < structure.energyCapacity / 1.1));
+                        || (includeTowers && structure.structureType == STRUCTURE_TOWER && structure.energy < structure.energyCapacity));
                 }
             });
             this.rooms.energyFedStructures[room] = energyFedStructures;
