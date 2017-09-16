@@ -42,7 +42,7 @@ var defines = {
                     // [MOVE, MOVE, MOVE,MOVE, WORK, WORK, CARRY, CARRY],
                     // [MOVE, MOVE,MOVE, WORK, CARRY, CARRY],
                     // [MOVE, MOVE, WORK, CARRY]
-                    [MOVE,MOVE,MOVE,WORK,WORK,WORK,WORK,WORK]
+                    [MOVE,MOVE,WORK,WORK,WORK,WORK,WORK]
                 ],
             "reserver":
                 [
