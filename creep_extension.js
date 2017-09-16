@@ -450,6 +450,7 @@ Creep.prototype.multiFunction = function () {
                 return structure.hits < structure.hitsMax;
             }
         });
+        console.log(repairs.length);
         if (repairs.length > 0) {
             this.repairConstruction(100);
             return;
