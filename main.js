@@ -362,6 +362,7 @@ module.exports.loop = function () {
     logSpawing();
     logCPU('logSpawing ');
     // manageDefense();
+    console.log("rooms.length:" + rooms.length)
     logCPU( 'manageDefense ');
     executeCreepBehaviour();
     logCPU('executeCreepBehaviour ');
