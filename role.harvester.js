@@ -1,6 +1,6 @@
 var statemachine = require('state-machine');
 var cache = require('cache');
-const MULTI_FUNCTION = true;
+const MULTI_FUNCTION = false;
 var harvesterFSM = new statemachine.StateMachine.factory({
     init: 'none',
     transitions: [
