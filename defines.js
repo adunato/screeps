@@ -199,8 +199,8 @@ var defines = {
         global.allowedToSpawnWithdraw = false;
         global.sourceContainers = {
             "E59N3": [
-                '59bcf2e30c847c1a83980262',
-                '59bcf1e54bf950778a52e344',
+                '59bcf2e30c847c1a83980262',//bottom source
+                //'59bcf1e54bf950778a52e344',//top source
             ]
         };
         global.destinationContainers = {
