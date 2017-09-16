@@ -87,11 +87,9 @@ function spawn(roleName, squad) {
 }
 
 function manageDefense() {
-    console.log("rooms.length:" + rooms.length)
     for (var i = 0; i < rooms.length; i++) {
         var room = rooms[i];
         var towers = cache.findTowers(room);
-        console.log("towers.length:" + towers.length)
         for (var n = 0; n < towers.length; n++) {
             var tower = towers[n];
             if (room.find(FIND_HOSTILE_CREEPS).length > 0) {
@@ -366,7 +364,7 @@ module.exports.loop = function () {
     executeCreepBehaviour();
     logCPU('executeCreepBehaviour ');
     trackTickChanges();
-    // logCPU('trackTickChanges ');
+    logCPU('trackTickChanges ');
     screepsplus.collect_stats();
     logCPU('collect_stats ');
     logTotalCPU();
