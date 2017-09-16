@@ -444,6 +444,17 @@ Creep.prototype.multiFunction = function () {
         return;
     }
     else {
+
+        for(var constructionName in Game.constructionSites){
+            var constructionSite = Game.constructionSites[constructionName];
+            if(constructionSite.structureType === STRUCTURE_SPAWN){
+                if (this.build(constructionSite) == ERR_NOT_IN_RANGE) {
+                    this.moveTo(constructionSite, {visualizePathStyle: {stroke: '#14ff00'}});
+                }
+                return;
+            }
+        }
+
         var spawns = cache.findSpawnsWithEnergy(this.room);
         if (spawns.length > 0) {
             var spawn = spawns[0];
