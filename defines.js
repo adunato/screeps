@@ -151,7 +151,7 @@ var defines = {
             "FE": new squadprofile.SquadAttributes([["feeder", 1]], false, function () {
                 return true;
             }),
-            "HA": new squadprofile.SquadAttributes([["harvester", 4]], false, function (roomName) {
+            "HA": new squadprofile.SquadAttributes([["harvester", 3]], false, function (roomName) {
                 return true
             }),
             "CO": new squadprofile.SquadAttributes([["collector", 1]], false, function (roomName) {
