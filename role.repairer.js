@@ -24,7 +24,6 @@ var repairrFSM = new statemachine.StateMachine.factory({
     methods: {
         onWithdraw: function () {
             var creep = Game.creeps[this.creepName];
-            console.log("onWithdraw")
             creep.withdrawEnergy();
         },
         onMove: function () {
