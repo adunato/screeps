@@ -24,7 +24,6 @@ var carrierFSM = new statemachine.StateMachine.factory({
     methods: {
         onWithdraw: function () {
             var creep = Game.creeps[this.creepName];
-            console.log("onWithdraw")
             creep.withdrawEnergyExCarriers();
         },
         onEnergyFull: function () {
