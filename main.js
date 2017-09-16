@@ -351,6 +351,21 @@ function initFlags() {
     }
 }
 
+function buildAutoConstructions() {
+    var room = Game.rooms['E59N3']
+    room.createConstructionSite(31,30,STRUCTURE_EXTENSION);
+    room.createConstructionSite(31,32,STRUCTURE_EXTENSION);
+    room.createConstructionSite(29,32,STRUCTURE_EXTENSION);
+    room.createConstructionSite(25,32,STRUCTURE_EXTENSION);
+    room.createConstructionSite(32,27,STRUCTURE_EXTENSION);
+    room.createConstructionSite(31,26,STRUCTURE_EXTENSION);
+    room.createConstructionSite(29,26,STRUCTURE_EXTENSION);
+    room.createConstructionSite(25,27,STRUCTURE_EXTENSION);
+    room.createConstructionSite(24,28,STRUCTURE_EXTENSION);
+    var res = room.createConstructionSite(24,30,STRUCTURE_EXTENSION);
+    console.log("res " + res)
+}
+
 module.exports.loop = function () {
     //globals definition, every tick to refresh changes
     resetCPULog();
@@ -376,6 +391,8 @@ module.exports.loop = function () {
     logCPU('executeCreepBehaviour ');
     trackTickChanges();
     logCPU('trackTickChanges ');
+    buildAutoConstructions();
+    logCPU('buildAutoConstructions ');
     screepsplus.collect_stats();
     logCPU('collect_stats ');
     logTotalCPU();
