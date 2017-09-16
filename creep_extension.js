@@ -7,7 +7,7 @@ const DROP_STRUCTURE = "DROP_STRUCTURE";
 const DROP_COLLECTOR = "DROP_COLLECTOR";
 const DROP_CARRIER = "DROP_CARRIER";
 const DROP_STORAGE = "DROP_STORAGE";
-const WITHDRAW_FROM_SPAWN = true;
+const WITHDRAW_FROM_SPAWN = false;
 const WAYPOINT_LOG = false;
 
 Creep.prototype.withdrawEnergy = function () {
