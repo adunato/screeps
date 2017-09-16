@@ -453,15 +453,15 @@ Creep.prototype.multiFunction = function () {
                 return;
             }
         }
-        for(var constructionName in Game.constructionSites){
-            var constructionSite = Game.constructionSites[constructionName];
-            if(constructionSite.structureType === STRUCTURE_SPAWN){
-                if (this.build(constructionSite) == ERR_NOT_IN_RANGE) {
-                    this.moveTo(constructionSite, {visualizePathStyle: {stroke: '#14ff00'}});
-                }
-                return;
-            }
-        }
+        // for(var constructionName in Game.constructionSites){
+        //     var constructionSite = Game.constructionSites[constructionName];
+        //     if(constructionSite.structureType === STRUCTURE_SPAWN){
+        //         if (this.build(constructionSite) == ERR_NOT_IN_RANGE) {
+        //             this.moveTo(constructionSite, {visualizePathStyle: {stroke: '#14ff00'}});
+        //         }
+        //         return;
+        //     }
+        // }
         var extensions = this.room.find(FIND_MY_STRUCTURES, {
             filter: (structure) => {
                 return structure.structureType == STRUCTURE_EXTENSION && structure.energy < structure.energyCapacity;
