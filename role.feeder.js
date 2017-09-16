@@ -65,14 +65,12 @@ var roleFeeder = {
             stateMachine.energyFull();
         }
         if (cache.findContainersWithEnergy(creep.room).length === 0 && stateMachine.can("containersEmpty")) {
-            console.log("findContainersWithEnergy")
             stateMachine.containersEmpty();
         }
         if (Game.flags[creep.memory.squad] === null && stateMachine.can("noFeederFlags")) {
             stateMachine.noFeederFlags();
         }
         if (cache.findEnergyFedStructures(creep.room,true).length === 0 && stateMachine.can("energyFedStructuresFull")) {
-            console.log("findEnergyFedStructures")
             stateMachine.energyFedStructuresFull();
         }
         if (creep.timeToDie() && creep.carry.energy === 0 && stateMachine.can("timeToDie")) {

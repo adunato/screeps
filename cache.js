@@ -115,7 +115,7 @@ var cache = {
     },
     findEmptyDestinationContainers: function (containersGroup, maxQuantityPc) {
         var containers = [];
-        if(!global.destinationContainers[containersGroup])
+        if (!global.destinationContainers[containersGroup])
             return containers;
         for (var i = 0; i < global.destinationContainers[containersGroup].length; i++) {
             var container = Game.getObjectById(global.destinationContainers[containersGroup][i])
@@ -295,18 +295,13 @@ var cache = {
     findEnergyFedStructures: function (room, includeTowers) {
         var energyFedStructures = {};
 
-        if (this.rooms.energyFedStructures[room] && this.rooms.energyFedStructures[room].length > 0) {
-            energyFedStructures = this.rooms.energyFedStructures[room];
-        } else {
-            energyFedStructures = room.find(FIND_STRUCTURES, {
-                filter: (structure) => {
-                    return (structure.structureType == STRUCTURE_EXTENSION ||
-                        structure.structureType == STRUCTURE_SPAWN
-                        || (includeTowers && structure.structureType == STRUCTURE_TOWER && structure.energy < structure.energyCapacity));
-                }
-            });
-            this.rooms.energyFedStructures[room] = energyFedStructures;
-        }
+        energyFedStructures = room.find(FIND_STRUCTURES, {
+            filter: (structure) => {
+                return (structure.structureType == STRUCTURE_EXTENSION ||
+                    structure.structureType == STRUCTURE_SPAWN
+                    || (includeTowers && structure.structureType == STRUCTURE_TOWER && structure.energy < structure.energyCapacity));
+            }
+        });
         var ret = [];
         for (var i in energyFedStructures) {
             var structure = energyFedStructures[i];
