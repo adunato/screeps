@@ -26,22 +26,11 @@ var carrierFSM = new statemachine.StateMachine.factory({
             var creep = Game.creeps[this.creepName];
             creep.withdrawEnergyExCarriers();
         },
-        onEnergyFull: function () {
+        onCarry: function () {
             var creep = Game.creeps[this.creepName];
             creep.carrier();
         },
-        onNoCarrierFlags: function () {
-            var creep = Game.creeps[this.creepName];
-            creep.rest();
-        },
-        onContainersEmpty: function () {
-            var creep = Game.creeps[this.creepName];
-            if(global.allowedToSpawnWithdraw)
-                creep.withdrawEnergyFromSpawn();
-            else
-                creep.rest();
-        },
-        onSpawnEmpty: function () {
+        onRest: function () {
             var creep = Game.creeps[this.creepName];
             creep.rest();
         },
