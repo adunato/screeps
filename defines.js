@@ -215,6 +215,7 @@ var defines = {
         global.destinationContainers = {
             "E59N3": [
                 '59bd0490359d4b354e549af3',//central
+                '59bd193628481431e871a376', //RC
             ],
             "E58N3": [
                 '59bd0f8e0b35295a9a690686',//RC
