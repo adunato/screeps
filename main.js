@@ -11,7 +11,7 @@ var printStats = false;
 var printCPU = false;
 var rooms = [];
 var spawnSlots = {};
-var disabledSpawns = ['Spawn2'];
+var disabledSpawns = [];
 
 function clearMemory() {
     for (var i in Memory.creeps) {
