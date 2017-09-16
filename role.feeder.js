@@ -72,6 +72,7 @@ var roleFeeder = {
             stateMachine.noFeederFlags();
         }
         if (cache.findEnergyFedStructures(creep.room,true).length === 0 && stateMachine.can("energyFedStructuresFull")) {
+            console.log("findEnergyFedStructures")
             stateMachine.energyFedStructuresFull();
         }
         if (creep.timeToDie() && creep.carry.energy === 0 && stateMachine.can("timeToDie")) {
