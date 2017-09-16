@@ -362,8 +362,7 @@ function buildAutoConstructions() {
     room.createConstructionSite(29,26,STRUCTURE_EXTENSION);
     room.createConstructionSite(25,27,STRUCTURE_EXTENSION);
     room.createConstructionSite(24,28,STRUCTURE_EXTENSION);
-    var res = room.createConstructionSite(24,30,STRUCTURE_EXTENSION);
-    console.log("res " + res)
+    room.createConstructionSite(24,30,STRUCTURE_EXTENSION);
 }
 
 module.exports.loop = function () {
