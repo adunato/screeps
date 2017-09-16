@@ -299,7 +299,7 @@ var cache = {
             filter: (structure) => {
                 return (structure.structureType == STRUCTURE_EXTENSION ||
                     structure.structureType == STRUCTURE_SPAWN
-                    || (includeTowers && structure.structureType == STRUCTURE_TOWER && structure.energy < structure.energyCapacity));
+                    || (includeTowers && structure.structureType == STRUCTURE_TOWER && structure.energy < structure.energyCapacity * 0.9));
             }
         });
         var ret = [];
