@@ -31,7 +31,7 @@ var builderFSM = new statemachine.StateMachine.factory({
             if(cache.getStoredEnergy(creep.room) > 0)
                 creep.withdrawEnergy();
             else
-                creep.rest();
+                creep.goHome();
         },
         onEnergyEmpty: function () {
             var creep = Game.creeps[this.creepName];
