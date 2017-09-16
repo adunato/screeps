@@ -162,8 +162,9 @@ var defines = {
             "CO": new squadprofile.SquadAttributes([["collector", 1]], false, function (roomName) {
                 return true
             }),
-            "BU": new squadprofile.SquadAttributes([["builder", 1]], false, function (roomName) {
-                return true
+            "BU": new squadprofile.SquadAttributes([["builder", 1]], false, function (flagName) {
+                var room = Game.flags[flagName].room;
+                return room.find(FIND_CONSTRUCTION_SITES).length > 0;
             }),
             "UP": new squadprofile.SquadAttributes([["upgrader", 1]], false, function (roomName) {
                 return true

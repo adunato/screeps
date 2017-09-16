@@ -363,6 +363,17 @@ function buildAutoConstructions() {
     room.createConstructionSite(25,27,STRUCTURE_EXTENSION);
     room.createConstructionSite(24,28,STRUCTURE_EXTENSION);
     room.createConstructionSite(24,30,STRUCTURE_EXTENSION);
+    var room2 = Game.rooms['E58N3']
+    room2.createConstructionSite(12,26,STRUCTURE_EXTENSION);
+    room2.createConstructionSite(14,26,STRUCTURE_EXTENSION);
+    room2.createConstructionSite(16,26,STRUCTURE_EXTENSION);
+    room2.createConstructionSite(16,24,STRUCTURE_EXTENSION);
+    room2.createConstructionSite(16,22,STRUCTURE_EXTENSION);
+    room2.createConstructionSite(16,20,STRUCTURE_EXTENSION);
+    room2.createConstructionSite(14,20,STRUCTURE_EXTENSION);
+    room2.createConstructionSite(12,20,STRUCTURE_EXTENSION);
+    room2.createConstructionSite(11,21,STRUCTURE_EXTENSION);
+    room2.createConstructionSite(10,23,STRUCTURE_EXTENSION);
 }
 
 module.exports.loop = function () {
