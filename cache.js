@@ -94,15 +94,24 @@ var cache = {
         }
         return storage;
     },
-    findSourceContainersWithEnergy: function (room, minQuantityPc) {
-        var containers = this.findContainersWithEnergy(room);
-        var sources = [];
-        for (var i = 0; i < containers.length; i++) {
-            if (this.isContainerSource(room.name, containers[i]) && containers[i].store.energy > containers[i].storeCapacity / 100 * minQuantityPc) {
-                sources.push(containers[i]);
-            }
+    // findSourceContainersWithEnergy: function (room, minQuantityPc) {
+    //     var containers = this.findContainersWithEnergy(room);
+    //     var sources = [];
+    //     for (var i = 0; i < containers.length; i++) {
+    //         if (this.isContainerSource(room.name, containers[i]) && containers[i].store.energy > containers[i].storeCapacity / 100 * minQuantityPc) {
+    //             sources.push(containers[i]);
+    //         }
+    //     }
+    //     return sources;
+    // },
+    findSourceContainersWithEnergy: function (containersGroup, minQuantityPc) {
+        var containers = [];
+        for (var i = 0; i < global.sourceContainers[containersGroup].length; i++) {
+            var container = Game.getObjectById(global.sourceContainers[containersGroup][i])
+            if (container && _.sum(container.store) > (container.storeCapacity / 100 * minQuantityPc))
+                containers.push(container);
         }
-        return sources;
+        return containers;
     },
     findEmptyDestinationContainers: function (containersGroup, maxQuantityPc) {
         var containers = [];
