@@ -98,16 +98,18 @@ function manageDefense() {
             } else if (tower.energy > tower.energyCapacity / 2) {
                 var closestDamagedRampart = cache.findRepairRamparts(room);
                 if (closestDamagedRampart.length > 0) {
+                    console.log("closestDamagedRampart");
                     tower.repair(closestDamagedRampart[0]);
                 } else if (cache.findRepairWalls(room).length > 0){
+                    console.log("closestDamagedWall");
                     var closestDamagedWall = cache.findRepairWalls(room);
                     if (closestDamagedWall.length > 0) {
                         tower.repair(closestDamagedWall[0]);
                     }
                 } else {
-                    console.log("repairStructures");
                     var repairStructures = cache.findRepairStructures(room);
                     if (repairStructures.length > 0) {
+                        console.log("repairStructures: " + repairStructures[0]);
                         tower.repair(repairStructures[0]);
                     }
                 }
