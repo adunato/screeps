@@ -219,6 +219,7 @@ var defines = {
             ],
             "E58N3": [
                 '59bd0f8e0b35295a9a690686',//RC
+                '59bd135153c8315a8c9d9acd',//central
             ],
             "E59N4": [
                 '59bcf1e54bf950778a52e344',//top source in E59N3
