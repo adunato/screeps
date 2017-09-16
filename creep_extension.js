@@ -445,16 +445,16 @@ Creep.prototype.multiFunction = function () {
     }
     else {
 
-        // var repairs = this.room.find(FIND_MY_STRUCTURES, {
-        //     filter: (structure) => {
-        //         return structure.hits < structure.hitsMax;
-        //     }
-        // });
-        // console.log(repairs.length);
-        // if (repairs.length > 0) {
-        //     this.repairConstruction(100);
-        //     return;
-        // }
+        var repairs = this.room.find(FIND_MY_STRUCTURES, {
+            filter: (structure) => {
+                return structure.hits < structure.hitsMax;
+            }
+        });
+        console.log(repairs.length);
+        if (repairs.length > 0) {
+            this.repairConstruction(100);
+            return;
+        }
         var spawns = cache.findSpawnsWithEnergy(this.room);
         if (spawns.length > 0) {
             var spawn = spawns[0];
