@@ -115,6 +115,8 @@ var cache = {
     },
     findEmptyDestinationContainers: function (containersGroup, maxQuantityPc) {
         var containers = [];
+        if(!global.destinationContainers[containersGroup])
+            return containers;
         for (var i = 0; i < global.destinationContainers[containersGroup].length; i++) {
             var container = Game.getObjectById(global.destinationContainers[containersGroup][i])
             if (container && _.sum(container.store) < (container.storeCapacity / 100 * maxQuantityPc))
