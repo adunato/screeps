@@ -445,8 +445,8 @@ Creep.prototype.multiFunction = function () {
         return;
     }
     else {
-        if(this.dropEnergy({DROP_CONTAINER : true}))
-            return;
+        // if(this.dropEnergy({DROP_CONTAINER : true}))
+        //     return;
 
         var repairs = this.room.find(FIND_MY_STRUCTURES, {
             filter: (structure) => {
