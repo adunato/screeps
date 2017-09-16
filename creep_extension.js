@@ -69,10 +69,11 @@ Creep.prototype.dropToDestinations = function (destinations, sortByDistance) {
         else
             structure = destinations[0];
         if (!structure)
-            return;
+            return false;
         if (this.transfer(structure, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
             this.moveTo(structure, {visualizePathStyle: {stroke: '#0027ff'}});
         }
+        return true;
     }
 };
 
@@ -444,6 +445,8 @@ Creep.prototype.multiFunction = function () {
         return;
     }
     else {
+        if(creep.dropEnergy({DROP_CONTAINER : true}))
+            return;
 
         var repairs = this.room.find(FIND_MY_STRUCTURES, {
             filter: (structure) => {
