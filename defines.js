@@ -101,8 +101,8 @@ var defines = {
                 [MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY],
                 [MOVE, MOVE, MOVE, MOVE, MOVE, CARRY, CARRY, CARRY, CARRY, CARRY],
                 [MOVE, MOVE, MOVE, MOVE, CARRY, CARRY, CARRY, CARRY],
-                [MOVE, MOVE, MOVE, CARRY, CARRY, CARRY],
-                [MOVE, CARRY]
+                // [MOVE, MOVE, MOVE, CARRY, CARRY, CARRY],
+                // [MOVE, CARRY]
             ],
             "tower_feeder": [
                 [MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY],
