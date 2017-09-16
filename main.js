@@ -105,6 +105,7 @@ function manageDefense() {
                         tower.repair(closestDamagedWall[0]);
                     }
                 } else {
+                    console.log("repairStructures");
                     var repairStructures = cache.findRepairStructures(room);
                     if (repairStructures.length > 0) {
                         tower.repair(repairStructures[0]);
