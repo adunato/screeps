@@ -3,6 +3,7 @@ const DROP_STRUCTURE = "DROP_STRUCTURE";
 const DROP_COLLECTOR = "DROP_COLLECTOR";
 const DROP_CARRIER = "DROP_CARRIER";
 const DROP_STORAGE = "DROP_STORAGE";
+const MIN_ENERGY_CONTAINER_STORAGE = 100;
 var MAX_WALL_LVL = 50000;
 var cacheAge = 0;
 var CACHE_AGE_LIMIT = 0;
@@ -58,7 +59,7 @@ var cache = {
         } else {
             containers = room.find(FIND_STRUCTURES, {
                 filter: (container) => {
-                    return (container.structureType == STRUCTURE_CONTAINER || container.structureType == STRUCTURE_STORAGE) && container.store.energy > 0;
+                    return (container.structureType == STRUCTURE_CONTAINER || container.structureType == STRUCTURE_STORAGE) && container.store.energy > MIN_ENERGY_CONTAINER_STORAGE;
                 }
             });
             this.rooms.containersWithEnergy[room] = containers;
