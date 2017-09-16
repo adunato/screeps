@@ -109,7 +109,6 @@ function manageDefense() {
                 } else {
                     var repairStructures = cache.findRepairStructures(room,100);
                     if (repairStructures.length > 0) {
-                        console.log("repairStructures: " + repairStructures[0]);
                         tower.repair(repairStructures[0]);
                     }
                 }
