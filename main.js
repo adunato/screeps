@@ -87,10 +87,13 @@ function spawn(roleName, squad) {
 }
 
 function manageDefense() {
+    console.log("rooms.length:" + rooms.length)
     for (var i = 0; i < rooms.length; i++) {
         var room = rooms[i];
-        for (var i = 0; i < cache.findTowers(room).length; i++) {
-            var tower = cache.findTowers(room)[i];
+        var towers = cache.findTowers(room);
+        console.log("towers.length:" + towers.length)
+        for (var i = 0; i < towers.length; i++) {
+            var tower = towers[i];
             if (room.find(FIND_HOSTILE_CREEPS).length > 0) {
                 tower.attack(tower.pos.findClosestByRange(room.find(FIND_HOSTILE_CREEPS)));
             } else if (tower.energy > tower.energyCapacity / 2) {
@@ -358,8 +361,8 @@ module.exports.loop = function () {
     logCPU('assignCreepsToSquads ');
     logSpawing();
     logCPU('logSpawing ');
-    // manageDefense();
-    // logCPU( 'manageDefense ');
+    manageDefense();
+    logCPU( 'manageDefense ');
     executeCreepBehaviour();
     logCPU('executeCreepBehaviour ');
     // trackTickChanges();
