@@ -111,7 +111,7 @@ function manageDefense() {
     for (var i = 0; i < rooms.length; i++) {
         var room = rooms[i];
         if(room.find(FIND_HOSTILE_CREEPS).length > 0){
-            //room.controller.activateSafeMode();
+            room.controller.activateSafeMode();
             console.log("room " + room.name + " found enemies");
         }
     }
