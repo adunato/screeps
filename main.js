@@ -272,8 +272,8 @@ function trackTickChanges() {
     for (var i = 0; i < rooms.length; i++) {
         var room = rooms[i];
         var towers = cache.findTowers(room);
-        for (var i = 0; i < towers.length; i++) {
-            var tower = towers[i];
+        for (var n = 0; n < towers.length; n++) {
+            var tower = towers[n];
             let delta = 0
             if (Memory.lastTick.rooms[room.name].towers[tower.id]) {
                 delta = Memory.lastTick.rooms[room.name].towers[tower.id].energy - tower.energy;
@@ -365,7 +365,7 @@ module.exports.loop = function () {
     logCPU( 'manageDefense ');
     executeCreepBehaviour();
     logCPU('executeCreepBehaviour ');
-    // trackTickChanges();
+    trackTickChanges();
     // logCPU('trackTickChanges ');
     screepsplus.collect_stats();
     logCPU('collect_stats ');
