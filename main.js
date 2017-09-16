@@ -362,8 +362,8 @@ module.exports.loop = function () {
     // logCPU( 'manageDefense ');
     executeCreepBehaviour();
     logCPU('executeCreepBehaviour ');
-    trackTickChanges();
-    logCPU('trackTickChanges ');
+    // trackTickChanges();
+    // logCPU('trackTickChanges ');
     screepsplus.collect_stats();
     logCPU('collect_stats ');
     logTotalCPU();
