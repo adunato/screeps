@@ -5,10 +5,10 @@ var repairrFSM = new statemachine.StateMachine.factory({
     init: 'none',
     transitions: [
         {name: 'energyEmpty', from: '*', to: 'withdraw'},
-        {name: 'energyFull', from: ['withdraw','waypoint', 'rest'], to: 'move'},
+        {name: 'energyFull', from: ['withdraw','waypoint', 'rest'], to: 'repair'},
         {name: 'containersEmpty', from: ['withdraw', 'rest'], to: 'rest'},
         {name: 'noStructuresFound', from: ['repair'], to: 'waypoint'},
-        {name: 'atWaypoint', from: ['move', 'repair'], to: 'repair'},
+        {name: 'atWaypoint', from: ['move', 'repair'], to: 'move'},
         {
             name: 'goto', from: '*', to: function (s) {
             return s
