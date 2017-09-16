@@ -65,7 +65,7 @@ Squad.prototype.getSpawn = function () {
 };
 
 Squad.prototype.getSquadRoomName = function () {
-    return Game.flags[this.flagName].pos.roomName;
+    return Game.flags[this.flagName] ? Game.flags[this.flagName].pos.roomName : null;
 };
 
 Squad.prototype.getFlagName = function () {
