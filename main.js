@@ -361,7 +361,7 @@ module.exports.loop = function () {
     logCPU('assignCreepsToSquads ');
     logSpawing();
     logCPU('logSpawing ');
-    manageDefense();
+    // manageDefense();
     logCPU( 'manageDefense ');
     executeCreepBehaviour();
     logCPU('executeCreepBehaviour ');
