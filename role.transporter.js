@@ -34,7 +34,7 @@ var carrierFSM = new statemachine.StateMachine.factory({
         },
         onGoHome: function () {
             var creep = Game.creeps[this.creepName];
-            creep.goHome();
+            creep.rest();
         },
         onDropDestination: function () {
             var creep = Game.creeps[this.creepName];
