@@ -164,7 +164,7 @@ var defines = {
             "UP": new squadprofile.SquadAttributes([["upgrader", 1]], false, function (roomName) {
                 return true
             }),
-            "RE": new squadprofile.SquadAttributes([["repairer", 2]], true, function (roomName) {
+            "RE": new squadprofile.SquadAttributes([["repairer", 1]], true, function (roomName) {
                 return true
             }),
             "REXS": new squadprofile.SquadAttributes([["repairer", 1]], true, function (roomName) {
