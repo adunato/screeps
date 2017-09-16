@@ -80,6 +80,7 @@ var roleCarrier = {
         }
         if (!creep.isInSquadRoom() && creepCarryEnergy === 0){
             stateMachine.goToRoom();
+            return;
         }
         if (sourceContainers > 0 && stateMachine.can("sourceFull")) {
             stateMachine.sourceFull();
