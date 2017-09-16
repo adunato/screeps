@@ -25,6 +25,7 @@ function clearMemory() {
     for (var i in Memory.flags) {
         if (!Game.flags[i]) {
             console.log('clearMemory: ' + i);
+            global.squadsIndex = {};
             delete Memory.flags[i];
         }
     }
