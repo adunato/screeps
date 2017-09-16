@@ -65,6 +65,7 @@ var roleFeeder = {
             stateMachine.energyFull();
         }
         if (cache.findContainersWithEnergy(creep.room).length === 0 && stateMachine.can("containersEmpty")) {
+            console.log("findContainersWithEnergy")
             stateMachine.containersEmpty();
         }
         if (Game.flags[creep.memory.squad] === null && stateMachine.can("noFeederFlags")) {
