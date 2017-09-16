@@ -74,6 +74,7 @@ var rolerepairr = {
             stateMachine.atWaypoint();
         }
         if (cache.findRepairStructures(creep.room,MIN_REPAIR_LVL_PC).length === 0 && stateMachine.can("noStructuresFound")) {
+            console.log("repairer " + creep.name + " no structures found to repair")
             creep.memory.repairConstructionId = null;
             stateMachine.noStructuresFound();
         }
