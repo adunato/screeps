@@ -359,16 +359,21 @@ Creep.prototype.attackFlagPosition = function () {
     var flag = this.getSquad().getFlag();
     if (flag) {
         const look = this.room.lookAt(flag);
+        var target = null;
         look.forEach(function (lookObject) {
             console.log(lookObject)
             if (lookObject.type == LOOK_STRUCTURES) {
-                var res = this.attack(lookObject);
-                console.log("res: " + res)
-                if (res === ERR_NOT_IN_RANGE) {
-                    this.moveTo(flag, {visualizePathStyle: {stroke: '#ff000b'}});
-                }
+                target = lookObject;
             }
         });
+        if(target) {
+            var res = this.attack(target);
+            console.log("res: " + res)
+            if (res === ERR_NOT_IN_RANGE) {
+                this.moveTo(flag, {visualizePathStyle: {stroke: '#ff000b'}});
+            }
+        }
+
     }
 };
 
