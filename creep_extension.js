@@ -361,7 +361,7 @@ Creep.prototype.attackFlagPosition = function () {
         const look = this.room.lookAt(flag);
         look.forEach(function (lookObject) {
             if (lookObject.type == LOOK_STRUCTURES) {
-                var res = this.attack(flag);
+                var res = this.attack(lookObject);
                 console.log("res: " + res)
                 if (res === ERR_NOT_IN_RANGE) {
                     this.moveTo(flag, {visualizePathStyle: {stroke: '#ff000b'}});
