@@ -1,5 +1,5 @@
 var statemachine = require('state-machine');
-const CREEP_DAMAGE_LIMIT = 90;
+const CREEP_DAMAGE_LIMIT = 190;
 var breacherFSM = new statemachine.StateMachine.factory({
     init: 'none',
     transitions: [
