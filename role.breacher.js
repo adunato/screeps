@@ -4,7 +4,7 @@ var breacherFSM = new statemachine.StateMachine.factory({
     init: 'none',
     transitions: [
         {name: 'structure', from: ['attack', 'move'], to: 'attack'},
-        {name: 'nostructure', from: ['move', 'attack'], to: 'move'},
+        {name: 'noStructure', from: ['move', 'attack'], to: 'move'},
         {name: 'damaged', from: ['attack', 'move', 'gohome'], to: 'gohome'},
         {
             name: 'goto', from: '*', to: function (s) {
