@@ -598,6 +598,7 @@ Creep.prototype.findInjuredTeamMates = function () {
         var creeps = this.getSquad().creeps;
         for(var i =0 ; i < creeps.length; i++){
             var creep = creeps[i];
+            creep = Game.creeps[creep.name];
             if(creep.hits < creep.hitsMax) {
                 injuredCreps.push(creep);
             }
