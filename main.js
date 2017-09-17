@@ -93,7 +93,7 @@ function manageDefense() {
         var towers = cache.findTowers(room);
         for (var n = 0; n < towers.length; n++) {
             var tower = towers[n];
-            var injuredCreeps = room.find(FIND_MY_CREEPS);
+            var injuredCreeps = room.find(FIND_CREEPS);
 
             for(var i =0; i< injuredCreeps.length; i++){
                 var creep = injuredCreeps[i];
