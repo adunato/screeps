@@ -4,7 +4,7 @@ var breacherFSM = new statemachine.StateMachine.factory({
     init: 'none',
     transitions: [
         {name: 'structure', from: ['attack', 'move', 'gohome'], to: 'attack'},
-        {name: 'noStructure', from: ['move', 'attack','gohome'], to: 'move'},
+        {name: 'noStructure', from: ['move', 'attack', 'gohome'], to: 'move'},
         {name: 'damaged', from: ['attack', 'move', 'gohome'], to: 'gohome'},
         {
             name: 'goto', from: '*', to: function (s) {
@@ -42,35 +42,38 @@ var breacherFSM = new statemachine.StateMachine.factory({
 
 
 var rolebreacher = {
-    /** @param {Creep} creep **/
-    run: function (creep) {
-        var creepState = creep.memory.state;
-        if(!creepState){
-            creepState = 'move'
-        }
-        var stateMachine = new breacherFSM(creep.name, creepState);
-        stateMachine.goto(creepState);
+        /** @param {Creep} creep **/
+        run: function (creep) {
+            var creepState = creep.memory.state;
+            if (!creepState) {
+                creepState = 'move'
+            }
+            var stateMachine = new breacherFSM(creep.name, creepState);
+            stateMachine.goto(creepState);
 
-        if(creep.hits < CREEP_DAMAGE_LIMIT){
-            stateMachine.damaged();
-            creep.memory.state = stateMachine.state;
-            return;
-        }
+            if (creep.hits < CREEP_DAMAGE_LIMIT) {
+                stateMachine.damaged();
+                creep.memory.state = stateMachine.state;
+                return;
+            }
 
-        var flag = creep.getSquad().getFlag();
-        if(flag) {
-            const look = creep.room.lookAt(flag);
-            look.forEach(function (lookObject) {
-                if (lookObject.type == LOOK_STRUCTURES && stateMachine.can("structure")) {
-                    stateMachine.structure();
-                    creep.memory.state = stateMachine.state;
-                } else if (stateMachine.can("noStructure")) {
-                    stateMachine.noStructure();
-                    creep.memory.state = stateMachine.state;
+            if (creep.getSquad()) {
+                var flag = creep.getSquad().getFlag();
+                if (flag) {
+                    const look = creep.room.lookAt(flag);
+                    look.forEach(function (lookObject) {
+                        if (lookObject.type == LOOK_STRUCTURES && stateMachine.can("structure")) {
+                            stateMachine.structure();
+                            creep.memory.state = stateMachine.state;
+                        } else if (stateMachine.can("noStructure")) {
+                            stateMachine.noStructure();
+                            creep.memory.state = stateMachine.state;
+                        }
+                    });
                 }
-            });
+            }
         }
     }
-};
+;
 
 module.exports = rolebreacher;
