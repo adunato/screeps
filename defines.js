@@ -233,6 +233,7 @@ var defines = {
             "E59N3": [
                 '59bcf1e54bf950778a52e344',//top source
                 '59bcf2e30c847c1a83980262',//bottom source
+                '59bd0490359d4b354e549af3', //central
             ],
             "E58N3": [
                 '59bd01066a51a26ee9cd9364',//bottom source
