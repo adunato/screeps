@@ -138,6 +138,7 @@ var defines = {
                 // [MOVE,ATTACK],
             ],
             "breacher": [
+                // [TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,ATTACK,ATTACK,ATTACK,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,]
                 [TOUGH,MOVE,MOVE,ATTACK],
             ],
             "assaulter": [
