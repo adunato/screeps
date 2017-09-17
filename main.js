@@ -102,7 +102,6 @@ function manageDefense() {
                 if(creep.hits < creep.hitsMax){
                     console.log("heal: " + creep.name);
                     tower.heal(creep);
-                    return;
                 }
             }
 
