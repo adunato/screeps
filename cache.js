@@ -106,6 +106,8 @@ var cache = {
     // },
     findSourceContainersWithEnergy: function (containersGroup, minQuantityPc) {
         var containers = [];
+        if(!global.sourceContainers[containersGroup])
+            return containers;
         for (var i = 0; i < global.sourceContainers[containersGroup].length; i++) {
             var container = Game.getObjectById(global.sourceContainers[containersGroup][i])
             if (container && _.sum(container.store) > (container.storeCapacity / 100 * minQuantityPc))
