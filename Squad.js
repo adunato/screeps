@@ -30,7 +30,7 @@ Squad.prototype.needCreep = function (creep) {
 
 Squad.prototype.getAssaultSquadLeader = function () {
     for(var creepNum in this.creeps){
-        var creepName = creeps[creepNum].name;
+        var creepName = this.creeps[creepNum].name;
         var creep = Game.creeps[creepName];
         if(creep && creep.memory.role === "assaulter"){
             return creep;
