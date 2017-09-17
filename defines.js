@@ -12,6 +12,7 @@ var roleTransporter = require('role.transporter');
 var rolePatroller = require('role.patroller');
 var roleClaimer = require('role.claimer');
 var roleReserver = require('role.reserver');
+var roleBreacher = require('role.breacher');
 var squadprofile = require('SquadProfile');
 
 
@@ -134,8 +135,10 @@ var defines = {
                 // [MOVE,MOVE,MOVE,MOVE,ATTACK,ATTACK],
                 // [MOVE,ATTACK],
             ],
+            "breacher": [
+                [MOVE,ATTACK],
+            ],
 
-            // "feeder": [MOVE, MOVE, MOVE, MOVE, MOVE,MOVE, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY],
         };
         global.creepRoles = {
             "feeder": roleFeeder,
@@ -152,6 +155,7 @@ var defines = {
             "patroller": rolePatroller,
             "claimer": roleClaimer,
             "reserver": roleReserver,
+            "breacher": roleBreacher,
         };
         global.squadProfiles = {
             "FE": new squadprofile.SquadAttributes([["feeder", 1]], false, function () {
@@ -200,7 +204,10 @@ var defines = {
             }),
             "TOFE": new squadprofile.SquadAttributes([["tower_feeder", 1]], false, function () {
                 return true
-            })
+            }),
+            "BR": new squadprofile.SquadAttributes([["breacher", 1]], false, function () {
+                return true
+            }),
         };
         global.allowedToSpawnWithdraw = false;
         global.sourceContainers = {

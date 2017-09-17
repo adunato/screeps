@@ -353,6 +353,22 @@ Creep.prototype.attackEnemies = function (isStatic) {
     }
 };
 
+Creep.prototype.attackFlagPosition = function () {
+    var target = this.getSquad().getFlag();
+    if (target) {
+        var res = this.attack(target);
+        if (res === ERR_NOT_IN_RANGE && !isStatic) {
+            this.moveTo(target, {visualizePathStyle: {stroke: '#ff000b'}});
+        }
+    }
+};
+
+Creep.prototype.moveToFlag = function () {
+    var flag = this.getSquad().getFlag();
+    if(flag)
+        this.moveTo(flag, {visualizePathStyle: {stroke: '#ff000b'}});
+};
+
 Creep.prototype.carrier = function () {
     var flag = Game.flags[this.memory.squad];
     if (flag != null) {
