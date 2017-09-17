@@ -33,11 +33,6 @@ var repairrFSM = new statemachine.StateMachine.factory({
             var creep = Game.creeps[this.creepName];
             creep.rest();
         },
-        //invoked as event to avoid state being invoked when loaded by the state machine
-        onNoStructuresFound: function () {
-            var creep = Game.creeps[this.creepName];
-            creep.setNextWaypoint();
-        },
         onTransition(lifecycle) {
             // console.log(this.creepName + " transition name: " + lifecycle.transition);
             // console.log(this.creepName + " transition from: " + lifecycle.from);
