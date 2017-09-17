@@ -572,9 +572,9 @@ Creep.prototype.followAssaultSquadLeader = function () {
     }
 };
 
-Creep.prototype.getAssultSquadLeader = function () {
+Creep.prototype.getAssaultSquadLeader = function () {
     if(this.getSquad()) {
-        return this.getSquad().getAssultSquadLeader();
+        return this.getSquad().getAssaultSquadLeader();
     }
 };
 
