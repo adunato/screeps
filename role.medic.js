@@ -59,6 +59,7 @@ var rolemedic = {
             stateMachine.noInjured();
         }
         creep.memory.state = stateMachine.state;
+        console.log("medic state: " + creep.memory.state);
     }
 };
 
