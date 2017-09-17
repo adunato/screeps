@@ -73,7 +73,7 @@ var roleHarvester = {
         if (creep.carry.energy < creep.carryCapacity &&  !creep.memory.selectedSource && !creep.timeToDie() && stateMachine.can("energyEmpty")) {
             stateMachine.energyEmpty();
         }
-        if (creep.carry.energy < creep.carryCapacity && creep.memory.selectedSource && stateMachine.can("sourceSelected")) {
+        if (creep.carry.energy < creep.carryCapacity && creep.memory.selectedSource && !creep.timeToDie() && stateMachine.can("sourceSelected")) {
             stateMachine.sourceSelected();
         }
         if ((creep.carry.energy === creep.carryCapacity || creep.timeToDie()) && stateMachine.can("energyFull")) {
