@@ -146,6 +146,9 @@ var defines = {
             "medic": [
                 [MOVE, HEAL],
             ],
+            "supporter": [
+                [MOVE, ATTACK],
+            ],
 
 
         };
@@ -167,6 +170,7 @@ var defines = {
             "breacher": roleBreacher,
             "assaulter": roleAssaulter,
             "medic": roleMedic,
+            "supporter": rolePatroller,
         };
         global.squadProfiles = {
             "FE": new squadprofile.SquadAttributes([["feeder", 1]], false, function () {
@@ -219,7 +223,7 @@ var defines = {
             "BR": new squadprofile.SquadAttributes([["breacher", 1]], false, function () {
                 return true
             }),
-            "AS": new squadprofile.SquadAttributes([["assaulter", 1], ["medic", 1]], false, function () {
+            "AS": new squadprofile.SquadAttributes([["assaulter", 1], ["medic", 1], ["supporter", 1]], false, function () {
                 return true
             }),
         };

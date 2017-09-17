@@ -28,11 +28,19 @@ Squad.prototype.needCreep = function (creep) {
     return (creepQuantity < profileQuantity);
 };
 
+//returns in order any assaulter or supporter
 Squad.prototype.getAssaultSquadLeader = function () {
     for(var creepNum in this.creeps){
         var creepName = this.creeps[creepNum].name;
         var creep = Game.creeps[creepName];
         if(creep && creep.memory.role === "assaulter"){
+            return creep;
+        }
+    }
+    for(var creepNum in this.creeps){
+        var creepName = this.creeps[creepNum].name;
+        var creep = Game.creeps[creepName];
+        if(creep && creep.memory.role === "supporter"){
             return creep;
         }
     }
