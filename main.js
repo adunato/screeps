@@ -87,30 +87,34 @@ function spawn(roleName, squad) {
     }
 }
 
+function findInjuredCreeps(tower){
+    var creepsInRoom = tower.room.find(FIND_CREEPS);
+    var injuredCreeps = [];
+    // console.log("tower id:" + tower.id)
+    for(var x =0; x< creepsInRoom.length; x++){
+        var creep = creepsInRoom[x];
+        if(creep.hits < creep.hitsMax){
+            injuredCreeps.push(creep)
+        }
+    }
+    return injuredCreeps;
+}
+
 function manageDefense() {
     for (var i = 0; i < rooms.length; i++) {
         var room = rooms[i];
         var towers = cache.findTowers(room);
-        console.log(room.name + " " + towers.length);
         for (var n = 0; n < towers.length; n++) {
             var tower = towers[n];
-            var injuredCreeps = tower.room.find(FIND_CREEPS);
-            // console.log("tower id:" + tower.id)
-            for(var x =0; x< injuredCreeps.length; x++){
-                var creep = injuredCreeps[x];
-                // console.log(creep.memory.role + " :" + creep.hits + "/" + creep.hitsMax )
-                if(creep.hits < creep.hitsMax){
-                    tower.heal(creep);
-                }
-            }
-
             if (room.find(FIND_HOSTILE_CREEPS).length > 0) {
                 tower.attack(tower.pos.findClosestByRange(room.find(FIND_HOSTILE_CREEPS)));
             } else if (tower.energy > tower.energyCapacity / 2) {
-
-
-                var closestDamagedRampart = cache.findRepairRamparts(room);
-                if (closestDamagedRampart.length > 0) {
+                var injuredCreeps = findInjuredCreeps(tower);
+                if(injuredCreeps.length > 0){
+                    tower.heal(injuredCreeps[0]);
+                }
+                else if (cache.findRepairRamparts(room).length > 0) {
+                    var closestDamagedRampart = cache.findRepairRamparts(room);
                     tower.repair(closestDamagedRampart[0]);
                 } else if (cache.findRepairWalls(room).length > 0){
                     var closestDamagedWall = cache.findRepairWalls(room);

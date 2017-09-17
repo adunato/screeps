@@ -224,7 +224,7 @@ var defines = {
             "BR": new squadprofile.SquadAttributes([["breacher", 5]], false, function () {
                 return true
             }),
-            "AS": new squadprofile.SquadAttributes([["assaulter", 5], ["medic", 1], ["supporter", 2]], false, function () {
+            "AS": new squadprofile.SquadAttributes([["assaulter", 1], ["medic", 2], ["supporter", 1]], false, function () {
                 return true
             }),
         };
