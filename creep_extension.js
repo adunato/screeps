@@ -359,7 +359,8 @@ Creep.prototype.attackFlagPosition = function () {
     var target = this.getSquad().getFlag();
     if (target) {
         var res = this.attack(target);
-        if (res === ERR_NOT_IN_RANGE && !isStatic) {
+        console.log("res: " + res)
+        if (res === ERR_NOT_IN_RANGE) {
             this.moveTo(target, {visualizePathStyle: {stroke: '#ff000b'}});
         }
     }
