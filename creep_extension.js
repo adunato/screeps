@@ -354,23 +354,28 @@ Creep.prototype.attackEnemies = function (isStatic) {
 };
 
 Creep.prototype.attackFlagPosition = function () {
-    if(!this.getSquad())
+    if (!this.getSquad())
         return;
-    var target = this.getSquad().getFlag();
-    if (target) {
-        var res = this.attack(target);
-        console.log("res: " + res)
-        if (res === ERR_NOT_IN_RANGE) {
-            this.moveTo(target, {visualizePathStyle: {stroke: '#ff000b'}});
-        }
+    var flag = this.getSquad().getFlag();
+    if (flag) {
+        const look = this.room.lookAt(flag);
+        look.forEach(function (lookObject) {
+            if (lookObject.type == LOOK_STRUCTURES) {
+                var res = this.attack(flag);
+                console.log("res: " + res)
+                if (res === ERR_NOT_IN_RANGE) {
+                    this.moveTo(flag, {visualizePathStyle: {stroke: '#ff000b'}});
+                }
+            }
+        });
     }
 };
 
 Creep.prototype.moveToFlag = function () {
-    if(!this.getSquad())
+    if (!this.getSquad())
         return;
     var flag = this.getSquad().getFlag();
-    if(flag)
+    if (flag)
         this.moveTo(flag, {visualizePathStyle: {stroke: '#ff000b'}});
 };
 
