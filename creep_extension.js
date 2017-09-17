@@ -570,6 +570,12 @@ Creep.prototype.followAssaultSquadLeader = function () {
     }
 };
 
+Creep.prototype.getAssultSquadLeader = function () {
+    if(this.getSquad()) {
+        return this.getSquad().getAssultSquadLeader();
+    }
+};
+
 Creep.prototype.healTeamMates = function () {
     if(this.getSquad()) {
         var injuredCreeps = this.findInjuredTeamMates();
