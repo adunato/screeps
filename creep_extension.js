@@ -353,6 +353,16 @@ Creep.prototype.attackEnemies = function (isStatic) {
     }
 };
 
+Creep.prototype.rangeAttackEnemies = function (isStatic) {
+    var target = this.pos.findClosestByPath(this.room.find(FIND_HOSTILE_CREEPS));
+    if (target) {
+        var res = this.rangedAttack(target);
+        if (res === ERR_NOT_IN_RANGE && !isStatic) {
+            this.moveTo(target, {visualizePathStyle: {stroke: '#ff000b'}});
+        }
+    }
+};
+
 Creep.prototype.attackFlagPosition = function () {
     if (!this.getSquad())
         return;
