@@ -564,7 +564,7 @@ Creep.prototype.followAssaultSquadLeader = function () {
     if(this.getSquad()) {
         var squadLeader = this.getSquad().getAssaultSquadLeader();
         if(squadLeader) {
-            var res = this.moveTo(squadLeader, {visualizePathStyle: {stroke: '#ffffff'}});
+            var res = this.moveTo(squadLeader, {visualizePathStyle: {stroke: '#ffffff'}, reusePath: 0});
             console.log("res: " + res);
             console.log("squadLeader: " + squadLeader.name);
             console.log("squadLeader X: " + squadLeader.pos.x);
