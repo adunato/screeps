@@ -31,7 +31,7 @@ var repairrFSM = new statemachine.StateMachine.factory({
         },
         onRest: function () {
             var creep = Game.creeps[this.creepName];
-            creep.goHome();
+            creep.rest();
         },
         //invoked as event to avoid state being invoked when loaded by the state machine
         onNoStructuresFound: function () {
