@@ -1,4 +1,4 @@
-const WAYPOINT_RANGE = 3;
+const WAYPOINT_RANGE = 1;
 var cache = require('cache');
 require('source_extension');
 var Squad = require('Squad');
