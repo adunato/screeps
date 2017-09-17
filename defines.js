@@ -13,6 +13,8 @@ var rolePatroller = require('role.patroller');
 var roleClaimer = require('role.claimer');
 var roleReserver = require('role.reserver');
 var roleBreacher = require('role.breacher');
+var roleAssaulter = require('role.assaulter');
+var roleMedic = require('role.medic');
 var squadprofile = require('SquadProfile');
 
 
@@ -43,7 +45,7 @@ var defines = {
                     // [MOVE, MOVE, MOVE,MOVE, WORK, WORK, CARRY, CARRY],
                     // [MOVE, MOVE,MOVE, WORK, CARRY, CARRY],
                     // [MOVE, MOVE, WORK, CARRY]
-                    [MOVE,MOVE,MOVE,WORK,WORK,WORK,WORK,WORK,WORK,CARRY]
+                    [MOVE, MOVE, MOVE, WORK, WORK, WORK, WORK, WORK, WORK, CARRY]
                 ],
             "reserver":
                 [
@@ -84,14 +86,14 @@ var defines = {
             ],
             "collector": [
                 [MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY],
-                [MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY],
+                [MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY],
                 // [MOVE, MOVE, MOVE, MOVE, MOVE, CARRY, CARRY, CARRY, CARRY, CARRY],
                 // [MOVE, MOVE, MOVE, MOVE, CARRY, CARRY, CARRY, CARRY],
                 // [MOVE, MOVE, MOVE, CARRY, CARRY, CARRY],
                 // [MOVE, CARRY]
             ],
             "transporter": [
-                [MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY],
+                [MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY],
                 // [MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY],
                 // [MOVE,MOVE,MOVE,MOVE,MOVE,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY]
                 // [MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY],
@@ -129,15 +131,22 @@ var defines = {
                 // [MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK],
                 // [MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK],
                 // [MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,ATTACK,ATTACK,ATTACK,ATTACK,ATTACK,ATTACK,ATTACK],
-                [MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,ATTACK,ATTACK,ATTACK,ATTACK,ATTACK,ATTACK],
+                [MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK],
                 // [MOVE,MOVE,MOVE,MOVE,MOVE,ATTACK,ATTACK,ATTACK,ATTACK,ATTACK],
                 // [MOVE,MOVE,MOVE,MOVE,MOVE,ATTACK,ATTACK,ATTACK],
                 // [MOVE,MOVE,MOVE,MOVE,ATTACK,ATTACK],
                 // [MOVE,ATTACK],
             ],
             "breacher": [
-                [MOVE,ATTACK],
+                [MOVE, ATTACK],
             ],
+            "assaulter": [
+                [MOVE, ATTACK],
+            ],
+            "medic": [
+                [MOVE, HEAL],
+            ],
+
 
         };
         global.creepRoles = {
@@ -156,6 +165,8 @@ var defines = {
             "claimer": roleClaimer,
             "reserver": roleReserver,
             "breacher": roleBreacher,
+            "assaulter": roleAssaulter,
+            "medic": roleMedic,
         };
         global.squadProfiles = {
             "FE": new squadprofile.SquadAttributes([["feeder", 1]], false, function () {
@@ -206,6 +217,9 @@ var defines = {
                 return true
             }),
             "BR": new squadprofile.SquadAttributes([["breacher", 1]], false, function () {
+                return true
+            }),
+            "AS": new squadprofile.SquadAttributes([["assaulter", 1], ["medic", 1]], false, function () {
                 return true
             }),
         };
