@@ -86,7 +86,7 @@ Creep.prototype.dropToStorage = function () {
 
 Creep.prototype.dropToDestinationContainer = function (maxQuantityPc) {
     this.memory.selectedSource = null;
-    if(!this.getSquad())
+    if (!this.getSquad())
         return [];
     var structures = cache.findEmptyDestinationContainers(this.getSquad().getSquadRoomName(), maxQuantityPc);
     return this.dropToDestinations(structures, false);
@@ -258,7 +258,7 @@ Creep.prototype.setNextWaypoint = function () {
                     console.log(this.memory.role + " setting " + this.previousWaypoint() + " as next waypoint")
                 this.memory.current_waypoint = this.previousWaypoint();
             } else {
-                if(WAYPOINT_LOG)
+                if (WAYPOINT_LOG)
                     console.log("No backward or forward waypoints from " + this.memory.current_waypoint + " for creep " + this.name + " " + this.memory.role)
             }
         }
@@ -414,22 +414,30 @@ Creep.prototype.buildConstruction = function () {
 };
 
 Creep.prototype.repairConstruction = function (minRepairLevelPc) {
-    var construction = null;
-    if (this.memory.repairConstructionId) {
-        construction = Game.getObjectById(this.memory.repairConstructionId);
+    var flag = Game.flags[this.memory.squad];
+    //move to flag if not in flag's room
+    if (flag != null && (!flag.room || flag.room.name != this.room.name)) {
+        this.moveTo(flag, {visualizePathStyle: {stroke: '#ffda00'}});
+        return true;
     }
-    if (!construction) {
-        var repairConstructions = cache.findRepairStructures(this.room, minRepairLevelPc);
-        if (repairConstructions.length) {
-            construction = this.getNearestObjectByDistance(repairConstructions);
+    if (flag && flag.room) {
+        var construction = null;
+        if (this.memory.repairConstructionId) {
+            construction = Game.getObjectById(this.memory.repairConstructionId);
         }
-    }
-    if (construction) {
-        this.memory.repairConstructionId = construction.id;
-        if (this.repair(construction) === ERR_NOT_IN_RANGE) {
-            this.moveTo(construction, {visualizePathStyle: {stroke: '#14ff00'}});
-        } else if (construction.hits === construction.hitsMax) {
-            this.memory.repairConstructionId = null;
+        if (!construction) {
+            var repairConstructions = cache.findRepairStructures(flag.room, minRepairLevelPc);
+            if (repairConstructions.length) {
+                construction = this.getNearestObjectByDistance(repairConstructions);
+            }
+        }
+        if (construction) {
+            this.memory.repairConstructionId = construction.id;
+            if (this.repair(construction) === ERR_NOT_IN_RANGE) {
+                this.moveTo(construction, {visualizePathStyle: {stroke: '#14ff00'}});
+            } else if (construction.hits === construction.hitsMax) {
+                this.memory.repairConstructionId = null;
+            }
         }
     }
 };
@@ -449,7 +457,7 @@ Creep.prototype.multiFunction = function () {
         return;
     }
     else {
-        if(this.dropEnergy({DROP_CONTAINER : true}))
+        if (this.dropEnergy({DROP_CONTAINER: true}))
             return;
 
         var repairs = this.room.find(FIND_MY_STRUCTURES, {

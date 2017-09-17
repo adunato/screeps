@@ -5,10 +5,9 @@ var repairrFSM = new statemachine.StateMachine.factory({
     init: 'none',
     transitions: [
         {name: 'energyEmpty', from: '*', to: 'withdraw'},
-        {name: 'energyFull', from: ['withdraw','waypoint', 'rest'], to: 'move'},
+        {name: 'energyFull', from: ['withdraw','rest'], to: 'repair'},
         {name: 'containersEmpty', from: ['withdraw', 'rest'], to: 'rest'},
-        {name: 'noStructuresFound', from: ['repair'], to: 'waypoint'},
-        {name: 'atWaypoint', from: ['move', 'repair'], to: 'repair'},
+        {name: 'noStructuresFound', from: ['repair'], to: 'rest'},
         {
             name: 'goto', from: '*', to: function (s) {
             return s
@@ -25,10 +24,6 @@ var repairrFSM = new statemachine.StateMachine.factory({
         onWithdraw: function () {
             var creep = Game.creeps[this.creepName];
             creep.withdrawEnergy();
-        },
-        onMove: function () {
-            var creep = Game.creeps[this.creepName];
-            creep.goToWaypoint();
         },
         onRepair: function () {
             var creep = Game.creeps[this.creepName];
@@ -59,9 +54,6 @@ var rolerepairr = {
         if (typeof creepState === "undefined") {
             creepState = "withdraw";
         }
-        if(!creep.getCurrentWaypoint()){
-            creep.setNextWaypoint();
-        }
         var stateMachine = new repairrFSM(creep.name, "withdraw");
         stateMachine.goto(creepState);
         if (creep.carry.energy === 0) {
@@ -69,9 +61,6 @@ var rolerepairr = {
         }
         if (cache.findContainersWithEnergy(creep.room).length === 0 && stateMachine.can("containersEmpty")) {
             stateMachine.containersEmpty();
-        }
-        if (creep.isInCurrentWaypointRange() && stateMachine.can("atWaypoint")) {
-            stateMachine.atWaypoint();
         }
         if (cache.findRepairStructures(creep.room,MIN_REPAIR_LVL_PC).length === 0 && stateMachine.can("noStructuresFound")) {
             console.log("repairer " + creep.name + " no structures found to repair")
