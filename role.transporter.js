@@ -69,8 +69,8 @@ var roleCarrier = {
     /** @param {Creep} creep **/
     run: function (creep) {
         var creepState = creep.memory.state;
-        var sourceContainers = cache.findSourceContainersWithEnergy(creep.room.name, MIN_SOURCE_CONTAINER_QUANTITY_PC).length;
-        var destinationContainers = cache.findEmptyDestinationContainers(creep.room.name, MAX_DESTINATION_CONTAINER_QUANTITY_PC).length;
+        var sourceContainers = cache.findSourceContainersWithEnergy(creep.getSquad().getSquadRoomName(), MIN_SOURCE_CONTAINER_QUANTITY_PC).length;
+        var destinationContainers = cache.findEmptyDestinationContainers(creep.getSquad().getSquadRoomName(), MAX_DESTINATION_CONTAINER_QUANTITY_PC).length;
         var storage = cache.findEmptyStorage(creep.room).length;
         var creepCarryEnergy = creep.carry.energy;
         var creepCarryCapacity = creep.carryCapacity;
