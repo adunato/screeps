@@ -363,9 +363,7 @@ Creep.prototype.attackFlagPosition = function () {
         if(look.length > 0)
             target = look[0];
         if(target) {
-            console.log(target[0])
             var res = this.attack(target);
-            console.log("res: " + res)
             if (res === ERR_NOT_IN_RANGE) {
                 this.moveTo(flag, {visualizePathStyle: {stroke: '#ff000b'}});
             }
