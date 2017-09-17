@@ -593,6 +593,7 @@ Creep.prototype.healTeamMates = function () {
 };
 
 Creep.prototype.findInjuredTeamMates = function () {
+    console.log("findInjuredTeamMates")
     var injuredCreps = [];
     if(this.getSquad()) {
         var creeps = this.getSquad().creeps;
