@@ -138,8 +138,8 @@ var defines = {
                 // [MOVE,ATTACK],
             ],
             "breacher": [
-                // [TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,ATTACK,ATTACK,ATTACK,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,]
-                [TOUGH,MOVE,MOVE,ATTACK],
+                [TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,ATTACK,ATTACK,ATTACK,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,]
+                // [TOUGH,MOVE,MOVE,ATTACK],
             ],
             "assaulter": [
                 [TOUGH,ATTACK,ATTACK,MOVE,MOVE,MOVE,],
@@ -221,7 +221,7 @@ var defines = {
             "TOFE": new squadprofile.SquadAttributes([["tower_feeder", 1]], false, function () {
                 return true
             }),
-            "BR": new squadprofile.SquadAttributes([["breacher", 1]], false, function () {
+            "BR": new squadprofile.SquadAttributes([["breacher", 5]], false, function () {
                 return true
             }),
             "AS": new squadprofile.SquadAttributes([["assaulter", 5], ["medic", 1], ["supporter", 2]], false, function () {
