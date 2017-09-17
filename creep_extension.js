@@ -364,6 +364,8 @@ Creep.prototype.attackFlagPosition = function () {
 };
 
 Creep.prototype.moveToFlag = function () {
+    if(!this.getSquad())
+        return;
     var flag = this.getSquad().getFlag();
     if(flag)
         this.moveTo(flag, {visualizePathStyle: {stroke: '#ff000b'}});
