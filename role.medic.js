@@ -1,10 +1,10 @@
 var statemachine = require('state-machine');
-var patrollerFSM = new statemachine.StateMachine.factory({
+var medicFSM = new statemachine.StateMachine.factory({
     init: 'none',
     transitions: [
-        {name: 'noInjured', from: ['heal', 'waypoint', 'move'], to: 'move'},
-        {name: 'atWaypoint', from: ['move', 'waypoint'], to: 'waypoint'},
-        {name: 'injured', from: ['heal', 'waypoint', 'move'], to: 'heal'},
+        {name: 'noInjured', from: ['heal', 'goHome', 'follow'], to: 'follow'},
+        {name: 'noLeader', from: ['follow', 'waypoint'], to: 'goHome'},
+        {name: 'injured', from: ['heal', 'goHome', 'follow'], to: 'heal'},
         {
             name: 'goto', from: '*', to: function (s) {
             return s
@@ -18,18 +18,18 @@ var patrollerFSM = new statemachine.StateMachine.factory({
         }
     },
     methods: {
-        onMove: function () {
+        onFollow: function () {
             var creep = Game.creeps[this.creepName];
-            creep.goToWaypoint();
+            creep.followAssaultSquadLeader();
         },
         //invoked as events to avoid state being invoked when loaded by the state machine
-        onAtWaypoint: function () {
+        onGoHome: function () {
             var creep = Game.creeps[this.creepName];
-            creep.setNextWaypoint();
+            creep.goHome();
         },
         onInjured: function () {
             var creep = Game.creeps[this.creepName];
-            creep.healCreeps();
+            creep.healTeamMates();
         },
         onTransition(lifecycle) {
             // console.log("transition name: " + lifecycle.transition);
@@ -40,42 +40,26 @@ var patrollerFSM = new statemachine.StateMachine.factory({
 });
 
 
-var rolepatroller = {
+var rolemedic = {
     /** @param {Creep} creep **/
     run: function (creep) {
         var creepState = creep.memory.state;
-        var firstStep = false;
         if (!creepState || typeof creepState === "undefined") {
-            //set firstStep = true if squad has been set
-            if(creep.memory.squad) {
-                creepState = "waypoint";
-                firstStep = true;
-            } else
-                return;
+            creepState = "goHome";
         }
-        var stateMachine = new patrollerFSM(creep.name, creepState);
+        var stateMachine = new medicFSM(creep.name, creepState);
         stateMachine.goto(creepState);
-        //kick off WP selection if first step
-        if(firstStep){
-            console.log("setting default patroller WP")
-            stateMachine.atWaypoint();
-            creep.memory.state = stateMachine.state;
-            return;
+        if(creep.getAssultSquadLeader() === null && stateMachine.can("noLeader")){
+            stateMachine.noLeader();
         }
-        if (creep.room.find(FIND_MY_CREEPS).length > 0 && stateMachine.can("enemies")) {
-            console.log("found enemies");
-            stateMachine.enemies();
-        }
-        else if(creep.isInCurrentWaypointRange() && stateMachine.can("atWaypoint")){
-            stateMachine.atWaypoint();
-        } else if (stateMachine.can("noEnemies")){
-            stateMachine.noEnemies();
-        }
-        if (creep.timeToDie() && creep.carry.energy === 0 && stateMachine.can("timeToDie")) {
-            stateMachine.timeToDie();
+        else if (creep.findInjuredTeamMates().length > 0 && stateMachine.can("injured")) {
+            console.log("found injured");
+            stateMachine.injured();
+        } else if(stateMachine.can("noInjured")){
+            stateMachine.noInjured();
         }
         creep.memory.state = stateMachine.state;
     }
 };
 
-module.exports = rolepatroller;
+module.exports = rolemedic;

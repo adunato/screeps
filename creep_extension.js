@@ -560,6 +560,42 @@ Creep.prototype.goHome = function () {
     this.say("Going Home");
 };
 
+Creep.prototype.followAssaultSquadLeader = function () {
+    if(this.getSquad()) {
+        var squadLeader = this.getSquad().getAssultSquadLeader();
+        if(squadLeader) {
+            this.moveTo(squadLeader, {visualizePathStyle: {stroke: '#ffffff'}});
+            this.say("Following");
+        }
+    }
+};
+
+Creep.prototype.healTeamMates = function () {
+    if(this.getSquad()) {
+        var injuredCreeps = this.findInjuredTeamMates();
+        var creep = this.getNearestObjectByDistance(injuredCreeps);
+        if (this.heal(creep) == ERR_NOT_IN_RANGE) {
+            this.moveTo(creep, {visualizePathStyle: {stroke: '#14ff00'}});
+        }
+    }
+};
+
+Creep.prototype.findInjuredTeamMates = function () {
+    var injuredCreps = [];
+    if(this.getSquad()) {
+        var creeps = this.getSquad().creeps;
+        for(var i =0 ; i < creeps.length; i++){
+            var creep = creeps[i];
+            if(creep.hits < creep.hitsMax) {
+                injuredCreps.push(creep);
+            }
+        }
+    }
+    return injuredCreps;
+};
+
+
+
 Creep.prototype.timeToDie = function () {
     var hasMovement = false;
     for (var i = 0; i < this.body.length; i++) {
