@@ -202,7 +202,7 @@ var defines = {
             "CA": new squadprofile.SquadAttributes([["carrier", 1]], false, function (roomName) {
                 return true
             }),
-            "DE": new squadprofile.SquadAttributes([["defender", 1]], false, function (roomName) {
+            "DE": new squadprofile.SquadAttributes([["defender", 1]], false, function (flagName) {
                 var room = Game.flags[flagName].room;
                 return room.find(FIND_HOSTILE_CREEPS).length > 0;
             }),
