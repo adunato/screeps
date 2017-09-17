@@ -358,7 +358,6 @@ Creep.prototype.attackFlagPosition = function () {
         return;
     var flag = this.getSquad().getFlag();
     if (flag) {
-        const look = this.room.lookAt(flag);
         var target = null;
         var look = this.room.lookForAt(LOOK_STRUCTURES,flag.pos);
         if(look.length > 0)
