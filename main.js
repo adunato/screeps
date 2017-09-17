@@ -100,7 +100,7 @@ function manageDefense() {
                     tower.heal(creep);
                 }
             }
-
+            console.log("heal")
             if (room.find(FIND_HOSTILE_CREEPS).length > 0) {
                 tower.attack(tower.pos.findClosestByRange(room.find(FIND_HOSTILE_CREEPS)));
             } else if (tower.energy > tower.energyCapacity / 2) {
