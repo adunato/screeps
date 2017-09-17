@@ -68,6 +68,8 @@ var carrierFSM = new statemachine.StateMachine.factory({
 var roleCarrier = {
     /** @param {Creep} creep **/
     run: function (creep) {
+        if(!creep.getSquad())
+            return;
         var creepState = creep.memory.state;
         var sourceContainers = cache.findSourceContainersWithEnergy(creep.getSquad().getSquadRoomName(), MIN_SOURCE_CONTAINER_QUANTITY_PC).length;
         var destinationContainers = cache.findEmptyDestinationContainers(creep.getSquad().getSquadRoomName(), MAX_DESTINATION_CONTAINER_QUANTITY_PC).length;
@@ -82,7 +84,7 @@ var roleCarrier = {
         if (creep.timeToDie() && creepCarryEnergy === 0 && stateMachine.can("timeToDie")) {
             stateMachine.timeToDie();
         }
-        if (!creep.isInSquadRoom() && creepCarryEnergy === 0) {
+        if (!creep.isInSquadRoom() && creepCarryEnergy === 0 && stateMachine.can("goToRoom")) {
             stateMachine.goToRoom();
             return;
         }
