@@ -97,7 +97,7 @@ function manageDefense() {
             console.log("tower id:" + tower.id)
             for(var i =0; i< injuredCreeps.length; i++){
                 var creep = injuredCreeps[i];
-                console.log(creep.memory.role + " :" + creep.hits + "/" + creep.hitsMax )
+                // console.log(creep.memory.role + " :" + creep.hits + "/" + creep.hitsMax )
                 if(creep.hits < creep.hitsMax){
                     tower.heal(creep);
                 }
