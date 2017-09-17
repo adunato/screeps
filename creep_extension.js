@@ -583,6 +583,7 @@ Creep.prototype.healTeamMates = function () {
             //swaps with game object
             creep = Game.creeps[creep.name];
             if (this.heal(creep) == ERR_NOT_IN_RANGE) {
+                this.moveTo(creep, {visualizePathStyle: {stroke: '#14ff00'}});
                 if (this.rangedHeal(creep) == ERR_NOT_IN_RANGE) {
                     this.moveTo(creep, {visualizePathStyle: {stroke: '#14ff00'}});
                 }
