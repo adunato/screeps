@@ -361,12 +361,12 @@ Creep.prototype.attackFlagPosition = function () {
         const look = this.room.lookAt(flag);
         var target = null;
         look.forEach(function (lookObject) {
-            console.log(lookObject)
             if (lookObject.type == LOOK_STRUCTURES) {
                 target = lookObject;
             }
         });
         if(target) {
+            console.log(target)
             var res = this.attack(target);
             console.log("res: " + res)
             if (res === ERR_NOT_IN_RANGE) {
