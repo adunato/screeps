@@ -562,10 +562,11 @@ Creep.prototype.goHome = function () {
 
 Creep.prototype.followAssaultSquadLeader = function () {
     if(this.getSquad()) {
-        var squadLeader = this.getSquad().getAssultSquadLeader();
+        var squadLeader = this.getSquad().getAssaultSquadLeader();
         if(squadLeader) {
             var res = this.moveTo(squadLeader, {visualizePathStyle: {stroke: '#ffffff'}});
             console.log("res: " + res);
+            console.log("squadLeader: " + squadLeader.name);
             this.say("Following");
         }
     }

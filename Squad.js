@@ -28,7 +28,7 @@ Squad.prototype.needCreep = function (creep) {
     return (creepQuantity < profileQuantity);
 };
 
-Squad.prototype.getAssultSquadLeader = function () {
+Squad.prototype.getAssaultSquadLeader = function () {
     for(var creepName in this.creeps){
         var creep = this.creeps[creepName];
         if(creep.memory.role === "assaulter"){
