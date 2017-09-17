@@ -49,7 +49,7 @@ var rolemedic = {
         }
         var stateMachine = new medicFSM(creep.name, creepState);
         stateMachine.goto(creepState);
-        if(creep.getAssultSquadLeader() === null && stateMachine.can("noLeader")){
+        if(creep.getAssaultSquadLeader() === null && stateMachine.can("noLeader")){
             stateMachine.noLeader();
         }
         else if (creep.findInjuredTeamMates().length > 0 && stateMachine.can("injured")) {
