@@ -89,6 +89,7 @@ Creep.prototype.dropToDestinationContainer = function (maxQuantityPc) {
     if (!this.getSquad())
         return [];
     var structures = cache.findEmptyDestinationContainers(this.getSquad().getSquadRoomName(), maxQuantityPc);
+    console.log(this.name + " dropping based on squad room grou: " + this.getSquad().getSquadRoomName())
     return this.dropToDestinations(structures, false);
 };
 
