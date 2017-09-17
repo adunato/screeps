@@ -354,6 +354,8 @@ Creep.prototype.attackEnemies = function (isStatic) {
 };
 
 Creep.prototype.attackFlagPosition = function () {
+    if(!this.getSquad())
+        return;
     var target = this.getSquad().getFlag();
     if (target) {
         var res = this.attack(target);
