@@ -366,7 +366,7 @@ Creep.prototype.attackFlagPosition = function () {
             }
         });
         if(target) {
-            console.log(target)
+            console.log(target[0])
             var res = this.attack(target);
             console.log("res: " + res)
             if (res === ERR_NOT_IN_RANGE) {
