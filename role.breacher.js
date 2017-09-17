@@ -3,8 +3,8 @@ const CREEP_DAMAGE_LIMIT = 0;
 var breacherFSM = new statemachine.StateMachine.factory({
     init: 'none',
     transitions: [
-        {name: 'structure', from: ['attack', 'move'], to: 'attack'},
-        {name: 'noStructure', from: ['move', 'attack'], to: 'move'},
+        {name: 'structure', from: ['attack', 'move', 'gohome'], to: 'attack'},
+        {name: 'noStructure', from: ['move', 'attack','gohome'], to: 'move'},
         {name: 'damaged', from: ['attack', 'move', 'gohome'], to: 'gohome'},
         {
             name: 'goto', from: '*', to: function (s) {
@@ -60,10 +60,10 @@ var rolebreacher = {
         var flag = creep.getSquad().getFlag();
         const look = creep.room.lookAt(flag);
         look.forEach(function(lookObject) {
-            if(lookObject.type == LOOK_STRUCTURES) {
+            if(lookObject.type == LOOK_STRUCTURES && stateMachine.can("structure")) {
                 stateMachine.structure();
                 creep.memory.state = stateMachine.state;
-            } else {
+            } else if (stateMachine.can("noStructure")){
                 stateMachine.noStructure();
                 creep.memory.state = stateMachine.state;
             }
