@@ -62,7 +62,7 @@ var rolepatroller = {
             creep.memory.state = stateMachine.state;
             return;
         }
-        if (creep.room.find(FIND_HOSTILE_CREEPS).length > 0 && stateMachine.can("enemies")) {
+        if (creep.room.find(FIND_HOSTILE_CREEPS).length > 0 && !(!creep.room.controller.my && creep.room.controller.safeMode) && stateMachine.can("enemies")) {
             console.log("found enemies");
             stateMachine.enemies();
         }
