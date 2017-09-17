@@ -44,6 +44,8 @@ var breacherFSM = new statemachine.StateMachine.factory({
 var rolebreacher = {
     /** @param {Creep} creep **/
     run: function (creep) {
+        if(!creep.getSquad())
+            return;
         var creepState = creep.memory.state;
         if(!creepState){
             creepState = 'move'
