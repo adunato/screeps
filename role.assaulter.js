@@ -58,16 +58,18 @@ var rolebreacher = {
         }
 
         var flag = creep.getSquad().getFlag();
-        const look = creep.room.lookAt(flag);
-        look.forEach(function(lookObject) {
-            if(lookObject.type == LOOK_STRUCTURES && stateMachine.can("structure")) {
-                stateMachine.structure();
-                creep.memory.state = stateMachine.state;
-            } else if (stateMachine.can("noStructure")){
-                stateMachine.noStructure();
-                creep.memory.state = stateMachine.state;
-            }
-        });
+        if(flag) {
+            const look = creep.room.lookAt(flag);
+            look.forEach(function (lookObject) {
+                if (lookObject.type == LOOK_STRUCTURES && stateMachine.can("structure")) {
+                    stateMachine.structure();
+                    creep.memory.state = stateMachine.state;
+                } else if (stateMachine.can("noStructure")) {
+                    stateMachine.noStructure();
+                    creep.memory.state = stateMachine.state;
+                }
+            });
+        }
     }
 };
 
