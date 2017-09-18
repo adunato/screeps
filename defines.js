@@ -155,6 +155,7 @@ var defines = {
 
         };
         global.creepRoles = {
+            "patroller": rolePatroller,
             "feeder": roleFeeder,
             "tower_feeder": roleTowerFeeder,
             "harvester": roleHarvester,
@@ -166,7 +167,6 @@ var defines = {
             "builder": roleBuilder,
             "defender": roleDefender,
             "transporter": roleTransporter,
-            "patroller": rolePatroller,
             "claimer": roleClaimer,
             "reserver": roleReserver,
             "breacher": roleBreacher,
