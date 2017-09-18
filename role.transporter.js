@@ -101,7 +101,7 @@ var roleCarrier = {
             && stateMachine.can("nothingToDo")) {
             stateMachine.nothingToDo();
         }
-        if (creepCarryEnergy === creepCarryCapacity && stateMachine.can("creepFull")) {
+        if (creepCarryEnergy > 0 && stateMachine.can("creepFull")) {
             stateMachine.creepFull();
         }
         if (destinationContainers === 0 && stateMachine.can("containersFull")) {
