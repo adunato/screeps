@@ -185,7 +185,10 @@ var defines = {
             }),
             "BU": new squadprofile.SquadAttributes([["builder", 1]], false, function (flagName) {
                 var room = Game.flags[flagName].room;
-                return room.find(FIND_CONSTRUCTION_SITES).length > 0;
+                if(room)
+                    return room.find(FIND_CONSTRUCTION_SITES).length > 0;
+                else
+                    return false;
             }),
             "UP": new squadprofile.SquadAttributes([["upgrader", 1]], false, function (roomName) {
                 return true
