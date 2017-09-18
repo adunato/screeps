@@ -207,10 +207,8 @@ var defines = {
                 var hostileCreeps = room.find(FIND_HOSTILE_CREEPS);
                 for(var i = 0; i < hostileCreeps.length; i++){
                     if(hostileCreeps[i].owner.username !== "Invader"){
-                        Game.notify("Detected hostile from " + hostileCreeps[i].owner.username + "in room " + room.name, 0);
+                        Game.notify("Detected hostile from " + hostileCreeps[i].owner.username + "in room " + room.name, 10);
                         return true;
-                    } else {
-                        console.log("Invader hostile");
                     }
                 }
                 return false;
