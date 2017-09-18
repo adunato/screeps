@@ -261,6 +261,7 @@ var defines = {
             "E57N3": [
                 '59bcae046f72fb412e440e6f',//right source
                 '59c02064576fbe1d3bc87869',//left source
+                '59c02b0d3bd010249212a0f6',//left source n2
             ],
         };
         global.destinationContainers = {
