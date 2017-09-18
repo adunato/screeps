@@ -257,6 +257,10 @@ var defines = {
                 '59be3ab3fb91402166aa3c79',//top source
                 '59bd173800f18070a06f4942',//bottom source
             ],
+            "E57N3": [
+                '59bcae046f72fb412e440e6f',//right source
+                '59bcb027a083e143ca554390',//left source
+            ],
         };
         global.destinationContainers = {
             "E59N3": [
@@ -268,6 +272,9 @@ var defines = {
             ],
             "E59N4": [
                 '59bcf1e54bf950778a52e344',//top source in E59N3
+            ],
+            "E57N3": [
+                '59be700aa68b175c2b15aded',//storage
             ],
         };
     }

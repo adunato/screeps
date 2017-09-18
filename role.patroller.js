@@ -29,7 +29,7 @@ var patrollerFSM = new statemachine.StateMachine.factory({
         },
         onEnemies: function () {
             var creep = Game.creeps[this.creepName];
-            creep.rangedAttack(false);
+            creep.rangeAttackEnemies(false);
         },
         onTransition(lifecycle) {
             // console.log("transition name: " + lifecycle.transition);
