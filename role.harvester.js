@@ -42,7 +42,7 @@ var harvesterFSM = new statemachine.StateMachine.factory({
         },
         onNoEnergyContainers: function () {
             var creep = Game.creeps[this.creepName];
-            creep.goHome();
+            creep.rest();
         },
         onHarvestEnergy: function() {
             var creep = Game.creeps[this.creepName];
