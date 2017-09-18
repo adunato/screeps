@@ -49,7 +49,7 @@ Creep.prototype.withdrawEnergyExCarriers = function () {
 Creep.prototype.withdrawEnergyFromSourceContainer = function (minQuantityPc) {
     var containers = cache.findSourceContainersWithEnergy(this.getSquad().getSquadRoomName(), minQuantityPc);
     containers = containers.concat(cache.findSourceLinksWithEnergy(this.getSquad().getSquadRoomName(), minQuantityPc));
-    console.log(containers)
+    console.log("containers: " + containers)
     return this.withdrawEnergyFromSources(containers);
 };
 
@@ -95,7 +95,6 @@ Creep.prototype.dropToDestinationContainer = function (maxQuantityPc) {
         return false;
     var structures = cache.findEmptyDestinationContainers(this.getSquad().getSquadRoomName(), maxQuantityPc);
     structures = structures.concat(cache.findEmptyDestinationLinks(this.getSquad().getSquadRoomName(), maxQuantityPc));
-    console.log(structures)
     return this.dropToDestinations(structures, false);
 };
 
