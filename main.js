@@ -393,6 +393,17 @@ function buildAutoConstructions() {
     room2.createConstructionSite(10,23,STRUCTURE_EXTENSION);
 }
 
+function transferLinks() {
+    for(var roomName in global.linkTransfers){
+        var source = Game.getObjectById(global.linkTransfers[roomName][0]);
+        var destination = Game.getObjectById(global.linkTransfers[roomName][1]);
+
+        if(source.energy === source.energyCapacity){
+            source.transferEnergy(destination);
+        }
+    }
+}
+
 module.exports.loop = function () {
     //globals definition, every tick to refresh changes
     resetCPULog();
@@ -416,6 +427,8 @@ module.exports.loop = function () {
     logCPU( 'manageDefense ');
     executeCreepBehaviour();
     logCPU('executeCreepBehaviour ');
+    transferLinks();
+    logCPU('transferLinks ');
     trackTickChanges();
     logCPU('trackTickChanges ');
     buildAutoConstructions();

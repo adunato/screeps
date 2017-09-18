@@ -65,7 +65,7 @@ var defines = {
             ],
             "nomad_harvester": [WORK, CARRY, MOVE],
             "upgrader": [
-                [MOVE,MOVE,MOVE,WORK,WORK,WORK,WORK,WORK,CARRY],
+                [MOVE, MOVE, MOVE, WORK, WORK, WORK, WORK, WORK, CARRY],
                 // [MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, WORK, WORK, WORK, WORK, WORK, CARRY],
                 // [MOVE, MOVE, MOVE, MOVE, WORK, WORK, WORK, WORK, WORK, CARRY],
                 // [MOVE, MOVE, MOVE, WORK, WORK, WORK, WORK, CARRY],
@@ -105,7 +105,7 @@ var defines = {
                 // [MOVE, MOVE, MOVE, CARRY, CARRY, CARRY],
             ],
             "feeder": [
-                [MOVE,MOVE,MOVE,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY]
+                [MOVE, MOVE, MOVE, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY]
                 // [MOVE, MOVE, MOVE, MOVE, MOVE, CARRY, CARRY, CARRY, CARRY, CARRY],
                 // [MOVE, MOVE, MOVE, MOVE, CARRY, CARRY, CARRY, CARRY],
                 // [MOVE, MOVE, MOVE, CARRY, CARRY, CARRY],
@@ -118,7 +118,7 @@ var defines = {
                 [MOVE, MOVE, MOVE, CARRY, CARRY, CARRY]
             ],
             "defender": [
-                [MOVE,MOVE,MOVE,MOVE,RANGED_ATTACK,RANGED_ATTACK,RANGED_ATTACK,RANGED_ATTACK,RANGED_ATTACK,RANGED_ATTACK,RANGED_ATTACK]
+                [MOVE, MOVE, MOVE, MOVE, RANGED_ATTACK, RANGED_ATTACK, RANGED_ATTACK, RANGED_ATTACK, RANGED_ATTACK, RANGED_ATTACK, RANGED_ATTACK]
                 // [MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK],
                 // [MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK],
                 // [MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK],
@@ -133,24 +133,24 @@ var defines = {
                 // [MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK],
                 // [MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,ATTACK,ATTACK,ATTACK,ATTACK,ATTACK,ATTACK,ATTACK],
                 // [MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK],
-                [TOUGH,TOUGH,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,RANGED_ATTACK,RANGED_ATTACK,RANGED_ATTACK,RANGED_ATTACK]
+                [TOUGH, TOUGH, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, RANGED_ATTACK, RANGED_ATTACK, RANGED_ATTACK, RANGED_ATTACK]
                 // [MOVE,MOVE,MOVE,MOVE,MOVE,ATTACK,ATTACK,ATTACK,ATTACK,ATTACK],
                 // [MOVE,MOVE,MOVE,MOVE,MOVE,ATTACK,ATTACK,ATTACK],
                 // [MOVE,MOVE,MOVE,MOVE,ATTACK,ATTACK],
                 // [MOVE,ATTACK],
             ],
             "breacher": [
-                [TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,ATTACK,ATTACK,ATTACK,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,]
+                [TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, ATTACK, ATTACK, ATTACK, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE,]
                 // [TOUGH,MOVE,MOVE,ATTACK],
             ],
             "assaulter": [
-                [TOUGH,ATTACK,ATTACK,MOVE,MOVE,MOVE,],
+                [TOUGH, ATTACK, ATTACK, MOVE, MOVE, MOVE,],
             ],
             "medic": [
-                [TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,HEAL,HEAL,HEAL]
+                [TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, HEAL, HEAL, HEAL]
             ],
             "supporter": [
-                [TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,ATTACK,ATTACK,ATTACK,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,]
+                [TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, ATTACK, ATTACK, ATTACK, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE,]
             ],
 
 
@@ -187,7 +187,7 @@ var defines = {
             }),
             "BU": new squadprofile.SquadAttributes([["builder", 1]], false, function (flagName) {
                 var room = Game.flags[flagName].room;
-                if(room)
+                if (room)
                     return room.find(FIND_CONSTRUCTION_SITES).length > 0;
                 else
                     return false;
@@ -210,8 +210,8 @@ var defines = {
             "DE": new squadprofile.SquadAttributes([["defender", 1]], false, function (flagName) {
                 var room = Game.flags[flagName].room;
                 var hostileCreeps = room.find(FIND_HOSTILE_CREEPS);
-                for(var i = 0; i < hostileCreeps.length; i++){
-                    if(hostileCreeps[i].owner.username !== "Invader"){
+                for (var i = 0; i < hostileCreeps.length; i++) {
+                    if (hostileCreeps[i].owner.username !== "Invader") {
                         Game.notify("Detected hostile from " + hostileCreeps[i].owner.username + "in room " + room.name, 10);
                         return true;
                     }
@@ -229,7 +229,7 @@ var defines = {
             }),
             "RES": new squadprofile.SquadAttributes([["reserver", 1]], false, function (flagName) {
                 var roomName = Game.flags[flagName].room;
-                if(roomName)
+                if (roomName)
                     return !Game.rooms[roomName.name].controller.reservation || Game.rooms[roomName.name].controller.reservation.ticksToEnd < 500;
                 else
                     return false;
@@ -245,6 +245,12 @@ var defines = {
             }),
         };
         global.allowedToSpawnWithdraw = false;
+        global.linkTransfers = {
+            "E59N3": [
+                '59bf8f196e7bf95f7b3ba06e',//from
+                '59bf841899b3c942fd9651ab',//to
+            ],
+        };
         global.sourceContainers = {
             "E59N3": [
                 '59bcf1e54bf950778a52e344',//top source
@@ -274,6 +280,7 @@ var defines = {
             ],
             "E59N4": [
                 '59bcf1e54bf950778a52e344',//top source in E59N3
+                '59bf8f196e7bf95f7b3ba06e',//top link in E59N3
             ],
             "E57N3": [
                 '59be700aa68b175c2b15aded',//storage
