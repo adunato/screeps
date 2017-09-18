@@ -227,7 +227,10 @@ var defines = {
             }),
             "RES": new squadprofile.SquadAttributes([["reserver", 1]], false, function (flagName) {
                 var roomName = Game.flags[flagName].room;
-                return !Game.rooms[roomName.name].controller.reservation || Game.rooms[roomName.name].controller.reservation.ticksToEnd < 500;
+                if(roomName)
+                    return !Game.rooms[roomName.name].controller.reservation || Game.rooms[roomName.name].controller.reservation.ticksToEnd < 500;
+                else
+                    return false;
             }),
             "TOFE": new squadprofile.SquadAttributes([["tower_feeder", 1]], false, function () {
                 return true
