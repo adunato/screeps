@@ -7,3 +7,6 @@ StructureStorage.prototype.transfer = function (creep, resourceType) {
 StructureSpawn.prototype.transfer = function (creep, resourceType) {
     return creep.withdraw(this, resourceType);
 };
+StructureLink.prototype.transfer = function (creep, resourceType) {
+    return creep.withdraw(this, resourceType);
+};
