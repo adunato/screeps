@@ -153,6 +153,16 @@ var cache = {
         }
         return carriers;
     },
+    findHarvestersWithEnergy: function (room) {
+        var carriers = [];
+        for (var i = 0; i < this.getCreepsInRoom(room).length; i++) {
+            var creep = this.getCreepsInRoom(room)[i];
+            if (creep.carry.energy > 0 && creep.memory.role === "harvester") {
+                carriers.push(creep);
+            }
+        }
+        return carriers;
+    },
     findEmptyCollectors: function (room) {
         var collectors = [];
         for (var i = 0; i < this.getCreepsInRoom(room).length; i++) {
