@@ -32,7 +32,7 @@ Creep.prototype.withdrawEnergyFromSources = function (energySources) {
         var energySource = this.getNearestObjectByDistance(energySources);
         if (!energySource || energySources.length == 0)
             return false;
-        if (energySource.transfer(this, RESOURCES_ALL == ERR_NOT_IN_RANGE)) {
+        if (energySource.transfer(this, RESOURCE_ENERGY == ERR_NOT_IN_RANGE)) {
             this.moveTo(energySource, {visualizePathStyle: {stroke: '#0027ff'}});
         }
         return true;
