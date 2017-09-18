@@ -28,7 +28,7 @@ var builderFSM = new statemachine.StateMachine.factory({
         onWithdraw: function () {
             var creep = Game.creeps[this.creepName];
             console.log(creep.name + " " + cache.getStoredEnergy(creep.room));
-            if(cache.getStoredEnergy(creep.room) > 0)
+            if(cache.getStoredEnergy(creep.room) >= 0)
                 creep.withdrawEnergy();
             else
                 creep.rest();
