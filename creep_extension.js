@@ -31,11 +31,12 @@ Creep.prototype.withdrawEnergyFromSources = function (energySources) {
     if (energySources.length > 0) {
         var energySource = this.getNearestObjectByDistance(energySources);
         console.log(this.name + ": " + energySource)
-        if (!energySource)
-            return;
+        if (!energySource || energySources.length == 0)
+            return false;
         if (energySource.transfer(this, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
             this.moveTo(energySource, {visualizePathStyle: {stroke: '#0027ff'}});
         }
+        return true;
     }
 };
 
@@ -88,7 +89,7 @@ Creep.prototype.dropToStorage = function () {
 Creep.prototype.dropToDestinationContainer = function (maxQuantityPc) {
     this.memory.selectedSource = null;
     if (!this.getSquad())
-        return [];
+        return false;
     var structures = cache.findEmptyDestinationContainers(this.getSquad().getSquadRoomName(), maxQuantityPc);
     return this.dropToDestinations(structures, false);
 };

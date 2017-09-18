@@ -34,7 +34,8 @@ var carrierFSM = new statemachine.StateMachine.factory({
     methods: {
         onWithdrawSource: function () {
             var creep = Game.creeps[this.creepName];
-            creep.withdrawEnergyFromSourceContainer(MIN_SOURCE_CONTAINER_QUANTITY_PC);
+            if(!creep.withdrawEnergyFromSourceContainer(MIN_SOURCE_CONTAINER_QUANTITY_PC))
+                creep.rest();
         },
         onRest: function () {
             var creep = Game.creeps[this.creepName];
@@ -42,7 +43,8 @@ var carrierFSM = new statemachine.StateMachine.factory({
         },
         onDropDestination: function () {
             var creep = Game.creeps[this.creepName];
-            creep.dropToDestinationContainer(MAX_DESTINATION_CONTAINER_QUANTITY_PC);
+            if(!creep.dropToDestinationContainer(MAX_DESTINATION_CONTAINER_QUANTITY_PC))
+                creep.rest();
         },
         onDropStorage: function () {
             var creep = Game.creeps[this.creepName];
