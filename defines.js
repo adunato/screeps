@@ -204,7 +204,15 @@ var defines = {
             }),
             "DE": new squadprofile.SquadAttributes([["defender", 1]], false, function (flagName) {
                 var room = Game.flags[flagName].room;
-                return room.find(FIND_HOSTILE_CREEPS).length > 0;
+                var hostileCreeps = room.find(FIND_HOSTILE_CREEPS).length > 0;
+                for(var i = 0; i < hostileCreeps.length; i++){
+                    console.log("hostile from " + hostileCreeps[i].owner.username);
+                    if(hostileCreeps[i].owner.username !== "Invader"){
+                        Game.notify("Detected hostile from " + hostileCreeps[i].owner.username + "in room " + room.name, 0);
+                        return true;
+                    }
+                }
+                return false;
             }),
             "TR": new squadprofile.SquadAttributes([["transporter", 1]], false, function (roomName) {
                 return true
