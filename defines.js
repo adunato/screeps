@@ -57,17 +57,18 @@ var defines = {
                 ],
             "builder": [
                 [MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, WORK, WORK, CARRY, CARRY, CARRY, CARRY, CARRY],
-                [MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, WORK, CARRY, CARRY, CARRY, CARRY, CARRY],
-                [MOVE, MOVE, MOVE, MOVE, MOVE, WORK, CARRY, CARRY, CARRY, CARRY],
+                // [MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, WORK, CARRY, CARRY, CARRY, CARRY, CARRY],
+                // [MOVE, MOVE, MOVE, MOVE, MOVE, WORK, CARRY, CARRY, CARRY, CARRY],
                 // [MOVE, MOVE, MOVE, MOVE, WORK, CARRY, CARRY, CARRY],
                 // [MOVE, MOVE, WORK, CARRY, CARRY],
                 // [MOVE, WORK, CARRY]
             ],
             "nomad_harvester": [WORK, CARRY, MOVE],
             "upgrader": [
-                [MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, WORK, WORK, WORK, WORK, WORK, CARRY],
-                [MOVE, MOVE, MOVE, MOVE, WORK, WORK, WORK, WORK, WORK, CARRY],
-                [MOVE, MOVE, MOVE, WORK, WORK, WORK, WORK, CARRY],
+                [MOVE,MOVE,MOVE,WORK,WORK,WORK,WORK,WORK,CARRY],
+                // [MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, WORK, WORK, WORK, WORK, WORK, CARRY],
+                // [MOVE, MOVE, MOVE, MOVE, WORK, WORK, WORK, WORK, WORK, CARRY],
+                // [MOVE, MOVE, MOVE, WORK, WORK, WORK, WORK, CARRY],
                 // [MOVE, MOVE, MOVE, WORK, CARRY, CARRY],
                 // [MOVE, MOVE, WORK, CARRY],
             ],
@@ -104,9 +105,9 @@ var defines = {
                 // [MOVE, MOVE, MOVE, CARRY, CARRY, CARRY],
             ],
             "feeder": [
-                [MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY],
-                [MOVE, MOVE, MOVE, MOVE, MOVE, CARRY, CARRY, CARRY, CARRY, CARRY],
-                [MOVE, MOVE, MOVE, MOVE, CARRY, CARRY, CARRY, CARRY],
+                [MOVE,MOVE,MOVE,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY]
+                // [MOVE, MOVE, MOVE, MOVE, MOVE, CARRY, CARRY, CARRY, CARRY, CARRY],
+                // [MOVE, MOVE, MOVE, MOVE, CARRY, CARRY, CARRY, CARRY],
                 // [MOVE, MOVE, MOVE, CARRY, CARRY, CARRY],
                 // [MOVE, CARRY]
             ],
