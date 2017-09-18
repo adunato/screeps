@@ -279,8 +279,8 @@ var defines = {
                 '59bd0f8e0b35295a9a690686',//RC
             ],
             "E59N4": [
-                '59bcf1e54bf950778a52e344',//top source in E59N3
                 '59bf8f196e7bf95f7b3ba06e',//top link in E59N3
+                '59bcf1e54bf950778a52e344',//top source in E59N3
             ],
             "E57N3": [
                 '59be700aa68b175c2b15aded',//storage
