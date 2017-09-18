@@ -255,6 +255,7 @@ var defines = {
             "E59N3": [
                 '59bcf1e54bf950778a52e344',//top source
                 '59bcf2e30c847c1a83980262',//bottom source
+                '59bf841899b3c942fd9651ab',//central link
             ],
             "E58N3": [
                 '59bd01066a51a26ee9cd9364',//bottom source

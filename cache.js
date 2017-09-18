@@ -110,10 +110,21 @@ var cache = {
             return containers;
         for (var i = 0; i < global.sourceContainers[containersGroup].length; i++) {
             var container = Game.getObjectById(global.sourceContainers[containersGroup][i])
-            if (container && _.sum(container.store) > (container.storeCapacity / 100 * minQuantityPc))
+            if (container && (container instanceof StructureContainer || container instanceof StructureStorage) && _.sum(container.store) > (container.storeCapacity / 100 * minQuantityPc))
                 containers.push(container);
         }
         return containers;
+    },
+    findSourceLinksWithEnergy: function (containersGroup, minQuantityPc) {
+        var links = [];
+        if(!global.sourceContainers[containersGroup])
+            return links;
+        for (var i = 0; i < global.sourceContainers[containersGroup].length; i++) {
+            var link = Game.getObjectById(global.sourceContainers[containersGroup][i])
+            if (link && link instanceof StructureLink && _.sum(link.store) > (link.storeCapacity / 100 * minQuantityPc))
+                links.push(link);
+        }
+        return links;
     },
     findEmptyDestinationContainers: function (containersGroup, maxQuantityPc) {
         var containers = [];
