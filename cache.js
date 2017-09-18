@@ -106,7 +106,7 @@ var cache = {
     // },
     findSourceContainersWithEnergy: function (containersGroup, minQuantityPc) {
         var containers = [];
-        if(!global.sourceContainers[containersGroup])
+        if (!global.sourceContainers[containersGroup])
             return containers;
         for (var i = 0; i < global.sourceContainers[containersGroup].length; i++) {
             var container = Game.getObjectById(global.sourceContainers[containersGroup][i])
@@ -117,13 +117,16 @@ var cache = {
     },
     findSourceLinksWithEnergy: function (containersGroup, minQuantityPc) {
         var links = [];
-        if(!global.sourceContainers[containersGroup])
+        if (!global.sourceContainers[containersGroup])
             return links;
         for (var i = 0; i < global.sourceContainers[containersGroup].length; i++) {
             var link = Game.getObjectById(global.sourceContainers[containersGroup][i])
-            console.log("link " + link)
-            if (link && link instanceof StructureLink && _.sum(link.energy) > (link.energyCapacity / 100 * minQuantityPc))
+            if (link && link instanceof StructureLink) {
+                console.log("link " + link)
+                if (_.sum(link.energy) > (link.energyCapacity / 100 * minQuantityPc)
+            )
                 links.push(link);
+            }
         }
         return links;
     },
@@ -133,7 +136,7 @@ var cache = {
             return containers;
         for (var i = 0; i < global.destinationContainers[containersGroup].length; i++) {
             var container = Game.getObjectById(global.destinationContainers[containersGroup][i])
-            if (container && (container instanceof StructureContainer || container instanceof StructureStorage)&& _.sum(container.store) < (container.storeCapacity / 100 * maxQuantityPc))
+            if (container && (container instanceof StructureContainer || container instanceof StructureStorage) && _.sum(container.store) < (container.storeCapacity / 100 * maxQuantityPc))
                 containers.push(container);
         }
         return containers;
