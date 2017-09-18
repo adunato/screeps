@@ -126,6 +126,17 @@ var cache = {
         }
         return containers;
     },
+    findEmptyDestinationLinks: function (containersGroup, maxQuantityPc) {
+        var links = [];
+        if (!global.destinationContainers[containersGroup])
+            return links;
+        for (var i = 0; i < global.destinationContainers[containersGroup].length; i++) {
+            var container = Game.getObjectById(global.destinationContainers[containersGroup][i])
+            if (container && _.sum(container.energy) < (container.energyCapacity / 100 * maxQuantityPc))
+                links.push(container);
+        }
+        return links;
+    },
     isContainerSource: function (containersGroup, container) {
         for (var i = 0; i < global.sourceContainers[containersGroup].length; i++) {
             if (container.id === global.sourceContainers[containersGroup][i])
