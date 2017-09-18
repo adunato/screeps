@@ -94,6 +94,7 @@ Creep.prototype.dropToDestinationContainer = function (maxQuantityPc) {
         return false;
     var structures = cache.findEmptyDestinationContainers(this.getSquad().getSquadRoomName(), maxQuantityPc);
     structures = structures.concat(cache.findEmptyDestinationLinks(this.getSquad().getSquadRoomName(), maxQuantityPc));
+    console.log(structures)
     return this.dropToDestinations(structures, false);
 };
 
