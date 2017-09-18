@@ -204,7 +204,7 @@ var defines = {
             }),
             "DE": new squadprofile.SquadAttributes([["defender", 1]], false, function (flagName) {
                 var room = Game.flags[flagName].room;
-                var hostileCreeps = room.find(FIND_HOSTILE_CREEPS).length > 0;
+                var hostileCreeps = room.find(FIND_HOSTILE_CREEPS);
                 for(var i = 0; i < hostileCreeps.length; i++){
                     console.log("hostile from: " + hostileCreeps[i].owner.username);
                     if(hostileCreeps[i].owner.username !== "Invader"){
