@@ -206,7 +206,7 @@ var defines = {
                 var room = Game.flags[flagName].room;
                 var hostileCreeps = room.find(FIND_HOSTILE_CREEPS).length > 0;
                 for(var i = 0; i < hostileCreeps.length; i++){
-                    console.log("hostile from " + hostileCreeps[i].owner.username);
+                    console.log("hostile from: " + hostileCreeps[i].owner.username);
                     if(hostileCreeps[i].owner.username !== "Invader"){
                         Game.notify("Detected hostile from " + hostileCreeps[i].owner.username + "in room " + room.name, 0);
                         return true;
