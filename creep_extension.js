@@ -45,6 +45,7 @@ Creep.prototype.withdrawEnergyExCarriers = function () {
 
 Creep.prototype.withdrawEnergyFromSourceContainer = function (minQuantityPc) {
     var containers = cache.findSourceContainersWithEnergy(this.getSquad().getSquadRoomName(), minQuantityPc);
+    console.log(this.name + " :" + containers)
     return this.withdrawEnergyFromSources(containers);
 };
 
