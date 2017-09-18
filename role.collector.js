@@ -36,7 +36,7 @@ var collectorFSM = new statemachine.StateMachine.factory({
         },
         onNoSource: function () {
             var creep = Game.creeps[this.creepName];
-            creep.goHome();
+            creep.rest();
         },
         onNowhereToDrop: function () {
             var creep = Game.creeps[this.creepName];
