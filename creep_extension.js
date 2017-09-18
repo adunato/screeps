@@ -33,6 +33,7 @@ Creep.prototype.withdrawEnergyFromSources = function (energySources) {
         if (!energySource)
             return;
         if (energySource.transfer(this, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+            console.log(this.name + ": " + " I'm here")
             this.moveTo(energySource, {visualizePathStyle: {stroke: '#0027ff'}});
         }
     }
@@ -45,7 +46,6 @@ Creep.prototype.withdrawEnergyExCarriers = function () {
 
 Creep.prototype.withdrawEnergyFromSourceContainer = function (minQuantityPc) {
     var containers = cache.findSourceContainersWithEnergy(this.getSquad().getSquadRoomName(), minQuantityPc);
-    console.log(this.name + " :" + containers)
     return this.withdrawEnergyFromSources(containers);
 };
 
