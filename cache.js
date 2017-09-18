@@ -124,6 +124,7 @@ var cache = {
             if (link && link instanceof StructureLink && _.sum(link.energy) > (link.energyCapacity / 100 * minQuantityPc))
                 links.push(link);
         }
+        console.log("links " + links)
         return links;
     },
     findEmptyDestinationContainers: function (containersGroup, maxQuantityPc) {
