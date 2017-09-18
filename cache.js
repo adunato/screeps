@@ -121,10 +121,10 @@ var cache = {
             return links;
         for (var i = 0; i < global.sourceContainers[containersGroup].length; i++) {
             var link = Game.getObjectById(global.sourceContainers[containersGroup][i])
+            console.log("link " + link)
             if (link && link instanceof StructureLink && _.sum(link.energy) > (link.energyCapacity / 100 * minQuantityPc))
                 links.push(link);
         }
-        console.log("links " + links)
         return links;
     },
     findEmptyDestinationContainers: function (containersGroup, maxQuantityPc) {
