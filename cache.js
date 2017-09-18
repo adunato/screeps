@@ -122,8 +122,7 @@ var cache = {
         for (var i = 0; i < global.sourceContainers[containersGroup].length; i++) {
             var link = Game.getObjectById(global.sourceContainers[containersGroup][i])
             if (link && link instanceof StructureLink) {
-                console.log("link " + link + link.energy + "/" + (link.energyCapacity / 100 * minQuantityPc));
-                if (_.sum(link.energy) > (link.energyCapacity / 100 * minQuantityPc)
+                if (link.energy > (link.energyCapacity / 100 * minQuantityPc)
             )
                 links.push(link);
             }
@@ -147,7 +146,7 @@ var cache = {
             return links;
         for (var i = 0; i < global.destinationContainers[containersGroup].length; i++) {
             var link = Game.getObjectById(global.destinationContainers[containersGroup][i])
-            if (link && link instanceof StructureLink && _.sum(link.energy) < (link.energyCapacity / 100 * maxQuantityPc))
+            if (link && link instanceof StructureLink && link.energy < (link.energyCapacity / 100 * maxQuantityPc))
                 links.push(link);
         }
         return links;
