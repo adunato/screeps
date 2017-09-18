@@ -74,7 +74,7 @@ Creep.prototype.dropToDestinations = function (destinations, sortByDistance) {
             structure = destinations[0];
         if (!structure)
             return false;
-        if (this.transfer(structure, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+        if (this.transfer(structure, RESOURCE_GHODIUM_OXIDE) == ERR_NOT_IN_RANGE) {
             this.moveTo(structure, {visualizePathStyle: {stroke: '#0027ff'}});
         }
         return true;
