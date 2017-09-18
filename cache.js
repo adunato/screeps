@@ -131,9 +131,9 @@ var cache = {
         if (!global.destinationContainers[containersGroup])
             return links;
         for (var i = 0; i < global.destinationContainers[containersGroup].length; i++) {
-            var container = Game.getObjectById(global.destinationContainers[containersGroup][i])
-            if (container && _.sum(container.energy) < (container.energyCapacity / 100 * maxQuantityPc))
-                links.push(container);
+            var link = Game.getObjectById(global.destinationContainers[containersGroup][i])
+            if (link && link instanceof StructureLink && _.sum(link.energy) < (link.energyCapacity / 100 * maxQuantityPc))
+                links.push(link);
         }
         return links;
     },
