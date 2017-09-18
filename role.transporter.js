@@ -15,7 +15,7 @@ var carrierFSM = new statemachine.StateMachine.factory({
         {name: 'containersFull', from: ['go_home', 'drop_destination', 'rest', 'drop_storage'], to: 'drop_storage'},
         {
             name: 'nothingToDo',
-            from: ['go_home', 'rest', 'withdraw_source', 'drop_destination', 'drop_storage'],
+            from: [ 'rest', 'withdraw_source', 'drop_destination', 'drop_storage'],
             to: 'rest'
         },
         {name: 'timeToDie', from: ['go_home', 'rest', 'withdraw_source'], to: 'timeToDie'},
