@@ -121,7 +121,7 @@ var cache = {
             return links;
         for (var i = 0; i < global.sourceContainers[containersGroup].length; i++) {
             var link = Game.getObjectById(global.sourceContainers[containersGroup][i])
-            if (link && link instanceof StructureLink && _.sum(link.store) > (link.storeCapacity / 100 * minQuantityPc))
+            if (link && link instanceof StructureLink && _.sum(link.energy) > (link.energyCapacity / 100 * minQuantityPc))
                 links.push(link);
         }
         return links;
