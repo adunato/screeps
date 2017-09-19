@@ -5,9 +5,7 @@ var carrierFSM = new statemachine.StateMachine.factory({
     transitions: [
         {name: 'energyEmpty', from: ['rest','withdraw', 'carry', 'spawn_withdraw'], to: 'withdraw'},
         {name: 'energyFull', from: '*', to: 'carry'},
-        {name: 'noCarrierFlags', from: ['*'], to: 'rest'},
-        {name: 'containersEmpty', from: ['withdraw', 'spawn_withdraw', 'rest'], to: 'spawn_withdraw'},
-        {name: 'spawnEmpty', from: ['spawn_withdraw', 'rest'], to: 'rest'},
+        {name: 'containersEmpty', from: ['withdraw', 'spawn_withdraw', 'rest'], to: 'go_home'},
         {name: 'timeToDie', from: ['withdraw', 'suicide'], to: 'suicide'},
         {
             name: 'goto', from: '*', to: function (s) {
@@ -30,9 +28,9 @@ var carrierFSM = new statemachine.StateMachine.factory({
             var creep = Game.creeps[this.creepName];
             creep.carrier();
         },
-        onRest: function () {
+        onGoHome: function () {
             var creep = Game.creeps[this.creepName];
-            creep.rest();
+            creep.goHome();
         },
         onTimeToDie: function() {
             var creep = Game.creeps[this.creepName];
@@ -63,12 +61,6 @@ var roleCarrier = {
         }
         if (cache.findContainersWithEnergy(creep.room).length === 0 && stateMachine.can("containersEmpty")) {
             stateMachine.containersEmpty();
-        }
-        if (cache.findSpawnsWithEnergy(creep.room).length === 0 && stateMachine.can("spawnEmpty")) {
-            stateMachine.spawnEmpty();
-        }
-        if (Game.flags[creep.memory.squad] === null && stateMachine.can("noCarrierFlags")) {
-            stateMachine.noCarrierFlags();
         }
         if (creep.timeToDie() && creep.carry.energy === 0 && stateMachine.can("timeToDie")){
             stateMachine.timeToDie();
