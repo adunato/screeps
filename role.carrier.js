@@ -3,9 +3,9 @@ var cache = require('cache');
 var carrierFSM = new statemachine.StateMachine.factory({
     init: 'none',
     transitions: [
-        {name: 'energyEmpty', from: ['go_home','withdraw', 'carry', 'spawn_withdraw'], to: 'withdraw'},
+        {name: 'energyEmpty', from: ['go_home','withdraw', 'carry'], to: 'withdraw'},
         {name: 'energyFull', from: '*', to: 'carry'},
-        {name: 'containersEmpty', from: ['withdraw', 'spawn_withdraw', 'go_home'], to: 'go_home'},
+        {name: 'containersEmpty', from: ['withdraw', 'go_home'], to: 'go_home'},
         {name: 'timeToDie', from: ['withdraw', 'suicide'], to: 'suicide'},
         {
             name: 'goto', from: '*', to: function (s) {
