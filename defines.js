@@ -104,6 +104,9 @@ var defines = {
                 // [MOVE, MOVE, MOVE, MOVE, CARRY, CARRY, CARRY, CARRY],
                 // [MOVE, MOVE, MOVE, CARRY, CARRY, CARRY],
             ],
+            "transporterXXS": [
+                [MOVE, MOVE, MOVE, CARRY, CARRY, CARRY],
+            ],
             "feeder": [
                 [MOVE, MOVE, MOVE, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY]
                 // [MOVE, MOVE, MOVE, MOVE, MOVE, CARRY, CARRY, CARRY, CARRY, CARRY],
@@ -168,6 +171,7 @@ var defines = {
             "builder": roleBuilder,
             "defender": roleDefender,
             "transporter": roleTransporter,
+            "transporterXXS": roleTransporter,
             "claimer": roleClaimer,
             "reserver": roleReserver,
             "breacher": roleBreacher,
@@ -219,6 +223,9 @@ var defines = {
                 return false;
             }),
             "TR": new squadprofile.SquadAttributes([["transporter", 1]], false, function (roomName) {
+                return true
+            }),
+            "TRXXS": new squadprofile.SquadAttributes([["transporterXXS", 1]], false, function (roomName) {
                 return true
             }),
             "PA": new squadprofile.SquadAttributes([["patroller", 1]], true, function (roomName) {
