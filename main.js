@@ -212,7 +212,9 @@ function isFlagSquad(flagName) {
 }
 
 function createSquad(squadName, flagName) {
-    return new Squad(new squadprofile.SquadProfile(squadName.substr(0, squadName.length - 1)), squadName, flagName);
+    var firstDigit = squadName.match(/\d/);
+    var firstDigitIndex = squadName.indexOf(firstDigit);
+    return new Squad(new squadprofile.SquadProfile(squadName.substr(0, firstDigitIndex)), squadName, flagName);
 }
 
 function createSquads() {
