@@ -4,6 +4,7 @@ const DROP_COLLECTOR = "DROP_COLLECTOR";
 const DROP_CARRIER = "DROP_CARRIER";
 const DROP_STORAGE = "DROP_STORAGE";
 const MIN_ENERGY_CONTAINER_STORAGE = 250;
+var repairBlacklist=['59c05e4bc575336ca416c8f5'];
 var MAX_WALL_LVL = 100000;
 var cacheAge = 0;
 var CACHE_AGE_LIMIT = 0;
@@ -241,7 +242,7 @@ var cache = {
         } else {
             repairStructures = room.find(FIND_STRUCTURES, {
                 filter: (structure) => {
-                    return structure.hits < (structure.hitsMax / 100 * minRepairLevelPc) && structure.structureType !== STRUCTURE_WALL && structure.structureType !== STRUCTURE_RAMPART;
+                    return structure.hits < (structure.hitsMax / 100 * minRepairLevelPc) && structure.structureType !== STRUCTURE_WALL && structure.structureType !== STRUCTURE_RAMPART && !_.includes(repairBlacklist,structure.id);
                 }
             });
             this.rooms.repairStructures[room] = repairStructures;

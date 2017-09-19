@@ -280,7 +280,6 @@ var defines = {
             "E59N2": [
                 '59c04ef9d6c50f2e4f9a61cd',//bottom
                 '59c044de99fcd026b0be722d',//source
-                '59c05e4bc575336ca416c8f5',//top
             ],
             "E57N2": [
                 '59c0c61d4cda8e77d7942a30',//source
