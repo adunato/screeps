@@ -302,7 +302,7 @@ var defines = {
                 '59be700aa68b175c2b15aded',//storage
             ],
             "E59N2": [
-                '59c0d96d4f14870a81486872',//E60N3
+                '59c0fa918df5ad08d6911cf8',//E60N2
             ],
             "E57N2": [
                 '59c02064576fbe1d3bc87869',//E57N3
