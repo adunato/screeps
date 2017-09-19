@@ -31,8 +31,10 @@ Creep.prototype.withdrawEnergy = function () {
 Creep.prototype.withdrawEnergyFromSources = function (energySources) {
     if (energySources.length > 0) {
         var energySource = this.getNearestObjectByDistance(energySources);
-        if (!energySource || energySources.length == 0)
+        if (energySources.length == 0)
             return false;
+        else if(!energySource) //cover out of the room case
+            energySource = energySources[0];
         var res = energySource.transfer(this, RESOURCE_ENERGY);
         if (res == ERR_NOT_IN_RANGE) {
             this.moveTo(energySource, {visualizePathStyle: {stroke: '#0027ff'}});
