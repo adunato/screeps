@@ -295,8 +295,7 @@ function trackTickChanges() {
         }
         creep.memory.lastTick.carried_energy = creep.carry.energy;
 
-        if (creep.state === "rest") {
-            console.log("creep.memory.restTime " + creep.memory.restTime)
+        if (creep.memory.state === "rest") {
             if (creep.memory.restTime) {
                 creep.memory.restTime += 1;
             } else {
