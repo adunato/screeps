@@ -30,17 +30,26 @@ Creep.prototype.withdrawEnergy = function () {
 };
 Creep.prototype.withdrawEnergyFromSources = function (energySources) {
     if (energySources.length > 0) {
-        var energySource = this.getNearestObjectByDistance(energySources);
-        if (energySources.length == 0)
-            return false;
-        else if(!energySource) //cover out of the room case
-            energySource = energySources[0];
+        var energySource = this.containerWithMostEnergy(energySources);
+
         var res = energySource.transfer(this, RESOURCE_ENERGY);
         if (res == ERR_NOT_IN_RANGE) {
             this.moveTo(energySource, {visualizePathStyle: {stroke: '#0027ff'}});
         }
         return true;
     }
+};
+
+Creep.prototype.containerWithMostEnergy = function (energySources) {
+    var energy =0;
+    var selectedContainer = null;
+    for(var key in energySources){
+        if(energySources[key].store.energy > energy){
+            energy = energySources[key].store.energy;
+            selectedContainer =energySources[key];
+        }
+    }
+    return selectedContainer;
 };
 
 Creep.prototype.withdrawEnergyExCarriers = function () {
