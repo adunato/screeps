@@ -288,7 +288,7 @@ var defines = {
                 '59c0fa918df5ad08d6911cf8',//source
             ],
             "E60N3": [
-                '59c0d96d4f14870a81486872',//source
+                '59c28eb666dad4641ebb10d2',//storage
             ],
             "E56N3": [
                 '59c221a8881b657d8937e402',//source
