@@ -161,11 +161,11 @@ var defines = {
         global.creepRoles = {
             "feeder": roleFeeder,
             "tower_feeder": roleTowerFeeder,
+            "patroller": rolePatroller,
             "harvester": roleHarvester,
             "transporter": roleTransporter,
             "repairer": roleRepairer,
             "builder": roleBuilder,
-            "patroller": rolePatroller,
             "collector": roleCollector,
             "upgrader": roleUpgrader,
             "carrier": roleCarrier,
