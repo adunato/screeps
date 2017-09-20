@@ -48,6 +48,11 @@ Creep.prototype.containerWithMostEnergy = function (energySources) {
                 energy = energySources[key].store[RESOURCE_ENERGY];
                 selectedContainer = energySources[key];
             }
+        } else if(energySources[key] instanceof StructureLink){
+            if (energySources[key].energy > energy) {
+                energy = energySources[key].energy;
+                selectedContainer = energySources[key];
+            }
         }
     }
     return selectedContainer;
