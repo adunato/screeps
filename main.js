@@ -78,7 +78,8 @@ function spawn(roleName, squad) {
             if (selectedSpawn.canCreateCreep(bodyPart) === OK) {
                 var result = selectedSpawn.createCreep(bodyPart, undefined, {
                     role: roleName,
-                    spawnRoom: selectedSpawn.room.name
+                    spawnRoom: selectedSpawn.room.name,
+                    squad: squad.getName()
                 });
                 console.log(selectedSpawn.name + ': Spawning new ' + roleName + ' with body: ' + bodyPart + ' - ' + result);
                 return;
