@@ -294,6 +294,9 @@ function trackTickChanges() {
             }
         }
         creep.memory.lastTick.carried_energy = creep.carry.energy;
+        if(creep.memory.restTime && creep.state === "rest"){
+            creep.memory.restTime += 1;
+        }
     }
 
     //non-creep update
