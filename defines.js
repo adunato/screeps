@@ -159,12 +159,12 @@ var defines = {
 
         };
         global.creepRoles = {
-            "patroller": rolePatroller,
             "feeder": roleFeeder,
             "tower_feeder": roleTowerFeeder,
             "harvester": roleHarvester,
             "transporter": roleTransporter,
             "repairer": roleRepairer,
+            "patroller": rolePatroller,
             "collector": roleCollector,
             "upgrader": roleUpgrader,
             "carrier": roleCarrier,
