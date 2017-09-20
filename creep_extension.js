@@ -632,7 +632,7 @@ Creep.prototype.timeToDie = function () {
     }
     var disabled = !hasMovement && this.hits < this.hitsMax;
     if (disabled)
-        console.log(this.name + " has been disabled");
+        console.log(this.name + " has been disabled in room " + this.room.name);
     return (this.ticksToLive < 50);
 };
 
