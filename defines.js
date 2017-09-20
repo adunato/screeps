@@ -309,7 +309,8 @@ var defines = {
                 '59bcf1e54bf950778a52e344',//top source in E59N3
             ],
             "E57N3": [
-                '59c2b0d9a9cfb23fa5a839cf',//E58N3
+                '59c2b0d9a9cfb23fa5a839cf',//E58N3 (container)
+                '59be700aa68b175c2b15aded',//E58N3 (storage)
             ],
             "E59N2": [
                 '59c2983381b1de1ceacd59b1',//E60N2
