@@ -49,10 +49,10 @@ function spawn(roleName, squad) {
     var selectedSpawn = null;
     var minDistance = 1000;
     for (var spawnName in Game.spawns) {
-        if(_.contains(disabledSpawns, spawnName)) {
+        if (_.contains(disabledSpawns, spawnName)) {
             continue;
         }
-        if(squad.getSpawn()){
+        if (squad.getSpawn()) {
             selectedSpawn = Game.spawns[squad.getSpawn()];
             break;
         }
@@ -68,7 +68,7 @@ function spawn(roleName, squad) {
     }
     if (selectedSpawn) {
         //check if spawn is locked, if it is only proceeds it role is the locked one
-        if(spawnSlots[selectedSpawn.name] && spawnSlots[selectedSpawn.name] !== roleName)
+        if (spawnSlots[selectedSpawn.name] && spawnSlots[selectedSpawn.name] !== roleName)
             return;
         else
             spawnSlots[selectedSpawn.name] = roleName;
@@ -88,13 +88,13 @@ function spawn(roleName, squad) {
     }
 }
 
-function findInjuredCreeps(tower){
+function findInjuredCreeps(tower) {
     var creepsInRoom = tower.room.find(FIND_CREEPS);
     var injuredCreeps = [];
     // console.log("tower id:" + tower.id)
-    for(var x =0; x< creepsInRoom.length; x++){
+    for (var x = 0; x < creepsInRoom.length; x++) {
         var creep = creepsInRoom[x];
-        if(creep.hits < creep.hitsMax){
+        if (creep.hits < creep.hitsMax) {
             injuredCreeps.push(creep)
         }
     }
@@ -111,19 +111,19 @@ function manageDefense() {
                 tower.attack(tower.pos.findClosestByRange(room.find(FIND_HOSTILE_CREEPS)));
             } else if (tower.energy > tower.energyCapacity / 2) {
                 var injuredCreeps = findInjuredCreeps(tower);
-                if(injuredCreeps.length > 0){
+                if (injuredCreeps.length > 0) {
                     tower.heal(injuredCreeps[0]);
                 }
                 else if (cache.findRepairRamparts(room).length > 0) {
                     var closestDamagedRampart = cache.findRepairRamparts(room);
                     tower.repair(closestDamagedRampart[0]);
-                } else if (cache.findRepairWalls(room).length > 0){
+                } else if (cache.findRepairWalls(room).length > 0) {
                     var closestDamagedWall = cache.findRepairWalls(room);
                     if (closestDamagedWall.length > 0) {
                         tower.repair(closestDamagedWall[0]);
                     }
                 } else {
-                    var repairStructures = cache.findRepairStructures(room,100);
+                    var repairStructures = cache.findRepairStructures(room, 100);
                     if (repairStructures.length > 0) {
                         tower.repair(repairStructures[0]);
                     }
@@ -134,7 +134,7 @@ function manageDefense() {
 
     for (var y = 0; y < rooms.length; y++) {
         var room = rooms[y];
-        if(room.find(FIND_HOSTILE_CREEPS).length > 0){
+        if (room.find(FIND_HOSTILE_CREEPS).length > 0) {
             // room.controller.activateSafeMode();
             console.log("room " + room.name + " found enemies");
         }
@@ -190,7 +190,7 @@ function assignCreepsToSquads() {
             if (squad.needCreepRole(roleName)) {
                 // squad.getFlag().setColor(COLOR_ORANGE, COLOR_ORANGE);
                 console.log(squad.getSquadRoomName() + ": " + squadName + ' needs ' + roleName);
-                    spawn(roleName, squad);
+                spawn(roleName, squad);
             } else {
                 // squad.getFlag().setColor(COLOR_GREEN, COLOR_GREEN);
             }
@@ -294,8 +294,12 @@ function trackTickChanges() {
             }
         }
         creep.memory.lastTick.carried_energy = creep.carry.energy;
-        if(creep.memory.restTime && creep.state === "rest"){
-            creep.memory.restTime += 1;
+        if (creep.state === "rest") {
+            if (creep.memory.restTime) {
+                creep.memory.restTime += 1;
+            } else {
+                creep.memory.restTime = 1;
+            }
         }
     }
 
@@ -365,10 +369,10 @@ function initRooms() {
 function initFlags() {
     for (var flagName in Game.flags) {
         var flag = Game.flags[flagName];
-        if(!flag.memory.pinnedToFlag){
+        if (!flag.memory.pinnedToFlag) {
             flag.memory.pinnedToFlag = false;
         }
-        if(!flag.memory.spawn){
+        if (!flag.memory.spawn) {
             flag.memory.spawn = null;
         }
     }
@@ -400,11 +404,11 @@ function buildAutoConstructions() {
 }
 
 function transferLinks() {
-    for(var roomName in global.linkTransfers){
+    for (var roomName in global.linkTransfers) {
         var source = Game.getObjectById(global.linkTransfers[roomName][0]);
         var destination = Game.getObjectById(global.linkTransfers[roomName][1]);
 
-        if(source.energy > 0 ){
+        if (source.energy > 0) {
             source.transferEnergy(destination);
         }
     }
@@ -430,7 +434,7 @@ module.exports.loop = function () {
     logSpawing();
     logCPU('logSpawing ');
     manageDefense();
-    logCPU( 'manageDefense ');
+    logCPU('manageDefense ');
     executeCreepBehaviour();
     logCPU('executeCreepBehaviour ');
     transferLinks();
