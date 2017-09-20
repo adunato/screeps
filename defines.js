@@ -105,7 +105,7 @@ var defines = {
                 // [MOVE, MOVE, MOVE, CARRY, CARRY, CARRY],
             ],
             "transporterXXS": [
-                [MOVE, MOVE, MOVE, CARRY, CARRY, CARRY],
+                [MOVE,MOVE,MOVE,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY]
             ],
             "feeder": [
                 [MOVE, MOVE, MOVE, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY]
