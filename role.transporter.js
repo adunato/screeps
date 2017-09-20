@@ -1,7 +1,7 @@
 var statemachine = require('state-machine');
 var cache = require('cache');
 var MIN_SOURCE_CONTAINER_QUANTITY_PC = 25;
-var MAX_DESTINATION_CONTAINER_QUANTITY_PC = 90;
+var MAX_DESTINATION_CONTAINER_QUANTITY_PC = 75;
 var carrierFSM = new statemachine.StateMachine.factory({
     init: 'none',
     transitions: [
