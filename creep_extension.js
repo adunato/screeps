@@ -44,8 +44,8 @@ Creep.prototype.containerWithMostEnergy = function (energySources) {
     var energy =0;
     var selectedContainer = null;
     for(var key in energySources){
-        if(energySources[key].store.energy > energy){
-            energy = energySources[key].store.energy;
+        if(energySources[key].store[RESOURCE_ENERGY] > energy){
+            energy = energySources[key].store[RESOURCE_ENERGY];
             selectedContainer =energySources[key];
         }
     }
