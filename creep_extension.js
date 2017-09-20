@@ -31,7 +31,6 @@ Creep.prototype.withdrawEnergy = function () {
 Creep.prototype.withdrawEnergyFromSources = function (energySources) {
     if (energySources.length > 0) {
         var energySource = this.containerWithMostEnergy(energySources);
-
         var res = energySource.transfer(this, RESOURCE_ENERGY);
         if (res == ERR_NOT_IN_RANGE) {
             this.moveTo(energySource, {visualizePathStyle: {stroke: '#0027ff'}});
@@ -44,10 +43,11 @@ Creep.prototype.containerWithMostEnergy = function (energySources) {
     var energy = 0;
     var selectedContainer = null;
     for(var key in energySources){
-        console.log(energySources[key].store[RESOURCE_ENERGY]);
-        if(energySources[key].store[RESOURCE_ENERGY] > energy){
-            energy = energySources[key].store[RESOURCE_ENERGY];
-            selectedContainer =energySources[key];
+        if(energySources[key] instanceof "StructureContainer") {
+            if (energySources[key].store[RESOURCE_ENERGY] > energy) {
+                energy = energySources[key].store[RESOURCE_ENERGY];
+                selectedContainer = energySources[key];
+            }
         }
     }
     return selectedContainer;
