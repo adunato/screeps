@@ -41,9 +41,10 @@ Creep.prototype.withdrawEnergyFromSources = function (energySources) {
 };
 
 Creep.prototype.containerWithMostEnergy = function (energySources) {
-    var energy =0;
+    var energy = 0;
     var selectedContainer = null;
     for(var key in energySources){
+        console.log(energySources[key].store[RESOURCE_ENERGY]);
         if(energySources[key].store[RESOURCE_ENERGY] > energy){
             energy = energySources[key].store[RESOURCE_ENERGY];
             selectedContainer =energySources[key];
