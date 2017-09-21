@@ -54,7 +54,7 @@ var cache = {
         const container_energy = _.sum(containers, c => c.store.energy);
         return container_energy;
     },
-    findContainersWithEnergy: function (room, inlcudeCarriers) {
+    findContainersWithEnergy: function (room) {
         var containers = {};
         if(!room)
             return containers;
@@ -74,7 +74,7 @@ var cache = {
     findObjectsWithEnergy: function (room, includeCarriers) {
         if(!room)
             return [];
-        var containers = cache.findContainersWithEnergy(this.room, includeCarriers);
+        var containers = cache.findContainersWithEnergy(this.room);
         var carriers = includeCarriers ? cache.findCarriersWithEnergy(this.room) : [];
         var collectors = cache.findCollectorsWithEnergy(this.room);
         var harvesters = cache.findHarvestersWithEnergy(this.room);

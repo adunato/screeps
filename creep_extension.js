@@ -64,7 +64,7 @@ Creep.prototype.containerWithMostEnergy = function (energySources) {
 };
 
 Creep.prototype.withdrawEnergyExCarriers = function () {
-    var containers = cache.findContainersWithEnergy(this.room, false);
+    var containers = cache.findContainersWithEnergy(this.room);
     return this.withdrawEnergyFromSources(containers);
 };
 
