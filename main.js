@@ -146,18 +146,22 @@ function executeCreepBehaviour() {
     for (var name in Game.creeps) {
         var creep = Game.creeps[name];
         creepRoles[creep.memory.role].run(creep);
-        if(!CPUdata[creep.memory.role]){
-            CPUdata[creep.memory.role] = [];
+        if(printCPU) {
+            if (!CPUdata[creep.memory.role]) {
+                CPUdata[creep.memory.role] = [];
+            }
+            CPUdata[creep.memory.role].push(getCPUDelta()[1]);
         }
-        CPUdata[creep.memory.role].push(getCPUDelta()[1]);
     }
-    for(var key in CPUdata){
-        var total = 0;
-        for(var i = 0; i < CPUdata[key].length; i++) {
-            total += CPUdata[key][i];
+    if(printCPU) {
+        for (var key in CPUdata) {
+            var total = 0;
+            for (var i = 0; i < CPUdata[key].length; i++) {
+                total += CPUdata[key][i];
+            }
+            var avg = total / CPUdata[key].length;
+            console.log("executeCreepBehaviour - " + key + " " + avg);
         }
-        var avg = total / CPUdata[key].length;
-        console.log("executeCreepBehaviour - " + key + " " + avg);
     }
 }
 
