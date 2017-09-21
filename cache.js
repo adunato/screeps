@@ -417,6 +417,8 @@ var cache = {
         return creeps.length;
     },
     getCreepsInRoom(room) {
+        if(!room)
+            return [];
         if (typeof this.rooms.creeps[room] != "undefined") {
             return this.rooms.creeps[room];
         } else {
