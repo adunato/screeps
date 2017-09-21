@@ -73,19 +73,12 @@ var cache = {
     findObjectsWithEnergy: function (room, includeCarriers) {
         if(!room)
             return [];
-        console.log("room: " + room)
         var containers = this.findContainersWithEnergy(room);
-        console.log("containers: " + containers.length)
         var carriers = includeCarriers ? this.findCarriersWithEnergy(room) : [];
-        console.log("carriers: " + carriers.length)
         var collectors = this.findCollectorsWithEnergy(room);
-        console.log("collectors: " + collectors.length)
         var harvesters = this.findHarvestersWithEnergy(room);
-        console.log("harvesters: " + harvesters.length)
         var links = this.findLinksWithEnergy(room);
-        console.log("links: " + links.length)
         var energySources = containers.concat(carriers).concat(collectors).concat(harvesters).concat(links);
-        console.log("energySources: " + energySources.length)
         return energySources;
     },
     findLinksWithEnergy: function (room) {
