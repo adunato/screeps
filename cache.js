@@ -54,8 +54,9 @@ var cache = {
         const container_energy = _.sum(containers, c => c.store.energy);
         return container_energy;
     },
-    findContainersWithEnergy: function (room) {
+    findContainersWithEnergy: function (room, inlcudeCarriers) {
         var containers = {};
+
         if (typeof this.rooms.containersWithEnergy[room] != "undefined") {
             containers = this.rooms.containersWithEnergy[room];
         } else {
@@ -67,6 +68,15 @@ var cache = {
             this.rooms.containersWithEnergy[room] = containers;
         }
         return containers;
+    },
+    findObjectsWithEnergy: function (room, includeCarriers) {
+        var containers = cache.findContainersWithEnergy(this.room);
+        var carriers = includeCarriers ? cache.findCarriersWithEnergy(this.room) : [];
+        var collectors = cache.findCollectorsWithEnergy(this.room);
+        var harvesters = cache.findHarvestersWithEnergy(this.room);
+        var links = cache.findLinksWithEnergy(this.room);
+        var energySources = containers.concat(carriers).concat(collectors).concat(harvesters).concat(links);
+        return energySources;
     },
     findLinksWithEnergy: function (room) {
         var links = {};

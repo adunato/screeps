@@ -11,12 +11,7 @@ const WITHDRAW_FROM_SPAWN = false;
 const WAYPOINT_LOG = false;
 
 Creep.prototype.withdrawEnergy = function (includeCarriers) {
-    var containers = cache.findContainersWithEnergy(this.room);
-    var carriers = includeCarriers ? cache.findCarriersWithEnergy(this.room) : [];
-    var collectors = cache.findCollectorsWithEnergy(this.room);
-    var harvesters = cache.findHarvestersWithEnergy(this.room);
-    var links = cache.findLinksWithEnergy(this.room);
-    var energySources = containers.concat(carriers).concat(collectors).concat(harvesters).concat(links);
+    var energySources = cache.findObjectsWithEnergy(this.room,includeCarriers);
     if (WITHDRAW_FROM_SPAWN) {
         energySources = energySources.concat(cache.findSpawnsWithEnergy(this.room));
     }
