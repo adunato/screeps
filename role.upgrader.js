@@ -28,6 +28,7 @@ var upgraderFSM = new statemachine.StateMachine.factory({
             var creep = Game.creeps[this.creepName];
             if(cache.getStoredEnergy(creep.room) > 0) {
                 var res = creep.withdrawEnergy(false);
+                res = cache.findObjectsWithEnergy(creep.room,false);
                 console.log("RES: " + res)
             }
             else
@@ -66,7 +67,6 @@ var upgraderFSM = new statemachine.StateMachine.factory({
 var roleupgrader = {
     /** @param {Creep} creep **/
     run: function (creep) {
-        console.log("delete me: " + cache.findObjectsWithEnergy(creep.room, false));
         var creepState = creep.memory.state;
         if (typeof creepState === "undefined")
             creepState = "withdraw";
