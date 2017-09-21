@@ -372,6 +372,7 @@ var cache = {
                     || (includeTowers && structure.structureType == STRUCTURE_TOWER && structure.energy < structure.energyCapacity * 0.9));
             }
         });
+        console.log(this.getLinksToFeed(room));
         energyFedStructures.concat(this.getLinksToFeed(room));
         var ret = [];
         for (var i in energyFedStructures) {
