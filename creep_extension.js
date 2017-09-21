@@ -32,8 +32,10 @@ Creep.prototype.withdrawEnergy = function () {
 Creep.prototype.withdrawEnergyFromSources = function (energySources) {
     if (energySources.length > 0) {
         var energySource = this.containerWithMostEnergy(energySources);
-        if(!energySource)
+        if(!energySource) {
             console.log("energySource null: " + energySources);
+            return false;
+        }
         var res = energySource.transfer(this, RESOURCE_ENERGY);
         if (res == ERR_NOT_IN_RANGE) {
             this.moveTo(energySource, {visualizePathStyle: {stroke: '#0027ff'}});
