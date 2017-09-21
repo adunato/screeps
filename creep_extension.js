@@ -59,6 +59,7 @@ Creep.prototype.containerWithMostEnergy = function (energySources) {
                 selectedContainer = energySources[key];
             }
         } else if(energySources[key] instanceof Creep){
+            console.log(energySources[key].carry);
             if (energySources[key].carry > energy) {
                 energy = energySources[key].carry;
                 selectedContainer = energySources[key];
