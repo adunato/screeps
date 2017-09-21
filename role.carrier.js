@@ -37,9 +37,9 @@ var carrierFSM = new statemachine.StateMachine.factory({
             creep.suicide_();
         },
         onTransition(lifecycle) {
-            console.log("transition name: " + lifecycle.transition);
-            console.log("transition from: " + lifecycle.from);
-            console.log("transition to: " + lifecycle.to);
+            // console.log("transition name: " + lifecycle.transition);
+            // console.log("transition from: " + lifecycle.from);
+            // console.log("transition to: " + lifecycle.to);
         }
     }
 });
