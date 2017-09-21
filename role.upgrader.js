@@ -81,6 +81,7 @@ var roleupgrader = {
             stateMachine.energyFull();
         }
         if (cache.findObjectsWithEnergy(creep.room, false).length === 0 && stateMachine.can("containersEmpty")) {
+            console.log("delete me: " + cache.findObjectsWithEnergy(creep.room, false));
             stateMachine.containersEmpty();
         }
         if (cache.findCarriersWithEnergy(creep.room).length === 0 && stateMachine.can("carrierEmpty")) {
