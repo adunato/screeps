@@ -354,6 +354,16 @@ var cache = {
         return targets;
     },
 
+    getLinksToFeed: function(room){
+        var ret = [];
+        for(var key in global.linksToFeed[room.name]){
+            var link = Game.getObjectById(global.linksToFeed[room.name][key]);
+            if(link)
+                ret.push(link);
+        }
+        return ret;
+    },
+
     findEnergyFedStructures: function (room, includeTowers) {
         var energyFedStructures = room.find(FIND_STRUCTURES, {
             filter: (structure) => {
@@ -362,8 +372,7 @@ var cache = {
                     || (includeTowers && structure.structureType == STRUCTURE_TOWER && structure.energy < structure.energyCapacity * 0.9));
             }
         });
-        console.log(global.linksToFeed[room.name]);
-        energyFedStructures.concat(global.linksToFeed[room.name]);
+        energyFedStructures.concat(this.getLinksToFeed(room));
         var ret = [];
         for (var i in energyFedStructures) {
             var structure = energyFedStructures[i];
