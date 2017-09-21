@@ -28,7 +28,7 @@ var upgraderFSM = new statemachine.StateMachine.factory({
             var creep = Game.creeps[this.creepName];
             if(cache.getStoredEnergy(creep.room) > 0) {
                 var res = creep.withdrawEnergy(false);
-                res = cache.findObjectsWithEnergy(creep.room,false);
+                res = cache.findLinksWithEnergy(this.room);
                 console.log("RES: " + res.length)
                 console.log("creep.room: " + creep.room)
             }
