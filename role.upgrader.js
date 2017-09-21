@@ -74,6 +74,9 @@ var roleupgrader = {
         if (creep.carry.energy === 0 && stateMachine.can("energyEmpty")) {
             stateMachine.energyEmpty();
         }
+        if (creep.carry.energy === 0 && stateMachine.can("energyEmpty")) {
+            stateMachine.energyEmpty();
+        }
         if (creep.carry.energy < creep.carryCapacity && stateMachine.can("pickupFromCarrier")) {
             stateMachine.energyEmpty();
         }
