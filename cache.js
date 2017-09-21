@@ -4,7 +4,8 @@ const DROP_COLLECTOR = "DROP_COLLECTOR";
 const DROP_CARRIER = "DROP_CARRIER";
 const DROP_STORAGE = "DROP_STORAGE";
 const MIN_ENERGY_CONTAINER_STORAGE = 250;
-var repairBlacklist=['59c05e4bc575336ca416c8f5'];
+const MIN_LINK_STORAGE = 0;
+var repairBlacklist = ['59c05e4bc575336ca416c8f5'];
 var MAX_WALL_LVL = 100000;
 var cacheAge = 0;
 var CACHE_AGE_LIMIT = 0;
@@ -67,6 +68,15 @@ var cache = {
         }
         return containers;
     },
+    findLinksWithEnergy: function (room) {
+        var links = {};
+        links = room.find(FIND_STRUCTURES, {
+            filter: (container) => {
+                return (container.structureType == STRUCTURE_LINK ) && container.energy > MIN_LINK_STORAGE;
+            }
+        });
+        return links;
+    },
     findContainers: function (room) {
         var containers = {};
         if (typeof this.rooms.containers[room] != "undefined") {
@@ -124,8 +134,8 @@ var cache = {
             var link = Game.getObjectById(global.sourceContainers[containersGroup][i])
             if (link && link instanceof StructureLink) {
                 if (link.energy > (link.energyCapacity / 100 * minQuantityPc)
-            )
-                links.push(link);
+                )
+                    links.push(link);
             }
         }
         return links;
@@ -242,7 +252,7 @@ var cache = {
         } else {
             repairStructures = room.find(FIND_STRUCTURES, {
                 filter: (structure) => {
-                    return structure.hits < (structure.hitsMax / 100 * minRepairLevelPc) && structure.structureType !== STRUCTURE_WALL && structure.structureType !== STRUCTURE_RAMPART && !_.includes(repairBlacklist,structure.id);
+                    return structure.hits < (structure.hitsMax / 100 * minRepairLevelPc) && structure.structureType !== STRUCTURE_WALL && structure.structureType !== STRUCTURE_RAMPART && !_.includes(repairBlacklist, structure.id);
                 }
             });
             this.rooms.repairStructures[room] = repairStructures;
