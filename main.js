@@ -157,7 +157,7 @@ function executeCreepBehaviour() {
             total += CPUdata[key][i];
         }
         var avg = total / CPUdata[key].length;
-        logCPU("executeCreepBehaviour - " + key + " " + avg);
+        console.log("executeCreepBehaviour - " + key + " " + avg);
     }
 }
 
