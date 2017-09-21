@@ -16,7 +16,7 @@ Creep.prototype.withdrawEnergy = function () {
     var collectors = cache.findCollectorsWithEnergy(this.room);
     var harvesters = cache.findHarvestersWithEnergy(this.room);
     var links = cache.findLinksWithEnergy(this.room);
-    var energySources = containers.concat(carriers).concat(collectors).concat(harvesters);
+    var energySources = containers.concat(carriers).concat(collectors).concat(harvesters).concat(links);
     if (WITHDRAW_FROM_SPAWN) {
         energySources = energySources.concat(cache.findSpawnsWithEnergy(this.room));
     }
