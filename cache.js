@@ -83,6 +83,8 @@ var cache = {
         return energySources;
     },
     findLinksWithEnergy: function (room) {
+        if(!room)
+            return [];
         var links = room.find(FIND_STRUCTURES, {
             filter: (link) => {
                 return (link.structureType == STRUCTURE_LINK );
