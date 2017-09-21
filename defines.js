@@ -287,6 +287,7 @@ var defines = {
             ],
             "E59N2": [
                 '59c27bfdaf77cb2f886e312d',//source
+                '59c3b4cf1f24c948e65fdf1d',//container
             ],
             "E57N2": [
                 '59c0c61d4cda8e77d7942a30',//source
