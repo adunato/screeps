@@ -359,7 +359,7 @@ function getCPUDelta(){
 }
 
 function logCPU(message) {
-    var data = getCPUDelta;
+    var data = getCPUDelta();
     if (printCPU) {
         console.log(message + ": " + data[1] + " - total: " + data[0]);
     }
