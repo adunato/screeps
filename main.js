@@ -152,7 +152,7 @@ function executeCreepBehaviour() {
         CPUdata[creep.memory.role].push(getCPUDelta()[1]);
     }
     for(var key in CPUdata){
-        logCPU("executeCreepBehaviour - " + key + _.mean(CPUData[key]));
+        logCPU("executeCreepBehaviour - " + key + _.mean(CPUdata[key]));
     }
 }
 
