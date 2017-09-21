@@ -144,12 +144,13 @@ function manageDefense() {
 function executeCreepBehaviour() {
     for (var name in Game.creeps) {
         var creep = Game.creeps[name];
-        for (var role in creepRoles) {
-            if (creep.memory.role == role) {
-                creepRoles[role].run(creep);
-                // logCPU("executeCreepBehaviour - " + role)
-            }
-        }
+        creepRoles[creep.memory.role].run(creep);
+        // for (var role in creepRoles) {
+        //     if (creep.memory.role == role) {
+        //         creepRoles[role].run(creep);
+        //         logCPU("executeCreepBehaviour - " + role)
+        //     }
+        // }
     }
 }
 
