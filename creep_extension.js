@@ -562,7 +562,7 @@ Creep.prototype.multiFunction = function () {
 Creep.prototype.upgradeController_ = function () {
     var flag = Game.flags[this.memory.squad];
     //move to flag if not in flag's room
-    if (flag != null && (!flag.room || flag.room.name != this.room.name || flag.pos != this.pos)) {
+    if (flag != null && (!flag.room || flag.room.name != this.room.name || (flag.pos.x != this.pos.x && flag.pos.y != this.pos.y))) {
         this.moveTo(flag, {visualizePathStyle: {stroke: '#ffda00'}});
         return;
     }
