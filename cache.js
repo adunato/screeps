@@ -74,15 +74,15 @@ var cache = {
         if(!room)
             return [];
         console.log("room: " + room)
-        var containers = cache.findContainersWithEnergy(this.room);
+        var containers = this.findContainersWithEnergy(this.room);
         console.log("containers: " + containers.length)
-        var carriers = includeCarriers ? cache.findCarriersWithEnergy(this.room) : [];
+        var carriers = includeCarriers ? this.findCarriersWithEnergy(this.room) : [];
         console.log("carriers: " + carriers.length)
-        var collectors = cache.findCollectorsWithEnergy(this.room);
+        var collectors = this.findCollectorsWithEnergy(this.room);
         console.log("collectors: " + collectors.length)
-        var harvesters = cache.findHarvestersWithEnergy(this.room);
+        var harvesters = this.findHarvestersWithEnergy(this.room);
         console.log("harvesters: " + harvesters.length)
-        var links = cache.findLinksWithEnergy(this.room);
+        var links = this.findLinksWithEnergy(this.room);
         console.log("links: " + links.length)
         var energySources = containers.concat(carriers).concat(collectors).concat(harvesters).concat(links);
         console.log("energySources: " + energySources.length)
