@@ -58,7 +58,6 @@ var cache = {
         var containers = [];
         if(!room)
             return containers;
-
         if (typeof this.rooms.containersWithEnergy[room] != "undefined") {
             containers = this.rooms.containersWithEnergy[room];
         } else {
@@ -74,6 +73,7 @@ var cache = {
     findObjectsWithEnergy: function (room, includeCarriers) {
         if(!room)
             return [];
+        console.log("room: " + room)
         var containers = cache.findContainersWithEnergy(this.room);
         console.log("containers: " + containers.length)
         var carriers = includeCarriers ? cache.findCarriersWithEnergy(this.room) : [];
