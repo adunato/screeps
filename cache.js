@@ -75,11 +75,17 @@ var cache = {
         if(!room)
             return [];
         var containers = cache.findContainersWithEnergy(this.room);
+        console.log("containers: " + containers.length)
         var carriers = includeCarriers ? cache.findCarriersWithEnergy(this.room) : [];
+        console.log("carriers: " + carriers.length)
         var collectors = cache.findCollectorsWithEnergy(this.room);
+        console.log("collectors: " + collectors.length)
         var harvesters = cache.findHarvestersWithEnergy(this.room);
+        console.log("harvesters: " + harvesters.length)
         var links = cache.findLinksWithEnergy(this.room);
+        console.log("links: " + links.length)
         var energySources = containers.concat(carriers).concat(collectors).concat(harvesters).concat(links);
+        console.log("energySources: " + energySources.length)
         return energySources;
     },
     findLinksWithEnergy: function (room) {
