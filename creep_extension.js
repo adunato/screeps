@@ -18,7 +18,7 @@ Creep.prototype.withdrawEnergy = function (includeCarriers) {
     if (energySources.length > 0) {
         var energySource = this.getNearestObjectByDistance(energySources);
         if (!energySource) {
-            console.log("no obj found: " + energySources[0][0]);
+            console.log("no obj found: " + energySources.length);
             return false;
         }
         if (energySource.transfer(this, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
