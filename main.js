@@ -355,7 +355,7 @@ function getCPUDelta(){
     var currentCPU = Game.cpu.getUsed();
     var delta = currentCPU - global.CPUcounter;
     global.CPUcounter = currentCPU;
-    return [currentCPU,delta];
+    return [global.CPUcounter,delta];
 }
 
 function logCPU(message) {
