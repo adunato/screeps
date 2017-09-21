@@ -409,7 +409,7 @@ function transferLinks() {
         var source = Game.getObjectById(global.linkTransfers[roomName][0]);
         var destination = Game.getObjectById(global.linkTransfers[roomName][1]);
 
-        if (source.energy > 0) {
+        if (source.energy === source.energyCapacity) {
             source.transferEnergy(destination);
         }
     }
