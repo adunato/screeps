@@ -23,7 +23,7 @@ var wall_repairerFSM = new statemachine.StateMachine.factory({
     methods: {
         onWithdraw: function () {
             var creep = Game.creeps[this.creepName];
-            creep.withdrawEnergy();
+            creep.withdrawEnergy(false);
         },
         onRepair: function () {
             var creep = Game.creeps[this.creepName];

@@ -10,9 +10,9 @@ const DROP_STORAGE = "DROP_STORAGE";
 const WITHDRAW_FROM_SPAWN = false;
 const WAYPOINT_LOG = false;
 
-Creep.prototype.withdrawEnergy = function () {
+Creep.prototype.withdrawEnergy = function (includeCarriers) {
     var containers = cache.findContainersWithEnergy(this.room);
-    var carriers = cache.findCarriersWithEnergy(this.room);
+    var carriers = includeCarriers ? cache.findCarriersWithEnergy(this.room) : [];
     var collectors = cache.findCollectorsWithEnergy(this.room);
     var harvesters = cache.findHarvestersWithEnergy(this.room);
     var links = cache.findLinksWithEnergy(this.room);

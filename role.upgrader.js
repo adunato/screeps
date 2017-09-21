@@ -27,7 +27,7 @@ var upgraderFSM = new statemachine.StateMachine.factory({
         onWithdraw: function () {
             var creep = Game.creeps[this.creepName];
             if(cache.getStoredEnergy(creep.room) > 1000)
-                creep.withdrawEnergy();
+                creep.withdrawEnergy(false);
             else
                 creep.rest();
         },
