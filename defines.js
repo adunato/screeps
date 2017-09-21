@@ -295,7 +295,7 @@ var defines = {
                 '59c2983381b1de1ceacd59b1',//source
             ],
             "E60N3": [
-                '59c28eb666dad4641ebb10d2',//storage
+                '59c384517410941e06408ba7',//storage
             ],
             "E56N3": [
                 '59c221a8881b657d8937e402',//source
@@ -327,7 +327,7 @@ var defines = {
                 '59c02064576fbe1d3bc87869',//E57N3
             ],
             "E60N2": [
-                '59c28eb666dad4641ebb10d2',//E60N3
+                '59c384517410941e06408ba7',//E60N3
             ],
             "E60N3": [
                 '59c2a37624ea0a1cabd02ee1',//E59N3
