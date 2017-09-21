@@ -66,6 +66,7 @@ var upgraderFSM = new statemachine.StateMachine.factory({
 var roleupgrader = {
     /** @param {Creep} creep **/
     run: function (creep) {
+        console.log("delete me: " + cache.findObjectsWithEnergy(creep.room, false));
         var creepState = creep.memory.state;
         if (typeof creepState === "undefined")
             creepState = "withdraw";
@@ -81,7 +82,6 @@ var roleupgrader = {
             stateMachine.energyFull();
         }
         if (cache.findObjectsWithEnergy(creep.room, false).length === 0 && stateMachine.can("containersEmpty")) {
-            console.log("delete me: " + cache.findObjectsWithEnergy(creep.room, false));
             stateMachine.containersEmpty();
         }
         if (cache.findCarriersWithEnergy(creep.room).length === 0 && stateMachine.can("carrierEmpty")) {
