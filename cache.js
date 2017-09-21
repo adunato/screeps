@@ -88,6 +88,7 @@ var cache = {
             return links;
         links = room.find(FIND_STRUCTURES, {
             filter: (link) => {
+                console.log(link.structureType);
                 return (link.structureType == STRUCTURE_LINK );
             }
         });
