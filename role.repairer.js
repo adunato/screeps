@@ -1,6 +1,6 @@
 var statemachine = require('state-machine');
 var cache = require('cache');
-var MIN_REPAIR_LVL_PC = 90;
+var MIN_REPAIR_LVL_PC = 0;
 var repairrFSM = new statemachine.StateMachine.factory({
     init: 'none',
     transitions: [
