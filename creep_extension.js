@@ -33,7 +33,7 @@ Creep.prototype.withdrawEnergyFromSources = function (energySources) {
             console.log("energySource null: " + energySources);
             return false;
         }
-        console.log(_.findKey(energySource.store, (amt,key) => amt > 0));
+        // console.log(_.findKey(energySource.store, (amt,key) => amt > 0));
         var res = energySource.transfer(this, RESOURCE_ENERGY);
         if (res == ERR_NOT_IN_RANGE) {
             this.moveTo(energySource, {visualizePathStyle: {stroke: '#0027ff'}});
