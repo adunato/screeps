@@ -84,6 +84,8 @@ var cache = {
     },
     findLinksWithEnergy: function (room) {
         var links = {};
+        if(!room)
+            return links;
         links = room.find(FIND_STRUCTURES, {
             filter: (container) => {
                 return (container.structureType == STRUCTURE_LINK ) && container.energy > MIN_LINK_STORAGE;
