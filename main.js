@@ -142,14 +142,17 @@ function manageDefense() {
 }
 
 function executeCreepBehaviour() {
+    var CPUdata = {};
     for (var name in Game.creeps) {
         var creep = Game.creeps[name];
-        for (var role in creepRoles) {
-            if (creep.memory.role == role) {
-                creepRoles[role].run(creep);
-                // logCPU("executeCreepBehaviour - " + role)
-            }
+        creepRoles[creep.memory.role].run(creep);
+        if(!CPUdata[creep.memory.role]){
+            CPUdata[creep.memory.role] = [];
         }
+        CPUdata[creep.memory.role].push(getCPUDelta()[1]);
+    }
+    for(var key in CPUdata){
+        logCPU("executeCreepBehaviour - " + key + _.mean(CPUData));
     }
 }
 
@@ -343,12 +346,17 @@ function resetCPULog() {
     }
 }
 
+function getCPUDelta(){
+    var currentCPU = Game.cpu.getUsed();
+    var delta = currentCPU - global.CPUcounter;
+    global.CPUcounter = currentCPU;
+    return [currentCPU,delta];
+}
+
 function logCPU(message) {
+    var data = getCPUDelta;
     if (printCPU) {
-        var currentCPU = Game.cpu.getUsed();
-        var delta = currentCPU - global.CPUcounter;
-        global.CPUcounter = currentCPU;
-        console.log(message + ": " + delta + " - total: " + currentCPU);
+        console.log(message + ": " + data[1] + " - total: " + data[0]);
     }
 }
 
