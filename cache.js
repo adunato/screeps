@@ -70,14 +70,14 @@ var cache = {
         }
         return containers;
     },
-    findObjectsWithEnergy: function (room, includeCarriers) {
+    findObjectsWithEnergy: function (room, includeCarriers, includeLinks) {
         if(!room)
             return [];
         var containers = this.findContainersWithEnergy(room);
         var carriers = includeCarriers ? this.findCarriersWithEnergy(room) : [];
         var collectors = this.findCollectorsWithEnergy(room);
         var harvesters = this.findHarvestersWithEnergy(room);
-        var links = this.findLinksWithEnergy(room);
+        var links = includeLinks ? this.findLinksWithEnergy(room) : [];
         var energySources = containers.concat(carriers).concat(collectors).concat(harvesters).concat(links);
         return energySources;
     },

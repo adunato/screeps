@@ -23,7 +23,7 @@ var repairrFSM = new statemachine.StateMachine.factory({
     methods: {
         onWithdraw: function () {
             var creep = Game.creeps[this.creepName];
-            creep.withdrawEnergy(true);
+            creep.withdrawEnergy(true, false);
         },
         onRepair: function () {
             var creep = Game.creeps[this.creepName];
@@ -54,7 +54,7 @@ var rolerepairr = {
         if (creep.carry.energy === 0) {
             stateMachine.energyEmpty();
         }
-        if (cache.findObjectsWithEnergy(creep.room, true).length === 0 && stateMachine.can("containersEmpty")) {
+        if (cache.findObjectsWithEnergy(creep.room, true, false).length === 0 && stateMachine.can("containersEmpty")) {
             stateMachine.containersEmpty();
         }
         if (cache.findRepairStructures(creep.room,MIN_REPAIR_LVL_PC).length === 0 && stateMachine.can("noStructuresFound")) {

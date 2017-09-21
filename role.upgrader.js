@@ -27,8 +27,8 @@ var upgraderFSM = new statemachine.StateMachine.factory({
         onWithdraw: function () {
             var creep = Game.creeps[this.creepName];
             if(cache.getStoredEnergy(creep.room) > 0) {
-                creep.withdrawEnergy(false);
-                var res = cache.findObjectsWithEnergy(creep.room,false);
+                creep.withdrawEnergy(false, true);
+                var res = cache.findObjectsWithEnergy(creep.room,false, true);
             }
             else
                 creep.rest();
@@ -83,7 +83,7 @@ var roleupgrader = {
         if (creep.carry.energy === creep.carryCapacity && stateMachine.can("energyFull")) {
             stateMachine.energyFull();
         }
-        if (cache.findObjectsWithEnergy(creep.room, false).length === 0 && stateMachine.can("containersEmpty")) {
+        if (cache.findObjectsWithEnergy(creep.room, false, true).length === 0 && stateMachine.can("containersEmpty")) {
             stateMachine.containersEmpty();
         }
         if (cache.findCarriersWithEnergy(creep.room).length === 0 && stateMachine.can("carrierEmpty")) {

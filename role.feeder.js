@@ -23,7 +23,7 @@ var feederFSM = new statemachine.StateMachine.factory({
     methods: {
         onEnergyEmpty: function () {
             var creep = Game.creeps[this.creepName];
-            creep.withdrawEnergy(false);
+            creep.withdrawEnergy(false, false);
         },
         onEnergyFull: function () {
             var creep = Game.creeps[this.creepName];
@@ -64,7 +64,7 @@ var roleFeeder = {
         if (creep.carry.energy > 0 && stateMachine.can("energyFull")) {
             stateMachine.energyFull();
         }
-        if (cache.findObjectsWithEnergy(creep.room, false).length === 0 && stateMachine.can("containersEmpty")) {
+        if (cache.findObjectsWithEnergy(creep.room, false, false).length === 0 && stateMachine.can("containersEmpty")) {
             stateMachine.containersEmpty();
         }
         if (Game.flags[creep.memory.squad] === null && stateMachine.can("noFeederFlags")) {

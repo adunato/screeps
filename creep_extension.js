@@ -10,8 +10,8 @@ const DROP_STORAGE = "DROP_STORAGE";
 const WITHDRAW_FROM_SPAWN = false;
 const WAYPOINT_LOG = false;
 
-Creep.prototype.withdrawEnergy = function (includeCarriers) {
-    var energySources = cache.findObjectsWithEnergy(this.room,includeCarriers);
+Creep.prototype.withdrawEnergy = function (includeCarriers, includeLinks) {
+    var energySources = cache.findObjectsWithEnergy(this.room,includeCarriers, includeLinks);
     if (WITHDRAW_FROM_SPAWN) {
         energySources = energySources.concat(cache.findSpawnsWithEnergy(this.room));
     }
