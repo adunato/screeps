@@ -30,6 +30,7 @@ var upgraderFSM = new statemachine.StateMachine.factory({
                 var res = creep.withdrawEnergy(false);
                 res = cache.findObjectsWithEnergy(creep.room,false);
                 console.log("RES: " + res.length)
+                console.log("creep.room: " + creep.room)
             }
             else
                 creep.rest();
