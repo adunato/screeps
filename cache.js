@@ -70,6 +70,8 @@ var cache = {
         return containers;
     },
     findObjectsWithEnergy: function (room, includeCarriers) {
+        if(!room)
+            return [];
         var containers = cache.findContainersWithEnergy(this.room);
         var carriers = includeCarriers ? cache.findCarriersWithEnergy(this.room) : [];
         var collectors = cache.findCollectorsWithEnergy(this.room);
