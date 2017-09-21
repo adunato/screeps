@@ -56,6 +56,8 @@ var cache = {
     },
     findContainersWithEnergy: function (room, inlcudeCarriers) {
         var containers = {};
+        if(!room)
+            return containers;
 
         if (typeof this.rooms.containersWithEnergy[room] != "undefined") {
             containers = this.rooms.containersWithEnergy[room];
