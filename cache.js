@@ -55,7 +55,7 @@ var cache = {
         return container_energy;
     },
     findContainersWithEnergy: function (room) {
-        var containers = {};
+        var containers = [];
         if(!room)
             return containers;
 
