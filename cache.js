@@ -355,15 +355,14 @@ var cache = {
     },
 
     findEnergyFedStructures: function (room, includeTowers) {
-        var energyFedStructures = {};
-
-        energyFedStructures = room.find(FIND_STRUCTURES, {
+        var energyFedStructures = room.find(FIND_STRUCTURES, {
             filter: (structure) => {
                 return (structure.structureType == STRUCTURE_EXTENSION ||
                     structure.structureType == STRUCTURE_SPAWN
                     || (includeTowers && structure.structureType == STRUCTURE_TOWER && structure.energy < structure.energyCapacity * 0.9));
             }
         });
+        energyFedStructures.concat(global.linksToFeed[room.name]);
         var ret = [];
         for (var i in energyFedStructures) {
             var structure = energyFedStructures[i];

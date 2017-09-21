@@ -254,6 +254,11 @@ var defines = {
             }),
         };
         global.allowedToSpawnWithdraw = false;
+        global.linksToFeed = {
+            "E58N3": [
+                '59c2c326af66417dd46b465d',
+            ],
+        };
         global.linkTransfers = {
             "E59N3": [
                 '59bf8f196e7bf95f7b3ba06e',//from
