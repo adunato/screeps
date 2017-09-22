@@ -86,7 +86,7 @@ var cache = {
     findLinksWithEnergy: function (room) {
         if(!room)
             return [];
-        var links = this.rooms.linksWithEnergy ? this.rooms.linksWithEnergy : this.rooms.linksWithEnergy = room.find(FIND_STRUCTURES, {
+        var links = this.rooms.linksWithEnergy[room] ? this.rooms.linksWithEnergy[room] : this.rooms.linksWithEnergy[room] = room.find(FIND_STRUCTURES, {
             filter: (link) => {
                 return (link.structureType == STRUCTURE_LINK );
             }
@@ -365,7 +365,6 @@ var cache = {
                     || (includeTowers && structure.structureType == STRUCTURE_TOWER && structure.energy < structure.energyCapacity * 0.9));
             }
         });
-        console.log("energyFedStructures "  + energyFedStructures);
         energyFedStructures = energyFedStructures.concat(this.getLinksToFeed(room));
         var ret = [];
         for (var i in energyFedStructures) {
