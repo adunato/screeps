@@ -198,15 +198,15 @@ var defines = {
                 else
                     return false;
             }),
-            "UP": new squadprofile.SquadAttributes([["upgrader", 1]], false, function (roomName) {
-                var room = Game.flags[roomName].room;
+            "UP": new squadprofile.SquadAttributes([["upgrader", 1]], false, function (flagName) {
+                var room = Game.flags[flagName].room;
                 var storageWithEnergy = room.find(FIND_STRUCTURES, {
                     filter: (container) => {
                         return (container.structureType == STRUCTURE_STORAGE) && container.store.energy > UPGRADE_MIN_LIMIT;
                     }
                 });
 
-                return storageWithEnergy.length > 0 || Game.rooms[roomName].controller.ticksToDowngrade < 3000;
+                return storageWithEnergy.length > 0 || Game.rooms[room.name].controller.ticksToDowngrade < 3000;
             }),
             "RE": new squadprofile.SquadAttributes([["repairer", 1]], true, function (roomName) {
                 return true
