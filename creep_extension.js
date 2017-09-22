@@ -91,6 +91,19 @@ Creep.prototype.withdrawEnergyFromSpawn = function () {
     }
 };
 
+Creep.prototype.moveTo = function(x, y, opts)
+{
+    console.log("moveTo = function(x, y, opts)")
+    super.moveTo(x,y,opts);
+};
+
+Creep.prototype.moveTo = function(target, opts)
+{
+    console.log("moveTo = function(target, opts)")
+    super.moveTo(target,opts);
+};
+
+
 Creep.prototype.dropToDestinations = function (destinations, sortByDistance) {
     if (destinations.length > 0) {
         var structure;
