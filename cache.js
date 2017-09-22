@@ -13,6 +13,7 @@ var CACHE_AGE_LIMIT = 0;
 var cache = {
     rooms: {
         containersWithEnergy: {},
+        linksWithEnergy: {},
         spawnsWithEnergy: {},
         constructionSites: {},
         repairStructures: {},
@@ -33,6 +34,7 @@ var cache = {
         if (cacheAge > CACHE_AGE_LIMIT) {
             cacheAge = 0;
             this.rooms.containersWithEnergy = {};
+            this.rooms.linksWithEnergy = {};
             this.rooms.constructionSites = {};
             this.rooms.sources = {};
             this.rooms.energyContainers = {};
@@ -50,7 +52,7 @@ var cache = {
         }
     },
     getStoredEnergy: function (room) {
-        const containers = room.find(FIND_STRUCTURES, {filter: s => s.structureType == STRUCTURE_CONTAINER});
+        const containers = this.findContainersWithEnergy(room);
         const container_energy = _.sum(containers, c => c.store.energy);
         return container_energy;
     },
@@ -84,7 +86,7 @@ var cache = {
     findLinksWithEnergy: function (room) {
         if(!room)
             return [];
-        var links = room.find(FIND_STRUCTURES, {
+        var links = this.rooms.linksWithEnergy ? this.rooms.linksWithEnergy : this.rooms.linksWithEnergy = room.find(FIND_STRUCTURES, {
             filter: (link) => {
                 return (link.structureType == STRUCTURE_LINK );
             }
@@ -119,16 +121,6 @@ var cache = {
         }
         return storage;
     },
-    // findSourceContainersWithEnergy: function (room, minQuantityPc) {
-    //     var containers = this.findContainersWithEnergy(room);
-    //     var sources = [];
-    //     for (var i = 0; i < containers.length; i++) {
-    //         if (this.isContainerSource(room.name, containers[i]) && containers[i].store.energy > containers[i].storeCapacity / 100 * minQuantityPc) {
-    //             sources.push(containers[i]);
-    //         }
-    //     }
-    //     return sources;
-    // },
     findSourceContainersWithEnergy: function (containersGroup, minQuantityPc) {
         var containers = [];
         if (!global.sourceContainers[containersGroup])
@@ -364,8 +356,9 @@ var cache = {
         return ret;
     },
 
-    findEnergyFedStructures: function (room, includeTowers) {
-        var energyFedStructures = room.find(FIND_STRUCTURES, {
+    findEnergyFedStructures: function (room) {
+        var includeTowers = true;
+        var energyFedStructures = this.rooms.energyFedStructures ? this.rooms.energyFedStructures : this.rooms.energyFedStructures = room.find(FIND_STRUCTURES, {
             filter: (structure) => {
                 return (structure.structureType == STRUCTURE_EXTENSION ||
                     structure.structureType == STRUCTURE_SPAWN
@@ -377,6 +370,20 @@ var cache = {
         for (var i in energyFedStructures) {
             var structure = energyFedStructures[i];
             if (structure.energy < structure.energyCapacity) {
+                ret.push(structure);
+            }
+        }
+        return ret;
+    },
+
+
+    findEnergyFedStructures: function (room, includeTowers) {
+        var energyFedStructures = this.findEnergyFedStructures();
+        energyFedStructures = energyFedStructures.concat(this.getLinksToFeed(room));
+        var ret = [];
+        for (var i in energyFedStructures) {
+            var structure = energyFedStructures[i];
+            if (structure.energy < structure.energyCapacity && (structure.structureType != STRUCTURE_TOWER || includeTowers)) {
                 ret.push(structure);
             }
         }
