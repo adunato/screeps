@@ -91,17 +91,17 @@ Creep.prototype.withdrawEnergyFromSpawn = function () {
     }
 };
 
-Creep.prototype.moveTo = function(x, y, opts)
-{
-    console.log("moveTo = function(x, y, opts)")
-    super.moveTo(x,y,opts);
-};
-
-Creep.prototype.moveTo = function(target, opts)
-{
-    console.log("moveTo = function(target, opts)")
-    super.moveTo(target,opts);
-};
+// Creep.prototype.moveTo = function(x, y, opts)
+// {
+//     console.log("moveTo = function(x, y, opts)")
+//     return super.moveTo(x,y,opts);
+// };
+//
+// Creep.prototype.moveTo = function(target, opts)
+// {
+//     console.log("moveTo = function(target, opts)")
+//     return super.moveTo(target,opts);
+// };
 
 
 Creep.prototype.dropToDestinations = function (destinations, sortByDistance) {
