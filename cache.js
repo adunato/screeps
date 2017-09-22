@@ -356,7 +356,7 @@ var cache = {
         return ret;
     },
 
-    findEnergyFedStructures: function (room) {
+    findEnergyFedStructures_: function (room) {
         var includeTowers = true;
         var energyFedStructures = this.rooms.energyFedStructures ? this.rooms.energyFedStructures : this.rooms.energyFedStructures = room.find(FIND_STRUCTURES, {
             filter: (structure) => {
@@ -378,7 +378,7 @@ var cache = {
 
 
     findEnergyFedStructures: function (room, includeTowers) {
-        var energyFedStructures = this.findEnergyFedStructures(room);
+        var energyFedStructures = this.findEnergyFedStructures_(room);
         energyFedStructures = energyFedStructures.concat(this.getLinksToFeed(room));
         var ret = [];
         for (var i in energyFedStructures) {
