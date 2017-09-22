@@ -206,7 +206,7 @@ var defines = {
                     }
                 });
 
-                return storageWithEnergy.length > 0 || Game.rooms[roomName.name].controller.ticksToDowngrade < 3000;
+                return storageWithEnergy.length > 0 || Game.rooms[roomName].controller.ticksToDowngrade < 3000;
             }),
             "RE": new squadprofile.SquadAttributes([["repairer", 1]], true, function (roomName) {
                 return true
