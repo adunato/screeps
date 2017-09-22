@@ -16,7 +16,7 @@ var roleBreacher = require('role.breacher');
 var roleAssaulter = require('role.assaulter');
 var roleMedic = require('role.medic');
 var squadprofile = require('SquadProfile');
-
+const UPGRADE_MIN_LIMIT = 100000;
 
 Object.size = function (obj) {
     var size = 0, key;
@@ -199,7 +199,13 @@ var defines = {
                     return false;
             }),
             "UP": new squadprofile.SquadAttributes([["upgrader", 1]], false, function (roomName) {
-                return true
+                var storageWithEnergy = room.find(FIND_STRUCTURES, {
+                    filter: (container) => {
+                        return (container.structureType == STRUCTURE_STORAGE) && container.store.energy > UPGRADE_MIN_LIMIT;
+                    }
+                });
+
+                return storageWithEnergy.length > 0 || Game.rooms[roomName.name].controller.ticksToDowngrade < 3000;
             }),
             "RE": new squadprofile.SquadAttributes([["repairer", 1]], true, function (roomName) {
                 return true
