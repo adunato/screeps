@@ -378,7 +378,7 @@ var cache = {
 
 
     findEnergyFedStructures: function (room, includeTowers) {
-        var energyFedStructures = this.findEnergyFedStructures();
+        var energyFedStructures = this.findEnergyFedStructures(room);
         energyFedStructures = energyFedStructures.concat(this.getLinksToFeed(room));
         var ret = [];
         for (var i in energyFedStructures) {
