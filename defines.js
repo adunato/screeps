@@ -199,6 +199,7 @@ var defines = {
                     return false;
             }),
             "UP": new squadprofile.SquadAttributes([["upgrader", 1]], false, function (roomName) {
+                var room = Game.flags[roomName].room;
                 var storageWithEnergy = room.find(FIND_STRUCTURES, {
                     filter: (container) => {
                         return (container.structureType == STRUCTURE_STORAGE) && container.store.energy > UPGRADE_MIN_LIMIT;
