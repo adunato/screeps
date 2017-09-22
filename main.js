@@ -1,5 +1,6 @@
 require('creep_extension');
 require('structure_extension');
+const profiler = require('screeps-profiler');
 var cache = require('cache');
 var defines = require('defines');
 var Squad = require('Squad');
@@ -431,8 +432,9 @@ function transferLinks() {
         }
     }
 }
-
+profiler.enable();
 module.exports.loop = function () {
+    profiler.wrap(function() {
     //globals definition, every tick to refresh changes
     resetCPULog();
     clearMemory();
@@ -465,4 +467,5 @@ module.exports.loop = function () {
     logCPU('collect_stats ');
     logTotalCPU();
     console.log("tick");
-};
+    });
+}
