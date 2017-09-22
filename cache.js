@@ -358,7 +358,7 @@ var cache = {
 
     findEnergyFedStructures_: function (room) {
         var includeTowers = true;
-        var energyFedStructures = this.rooms.energyFedStructures ? this.rooms.energyFedStructures : this.rooms.energyFedStructures = room.find(FIND_STRUCTURES, {
+        var energyFedStructures = this.rooms.energyFedStructures[room] ? this.rooms.energyFedStructures[room] : this.rooms.energyFedStructures[room] = room.find(FIND_STRUCTURES, {
             filter: (structure) => {
                 return (structure.structureType == STRUCTURE_EXTENSION ||
                     structure.structureType == STRUCTURE_SPAWN
