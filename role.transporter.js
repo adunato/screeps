@@ -77,9 +77,9 @@ var roleCarrier = {
         sourceContainers += cache.findSourceLinksWithEnergy(creep.getSquad().getSquadRoomName(), MIN_SOURCE_CONTAINER_QUANTITY_PC).length;
         var destinationContainers = cache.findEmptyDestinationContainers(creep.getSquad().getSquadRoomName(), MAX_DESTINATION_CONTAINER_QUANTITY_PC).length;
         destinationContainers += cache.findEmptyDestinationLinks(creep.getSquad().getSquadRoomName(), MAX_DESTINATION_CONTAINER_QUANTITY_PC).length;
-        var storage = cache.findEmptyStorage(creep.room).length;
+        // var storage = cache.findEmptyStorage(creep.room).length;
         var creepCarryEnergy = creep.carry.energy;
-        var creepCarryCapacity = creep.carryCapacity;
+        // var creepCarryCapacity = creep.carryCapacity;
 
         if (typeof creepState === "undefined")
             creepState = "rest";
@@ -96,11 +96,11 @@ var roleCarrier = {
             stateMachine.sourceFull();
         }
         //no source and creep is empty
-        if ((sourceContainers === 0 && creepCarryEnergy === 0)
-            || (destinationContainers === 0 && storage === 0 && creepCarryEnergy === creepCarryCapacity)
-            && stateMachine.can("nothingToDo")) {
-            stateMachine.nothingToDo();
-        }
+        // if (((sourceContainers === 0 && creepCarryEnergy === 0)
+        //     || (destinationContainers === 0 && storage === 0 && creepCarryEnergy === creepCarryCapacity))
+        //     && stateMachine.can("nothingToDo")) {
+        //     stateMachine.nothingToDo();
+        // }
         if (creepCarryEnergy > 0 && stateMachine.can("creepFull")) {
             stateMachine.creepFull();
         }
