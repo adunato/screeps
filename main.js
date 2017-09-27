@@ -146,7 +146,10 @@ function executeCreepBehaviour() {
     var CPUdata = {};
     for (var name in Game.creeps) {
         var creep = Game.creeps[name];
-        creepRoles[creep.memory.role].run(creep);
+        if(creepRoles[creep.memory.role])
+            creepRoles[creep.memory.role].run(creep);
+        else
+            console.log("no data for role: " + creepRoles[creep.memory.role])
         if(printCPU) {
             if (!CPUdata[creep.memory.role]) {
                 CPUdata[creep.memory.role] = [];
