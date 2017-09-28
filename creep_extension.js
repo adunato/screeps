@@ -1,6 +1,7 @@
 const WAYPOINT_RANGE = 1;
 var cache = require('cache');
 require('source_extension');
+require('traveler');
 var Squad = require('Squad');
 const DROP_CONTAINER = "DROP_CONTAINER";
 const DROP_STRUCTURE = "DROP_STRUCTURE";
@@ -21,7 +22,7 @@ Creep.prototype.withdrawEnergy = function (includeCarriers, includeLinks) {
             return false;
         }
         if (energySource.transfer(this, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-            this.moveTo(energySource, {visualizePathStyle: {stroke: '#0027ff'}});
+            this.travelTo(energySource, {visualizePathStyle: {stroke: '#0027ff'}});
         }
         return true;
     }
@@ -36,7 +37,7 @@ Creep.prototype.withdrawEnergyFromSources = function (energySources) {
         // console.log(_.findKey(energySource.store, (amt,key) => amt > 0));
         var res = energySource.transfer(this, RESOURCE_ENERGY);
         if (res == ERR_NOT_IN_RANGE) {
-            this.moveTo(energySource, {visualizePathStyle: {stroke: '#0027ff'}});
+            this.travelTo(energySource, {visualizePathStyle: {stroke: '#0027ff'}});
         }
         return true;
     }
@@ -86,7 +87,7 @@ Creep.prototype.withdrawEnergyFromSpawn = function () {
     var spawns = cache.findSpawnsWithEnergy(this.room);
     if (spawns.length > 0) {
         if (this.withdraw(spawns[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-            this.moveTo(spawns[0], {visualizePathStyle: {stroke: '#0027ff'}});
+            this.travelTo(spawns[0], {visualizePathStyle: {stroke: '#0027ff'}});
         }
     }
 };
@@ -101,7 +102,7 @@ Creep.prototype.dropToDestinations = function (destinations, sortByDistance) {
         if (!structure)
             return false;
         if (this.transfer(structure, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-            this.moveTo(structure, {visualizePathStyle: {stroke: '#0027ff'}});
+            this.travelTo(structure, {visualizePathStyle: {stroke: '#0027ff'}});
         }
         return true;
     }
@@ -151,7 +152,7 @@ Creep.prototype.dropEnergyToCollector = function () {
     if (!collector)
         return;
     if (this.transfer(collector, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-        this.moveTo(collector, {visualizePathStyle: {stroke: '#0027ff'}});
+        this.travelTo(collector, {visualizePathStyle: {stroke: '#0027ff'}});
     }
 };
 
@@ -173,7 +174,7 @@ Creep.prototype.goToSource = function () {
     }
 
     if (flag) {
-        this.moveTo(flag, {visualizePathStyle: {stroke: '#ffda00'}});
+        this.travelTo(flag, {visualizePathStyle: {stroke: '#ffda00'}});
         // console.log("moving to source on flag: " + flag.name);
     } else {
         // console.log("no flag with name: " + this.memory.squad);
@@ -196,7 +197,7 @@ Creep.prototype.goToClaim = function () {
     }
 
     if (flag) {
-        this.moveTo(flag, {visualizePathStyle: {stroke: '#001dff'}});
+        this.travelTo(flag, {visualizePathStyle: {stroke: '#001dff'}});
         // console.log("moving to source on flag: " + flag.name);
     } else {
         // console.log("no flag with name: " + this.memory.squad);
@@ -204,7 +205,7 @@ Creep.prototype.goToClaim = function () {
     //check if flag's room is visible
     if (this.isInSquadRoom() && flag && flag.room) {
         if (this.claimController(this.room.controller) == ERR_NOT_IN_RANGE) {
-            this.moveTo(this.room.controller, {visualizePathStyle: {stroke: '#ffffff'}});
+            this.travelTo(this.room.controller, {visualizePathStyle: {stroke: '#ffffff'}});
         }
     }
 };
@@ -216,7 +217,7 @@ Creep.prototype.goToReserve = function () {
     }
 
     if (flag) {
-        this.moveTo(flag, {visualizePathStyle: {stroke: '#001dff'}});
+        this.travelTo(flag, {visualizePathStyle: {stroke: '#001dff'}});
         // console.log("moving to source on flag: " + flag.name);
     } else {
         // console.log("no flag with name: " + this.memory.squad);
@@ -224,7 +225,7 @@ Creep.prototype.goToReserve = function () {
     //check if flag's room is visible
     if (this.isInSquadRoom() && flag && flag.room) {
         if (this.reserveController(this.room.controller) == ERR_NOT_IN_RANGE) {
-            this.moveTo(this.room.controller, {visualizePathStyle: {stroke: '#ffffff'}});
+            this.travelTo(this.room.controller, {visualizePathStyle: {stroke: '#ffffff'}});
         }
     }
 };
@@ -251,14 +252,14 @@ Creep.prototype.harvestEnergy = function () {
     var source = Game.getObjectById(this.memory.selectedSource);
     var res = this.harvest(source);
     if (res == ERR_NOT_IN_RANGE) {
-        this.moveTo(source, {visualizePathStyle: {stroke: '#0027ff'}});
+        this.travelTo(source, {visualizePathStyle: {stroke: '#0027ff'}});
     }
 };
 
 Creep.prototype.squadRally = function () {
     var flag = Game.flags[this.memory.squad];
     if (flag != null) {
-        this.moveTo(flag, {visualizePathStyle: {stroke: '#001dff'}});
+        this.travelTo(flag, {visualizePathStyle: {stroke: '#001dff'}});
     }
 };
 
@@ -343,7 +344,7 @@ Creep.prototype.generateWaypointName = function (waypointNumber) {
 Creep.prototype.goToWaypoint = function () {
     var flag = Game.flags[this.memory.current_waypoint];
     if (flag != null) {
-        this.moveTo(flag, {visualizePathStyle: {stroke: '#ffda00'}});
+        this.travelTo(flag, {visualizePathStyle: {stroke: '#ffda00'}});
     } else {
         console.log("creep " + this.name + " " + this.memory.role + " could not find current waypoint: " + this.memory.current_waypoint + ". Invoking setNextWaypoint()");
         this.setNextWaypoint();
@@ -378,7 +379,7 @@ Creep.prototype.attackEnemies = function (isStatic) {
     if (target) {
         var res = this.attack(target);
         if (res === ERR_NOT_IN_RANGE && !isStatic) {
-            this.moveTo(target, {visualizePathStyle: {stroke: '#ff000b'}});
+            this.travelTo(target, {visualizePathStyle: {stroke: '#ff000b'}});
         }
     }
 };
@@ -388,7 +389,7 @@ Creep.prototype.rangeAttackEnemies = function (isStatic) {
     if (target) {
         var res = this.rangedAttack(target);
         if (res === ERR_NOT_IN_RANGE && !isStatic) {
-            this.moveTo(target, {visualizePathStyle: {stroke: '#ff000b'}});
+            this.travelTo(target, {visualizePathStyle: {stroke: '#ff000b'}});
         }
     }
 };
@@ -405,32 +406,32 @@ Creep.prototype.attackFlagPosition = function () {
         if(target) {
             var res = this.attack(target);
             if (res === ERR_NOT_IN_RANGE) {
-                this.moveTo(flag, {visualizePathStyle: {stroke: '#ff000b'}});
+                this.travelTo(flag, {visualizePathStyle: {stroke: '#ff000b'}});
             }
         }
 
     }
 };
 
-Creep.prototype.moveToFlag = function () {
+Creep.prototype.travelToFlag = function () {
     if (!this.getSquad())
         return;
     var flag = this.getSquad().getFlag();
     if (flag)
-        this.moveTo(flag, {visualizePathStyle: {stroke: '#ff000b'}});
+        this.travelTo(flag, {visualizePathStyle: {stroke: '#ff000b'}});
 };
 
 Creep.prototype.carrier = function () {
     var flag = Game.flags[this.memory.squad];
     if (flag != null) {
-        this.moveTo(flag, {visualizePathStyle: {stroke: '#ffda00'}});
+        this.travelTo(flag, {visualizePathStyle: {stroke: '#ffda00'}});
     }
 };
 
 Creep.prototype.collector = function () {
     var flag = Game.flags[this.memory.squad];
     if (flag != null) {
-        this.moveTo(flag, {visualizePathStyle: {stroke: '#ffda00'}});
+        this.travelTo(flag, {visualizePathStyle: {stroke: '#ffda00'}});
     }
 };
 
@@ -440,7 +441,7 @@ Creep.prototype.feedEnergy = function (includeTowers) {
     if (structures.length > 0) {
         var structure = this.getNearestObjectByDistance(structures);
         if (this.transfer(structure, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-            this.moveTo(structure, {visualizePathStyle: {stroke: '#ffe21f'}});
+            this.travelTo(structure, {visualizePathStyle: {stroke: '#ffe21f'}});
         }
     }
 };
@@ -448,14 +449,14 @@ Creep.prototype.feedEnergy = function (includeTowers) {
 Creep.prototype.feedStructure = function (structure) {
     this.memory.selectedSource = null;
     if (this.transfer(structure, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-        this.moveTo(structure, {visualizePathStyle: {stroke: '#ffe21f'}});
+        this.travelTo(structure, {visualizePathStyle: {stroke: '#ffe21f'}});
     }
 };
 
 Creep.prototype.feedTower = function (minQuantityPc) {
     var tower = cache.findEmptyTowers(this.room, minQuantityPc)[0];
     if (tower && this.transfer(tower, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-        this.moveTo(tower, {visualizePathStyle: {stroke: '#ffe21f'}});
+        this.travelTo(tower, {visualizePathStyle: {stroke: '#ffe21f'}});
     }
 };
 
@@ -463,7 +464,7 @@ Creep.prototype.buildConstruction = function () {
     var flag = Game.flags[this.memory.squad];
     //move to flag if not in flag's room
     if (flag != null && (!flag.room || flag.room.name != this.room.name)) {
-        this.moveTo(flag, {visualizePathStyle: {stroke: '#ffda00'}});
+        this.travelTo(flag, {visualizePathStyle: {stroke: '#ffda00'}});
         return true;
     }
     if (flag && flag.room) {
@@ -471,7 +472,7 @@ Creep.prototype.buildConstruction = function () {
         if (constructionSites.length) {
             var construction = this.getNearestObjectByDistance(constructionSites);
             if (this.build(construction) == ERR_NOT_IN_RANGE) {
-                this.moveTo(construction, {visualizePathStyle: {stroke: '#14ff00'}});
+                this.travelTo(construction, {visualizePathStyle: {stroke: '#14ff00'}});
             }
             return true;
         } else
@@ -484,7 +485,7 @@ Creep.prototype.repairConstruction = function (minRepairLevelPc) {
     var flag = Game.flags[this.memory.squad];
     //move to flag if not in flag's room
     if (flag != null && (!flag.room || flag.room.name != this.room.name)) {
-        this.moveTo(flag, {visualizePathStyle: {stroke: '#ffda00'}});
+        this.travelTo(flag, {visualizePathStyle: {stroke: '#ffda00'}});
         return true;
     }
     if (flag && flag.room) {
@@ -501,7 +502,7 @@ Creep.prototype.repairConstruction = function (minRepairLevelPc) {
         if (construction) {
             this.memory.repairConstructionId = construction.id;
             if (this.repair(construction) === ERR_NOT_IN_RANGE) {
-                this.moveTo(construction, {visualizePathStyle: {stroke: '#14ff00'}});
+                this.travelTo(construction, {visualizePathStyle: {stroke: '#14ff00'}});
             } else if (construction.hits === construction.hitsMax) {
                 this.memory.repairConstructionId = null;
             }
@@ -513,7 +514,7 @@ Creep.prototype.repairWalls = function () {
     var repairWalls = cache.findRepairWalls(this.room);
     if (repairWalls.length) {
         if (this.repair(repairWalls[0]) == ERR_NOT_IN_RANGE) {
-            this.moveTo(repairWalls[0], {visualizePathStyle: {stroke: '#14ff00'}});
+            this.travelTo(repairWalls[0], {visualizePathStyle: {stroke: '#14ff00'}});
         }
     }
 };
@@ -564,12 +565,12 @@ Creep.prototype.upgradeController_ = function () {
     var flag = Game.flags[this.memory.squad];
     //move to flag if not in flag's room
     if (flag != null && (!flag.room || flag.room.name != this.room.name || (flag.pos.x != this.pos.x || flag.pos.y != this.pos.y))) {
-        this.moveTo(flag, {visualizePathStyle: {stroke: '#ffda00'}});
+        this.travelTo(flag, {visualizePathStyle: {stroke: '#ffda00'}});
         return;
     }
     if (flag && flag.room) {
         if (this.upgradeController(this.room.controller) == ERR_NOT_IN_RANGE) {
-            this.moveTo(this.room.controller, {visualizePathStyle: {stroke: '#ffffff'}});
+            this.travelTo(this.room.controller, {visualizePathStyle: {stroke: '#ffffff'}});
         }
     }
 };
@@ -579,14 +580,14 @@ Creep.prototype.rest = function () {
     //var pinnedToRoom = false;
     if (this.getSquad()) {
         //pinnedToRoom = this.getSquad().isPinnedToFlag();
-        this.moveTo(this.getSquad().getFlag(), {visualizePathStyle: {stroke: '#ffffff'}});
+        this.travelTo(this.getSquad().getFlag(), {visualizePathStyle: {stroke: '#ffffff'}});
         this.say("Rest");
     }
     // if(Game.flags["RestArea"].pos.roomName === this.pos.roomName || !pinnedToRoom) {
-    //     this.moveTo(Game.flags["RestArea"], {visualizePathStyle: {stroke: '#ffffff'}});
+    //     this.travelTo(Game.flags["RestArea"], {visualizePathStyle: {stroke: '#ffffff'}});
     //     this.say("Go Rest");
     // } else {
-    //     this.moveTo(Game.flags[this.memory.squad], {visualizePathStyle: {stroke: '#ffffff'}});
+    //     this.travelTo(Game.flags[this.memory.squad], {visualizePathStyle: {stroke: '#ffffff'}});
     //     this.say("Stay");
     // }
 };
@@ -594,7 +595,7 @@ Creep.prototype.rest = function () {
 Creep.prototype.goHome = function () {
     var room = Game.rooms[this.memory.spawnRoom];
     var spawn = room.find(FIND_MY_SPAWNS)[0];
-    this.moveTo(spawn, {visualizePathStyle: {stroke: '#ffffff'}});
+    this.travelTo(spawn, {visualizePathStyle: {stroke: '#ffffff'}});
     this.say("Going Home");
 };
 
@@ -602,7 +603,7 @@ Creep.prototype.followAssaultSquadLeader = function () {
     if(this.getSquad()) {
         var squadLeader = this.getSquad().getAssaultSquadLeader();
         if(squadLeader) {
-            this.moveTo(squadLeader, {visualizePathStyle: {stroke: '#ffffff'}, reusePath: 0});
+            this.travelTo(squadLeader, {visualizePathStyle: {stroke: '#ffffff'}, reusePath: 0});
         }
     }
 };
@@ -621,9 +622,9 @@ Creep.prototype.healTeamMates = function () {
             //swaps with game object
             creep = Game.creeps[creep.name];
             if (this.heal(creep) == ERR_NOT_IN_RANGE) {
-                this.moveTo(creep, {visualizePathStyle: {stroke: '#14ff00'}});
+                this.travelTo(creep, {visualizePathStyle: {stroke: '#14ff00'}});
                 if (this.rangedHeal(creep) == ERR_NOT_IN_RANGE) {
-                    this.moveTo(creep, {visualizePathStyle: {stroke: '#14ff00'}});
+                    this.travelTo(creep, {visualizePathStyle: {stroke: '#14ff00'}});
                 }
             }
         }
