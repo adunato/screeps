@@ -34,7 +34,6 @@ Creep.prototype.withdrawEnergyFromSources = function (energySources) {
             console.log("energySource null: " + energySources);
             return false;
         }
-        console.log();
         var resourceType = _.findKey(energySource.store, (amt,key) => amt > 0 && key !== RESOURCE_ENERGY);
         if(!resourceType)
             resourceType = RESOURCE_ENERGY;
