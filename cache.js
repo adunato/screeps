@@ -1,3 +1,4 @@
+const profiler = require('screeps-profiler');
 const DROP_CONTAINER = "DROP_CONTAINER";
 const DROP_STRUCTURE = "DROP_STRUCTURE";
 const DROP_COLLECTOR = "DROP_COLLECTOR";
@@ -587,26 +588,9 @@ var cache = {
             return this.rooms.creeps[room];
         }
     },
-    selectHarvestRoom: function (flagName) {
-        var harvestRoom = Game.flags[flagName].room;
-        //room is not visible
-        if (typeof harvestRoom == 'undefined') {
-            creep.moveTo(Game.flags[flagName], {visualizePathStyle: {stroke: '#ffaa00'}});
-        } else {
-            var sources = harvestRoom.find(FIND_SOURCES);
-            var selectedSource;
-            var maxEnergy = 0;
-            for (var i = 0; i < sources.length; i++) {
-                if (sources[i].energy > maxEnergy) {
-                    selectedSource = sources[i];
-                    maxEnergy = sources[i].energy;
-                }
-            }
-            creep.memory.selectedSource = selectedSource.id;
-        }
-    }
-
 
 };
+
+profiler.registerObject(cache, 'cache');
 
 module.exports = cache;
