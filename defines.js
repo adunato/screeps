@@ -285,8 +285,8 @@ var defines = {
             ],
             "E58N3": [
                 '59bd01066a51a26ee9cd9364',//bottom source
-                // '59bcfdd9093ab25ba5b27adc',//top source
-                // '59c2b0d9a9cfb23fa5a839cf',//left container
+                '59bcfdd9093ab25ba5b27adc',//top source
+                '59c2b0d9a9cfb23fa5a839cf',//left container
             ],
             "E59N4": [
                 '59be3ab3fb91402166aa3c79',//top source
