@@ -3,6 +3,7 @@
  * Example: var Traveler = require('Traveler.js');
  */
 "use strict";
+var cache = require('cache');
 Object.defineProperty(exports, "__esModule", { value: true });
 class Traveler {
     /**
@@ -426,7 +427,7 @@ class Traveler {
      */
     static addStructuresToMatrix(room, matrix, roadCost) {
         let impassibleStructures = [];
-        for (let structure of room.find(FIND_STRUCTURES)) {
+        for (let structure of cache.findStructures(room)) {
             if (structure instanceof StructureRampart) {
                 if (!structure.my && !structure.isPublic) {
                     impassibleStructures.push(structure);
@@ -442,7 +443,7 @@ class Traveler {
                 impassibleStructures.push(structure);
             }
         }
-        for (let site of room.find(FIND_MY_CONSTRUCTION_SITES)) {
+        for (let site of cache.findConstructionSites(room)) {
             if (site.structureType === STRUCTURE_CONTAINER || site.structureType === STRUCTURE_ROAD
                 || site.structureType === STRUCTURE_RAMPART) {
                 continue;
@@ -461,7 +462,7 @@ class Traveler {
      * @returns {CostMatrix}
      */
     static addCreepsToMatrix(room, matrix) {
-        room.find(FIND_CREEPS).forEach((creep) => matrix.set(creep.pos.x, creep.pos.y, 0xff));
+        cache.findCreeps(room).forEach((creep) => matrix.set(creep.pos.x, creep.pos.y, 0xff));
         return matrix;
     }
     /**

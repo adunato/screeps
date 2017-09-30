@@ -90,7 +90,7 @@ function spawn(roleName, squad) {
 }
 
 function findInjuredCreeps(tower) {
-    var creepsInRoom = tower.room.find(FIND_CREEPS);
+    var creepsInRoom = cache.findCreeps(tower.room);
     var injuredCreeps = [];
     // console.log("tower id:" + tower.id)
     for (var x = 0; x < creepsInRoom.length; x++) {
@@ -108,8 +108,8 @@ function manageDefense() {
         var towers = cache.findTowers(room);
         for (var n = 0; n < towers.length; n++) {
             var tower = towers[n];
-            if (room.find(FIND_HOSTILE_CREEPS).length > 0) {
-                tower.attack(tower.pos.findClosestByRange(room.find(FIND_HOSTILE_CREEPS)));
+            if (cache.findHostileCreeps(room).length > 0) {
+                tower.attack(tower.pos.findClosestByRange(cache.findHostileCreeps(room)));
             } else if (tower.energy > tower.energyCapacity / 2) {
                 var injuredCreeps = findInjuredCreeps(tower);
                 if (injuredCreeps.length > 0) {
@@ -135,7 +135,7 @@ function manageDefense() {
 
     for (var y = 0; y < rooms.length; y++) {
         var room = rooms[y];
-        if (room.find(FIND_HOSTILE_CREEPS).length > 0) {
+        if (cache.findHostileCreeps(room).length > 0) {
             // room.controller.activateSafeMode();
             console.log("room " + room.name + " found enemies");
         }

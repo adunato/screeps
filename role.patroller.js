@@ -1,4 +1,5 @@
 var statemachine = require('state-machine');
+var cache = require('cache');
 var patrollerFSM = new statemachine.StateMachine.factory({
     init: 'none',
     transitions: [
@@ -62,7 +63,7 @@ var rolepatroller = {
             creep.memory.state = stateMachine.state;
             return;
         }
-        if (creep.room.find(FIND_HOSTILE_CREEPS).length > 0 && !(!creep.room.controller.my && creep.room.controller.safeMode) && stateMachine.can("enemies")) {
+        if (cache.findHostileCreeps(creep.room).length > 0 && !(!creep.room.controller.my && creep.room.controller.safeMode) && stateMachine.can("enemies")) {
             console.log("found enemies");
             stateMachine.enemies();
         }

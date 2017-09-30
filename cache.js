@@ -14,6 +14,7 @@ var cache = {
     rooms: {
         containersWithEnergy: {},
         linksWithEnergy: {},
+        links: {},
         spawnsWithEnergy: {},
         constructionSites: {},
         repairStructures: {},
@@ -28,6 +29,13 @@ var cache = {
         carrierFlags: {},
         containers: {},
         towers: {},
+        hostileCreeps : {},
+        emptyExtensions: {},
+        spawns: {},
+        minerals: {},
+        extractors: {},
+        structures: {},
+        droppedResources: {},
     },
     resetCache: function () {
         cacheAge++;
@@ -49,6 +57,15 @@ var cache = {
             this.rooms.containers = {};
             this.rooms.storage = {};
             this.rooms.towers = {};
+            this.rooms.hostileCreeps = {};
+            this.rooms.emptyExtensions = {};
+            this.rooms.spawns = {};
+            this.rooms.creeps = {};
+            this.rooms.links = {};
+            this.rooms.minerals = {};
+            this.rooms.extractors = {};
+            this.rooms.structures = {};
+            this.rooms.droppedResources = {};
         }
     },
     getStoredEnergy: function (room) {
@@ -72,6 +89,79 @@ var cache = {
         }
         return containers;
     },
+    findExtractors: function (room) {
+        var extractors = [];
+        if(!room)
+            return extractors;
+        if (typeof this.rooms.extractors[room] != "undefined") {
+            extractors = this.rooms.extractors[room];
+        } else {
+            extractors = room.find(FIND_STRUCTURES, {
+                filter: (container) => {
+                    return (container.structureType == STRUCTURE_EXTRACTOR);
+                }
+            });
+            this.rooms.extractors[room] = extractors;
+        }
+        return extractors;
+    },
+    findDroppedResources: function (room) {
+        var droppedResources = [];
+        if(!room)
+            return droppedResources;
+        if (typeof this.rooms.droppedResources[room] != "undefined") {
+            droppedResources = this.rooms.droppedResources[room];
+        } else {
+            droppedResources = room.find(FIND_DROPPED_RESOURCES);
+            this.rooms.droppedResources[room] = droppedResources;
+        }
+        return droppedResources;
+    },
+    findStructures: function (room) {
+        var structures = [];
+        if(!room)
+            return structures;
+        if (typeof this.rooms.structures[room] != "undefined") {
+            structures = this.rooms.structures[room];
+        } else {
+            structures = room.find(FIND_STRUCTURES);
+            this.rooms.structures[room] = structures;
+        }
+        return structures;
+    },
+    findStructures: function (room, structureType) {
+        var structures = this.findStructures();
+        var ret = [];
+        for(var structure in structures) {
+            if(structure.structureType === structureType)
+                ret.push(structure);
+        }
+        return ret;
+    },
+    findHostileCreeps: function (room) {
+        var enemyCreeps = [];
+        if(!room)
+            return enemyCreeps;
+        if (typeof this.rooms.hostileCreeps[room] != "undefined") {
+            enemyCreeps = this.rooms.hostileCreeps[room];
+        } else {
+            enemyCreeps = room.find(FIND_HOSTILE_CREEPS);
+            this.rooms.hostileCreeps[room] = enemyCreeps;
+        }
+        return enemyCreeps;
+    },
+    findCreeps: function (room) {
+        var creeps = [];
+        if(!room)
+            return creeps;
+        if (typeof this.rooms.creeps[room] != "undefined") {
+            creeps = this.rooms.creeps[room];
+        } else {
+            creeps = room.find(FIND_CREEPS);
+            this.rooms.creeps[room] = creeps;
+        }
+        return creeps;
+    },
     findObjectsWithEnergy: function (room, includeCarriers, includeLinks) {
         if(!room)
             return [];
@@ -79,7 +169,7 @@ var cache = {
         var carriers = includeCarriers ? this.findCarriersWithEnergy(room) : [];
         var collectors = this.findCollectorsWithEnergy(room);
         var harvesters = this.findHarvestersWithEnergy(room);
-        var links = includeLinks ? this.findLinksWithEnergy(room) : [];
+        var links = includeLinks ? this.findLinks(room) : [];
         var energySources = containers.concat(carriers).concat(collectors).concat(harvesters).concat(links);
         return energySources;
     },
@@ -88,10 +178,26 @@ var cache = {
             return [];
         var links = this.rooms.linksWithEnergy[room] ? this.rooms.linksWithEnergy[room] : this.rooms.linksWithEnergy[room] = room.find(FIND_STRUCTURES, {
             filter: (link) => {
+                return (link.structureType == STRUCTURE_LINK && link.energy > 0);
+            }
+        });
+        return links;
+    },
+    findLinks: function (room) {
+        if(!room)
+            return [];
+        var links = this.rooms.links[room] ? this.rooms.links[room] : this.rooms.links[room] = room.find(FIND_STRUCTURES, {
+            filter: (link) => {
                 return (link.structureType == STRUCTURE_LINK );
             }
         });
         return links;
+    },
+    findMinerals: function (room) {
+        if(!room)
+            return [];
+        var minerals = this.rooms.minerals[room] ? this.rooms.minerals[room] : this.rooms.minerals[room] = room.find(FIND_MINERALS);
+        return minerals;
     },
     findContainers: function (room) {
         var containers = {};
@@ -264,6 +370,34 @@ var cache = {
             this.rooms.repairStructures[room] = repairStructures;
         }
         return repairStructures;
+    },
+
+    findEmptyExtensions: function (room) {
+        var emptyExtensions = {};
+
+        if (typeof this.rooms.emptyExtensions[room] != "undefined") {
+            emptyExtensions = this.rooms.emptyExtensions[room];
+        } else {
+            emptyExtensions = room.find(FIND_STRUCTURES, {
+                filter: (structure) => {
+                    return structure.structureType == STRUCTURE_EXTENSION && structure.energy < structure.energyCapacity;
+                }
+            });
+            this.rooms.emptyExtensions[room] = emptyExtensions;
+        }
+        return emptyExtensions;
+    },
+
+    findSpawns: function (room) {
+        var spawns = {};
+
+        if (typeof this.rooms.spawns[room] != "undefined") {
+            spawns = this.rooms.spawns[room];
+        } else {
+            spawns = room.find(FIND_MY_SPAWNS);
+            this.rooms.spawns[room] = spawns;
+        }
+        return spawns;
     },
 
     findRepairWalls: function (room) {

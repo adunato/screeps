@@ -380,7 +380,7 @@ Creep.prototype.isInCurrentWaypointRange = function () {
 
 
 Creep.prototype.attackEnemies = function (isStatic) {
-    var target = this.pos.findClosestByPath(this.room.find(FIND_HOSTILE_CREEPS));
+    var target = this.pos.findClosestByPath(cache.findHostileCreeps(this.room));
     if (target) {
         var res = this.attack(target);
         if (res === ERR_NOT_IN_RANGE && !isStatic) {
@@ -390,7 +390,7 @@ Creep.prototype.attackEnemies = function (isStatic) {
 };
 
 Creep.prototype.rangeAttackEnemies = function (isStatic) {
-    var target = this.pos.findClosestByPath(this.room.find(FIND_HOSTILE_CREEPS));
+    var target = this.pos.findClosestByPath(cache.findHostileCreeps(this.room));
     if (target) {
         var res = this.rangedAttack(target);
         if (res === ERR_NOT_IN_RANGE && !isStatic) {
@@ -533,11 +533,7 @@ Creep.prototype.multiFunction = function () {
         if (this.dropEnergy({DROP_CONTAINER: true}))
             return;
 
-        var repairs = this.room.find(FIND_MY_STRUCTURES, {
-            filter: (structure) => {
-                return structure.hits < structure.hitsMax;
-            }
-        });
+        var repairs = cache.findRepairStructures(this.room,100);
         console.log(repairs.length);
         if (repairs.length > 0) {
             this.repairConstruction(100);
@@ -551,11 +547,7 @@ Creep.prototype.multiFunction = function () {
                 return;
             }
         }
-        var extensions = this.room.find(FIND_MY_STRUCTURES, {
-            filter: (structure) => {
-                return structure.structureType == STRUCTURE_EXTENSION && structure.energy < structure.energyCapacity;
-            }
-        });
+        var extensions = cache.findEmptyExtensions(this.room);
         if (extensions.length > 0) {
             this.dropEnergy({DROP_STRUCTURE: true});
             return;
@@ -599,7 +591,7 @@ Creep.prototype.rest = function () {
 
 Creep.prototype.goHome = function () {
     var room = Game.rooms[this.memory.spawnRoom];
-    var spawn = room.find(FIND_MY_SPAWNS)[0];
+    var spawn = cache.findSpawns(room)[0];
     this.travelTo(spawn, {visualizePathStyle: {stroke: '#ffffff'}});
     this.say("Going Home");
 };
