@@ -35,9 +35,9 @@ Creep.prototype.withdrawEnergyFromSources = function (energySources) {
             return false;
         }
         var resourceType = RESOURCE_ENERGY;
-        console.log("energySource.store: " + Object.keys(energySource.store).length);
-        // if(energySource.store)
-        // resourceType = _.findKey(energySource.store, (amt,key) => amt > 0 && key !== RESOURCE_ENERGY);
+
+        if(Object.keys(energySource.store).length > 1)
+            resourceType = _.findKey(energySource.store, (amt,key) => amt > 0 && key !== RESOURCE_ENERGY);
         var res = energySource.transfer(this, resourceType);
         if (res == ERR_NOT_IN_RANGE) {
             this.travelTo(energySource, {visualizePathStyle: {stroke: '#0027ff'}});
@@ -104,9 +104,10 @@ Creep.prototype.dropToDestinations = function (destinations, sortByDistance) {
             structure = destinations[0];
         if (!structure)
             return false;
-        var resourceType = _.findKey(this.carry, (amt,key) => amt > 0 && key !== RESOURCE_ENERGY);
-        if(!resourceType)
-            resourceType = RESOURCE_ENERGY;
+        var resourceType = RESOURCE_ENERGY;
+        if(Object.keys(this.carry).length > 1)
+            resourceType = _.findKey(energySource.store, (amt,key) => amt > 0 && key !== RESOURCE_ENERGY);
+
         if (this.transfer(structure, resourceType) == ERR_NOT_IN_RANGE) {
             this.travelTo(structure, {visualizePathStyle: {stroke: '#0027ff'}});
         }
