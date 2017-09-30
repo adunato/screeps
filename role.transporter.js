@@ -73,7 +73,7 @@ var roleCarrier = {
         var destinationContainers = cache.findEmptyDestinationContainers(creep.getSquad().getSquadRoomName(), MAX_DESTINATION_CONTAINER_QUANTITY_PC).length;
         destinationContainers += cache.findEmptyDestinationLinks(creep.getSquad().getSquadRoomName(), MAX_DESTINATION_CONTAINER_QUANTITY_PC).length;
         // var storage = cache.findEmptyStorage(creep.room).length;
-        var creepCarryEnergy = creep.carry.energy;
+        var creepCarryEnergy = _.sum(creep.carry);
         // var creepCarryCapacity = creep.carryCapacity;
 
         if (typeof creepState === "undefined")
