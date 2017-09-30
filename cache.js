@@ -130,7 +130,13 @@ var cache = {
         return structures;
     },
     findStructures: function (room, structureType) {
-        var structures = this.findStructures(room);
+        var structures;
+        if (typeof this.rooms.structures[room] != "undefined") {
+            structures = this.rooms.structures[room];
+        } else {
+            structures = room.find(FIND_STRUCTURES);
+            this.rooms.structures[room] = structures;
+        }
         var ret = [];
         for(var structure in structures) {
             if(structure.structureType === structureType)
