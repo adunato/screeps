@@ -13,11 +13,6 @@ var carrierFSM = new statemachine.StateMachine.factory({
         {name: 'goToRoom', from: ['*'], to: 'rest'},
         {name: 'creepFull', from: ['go_home', 'rest', 'withdraw_source', 'drop_destination'], to: 'drop_destination'},
         {name: 'containersFull', from: ['go_home', 'drop_destination', 'rest', 'drop_storage'], to: 'drop_storage'},
-        {
-            name: 'nothingToDo',
-            from: [ 'rest', 'withdraw_source', 'drop_destination', 'drop_storage'],
-            to: 'rest'
-        },
         {name: 'timeToDie', from: ['go_home', 'rest', 'withdraw_source'], to: 'timeToDie'},
         {
             name: 'goto', from: '*', to: function (s) {
@@ -95,12 +90,6 @@ var roleCarrier = {
         if (sourceContainers > 0 && stateMachine.can("sourceFull")) {
             stateMachine.sourceFull();
         }
-        //no source and creep is empty
-        // if (((sourceContainers === 0 && creepCarryEnergy === 0)
-        //     || (destinationContainers === 0 && storage === 0 && creepCarryEnergy === creepCarryCapacity))
-        //     && stateMachine.can("nothingToDo")) {
-        //     stateMachine.nothingToDo();
-        // }
         if (creepCarryEnergy > 0 && stateMachine.can("creepFull")) {
             stateMachine.creepFull();
         }
