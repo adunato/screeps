@@ -603,7 +603,6 @@ var cache = {
             sourceObjects = sourceObjects.concat(cache.findSourceLinksWithEnergy(room.name));
             this.rooms.sourceObjects[room] = sourceObjects;
         }
-        console.log("sourceObjects:" + sourceObjects);
         return sourceObjects;
 
     },
