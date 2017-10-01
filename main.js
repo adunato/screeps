@@ -75,7 +75,6 @@ function spawn(roleName, squad) {
             spawnSlots[selectedSpawn.name] = roleName;
         for (var i = 0; i < bodyParts[roleName].length; i++) {
             var bodyPart = bodyParts[roleName][i];
-            // console.log('spawn - trying config: ' + bodyPart);
             if (selectedSpawn.canCreateCreep(bodyPart) === OK) {
                 var result = selectedSpawn.createCreep(bodyPart, undefined, {
                     role: roleName,

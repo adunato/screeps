@@ -1,7 +1,5 @@
 var statemachine = require('state-machine');
 var cache = require('cache');
-var MIN_SOURCE_CONTAINER_QUANTITY_PC = 25;
-var MAX_DESTINATION_CONTAINER_QUANTITY_PC = 75;
 var carrierFSM = new statemachine.StateMachine.factory({
     init: 'none',
     transitions: [
@@ -29,7 +27,7 @@ var carrierFSM = new statemachine.StateMachine.factory({
     methods: {
         onWithdrawSource: function () {
             var creep = Game.creeps[this.creepName];
-            if(!creep.withdrawEnergyFromSourceContainer(MIN_SOURCE_CONTAINER_QUANTITY_PC))
+            if(!creep.withdrawEnergyFromSourceContainer())
                 creep.rest();
         },
         onRest: function () {
@@ -38,7 +36,7 @@ var carrierFSM = new statemachine.StateMachine.factory({
         },
         onDropDestination: function () {
             var creep = Game.creeps[this.creepName];
-            if(!creep.dropToDestinationContainer(MAX_DESTINATION_CONTAINER_QUANTITY_PC))
+            if(!creep.dropToDestinationContainer())
                 creep.rest();
         },
         onDropStorage: function () {

@@ -10,6 +10,8 @@ const DROP_CARRIER = "DROP_CARRIER";
 const DROP_STORAGE = "DROP_STORAGE";
 const WITHDRAW_FROM_SPAWN = false;
 const WAYPOINT_LOG = false;
+var MIN_SOURCE_CONTAINER_QUANTITY_PC = 25;
+var MAX_DESTINATION_CONTAINER_QUANTITY_PC = 75;
 
 Creep.prototype.withdrawEnergy = function (includeCarriers, includeLinks) {
     var energySources = cache.findObjectsWithEnergy(this.room,includeCarriers, includeLinks);
@@ -75,9 +77,9 @@ Creep.prototype.withdrawEnergyExCarriers = function () {
     return this.withdrawEnergyFromSources(containers);
 };
 
-Creep.prototype.withdrawEnergyFromSourceContainer = function (minQuantityPc) {
-    var containers = cache.findSourceContainersWithEnergy(this.getSquad().getSquadRoomName(), minQuantityPc);
-    containers = containers.concat(cache.findSourceLinksWithEnergy(this.getSquad().getSquadRoomName(), minQuantityPc));
+Creep.prototype.withdrawEnergyFromSourceContainer = function () {
+    var containers = cache.findSourceContainersWithEnergy(this.getSquad().getSquadRoomName(), MIN_SOURCE_CONTAINER_QUANTITY_PC);
+    containers = containers.concat(cache.findSourceLinksWithEnergy(this.getSquad().getSquadRoomName(), MIN_SOURCE_CONTAINER_QUANTITY_PC));
     return this.withdrawEnergyFromSources(containers);
 };
 
@@ -121,12 +123,12 @@ Creep.prototype.dropToStorage = function () {
     return this.dropToDestinations(structures, true);
 };
 
-Creep.prototype.dropToDestinationContainer = function (maxQuantityPc) {
+Creep.prototype.dropToDestinationContainer = function () {
     this.memory.selectedSource = null;
     if (!this.getSquad())
         return false;
-    var structures = cache.findEmptyDestinationContainers(this.getSquad().getSquadRoomName(), maxQuantityPc);
-    structures = structures.concat(cache.findEmptyDestinationLinks(this.getSquad().getSquadRoomName(), maxQuantityPc));
+    var structures = cache.findEmptyDestinationContainers(this.getSquad().getSquadRoomName(), MAX_DESTINATION_CONTAINER_QUANTITY_PC);
+    structures = structures.concat(cache.findEmptyDestinationLinks(this.getSquad().getSquadRoomName(), MAX_DESTINATION_CONTAINER_QUANTITY_PC));
     return this.dropToDestinations(structures, false);
 };
 
