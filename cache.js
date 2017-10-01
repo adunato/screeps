@@ -6,6 +6,8 @@ const DROP_CARRIER = "DROP_CARRIER";
 const DROP_STORAGE = "DROP_STORAGE";
 const MIN_ENERGY_CONTAINER_STORAGE = 0;
 const MIN_LINK_STORAGE = 0;
+var MAX_DESTINATION_CONTAINER_QUANTITY_PC = 75;
+var MIN_SOURCE_CONTAINER_QUANTITY_PC = 25;
 var repairBlacklist = ['59c05e4bc575336ca416c8f5'];
 var MAX_WALL_LVL = 100000;
 var cacheAge = 0;
@@ -234,49 +236,49 @@ var cache = {
         }
         return storage;
     },
-    findSourceContainersWithEnergy: function (containersGroup, minQuantityPc) {
+    findSourceContainersWithEnergy: function (containersGroup) {
         var containers = [];
         if (!global.sourceContainers[containersGroup])
             return containers;
         for (var i = 0; i < global.sourceContainers[containersGroup].length; i++) {
             var container = Game.getObjectById(global.sourceContainers[containersGroup][i])
-            if (container && (container instanceof StructureContainer || container instanceof StructureStorage) && _.sum(container.store) > (container.storeCapacity / 100 * minQuantityPc))
+            if (container && (container instanceof StructureContainer || container instanceof StructureStorage) && _.sum(container.store) > (container.storeCapacity / 100 * MIN_SOURCE_CONTAINER_QUANTITY_PC))
                 containers.push(container);
         }
         return containers;
     },
-    findSourceLinksWithEnergy: function (containersGroup, minQuantityPc) {
+    findSourceLinksWithEnergy: function (containersGroup) {
         var links = [];
         if (!global.sourceContainers[containersGroup])
             return links;
         for (var i = 0; i < global.sourceContainers[containersGroup].length; i++) {
             var link = Game.getObjectById(global.sourceContainers[containersGroup][i])
             if (link && link instanceof StructureLink) {
-                if (link.energy > (link.energyCapacity / 100 * minQuantityPc)
+                if (link.energy > (link.energyCapacity / 100 * MIN_SOURCE_CONTAINER_QUANTITY_PC)
                 )
                     links.push(link);
             }
         }
         return links;
     },
-    findEmptyDestinationContainers: function (containersGroup, maxQuantityPc) {
+    findEmptyDestinationContainers: function (containersGroup) {
         var containers = [];
         if (!global.destinationContainers[containersGroup])
             return containers;
         for (var i = 0; i < global.destinationContainers[containersGroup].length; i++) {
             var container = Game.getObjectById(global.destinationContainers[containersGroup][i])
-            if (container && (container instanceof StructureContainer || container instanceof StructureStorage) && _.sum(container.store) < (container.storeCapacity / 100 * maxQuantityPc))
+            if (container && (container instanceof StructureContainer || container instanceof StructureStorage) && _.sum(container.store) < (container.storeCapacity / 100 * MAX_DESTINATION_CONTAINER_QUANTITY_PC))
                 containers.push(container);
         }
         return containers;
     },
-    findEmptyDestinationLinks: function (containersGroup, maxQuantityPc) {
+    findEmptyDestinationLinks: function (containersGroup) {
         var links = [];
         if (!global.destinationContainers[containersGroup])
             return links;
         for (var i = 0; i < global.destinationContainers[containersGroup].length; i++) {
             var link = Game.getObjectById(global.destinationContainers[containersGroup][i])
-            if (link && link instanceof StructureLink && link.energy < (link.energyCapacity / 100 * maxQuantityPc))
+            if (link && link instanceof StructureLink && link.energy < (link.energyCapacity / 100 * MAX_DESTINATION_CONTAINER_QUANTITY_PC))
                 links.push(link);
         }
         return links;
