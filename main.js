@@ -76,7 +76,6 @@ function spawn(roleName, squad) {
         for (var i = 0; i < bodyParts[roleName].length; i++) {
             var bodyPart = bodyParts[roleName][i];
             var canCreateCreep = selectedSpawn.canCreateCreep(bodyPart);
-            console.log("roleName: " + roleName + " " + canCreateCreep + " " + bodyPart);
             if (canCreateCreep === OK) {
                 var result = selectedSpawn.createCreep(bodyPart, undefined, {
                     role: roleName,
