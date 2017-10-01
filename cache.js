@@ -39,6 +39,7 @@ var cache = {
         extractors: {},
         structures: {},
         droppedResources: {},
+        sourceObjects: {},
     },
     resetCache: function () {
         cacheAge++;
@@ -69,6 +70,7 @@ var cache = {
             this.rooms.extractors = {};
             this.rooms.structures = {};
             this.rooms.droppedResources = {};
+            this.rooms.sourceObjects = {};
         }
     },
     getStoredEnergy: function (room) {
@@ -589,6 +591,20 @@ var cache = {
             }
             return this.rooms.creeps[room];
         }
+    },
+    findSourceObjects: function (room) {
+
+        var sourceObjects = {};
+
+        if (this.rooms.sourceObjects[room] && this.rooms.sourceObjects[room].length > 0) {
+            sourceObjects = this.rooms.sourceObjects[room];
+        } else {
+            var sourceObjects = cache.findSourceContainersWithEnergy(room);
+            containers = containers.concat(cache.findSourceLinksWithEnergy(room));
+            this.rooms.sourceObjects[room] = sourceObjects;
+        }
+        return sourceObjects;
+
     },
 
 };
