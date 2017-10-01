@@ -247,7 +247,6 @@ var cache = {
             if (container && (container instanceof StructureContainer || container instanceof StructureStorage) && _.sum(container.store) > (container.storeCapacity / 100 * MIN_SOURCE_CONTAINER_QUANTITY_PC))
                 containers.push(container);
         }
-        console.log("containers:" + containers);
         return containers;
     },
     findSourceLinksWithEnergy: function (containersGroup) {
@@ -600,10 +599,11 @@ var cache = {
         if (this.rooms.sourceObjects[room] && this.rooms.sourceObjects[room].length > 0) {
             sourceObjects = this.rooms.sourceObjects[room];
         } else {
-            sourceObjects = cache.findSourceContainersWithEnergy(room);
-            sourceObjects = sourceObjects.concat(cache.findSourceLinksWithEnergy(room));
+            sourceObjects = cache.findSourceContainersWithEnergy(room.name);
+            sourceObjects = sourceObjects.concat(cache.findSourceLinksWithEnergy(room.name));
             this.rooms.sourceObjects[room] = sourceObjects;
         }
+        console.log("sourceObjects:" + sourceObjects);
         return sourceObjects;
 
     },
