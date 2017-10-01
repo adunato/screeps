@@ -599,10 +599,8 @@ var cache = {
         if (this.rooms.sourceObjects[room] && this.rooms.sourceObjects[room].length > 0) {
             sourceObjects = this.rooms.sourceObjects[room];
         } else {
-            var sourceObjects = cache.findSourceContainersWithEnergy(room);
-            console.log("sourceObjects1:" + sourceObjects);
+            sourceObjects = cache.findSourceContainersWithEnergy(room);
             sourceObjects = sourceObjects.concat(cache.findSourceLinksWithEnergy(room));
-            console.log("sourceObjects2:" + sourceObjects);
             this.rooms.sourceObjects[room] = sourceObjects;
         }
         return sourceObjects;
