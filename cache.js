@@ -600,7 +600,7 @@ var cache = {
             sourceObjects = this.rooms.sourceObjects[room];
         } else {
             var sourceObjects = cache.findSourceContainersWithEnergy(room);
-            containers = containers.concat(cache.findSourceLinksWithEnergy(room));
+            sourceObjects = sourceObjects.concat(cache.findSourceLinksWithEnergy(room));
             this.rooms.sourceObjects[room] = sourceObjects;
         }
         return sourceObjects;
