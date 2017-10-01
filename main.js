@@ -75,8 +75,9 @@ function spawn(roleName, squad) {
             spawnSlots[selectedSpawn.name] = roleName;
         for (var i = 0; i < bodyParts[roleName].length; i++) {
             var bodyPart = bodyParts[roleName][i];
-            console.log("roleName: " + roleName);
-            if (selectedSpawn.canCreateCreep(bodyPart) === OK) {
+            var canCreateCreep = selectedSpawn.canCreateCreep(bodyPart);
+            console.log("roleName: " + roleName + " " + canCreateCreep);
+            if (canCreateCreep === OK) {
                 var result = selectedSpawn.createCreep(bodyPart, undefined, {
                     role: roleName,
                     spawnRoom: selectedSpawn.room.name,
