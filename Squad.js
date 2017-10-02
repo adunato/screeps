@@ -61,12 +61,14 @@ Squad.prototype.getCreepQuantityWithRole = function (creepRole) {
     var ret = 0;
     if (!this.squadFlagExist())
         return ret;
-    for (var i = 0; i < this.creeps.length; i++) {
-        if (this.creeps[i].ticksToLive > 100 && this.creeps[i].memory.role === creepRole) {
-            ret++
-        }
-    }
-    return ret;
+    else
+        return this.creeps.length;
+    // for (var i = 0; i < this.creeps.length; i++) {
+    //     if (this.creeps[i].ticksToLive > 100 && this.creeps[i].memory.role === creepRole) {
+    //         ret++
+    //     }
+    // }
+    // return ret;
 };
 
 Squad.prototype.getName = function () {
