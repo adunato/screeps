@@ -52,7 +52,6 @@ Squad.prototype.needCreepRole = function (creepRole) {
     if (!this.squadFlagExist())
         return false;
     var creepQuantity = this.getCreepQuantityWithRole(creepRole);
-    console.log(this.squadName + " has " + creepQuantity + " " + creepRole);
     var profileQuantity = this.squadProfile.getCreepQuantity(creepRole);
     return this.squadProfile.spawnConditions(this.getFlagName()) && (creepQuantity < profileQuantity);
 };
