@@ -74,6 +74,7 @@ function spawn(roleName, squad) {
         spawnSlots[selectedSpawn.name] = roleName;
 
     for(var spawnName in cache.findSpawns(selectedSpawn.room)){
+        console.log(spawnName);
         var spawn = Game.spawns[spawnName];
         if(spawn.spawning !== null ) {
             var spawningCreep = Game.creeps[spawn.spawning.name];
