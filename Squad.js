@@ -62,7 +62,7 @@ Squad.prototype.getCreepQuantityWithRole = function (creepRole) {
     if (!this.squadFlagExist())
         return ret;
     for (var i = 0; i < this.creeps.length; i++) {
-        if (this.creeps[i].ticksToLive && this.creeps[i].ticksToLive > 100 && this.creeps[i].memory.role === creepRole) {
+        if ((!this.creeps[i].ticksToLive || this.creeps[i].ticksToLive > 100) && this.creeps[i].memory.role === creepRole) {
             ret++
         }
     }
