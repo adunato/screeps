@@ -73,6 +73,7 @@ function spawn(roleName, squad) {
     else
         spawnSlots[selectedSpawn.name] = roleName;
 
+    //look for all spawns in same room
     var spawns = cache.findSpawns(selectedSpawn.room);
     for(var spawnName in spawns){
         var spawn = spawns[spawnName];
@@ -90,6 +91,8 @@ function spawn(roleName, squad) {
     }
     if (selectedSpawn) {
         spawnCreep(selectedSpawn,roleName,squad);
+    } else {
+        console.log("no spawn for " + roleName)
     }
 }
 
