@@ -65,7 +65,7 @@ function spawn(roleName, squad) {
             if (distance < minDistance) {
                 if(spawn.spawning !== null ) {
                     var spawningCreep = Game.creeps[spawn.spawning.name];
-                    console.log("spawningCreep.memory " + spawningCreep.memory);
+                    console.log("spawningCreep.memory " + spawningCreep.memory.role);
                     if(spawningCreep.memory.squad === squad.getName() && spawningCreep.memory.role === roleName){
                         selectedSpawn = spawn;
                         break;
