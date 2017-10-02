@@ -94,7 +94,6 @@ function spawnCreep(selectedSpawn, roleName, squad){
             });
             console.log(selectedSpawn.name + ': Spawning new ' + roleName + ' with body: ' + bodyPart + ' - ' + result);
             var spawningCreep = Game.creeps[result];
-            console.log("spawningCreep:" + spawningCreep);
             if(spawningCreep) {
                 squad.addCreep(spawningCreep);
             }
@@ -460,7 +459,7 @@ module.exports.loop = function () {
     createSquads();
     logCPU('createSquads ');
     assignCreepsToSquads();
-    // Memory.squads = global.squadsIndex;
+    Memory.squads = global.squadsIndex;
     logCPU('assignCreepsToSquads ');
     logSpawing();
     logCPU('logSpawing ');
