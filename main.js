@@ -65,6 +65,7 @@ function spawn(roleName, squad) {
             if (distance < minDistance) {
                 if(spawn.spawning !== null ) {
                     var spawningCreep = Game.creeps[spawn.spawning.name];
+                    console.log("spawningCreep.memory " + spawningCreep.memory);
                     if(spawningCreep.memory.squad === squad.getName() && spawningCreep.memory.role === roleName){
                         selectedSpawn = spawn;
                         break;
@@ -215,7 +216,6 @@ function assignCreepsToSquads() {
             var squad = global.squadsIndex[squadName];
             if (squad.needCreepRole(roleName)) {
                 console.log(squad.getSquadRoomName() + ": " + squadName + ' needs ' + roleName);
-                console.log(squad.getSquadRoomName() + ": " + squadName + ' has ' + squad.getCreepQuantityWithRole(roleName) + " " + roleName);
                 spawn(roleName, squad);
             }
         }
