@@ -89,10 +89,9 @@ function spawn(roleName, squad) {
             break;
         }
     }
+    console.log("selectedSpawn" + selectedSpawn);
     if (selectedSpawn) {
         spawnCreep(selectedSpawn,roleName,squad);
-    } else {
-        console.log("no spawn for " + roleName)
     }
 }
 
