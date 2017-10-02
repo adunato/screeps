@@ -57,6 +57,7 @@ function spawn(roleName, squad) {
             selectedSpawn = Game.spawns[squad.getSpawn()];
             break;
         }
+        console.log("spawnName" + spawnName)
         var spawn = Game.spawns[spawnName];
         var squadFlag = Game.flags[squad.getFlagName()]
         if (squadFlag) {
