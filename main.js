@@ -37,6 +37,7 @@ function logSpawing() {
         var spawn = Game.spawns[spawnName];
         if (spawn && spawn.spawning) {
             var spawningCreep = Game.creeps[spawn.spawning.name];
+            console.log(spawn.name + " spawning " + spawningCreep.memory.role + " for " + spawningCreep.memory.squad);
             spawn.room.visual.text(
                 '🛠️' + spawningCreep.memory.role,
                 spawn.pos.x + 1,
@@ -82,7 +83,6 @@ function spawn(roleName, squad) {
 }
 
 function spawnCreep(selectedSpawn, roleName, squad){
-    console.log(selectedSpawn.name + " spawning " + roleName + " for " + squad.getName());
     for (var i = 0; i < bodyParts[roleName].length; i++) {
         var bodyPart = bodyParts[roleName][i];
         var canCreateCreep = selectedSpawn.canCreateCreep(bodyPart);
