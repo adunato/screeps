@@ -62,34 +62,42 @@ function spawn(roleName, squad) {
         if (squadFlag) {
             var distance = Game.map.getRoomLinearDistance(spawn.room.name, squadFlag.pos.roomName);
             if (distance < minDistance) {
+                if(spawn.spawning !== null ) {
+                    var spawningCreep = Game.creeps[spawn.spawning.name];
+                    if(spawningCreep.memory.squad === squad.getName() && spawningCreep.memory.role === roleName){
+                        console.log(spawn.name + " spawning " + roleName + " for " + squad.getName());
+                        selectedSpawn = spawn;
+                        break;
+                    }
+                }
                 selectedSpawn = spawn;
                 minDistance = distance;
             }
         }
     }
-    //check if spawn is locked, if it is only proceeds if role is the locked one
-    if (spawnSlots[selectedSpawn.name] && spawnSlots[selectedSpawn.name] !== roleName)
-        return;
-    else
-        spawnSlots[selectedSpawn.name] = roleName;
-
-    //look for all spawns in same room
-    var spawns = cache.findSpawns(selectedSpawn.room);
-    for(var spawnName in spawns){
-        var spawn = spawns[spawnName];
-        if(spawn.spawning !== null ) {
-            var spawningCreep = Game.creeps[spawn.spawning.name];
-            if(spawningCreep.memory.squad === squad.getName() && spawningCreep.memory.role === roleName){
-                console.log(spawn.name + " spawning " + roleName + " for " + squad.getName());
-                selectedSpawn = spawn;
-                break;
-            }
-        } else {
-            selectedSpawn = spawn;
-            break;
-        }
-    }
-    console.log("selectedSpawn" + selectedSpawn);
+    // //check if spawn is locked, if it is only proceeds if role is the locked one
+    // if (spawnSlots[selectedSpawn.name] && spawnSlots[selectedSpawn.name] !== roleName){
+    //     return;
+    // }
+    // else
+    //     spawnSlots[selectedSpawn.name] = roleName;
+    //
+    // //look for all spawns in same room
+    // var spawns = cache.findSpawns(selectedSpawn.room);
+    // for(var spawnName in spawns){
+    //     var spawn = spawns[spawnName];
+    //     if(spawn.spawning !== null ) {
+    //         var spawningCreep = Game.creeps[spawn.spawning.name];
+    //         if(spawningCreep.memory.squad === squad.getName() && spawningCreep.memory.role === roleName){
+    //             console.log(spawn.name + " spawning " + roleName + " for " + squad.getName());
+    //             selectedSpawn = spawn;
+    //             break;
+    //         }
+    //     } else {
+    //         selectedSpawn = spawn;
+    //         break;
+    //     }
+    // }
     if (selectedSpawn) {
         spawnCreep(selectedSpawn,roleName,squad);
     }
@@ -222,15 +230,9 @@ function assignCreepsToSquads() {
     for (var roleName in global.creepRoles) {
         for (var squadName in global.squadsIndex) {
             var squad = global.squadsIndex[squadName];
-            //assign squad to flag's memory
-            // squad.getFlag().memory.squad = squad;
-            // console.log(squadName + ' ' + squad.creeps.length);
             if (squad.needCreepRole(roleName)) {
-                // squad.getFlag().setColor(COLOR_ORANGE, COLOR_ORANGE);
                 console.log(squad.getSquadRoomName() + ": " + squadName + ' needs ' + roleName);
                 spawn(roleName, squad);
-            } else {
-                // squad.getFlag().setColor(COLOR_GREEN, COLOR_GREEN);
             }
         }
     }
