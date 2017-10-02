@@ -171,10 +171,10 @@ var defines = {
             "tower_feeder": roleTowerFeeder,
             "patroller": rolePatroller,
             "harvester": roleHarvester,
+            "transporterXXL": roleTransporter,
+            "transporterXL": roleTransporter,
             "transporter": roleTransporter,
             "transporterXXS": roleTransporter,
-            "transporterXL": roleTransporter,
-            "transporterXXL": roleTransporter,
             "repairer": roleRepairer,
             "builder": roleBuilder,
             "collector": roleCollector,
@@ -330,7 +330,7 @@ var defines = {
             ],
             "E59N1": [
                 '59c2bc9ca105d01f253794a2',//source left
-                '59c2cbad7511d15faf05379f',//source right
+                '59d1fa1bd1169a1a562f83a4',//source right
             ],
         };
         global.destinationContainers = {
