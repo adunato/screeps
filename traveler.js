@@ -582,5 +582,6 @@ const STATE_DEST_ROOMNAME = 6;
 // assigns a function to Creep.prototype: creep.travelTo(destination)
 Creep.prototype.travelTo = function (destination, options) {
     options.reusePath = 10;
+    options.ignoreCreeps = false;
     return Traveler.travelTo(this, destination, options);
 };
