@@ -70,9 +70,10 @@ function spawn(roleName, squad) {
                         break;
                     } else
                         continue;
+                } else {
+                    selectedSpawn = spawn;
+                    minDistance = distance;
                 }
-                selectedSpawn = spawn;
-                minDistance = distance;
             }
         }
     }
