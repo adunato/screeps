@@ -74,7 +74,7 @@ function spawn(roleName, squad) {
         else
             spawnSlots[selectedSpawn.name] = roleName;
         if(selectedSpawn.spawning !== null )
-            console.log(selectedSpawn.spawning.name);
+            console.log(Game.creeps[selectedSpawn.spawning.name]);
         for (var i = 0; i < bodyParts[roleName].length; i++) {
             var bodyPart = bodyParts[roleName][i];
             var canCreateCreep = selectedSpawn.canCreateCreep(bodyPart);
