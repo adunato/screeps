@@ -111,8 +111,9 @@ var defines = {
             ],
             "transporterXL": [
                 [MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY],
-                [MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY],
-                [MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY],
+            ],
+            "transporterXXL": [
+                [MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY]
             ],
             "feeder": [
                 [MOVE, MOVE, MOVE, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY]
@@ -173,6 +174,7 @@ var defines = {
             "transporter": roleTransporter,
             "transporterXXS": roleTransporter,
             "transporterXL": roleTransporter,
+            "transporterXXL": roleTransporter,
             "repairer": roleRepairer,
             "builder": roleBuilder,
             "collector": roleCollector,
@@ -244,6 +246,9 @@ var defines = {
                 return true
             }),
             "TRXL": new squadprofile.SquadAttributes([["transporterXL", 1]], false, function (roomName) {
+                return true
+            }),
+            "TRXXL": new squadprofile.SquadAttributes([["transporterXXL", 1]], false, function (roomName) {
                 return true
             }),
             "PA": new squadprofile.SquadAttributes([["patroller", 1]], true, function (roomName) {
