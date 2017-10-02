@@ -64,6 +64,7 @@ class Traveler {
         if (state.stuckCount >= options.stuckValue && Math.random() > .5) {
             options.ignoreCreeps = false;
             options.freshMatrix = true;
+            console.log("creep stuck");
             delete travelData.path;
         }
         // TODO:handle case where creep moved by some other function, but destination is still the same
