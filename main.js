@@ -94,8 +94,10 @@ function spawnCreep(selectedSpawn, roleName, squad){
             });
             console.log(selectedSpawn.name + ': Spawning new ' + roleName + ' with body: ' + bodyPart + ' - ' + result);
             var spawningCreep = Game.creeps[result];
-            if(spawningCreep)
+            console.log("spawningCreep:" + spawningCreep);
+            if(spawningCreep) {
                 squad.addCreep(spawningCreep);
+            }
             return;
         }
     }
