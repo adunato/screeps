@@ -73,8 +73,12 @@ function spawn(roleName, squad) {
             return;
         else
             spawnSlots[selectedSpawn.name] = roleName;
-        if(selectedSpawn.spawning !== null )
-            console.log(Game.creeps[selectedSpawn.spawning.name]);
+        if(selectedSpawn.spawning !== null ) {
+            var spawiningCreep = Game.creeps[selectedSpawn.spawning.name];
+            if(spawiningCreep.memory.squad === squad.getName() && spawiningCreep.memory.role === roleName){
+                console.log(selectedSpawn.name + " spawning " + roleName + " for " + squad.getName());
+            }
+        }
         for (var i = 0; i < bodyParts[roleName].length; i++) {
             var bodyPart = bodyParts[roleName][i];
             var canCreateCreep = selectedSpawn.canCreateCreep(bodyPart);
