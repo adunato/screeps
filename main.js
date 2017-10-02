@@ -57,7 +57,6 @@ function spawn(roleName, squad) {
             selectedSpawn = Game.spawns[squad.getSpawn()];
             break;
         }
-        console.log("spawnName" + spawnName)
         var spawn = Game.spawns[spawnName];
         var squadFlag = Game.flags[squad.getFlagName()]
         if (squadFlag) {
@@ -69,7 +68,8 @@ function spawn(roleName, squad) {
                         console.log(spawn.name + " spawning " + roleName + " for " + squad.getName());
                         selectedSpawn = spawn;
                         break;
-                    }
+                    } else
+                        continue;
                 }
                 selectedSpawn = spawn;
                 minDistance = distance;
