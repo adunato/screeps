@@ -68,29 +68,35 @@ function spawn(roleName, squad) {
         }
     }
     if (selectedSpawn) {
-        //check if spawn is locked, if it is only proceeds it role is the locked one
-        if (spawnSlots[selectedSpawn.name] && spawnSlots[selectedSpawn.name] !== roleName)
-            return;
-        else
-            spawnSlots[selectedSpawn.name] = roleName;
-        if(selectedSpawn.spawning !== null ) {
-            var spawiningCreep = Game.creeps[selectedSpawn.spawning.name];
-            if(spawiningCreep.memory.squad === squad.getName() && spawiningCreep.memory.role === roleName){
-                console.log(selectedSpawn.name + " spawning " + roleName + " for " + squad.getName());
-            }
+        spawnCreep(selectedSpawn,roleName,squad);
+    }
+}
+
+function spawnCreep(selectedSpawn, roleName, squad){
+    //check if spawn is locked, if it is only proceeds it role is the locked one
+    if (spawnSlots[selectedSpawn.name] && spawnSlots[selectedSpawn.name] !== roleName)
+        return;
+    else
+        spawnSlots[selectedSpawn.name] = roleName;
+    if(selectedSpawn.spawning !== null ) {
+        var spawningCreep = Game.creeps[selectedSpawn.spawning.name];
+        if(spawningCreep.memory.squad === squad.getName() && spawningCreep.memory.role === roleName){
+            console.log(selectedSpawn.name + " spawning " + roleName + " for " + squad.getName());
+        } else {
+
         }
-        for (var i = 0; i < bodyParts[roleName].length; i++) {
-            var bodyPart = bodyParts[roleName][i];
-            var canCreateCreep = selectedSpawn.canCreateCreep(bodyPart);
-            if (canCreateCreep === OK) {
-                var result = selectedSpawn.createCreep(bodyPart, undefined, {
-                    role: roleName,
-                    spawnRoom: selectedSpawn.room.name,
-                    squad: squad.getName()
-                });
-                console.log(selectedSpawn.name + ': Spawning new ' + roleName + ' with body: ' + bodyPart + ' - ' + result);
-                return;
-            }
+    }
+    for (var i = 0; i < bodyParts[roleName].length; i++) {
+        var bodyPart = bodyParts[roleName][i];
+        var canCreateCreep = selectedSpawn.canCreateCreep(bodyPart);
+        if (canCreateCreep === OK) {
+            var result = selectedSpawn.createCreep(bodyPart, undefined, {
+                role: roleName,
+                spawnRoom: selectedSpawn.room.name,
+                squad: squad.getName()
+            });
+            console.log(selectedSpawn.name + ': Spawning new ' + roleName + ' with body: ' + bodyPart + ' - ' + result);
+            return;
         }
     }
 }
