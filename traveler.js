@@ -5,7 +5,7 @@
 "use strict";
 var cache = require('cache');
 Object.defineProperty(exports, "__esModule", {value: true});
-const STUCK_RESET_TICKS = 10;
+const STUCK_RESET_TICKS = 5;
 
 class Traveler {
     /**
