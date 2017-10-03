@@ -16,6 +16,9 @@ class Traveler {
     static travelTo(creep, destination, options = {}) {
         // uncomment if you would like to register hostile rooms entered
         // this.updateRoomStatus(creep.room);
+        if(creep.memory.isStuck){
+            creep.moveTo(destination,options);
+        }
         if (!destination) {
             return ERR_INVALID_ARGS;
         }
@@ -68,7 +71,7 @@ class Traveler {
             console.log(creep.name + " stuck in " + creep.pos.roomName + " at " + creep.pos.x + ","+ creep.pos.y + "(" + state.stuckCount + ")");
             Traveler.circle(creep.pos, "red", .3);
             delete travelData.path;
-            creep.moveTo(destination,options);
+            creep.memory.isStuck = true;
         }
         // TODO:handle case where creep moved by some other function, but destination is still the same
         // delete path cache if destination is different
