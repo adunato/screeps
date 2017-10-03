@@ -68,6 +68,7 @@ class Traveler {
             // console.log(creep.name + " stuck in " + creep.pos.roomName + " at " + creep.pos.x + ","+ creep.pos.y);
             Traveler.circle(creep.pos, "red", .3);
             delete travelData.path;
+            creep.moveTo(destination,options);
         }
         // TODO:handle case where creep moved by some other function, but destination is still the same
         // delete path cache if destination is different
