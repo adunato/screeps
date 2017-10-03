@@ -4,7 +4,9 @@
  */
 "use strict";
 var cache = require('cache');
-Object.defineProperty(exports, "__esModule", { value: true });
+Object.defineProperty(exports, "__esModule", {value: true});
+const STUCK_RESET_TICKS = 10;
+
 class Traveler {
     /**
      * move creep to destination
@@ -16,9 +18,13 @@ class Traveler {
     static travelTo(creep, destination, options = {}) {
         // uncomment if you would like to register hostile rooms entered
         // this.updateRoomStatus(creep.room);
-        if(creep.memory.isStuck){
-            creep.moveTo(destination,options);
-            return OK;
+        if (creep.memory.stuckTicks) {
+            if (Game.time - creep.memory.stuckTicks < STUCK_RESET_TICKS) {
+                creep.moveTo(destination, options);
+                return OK;
+            } else {
+                creep.memory.stuckTicks = null;
+            }
         }
         if (!destination) {
             return ERR_INVALID_ARGS;
@@ -69,10 +75,10 @@ class Traveler {
             options.ignoreCreeps = false;
             options.ignoreStructures = false;
             options.freshMatrix = true;
-            console.log(creep.name + " stuck in " + creep.pos.roomName + " at " + creep.pos.x + ","+ creep.pos.y + "(" + state.stuckCount + ")");
+            console.log(creep.name + " stuck in " + creep.pos.roomName + " at " + creep.pos.x + "," + creep.pos.y + "(" + state.stuckCount + ")");
             Traveler.circle(creep.pos, "red", .3);
             delete travelData.path;
-            creep.memory.isStuck = true;
+            creep.memory.stuckTicks = Game.time;
         }
         // TODO:handle case where creep moved by some other function, but destination is still the same
         // delete path cache if destination is different
@@ -138,6 +144,7 @@ class Traveler {
         }
         return creep.move(nextDirection);
     }
+
     /**
      * make position objects consistent so that either can be used as an argument
      * @param destination
@@ -149,6 +156,7 @@ class Traveler {
         }
         return destination;
     }
+
     /**
      * check if room should be avoided by findRoute algorithm
      * @param roomName
@@ -157,6 +165,7 @@ class Traveler {
     static checkAvoid(roomName) {
         return Memory.rooms && Memory.rooms[roomName] && Memory.rooms[roomName].avoid;
     }
+
     /**
      * check if a position is an exit
      * @param pos
@@ -165,6 +174,7 @@ class Traveler {
     static isExit(pos) {
         return pos.x === 0 || pos.y === 0 || pos.x === 49 || pos.y === 49;
     }
+
     /**
      * check two coordinates match
      * @param pos1
@@ -174,6 +184,7 @@ class Traveler {
     static sameCoord(pos1, pos2) {
         return pos1.x === pos2.x && pos1.y === pos2.y;
     }
+
     /**
      * check if two positions match
      * @param pos1
@@ -183,6 +194,7 @@ class Traveler {
     static samePos(pos1, pos2) {
         return this.sameCoord(pos1, pos2) && pos1.roomName === pos2.roomName;
     }
+
     /**
      * draw a circle at position
      * @param pos
@@ -194,6 +206,7 @@ class Traveler {
             radius: .45, fill: "transparent", stroke: color, strokeWidth: .15, opacity: opacity
         });
     }
+
     /**
      * update memory on whether a room should be avoided based on controller owner
      * @param room
@@ -211,6 +224,7 @@ class Traveler {
             }
         }
     }
+
     /**
      * find a path from origin to destination
      * @param origin
@@ -288,7 +302,7 @@ class Traveler {
             }
             return matrix;
         };
-        let ret = PathFinder.search(origin, { pos: destination, range: options.range }, {
+        let ret = PathFinder.search(origin, {pos: destination, range: options.range}, {
             maxOps: options.maxOps,
             maxRooms: options.maxRooms,
             plainCost: options.offRoad ? 1 : options.ignoreRoads ? 1 : 2,
@@ -315,6 +329,7 @@ class Traveler {
         }
         return ret;
     }
+
     /**
      * find a viable sequence of rooms that can be used to narrow down pathfinder's search algorithm
      * @param origin
@@ -324,7 +339,7 @@ class Traveler {
      */
     static findRoute(origin, destination, options = {}) {
         let restrictDistance = options.restrictDistance || Game.map.getRoomLinearDistance(origin, destination) + 10;
-        let allowedRooms = { [origin]: true, [destination]: true };
+        let allowedRooms = {[origin]: true, [destination]: true};
         let highwayBias = 1;
         if (options.preferHighway) {
             highwayBias = 2.5;
@@ -384,6 +399,7 @@ class Traveler {
         }
         return allowedRooms;
     }
+
     /**
      * check how many rooms were included in a route returned by findRoute
      * @param origin
@@ -400,6 +416,7 @@ class Traveler {
             return Object.keys(allowedRooms).length;
         }
     }
+
     /**
      * build a cost matrix based on structures in the room. Will be cached for more than one tick. Requires vision.
      * @param room
@@ -414,6 +431,7 @@ class Traveler {
         }
         return this.structureMatrixCache[room.name];
     }
+
     /**
      * build a cost matrix based on creeps and structures in the room. Will be cached for one tick. Requires vision.
      * @param room
@@ -426,6 +444,7 @@ class Traveler {
         }
         return this.creepMatrixCache[room.name];
     }
+
     /**
      * add structures to matrix so that impassible structures can be avoided and roads given a lower cost
      * @param room
@@ -463,6 +482,7 @@ class Traveler {
         }
         return matrix;
     }
+
     /**
      * add creeps to matrix so that they will be avoided by other creeps
      * @param room
@@ -473,6 +493,7 @@ class Traveler {
         room.find(FIND_CREEPS).forEach((creep) => matrix.set(creep.pos.x, creep.pos.y, 0xff));
         return matrix;
     }
+
     /**
      * serialize a path, traveler style. Returns a string of directions.
      * @param startPos
@@ -487,13 +508,14 @@ class Traveler {
         for (let position of path) {
             if (position.roomName === lastPosition.roomName) {
                 new RoomVisual(position.roomName)
-                    .line(position, lastPosition, { color: color, lineStyle: "dashed" });
+                    .line(position, lastPosition, {color: color, lineStyle: "dashed"});
                 serializedPath += lastPosition.getDirectionTo(position);
             }
             lastPosition = position;
         }
         return serializedPath;
     }
+
     /**
      * returns a position at a direction relative to origin
      * @param origin
@@ -510,6 +532,7 @@ class Traveler {
         }
         return new RoomPosition(x, y, origin.roomName);
     }
+
     /**
      * convert room avoidance memory from the old pattern to the one currently used
      * @param cleanup
@@ -539,10 +562,11 @@ class Traveler {
         }
         console.log(`TRAVELER: room avoidance data patched for ${count} rooms`);
     }
+
     static deserializeState(travelData, destination) {
         let state = {};
         if (travelData.state) {
-            state.lastCoord = { x: travelData.state[STATE_PREV_X], y: travelData.state[STATE_PREV_Y] };
+            state.lastCoord = {x: travelData.state[STATE_PREV_X], y: travelData.state[STATE_PREV_Y]};
             state.cpu = travelData.state[STATE_CPU];
             state.stuckCount = travelData.state[STATE_STUCK];
             state.destination = new RoomPosition(travelData.state[STATE_DEST_X], travelData.state[STATE_DEST_Y], travelData.state[STATE_DEST_ROOMNAME]);
@@ -553,10 +577,12 @@ class Traveler {
         }
         return state;
     }
+
     static serializeState(creep, destination, state, travelData) {
         travelData.state = [creep.pos.x, creep.pos.y, state.stuckCount, state.cpu, destination.x, destination.y,
             destination.roomName];
     }
+
     static isStuck(creep, state) {
         let stuck = false;
         if (state.lastCoord !== undefined) {
@@ -572,6 +598,7 @@ class Traveler {
         return stuck;
     }
 }
+
 Traveler.structureMatrixCache = {};
 Traveler.creepMatrixCache = {};
 exports.Traveler = Traveler;
