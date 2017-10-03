@@ -18,6 +18,7 @@ class Traveler {
         // this.updateRoomStatus(creep.room);
         if(creep.memory.isStuck){
             creep.moveTo(destination,options);
+            return OK;
         }
         if (!destination) {
             return ERR_INVALID_ARGS;
