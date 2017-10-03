@@ -63,6 +63,7 @@ class Traveler {
         }
         if (state.stuckCount >= options.stuckValue && Math.random() > .5) {
             options.ignoreCreeps = false;
+            options.ignoreRoads = true;
             options.freshMatrix = true;
             console.log(creep.name + " stuck in " + creep.pos.roomName + " at " + creep.pos.x + ","+ creep.pos.y);
             Traveler.circle(creep.pos, "red", .3);
