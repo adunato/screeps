@@ -86,7 +86,7 @@ function spawnCreep(selectedSpawn, roleName, squad){
     for (var i = 0; i < bodyParts[roleName].length; i++) {
         var bodyPart = bodyParts[roleName][i];
         var canCreateCreep = selectedSpawn.canCreateCreep(bodyPart);
-        console.log(roleName + " res: " + canCreateCreep);
+        // console.log(roleName + " res: " + canCreateCreep);
         if (canCreateCreep === OK) {
             var result = selectedSpawn.createCreep(bodyPart, undefined, {
                 role: roleName,
@@ -217,7 +217,7 @@ function assignCreepsToSquads() {
         for (var squadName in global.squadsIndex) {
             var squad = global.squadsIndex[squadName];
             if (squad.needCreepRole(roleName)) {
-                // console.log(squad.getSquadRoomName() + ": " + squadName + ' needs ' + roleName);
+                console.log(squad.getSquadRoomName() + ": " + squadName + ' needs ' + roleName);
                 spawn(roleName, squad);
             }
         }
