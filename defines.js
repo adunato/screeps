@@ -44,8 +44,8 @@ var defines = {
                     // [MOVE, MOVE, MOVE, MOVE, MOVE, WORK, WORK, WORK, CARRY, CARRY],
                     // [MOVE, MOVE, MOVE,MOVE, WORK, WORK, CARRY, CARRY],
                     [MOVE, MOVE, MOVE, WORK, WORK, WORK, WORK, WORK, WORK, CARRY],
-                    [MOVE, MOVE,MOVE, WORK, CARRY, CARRY],
-                    [MOVE, MOVE, WORK, CARRY]
+                    // [MOVE, MOVE,MOVE, WORK, CARRY, CARRY],
+                    // [MOVE, MOVE, WORK, CARRY]
                 ],
             "reserver":
                 [
@@ -120,11 +120,11 @@ var defines = {
             ],
             "feeder": [
                 // [MOVE, CARRY],
-                [MOVE, MOVE, MOVE, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY]
+                [MOVE, MOVE, MOVE, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY],
                 [MOVE, MOVE, MOVE, MOVE, MOVE, CARRY, CARRY, CARRY, CARRY, CARRY],
                 [MOVE, MOVE, MOVE, MOVE, CARRY, CARRY, CARRY, CARRY],
                 [MOVE, MOVE, MOVE, CARRY, CARRY, CARRY],
-                [MOVE, CARRY]
+                // [MOVE, CARRY]
             ],
             "tower_feeder": [
                 // [MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY],
