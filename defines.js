@@ -307,8 +307,8 @@ var defines = {
                 '59d603fa252d840a77cb2a09',//left container
             ],
             "E59N4": [
-                '59be3ab3fb91402166aa3c79',//top source
-                '59bd173800f18070a06f4942',//bottom source
+                '59d6124fa3a93c60aa6519f6',//top source
+                '59d609a371e4794a1d3cd5ba',//bottom source
             ],
             "E57N3": [
                 '59bcae046f72fb412e440e6f',//right source
