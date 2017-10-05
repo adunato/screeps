@@ -43,7 +43,7 @@ var defines = {
                     // [MOVE, MOVE,WORK, WORK, WORK, WORK, WORK, CARRY, CARRY],
                     // [MOVE, MOVE, MOVE, MOVE, MOVE, WORK, WORK, WORK, CARRY, CARRY],
                     // [MOVE, MOVE, MOVE,MOVE, WORK, WORK, CARRY, CARRY],
-                    [MOVE, MOVE, MOVE, WORK, WORK, WORK, WORK, WORK, WORK, CARRY]
+                    [MOVE, MOVE, MOVE, WORK, WORK, WORK, WORK, WORK, WORK, CARRY],
                     [MOVE, MOVE,MOVE, WORK, CARRY, CARRY],
                     [MOVE, MOVE, WORK, CARRY]
                 ],
