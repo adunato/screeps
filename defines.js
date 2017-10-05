@@ -116,12 +116,12 @@ var defines = {
                 [MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY]
             ],
             "feeder": [
-                [MOVE, CARRY],
+                // [MOVE, CARRY],
                 [MOVE, MOVE, MOVE, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY]
-                // [MOVE, MOVE, MOVE, MOVE, MOVE, CARRY, CARRY, CARRY, CARRY, CARRY],
-                // [MOVE, MOVE, MOVE, MOVE, CARRY, CARRY, CARRY, CARRY],
-                // [MOVE, MOVE, MOVE, CARRY, CARRY, CARRY],
-                // [MOVE, CARRY]
+                [MOVE, MOVE, MOVE, MOVE, MOVE, CARRY, CARRY, CARRY, CARRY, CARRY],
+                [MOVE, MOVE, MOVE, MOVE, CARRY, CARRY, CARRY, CARRY],
+                [MOVE, MOVE, MOVE, CARRY, CARRY, CARRY],
+                [MOVE, CARRY]
             ],
             "tower_feeder": [
                 // [MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY],
@@ -299,8 +299,8 @@ var defines = {
                 '59c2a37624ea0a1cabd02ee1',//right container
             ],
             "E58N3": [
-                '59bd01066a51a26ee9cd9364',//bottom source
-                '59bcfdd9093ab25ba5b27adc',//top source
+                '59d5f142c6746a0921a82b91',//bottom source
+                '59d5ed5ce5c7e839ea74b37c',//top source
                 '59c2b0d9a9cfb23fa5a839cf',//left container
             ],
             "E59N4": [
