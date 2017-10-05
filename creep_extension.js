@@ -106,7 +106,7 @@ Creep.prototype.dropToDestinations = function (destinations, sortByDistance) {
             return false;
         var resourceType = RESOURCE_ENERGY;
         if(Object.keys(this.carry).length > 1)
-            resourceType = _.findKey(energySource.store, (amt,key) => amt > 0 && key !== RESOURCE_ENERGY);
+            resourceType = _.findKey(this.carry, (amt,key) => amt > 0 && key !== RESOURCE_ENERGY);
 
         if (this.transfer(structure, resourceType) == ERR_NOT_IN_RANGE) {
             this.travelTo(structure, {visualizePathStyle: {stroke: '#0027ff'}});
