@@ -311,10 +311,7 @@ var defines = {
                 '59d609a371e4794a1d3cd5ba',//bottom source
             ],
             "E57N3": [
-                '59bcae046f72fb412e440e6f',//right source
-                '59c02064576fbe1d3bc87869',//left source
-                '59c02b0d3bd010249212a0f6',//left source n2
-                '59c17731b9938460d545528c', //top left
+                '59d61ced670b8869bf774d3e',//right source
             ],
             "E59N2": [
                 '59c27bfdaf77cb2f886e312d',//source
@@ -349,7 +346,7 @@ var defines = {
                 '59d5f9dc75e131412ef7a35b',//top source in E59N3
             ],
             "E57N3": [
-                '59c2b0d9a9cfb23fa5a839cf',//E58N3 (container)
+                '59d603fa252d840a77cb2a09',//E58N3 (container)
                 '59be700aa68b175c2b15aded',//E58N3 (storage)
             ],
             "E59N2": [
