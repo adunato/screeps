@@ -286,8 +286,8 @@ var defines = {
         };
         global.linkTransfers = {
             "E59N3": [
-                '59bf8f196e7bf95f7b3ba06e',//from
-                '59bf841899b3c942fd9651ab',//to
+                '59bf841899b3c942fd9651ab',//from
+                '59d736907f2e9a5736c92746',//to
             ],
             "E58N3": [
                 '59c2c326af66417dd46b465d',//from
