@@ -283,6 +283,9 @@ var defines = {
             "E58N3": [
                 '59c2c326af66417dd46b465d',
             ],
+            "E59N3": [
+                '59bf841899b3c942fd9651ab',
+            ],
         };
         global.linkTransfers = {
             "E59N3": [
