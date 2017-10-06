@@ -30,14 +30,12 @@ Creep.prototype.withdrawEnergy = function (includeCarriers, includeLinks) {
 Creep.prototype.withdrawEnergyFromSources = function (energySources) {
     if (energySources.length > 0) {
         var energySource = this.containerWithMostEnergy(energySources);
-        if(!energySource || !energySource.store) {
-            console.log("energySource null: " + energySources);
-            return false;
-        }
         var resourceType = RESOURCE_ENERGY;
-
-        if(Object.keys(energySource.store).length > 1)
-            resourceType = _.findKey(energySource.store, (amt,key) => amt > 0 && key !== RESOURCE_ENERGY);
+        if(energySource && energySource.store) {
+            // console.log("energySource null: " + energySources);
+            if(Object.keys(energySource.store).length > 1)
+                resourceType = _.findKey(energySource.store, (amt,key) => amt > 0 && key !== RESOURCE_ENERGY);
+        }
         var res = energySource.transfer(this, resourceType);
         if (res == ERR_NOT_IN_RANGE) {
             this.travelTo(energySource, {visualizePathStyle: {stroke: '#0027ff'}});
