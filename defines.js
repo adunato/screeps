@@ -340,7 +340,7 @@ var defines = {
         };
         global.destinationContainers = {
             "E59N3": [
-                '59bf841899b3c942fd9651ab', //RC
+                // '59bf841899b3c942fd9651ab', //RC
             ],
             "E58N3": [
                 '59c2c326af66417dd46b465d',//central link
