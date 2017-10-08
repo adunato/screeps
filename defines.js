@@ -73,6 +73,9 @@ var defines = {
                 // [MOVE, MOVE, MOVE, WORK, CARRY, CARRY],
                 // [MOVE, MOVE, WORK, CARRY],
             ],
+            "upgrader_mobile": [
+                [MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,WORK,WORK,WORK,WORK,WORK,WORK,WORK,WORK,WORK,WORK,WORK,WORK,CARRY],
+            ],
             "repairer": [
                 // [MOVE, MOVE, MOVE, MOVE, MOVE, WORK, WORK, WORK, WORK, WORK, CARRY],
                 // [MOVE, MOVE, MOVE, MOVE, WORK, WORK, WORK, WORK, CARRY],
@@ -193,6 +196,7 @@ var defines = {
             "assaulter": roleAssaulter,
             "medic": roleMedic,
             "supporter": rolePatroller,
+            "upgrader_mobile": roleUpgrader,
         };
         global.squadProfiles = {
             "FE": new squadprofile.SquadAttributes([["feeder", 1]], false, function () {
@@ -220,6 +224,9 @@ var defines = {
                 });
 
                 return storageWithEnergy.length > 0 || Game.rooms[room.name].controller.ticksToDowngrade < 3000;
+            }),
+            "UPM": new squadprofile.SquadAttributes([["upgrader_mobile", 1]], true, function (roomName) {
+                return true
             }),
             "RE": new squadprofile.SquadAttributes([["repairer", 1]], true, function (roomName) {
                 return true
