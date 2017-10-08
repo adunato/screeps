@@ -338,6 +338,9 @@ var defines = {
                 '59c2bc9ca105d01f253794a2',//source left
                 '59d1fa1bd1169a1a562f83a4',//source right
             ],
+            "E55N2": [
+                '59d8b1c944dff0121b11987a',//source
+            ],
         };
         global.destinationContainers = {
             "E59N3": [
@@ -371,6 +374,10 @@ var defines = {
             ],
             "E59N1": [
                 '59c27bfdaf77cb2f886e312d',//E59N2
+            ],
+            "E55N2": [
+                '59d8bc9c5085375cdfce8740',//RC
+                '59d8b70761999f38e9c041b5',//spawn
             ],
         };
     }
