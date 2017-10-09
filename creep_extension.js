@@ -8,6 +8,7 @@ const DROP_STRUCTURE = "DROP_STRUCTURE";
 const DROP_COLLECTOR = "DROP_COLLECTOR";
 const DROP_CARRIER = "DROP_CARRIER";
 const DROP_STORAGE = "DROP_STORAGE";
+const DROP_LINK = "DROP_LINK";
 const WITHDRAW_FROM_SPAWN = false;
 const WAYPOINT_LOG = false;
 
@@ -146,6 +147,10 @@ Creep.prototype.dropEnergy = function (options) {
     if (options[DROP_CARRIER]) {
         var carriers = cache.findEmptyCarriers(this.room);
         targets = targets.concat(carriers);
+    }
+    if (options[DROP_LINK]) {
+        var links = cache.findLinks(this.room);
+        targets = targets.concat(links);
     }
     return this.dropToDestinations(targets, true);
 };
