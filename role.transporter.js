@@ -70,7 +70,7 @@ var roleCarrier = {
         sourceContainers += cache.findSourceLinksWithEnergy(creep.getSquad().getSquadRoomName()).length;
         var destinationContainers = cache.findEmptyDestinationContainers(creep.getSquad().getSquadRoomName()).length;
         destinationContainers += cache.findEmptyDestinationLinks(creep.getSquad().getSquadRoomName()).length;
-        console.log("destinationContainers room: " + creep.getSquad().getSquadRoomName() + " " + destinationContainers)
+        // console.log("destinationContainers room: " + creep.getSquad().getSquadRoomName() + " " + destinationContainers)
         // var storage = cache.findEmptyStorage(creep.room).length;
         var creepCarryEnergy = _.sum(creep.carry);
         // var creepCarryCapacity = creep.carryCapacity;
