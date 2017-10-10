@@ -12,7 +12,8 @@ var printStats = false;
 var printCPU = false;
 var rooms = [];
 var spawnSlots = {};
-var disabledSpawns = ['Spawn5'];
+var disabledSpawns = [];
+const MAX_SPAWN_DISTANCE = 0;
 
 function clearMemory() {
     for (var i in Memory.creeps) {
@@ -62,7 +63,7 @@ function spawn(roleName, squad) {
         var squadFlag = Game.flags[squad.getFlagName()]
         if (squadFlag) {
             var distance = Game.map.getRoomLinearDistance(spawn.room.name, squadFlag.pos.roomName);
-            if (distance < minDistance) {
+            if (distance < minDistance && distance <= MAX_SPAWN_DISTANCE) {
                 if(spawn.spawning !== null ) {
                     var spawningCreep = Game.creeps[spawn.spawning.name];
                     if(spawningCreep.memory.squad === squad.getName() && spawningCreep.memory.role === roleName){
