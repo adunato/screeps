@@ -13,7 +13,7 @@ var printCPU = false;
 var rooms = [];
 var spawnSlots = {};
 var disabledSpawns = ['Spawn5'];
-const MAX_SPAWN_DISTANCE = 1;
+const MAX_SPAWN_DISTANCE = 10;
 
 function clearMemory() {
     for (var i in Memory.creeps) {
