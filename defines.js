@@ -16,7 +16,7 @@ var roleBreacher = require('role.breacher');
 var roleAssaulter = require('role.assaulter');
 var roleMedic = require('role.medic');
 var squadprofile = require('SquadProfile');
-const UPGRADE_MIN_LIMIT = 100000;
+const UPGRADE_MIN_LIMIT = 50000;
 
 Object.size = function (obj) {
     var size = 0, key;
