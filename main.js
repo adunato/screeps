@@ -12,7 +12,7 @@ var printStats = false;
 var printCPU = false;
 var rooms = [];
 var spawnSlots = {};
-var disabledSpawns = ['Spawn6'];
+var disabledSpawns = [];
 const MAX_SPAWN_DISTANCE = 1;
 
 function clearMemory() {
