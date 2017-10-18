@@ -10,3 +10,6 @@ StructureSpawn.prototype.transfer = function (creep, resourceType) {
 StructureLink.prototype.transfer = function (creep, resourceType) {
     return creep.withdraw(this, resourceType);
 };
+StructureExtractor.prototype.transfer = function (creep, resourceType) {
+    return creep.withdraw(this, resourceType);
+};
