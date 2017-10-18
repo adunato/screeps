@@ -274,6 +274,7 @@ Creep.prototype.harvestEnergy = function () {
     } else if (res != OK){
         console.log("RES: " + res);
         console.log("Source: " + source);
+        console.log("Creep: " + this);
     }
 };
 
