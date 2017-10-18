@@ -351,6 +351,7 @@ var defines = {
             ],
             "E55N2": [
                 '59d8b1c944dff0121b11987a',//source
+                '59e658873e8c7f19743b4343',//mineral
             ],
             "E55N1": [
                 '59dc9c705f76163cc66d3d94',//source left
@@ -358,7 +359,6 @@ var defines = {
             ],
             "E54N2": [
                 '59de363b829e7002183191e8',//source
-                '59e658873e8c7f19743b4343',//mineral
             ],
         };
         global.destinationContainers = {
