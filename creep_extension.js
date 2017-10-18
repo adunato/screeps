@@ -97,15 +97,23 @@ Creep.prototype.withdrawEnergyFromSpawn = function () {
 Creep.prototype.dropToDestinations = function (destinations, sortByDistance) {
     if (destinations.length > 0) {
         var structure;
-        if (sortByDistance)
-            structure = this.getNearestObjectByDistance(destinations);
-        else
-            structure = destinations[0];
+        var resourceType = RESOURCE_ENERGY;
+        var hasMinerals = false;
+        if(Object.keys(this.carry).length > 1) {
+            resourceType = _.findKey(this.carry, (amt, key) => amt > 0 && key !== RESOURCE_ENERGY);
+            if(resourceType)
+                hasMinerals = true;
+        }
+        if(hasMinerals){
+            structure = cache.findEmptyStorage(this.room)[0];
+        }else {
+            if (sortByDistance)
+                structure = this.getNearestObjectByDistance(destinations);
+            else
+                structure = destinations[0];
+        }
         if (!structure)
             return false;
-        var resourceType = RESOURCE_ENERGY;
-        if(Object.keys(this.carry).length > 1)
-            resourceType = _.findKey(this.carry, (amt,key) => amt > 0 && key !== RESOURCE_ENERGY);
 
         if (this.transfer(structure, resourceType) == ERR_NOT_IN_RANGE) {
             this.travelTo(structure, {visualizePathStyle: {stroke: '#0027ff'}});
