@@ -192,7 +192,7 @@ Creep.prototype.goToSource = function () {
     //check if flag's room is visible
     if (flag && flag.room) {
         var sources = cache.findSources(flag.room);
-        sources = sources.concat(cache.findExtractors(flag.room));
+        sources = sources.concat(cache.findMinerals(flag.room));
         for (var i = 0; i < sources.length; i++) {
             var source = sources[i];
             if (source.pos.x === flag.pos.x && source.pos.y === flag.pos.y) {
