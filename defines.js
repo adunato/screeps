@@ -271,7 +271,7 @@ var defines = {
             }),
             "CL": new squadprofile.SquadAttributes([["claimer", 1]], false, function (flagName) {
                 var room = Game.flags[flagName].room;
-                return !(room.controller && room.controller.my);
+                return !(room && room.controller && room.controller.my);
             }),
             "RES": new squadprofile.SquadAttributes([["reserver", 1]], false, function (flagName) {
                 var roomName = Game.flags[flagName].room;
