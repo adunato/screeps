@@ -70,19 +70,19 @@ var roleHarvester = {
         var stateMachine = new harvesterFSM(creep.name);
         // console.log(statemachine.visualize(stateMachine));
         stateMachine.goto(creepState);
-        if (creep.carry.energy < creep.carryCapacity &&  !creep.memory.selectedSource && !creep.timeToDie() && stateMachine.can("energyEmpty")) {
+        if (_.sum(creep.carry) < creep.carryCapacity &&  !creep.memory.selectedSource && !creep.timeToDie() && stateMachine.can("energyEmpty")) {
             stateMachine.energyEmpty();
         }
-        if (creep.carry.energy < creep.carryCapacity && creep.memory.selectedSource && !creep.timeToDie() && stateMachine.can("sourceSelected")) {
+        if (_.sum(creep.carry) < creep.carryCapacity && creep.memory.selectedSource && !creep.timeToDie() && stateMachine.can("sourceSelected")) {
             stateMachine.sourceSelected();
         }
-        if ((creep.carry.energy === creep.carryCapacity || creep.timeToDie()) && stateMachine.can("energyFull")) {
+        if ((_.sum(creep.carry) === creep.carryCapacity || creep.timeToDie()) && stateMachine.can("energyFull")) {
             stateMachine.energyFull();
         }
-        if (!MULTI_FUNCTION && creep.carry.energy === creep.carryCapacity && cache.findEnergyContainers(creep.room).length === 0 && cache.findEmptyCollectors(creep.room).length === 0 && cache.findEnergyFedStructures(creep.room, false).length === 0 && stateMachine.can("noEnergyContainers")) {
+        if (!MULTI_FUNCTION && _.sum(creep.carry) === creep.carryCapacity && cache.findEnergyContainers(creep.room).length === 0 && cache.findEmptyCollectors(creep.room).length === 0 && cache.findEnergyFedStructures(creep.room, false).length === 0 && stateMachine.can("noEnergyContainers")) {
             stateMachine.noEnergyContainers();
         }
-        if (creep.timeToDie() && creep.carry.energy === 0 && stateMachine.can("timeToDie")){
+        if (creep.timeToDie() && _.sum(creep.carry) === 0 && stateMachine.can("timeToDie")){
             stateMachine.timeToDie();
         }
         creep.memory.state = stateMachine.state;
