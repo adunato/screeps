@@ -358,6 +358,7 @@ var defines = {
             ],
             "E54N2": [
                 '59de363b829e7002183191e8',//source
+                '59e658873e8c7f19743b4343',//mineral
             ],
         };
         global.destinationContainers = {
