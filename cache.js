@@ -431,7 +431,6 @@ var cache = {
             sources = this.rooms.sources[room];
         } else {
             sources = room.find(FIND_SOURCES);
-            sourced = sources.concat(room.find(FIND_))
             this.rooms.sources[room] = sources;
         }
         return sources;
