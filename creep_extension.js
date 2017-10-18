@@ -31,6 +31,8 @@ Creep.prototype.withdrawEnergy = function (includeCarriers, includeLinks) {
 Creep.prototype.withdrawEnergyFromSources = function (energySources) {
     if (energySources.length > 0) {
         var energySource = this.containerWithMostEnergy(energySources);
+        if(!energySource)
+            return false;
         var resourceType = RESOURCE_ENERGY;
         if(energySource && energySource.store) {
             // console.log("energySource null: " + energySources);
