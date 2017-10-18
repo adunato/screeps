@@ -320,6 +320,7 @@ var defines = {
                 '59d5f142c6746a0921a82b91',//bottom source
                 '59d5ed5ce5c7e839ea74b37c',//top source
                 '59d603fa252d840a77cb2a09',//left container
+                '59e715b6c830d717da97d75d',//mineral
             ],
             "E59N4": [
                 '59d6124fa3a93c60aa6519f6',//top source
