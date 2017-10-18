@@ -271,10 +271,6 @@ Creep.prototype.harvestEnergy = function () {
     var res = this.harvest(source);
     if (res == ERR_NOT_IN_RANGE) {
         this.travelTo(source, {visualizePathStyle: {stroke: '#0027ff'}});
-    } else if (res != OK){
-        console.log("RES: " + res);
-        console.log("Source: " + source);
-        console.log("Creep: " + this);
     }
 };
 
