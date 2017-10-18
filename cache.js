@@ -95,22 +95,6 @@ var cache = {
         }
         return containers;
     },
-    findExtractors: function (room) {
-        var extractors = [];
-        if(!room)
-            return extractors;
-        if (typeof this.rooms.extractors[room] != "undefined") {
-            extractors = this.rooms.extractors[room];
-        } else {
-            extractors = room.find(FIND_STRUCTURES, {
-                filter: (container) => {
-                    return (container.structureType == STRUCTURE_EXTRACTOR);
-                }
-            });
-            this.rooms.extractors[room] = extractors;
-        }
-        return extractors;
-    },
     findDroppedResources: function (room) {
         var droppedResources = [];
         if(!room)
@@ -447,6 +431,7 @@ var cache = {
             sources = this.rooms.sources[room];
         } else {
             sources = room.find(FIND_SOURCES);
+            sourced = sources.concat(room.find(FIND_))
             this.rooms.sources[room] = sources;
         }
         return sources;
@@ -466,6 +451,22 @@ var cache = {
             this.rooms.energyContainers[room] = energyDropStructures;
         }
         return energyDropStructures;
+    },
+    findExtractors: function (room) {
+        var extractors = {};
+
+        if (typeof this.rooms.extractors[room] != "undefined") {
+            extractors = this.rooms.extractors[room];
+        } else {
+            extractors = room.find(FIND_STRUCTURES, {
+                filter: (container) => {
+                    return (container.structureType == STRUCTURE_EXTRACTOR);
+                }
+
+            });
+            this.rooms.extractors[room] = extractors;
+        }
+        return extractors;
     },
     findEmptyPlaceToDropStuff: function (room, options) {
         var targets = [];
