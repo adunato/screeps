@@ -94,7 +94,7 @@ Creep.prototype.withdrawEnergyFromSpawn = function () {
     }
 };
 
-Creep.prototype.dropToDestinations = function (destinations, sortByDistance) {
+Creep.prototype.dropToDestinations = function (destinations, sortByDistance, dropMineralToStorage) {
     if (destinations.length > 0) {
         var structure;
         var resourceType = RESOURCE_ENERGY;
@@ -104,7 +104,7 @@ Creep.prototype.dropToDestinations = function (destinations, sortByDistance) {
             if(resourceType)
                 hasMinerals = true;
         }
-        if(hasMinerals){
+        if(hasMinerals && dropMineralToStorage){
             structure = cache.findEmptyStorage(this.room)[0];
         }else {
             if (sortByDistance)
@@ -125,7 +125,7 @@ Creep.prototype.dropToDestinations = function (destinations, sortByDistance) {
 Creep.prototype.dropToStorage = function () {
     this.memory.selectedSource = null;
     var structures = cache.findEmptyStorage(this.room);
-    return this.dropToDestinations(structures, true);
+    return this.dropToDestinations(structures, true, false);
 };
 
 Creep.prototype.dropToDestinationContainer = function () {
@@ -134,7 +134,7 @@ Creep.prototype.dropToDestinationContainer = function () {
         return false;
     var structures = cache.findEmptyDestinationContainers(this.getSquad().getSquadRoomName());
     structures = structures.concat(cache.findEmptyDestinationLinks(this.getSquad().getSquadRoomName()));
-    return this.dropToDestinations(structures, false);
+    return this.dropToDestinations(structures, false, true);
 };
 
 Creep.prototype.dropEnergy = function (options) {
@@ -160,7 +160,7 @@ Creep.prototype.dropEnergy = function (options) {
         var links = cache.findLinks(this.room);
         targets = targets.concat(links);
     }
-    return this.dropToDestinations(targets, true);
+    return this.dropToDestinations(targets, true, false);
 };
 
 Creep.prototype.dropEnergyToCollector = function () {
