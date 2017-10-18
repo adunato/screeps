@@ -218,7 +218,7 @@ Creep.prototype.goToClaim = function () {
             if (this.claimController(this.room.controller) == ERR_NOT_IN_RANGE) {
                 this.travelTo(this.room.controller, {visualizePathStyle: {stroke: '#ffffff'}});
             }
-        } else {
+        } else if (!this.room.controller.my){
             if (this.attackController(this.room.controller) == ERR_NOT_IN_RANGE) {
                 this.travelTo(this.room.controller, {visualizePathStyle: {stroke: '#ffffff'}});
             }
