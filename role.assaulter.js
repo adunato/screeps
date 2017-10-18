@@ -27,6 +27,7 @@ var breacherFSM = new statemachine.StateMachine.factory({
         onMove: function () {
             var creep = Game.creeps[this.creepName];
             creep.travelToFlag();
+            var i = 0;
         },
         onDamaged: function () {
             var creep = Game.creeps[this.creepName];
