@@ -214,8 +214,14 @@ Creep.prototype.goToClaim = function () {
     }
     //check if flag's room is visible
     if (this.isInSquadRoom() && flag && flag.room) {
-        if (this.claimController(this.room.controller) == ERR_NOT_IN_RANGE) {
-            this.travelTo(this.room.controller, {visualizePathStyle: {stroke: '#ffffff'}});
+        if(!this.room.controller.owner) {
+            if (this.claimController(this.room.controller) == ERR_NOT_IN_RANGE) {
+                this.travelTo(this.room.controller, {visualizePathStyle: {stroke: '#ffffff'}});
+            }
+        } else {
+            if (this.attackController(this.room.controller) == ERR_NOT_IN_RANGE) {
+                this.travelTo(this.room.controller, {visualizePathStyle: {stroke: '#ffffff'}});
+            }
         }
     }
 };
