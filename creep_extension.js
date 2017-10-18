@@ -52,8 +52,8 @@ Creep.prototype.containerWithMostEnergy = function (energySources) {
     var selectedContainer = null;
     for(var key in energySources){
         if(energySources[key] instanceof StructureContainer) {
-            if (energySources[key].store[RESOURCE_ENERGY] > energy) {
-                energy = energySources[key].store[RESOURCE_ENERGY];
+            if (_.sum(energySources[key].store) > energy) {
+                energy = _.sum(energySources[key].store);
                 selectedContainer = energySources[key];
             }
         } else if(energySources[key] instanceof StructureLink){
