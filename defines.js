@@ -353,6 +353,7 @@ var defines = {
             "E55N2": [
                 '59d8b1c944dff0121b11987a',//source
                 '59e658873e8c7f19743b4343',//mineral
+                '59d8bc9c5085375cdfce8740',//temp
             ],
             "E55N1": [
                 '59dc9c705f76163cc66d3d94',//source left
@@ -396,7 +397,7 @@ var defines = {
                 '59c27bfdaf77cb2f886e312d',//E59N2
             ],
             "E55N2": [
-                '59d8bc9c5085375cdfce8740',//RC
+                // '59d8bc9c5085375cdfce8740',//RC
             ],
             "E55N1": [
                 '59d8b1c944dff0121b11987a',//E55N2
